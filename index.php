@@ -1,8 +1,8 @@
 <?php
 include 'app/config/config.php';
 
-$userController = new UsuarioController();
 
+$userController = new UsuarioController();
 $user = [
     'id_wappersonas' =>  1,
     'nombre' => 'Gonzalo',
@@ -21,8 +21,18 @@ $user = [
     'direccion_piso' => '8300',
     'direccion_cp' => '8300',
 ];
-
 $userController->store($user);
+
+$solController = new SolicitudController();
+$sol = [
+    'id_usuario' => 1,
+    'id_usuario_admin' => 2,
+    'id_estado' => 1,
+    'profesion' => 'Maestro jardinero',
+]; 
+
+$solController->store($sol);
+
 
 die();
 header('HTTP/1.1 301 Moved Permanently');
