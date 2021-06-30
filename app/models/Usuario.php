@@ -64,8 +64,8 @@ class Usuario
         $this->apellido = substr($apellido, 0, LT_USU_APELLIDO);
         $this->telefono = substr($telefono, 0, LT_USU_TELEFONO);
         $this->dni = $dni;
-        $this->genero = $genero;
         $this->email = substr($email, 0, LT_USU_EMAIL);
+        $this->genero = $genero;
         $this->nacionalidad = $nacionalidad;
         $this->id_ciudad = $id_ciudad;
         $this->id_barrio = $id_barrio;

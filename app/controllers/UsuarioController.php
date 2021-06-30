@@ -30,6 +30,7 @@ class UsuarioController
 
     public function getSolicitud($id)
     {
+        /* Esto se debe cambiar */
         $sql = "SELECT
         TOP 1
         usu.id_wappersonas, 
