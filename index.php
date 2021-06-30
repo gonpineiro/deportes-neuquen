@@ -40,6 +40,14 @@ $tra = [
 ];
 $trabajoController->store($tra);
 
+$tituloController = new TituloController();
+$titu = [
+    'id_solicitud' => 1,
+    'titulo' => 'Esto es un titulo No universitario',
+    'foto_titulo' => 'EESTO ES UNA FOTO SUPER BASE 64',
+];
+$trabajoController->store($tra);
+
 
 die();
 header('HTTP/1.1 301 Moved Permanently');
