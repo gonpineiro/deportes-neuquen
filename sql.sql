@@ -1,44 +1,62 @@
-CREATE TABLE libretas_usuarios (
+CREATE TABLE deportes_usuarios (
 	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	id_wappersonas INT NULL,
+	nombre VARCHAR(50) NULL,
+	apellido VARCHAR(50) NULL,
+	telefono VARCHAR(50) NULL,
+	email VARCHAR(250) NULL,
 	dni INT NULL,
 	genero VARCHAR(1) NULL,
-	nombre VARCHAR(50) NULL,
-	apellido VARCHAR(50) NULL,
-	telefono VARCHAR(250) NULL,
-	email VARCHAR(250) NULL,
-	direccion_renaper VARCHAR(250) NULL,
-	fecha_nac VARCHAR(45) NULL,
-	empresa_cuil VARCHAR(250) NULL,
-	empresa_nombre VARCHAR(250) NULL,
+	nacionalidad VARCHAR(45) NULL,
+	id_ciudad INT NULL
+	id_barrio INT NULL
+	id_zona INT NULL
+	direccion_calle VARCHAR(250) NULL,
+	direccion_nro VARCHAR(250) NULL,
+	direccion_depto VARCHAR(250) NULL,
+	direccion_piso VARCHAR(250) NULL,
+	direccion_cp VARCHAR(250) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE());
 	
-CREATE TABLE libretas_solicitudes (
+CREATE TABLE deportes_solicitudes (
 	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	id_usuario_solicitante INT NULL,
-	id_usuario_solicitado INT NULL,
-	tipo_empleo INT NULL,
-	renovacion INT NULL,
-	id_capacitador INT NULL,
-	nro_recibo VARCHAR(50) NULL,
-	path_comprobante_pago VARCHAR(500) NULL,
-	estado VARCHAR(45) NULL,
-	retiro_en VARCHAR(45) NULL,
-    fecha_evaluacion VARCHAR(250) NULL,
-	fecha_vencimiento VARCHAR(250) NULL,
-	observaciones VARCHAR(750) NULL,
+	id_usuario INT NULL,
 	id_usuario_admin INT NULL,
+	id_estado INT NULL,
+	profesion VARCHAR(45) NULL,
+	modified_at VARCHAR(45) NULL,    
+	deleted_at VARCHAR(45) NULL,    
 	fecha_alta DATETIME DEFAULT GETDATE());
 
-CREATE TABLE libretas_capacitadores (
+CREATE TABLE deportes_trabajos (
 	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	nombre VARCHAR(50) NULL,
-	apellido VARCHAR(50) NULL,
-	matricula VARCHAR(45) NULL,	
-	municipalidad_nqn INT NULL,
-	path_certificado VARCHAR(500) NULL,
-	lugar_capacitacion VARCHAR(150) NULL,
-	fecha_capacitacion VARCHAR(45) NULL,    
+	id_solicitud INT NULL,
+	lugar_de_trabajo INT NULL,
+	foto_certificado_laboral VARCHAR(45) NULL,    
+	fecha_alta DATETIME DEFAULT GETDATE());
+
+CREATE TABLE deportes_titulos (
+	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	id_solicitud INT NULL,
+	titulo VARCHAR(50) NULL,
+	foto_titulo VARCHAR(45) NULL,    
+	fecha_alta DATETIME DEFAULT GETDATE());
+
+CREATE TABLE deportes_estados (
+	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	nombre VARCHAR(50) NULL,    
+	fecha_alta DATETIME DEFAULT GETDATE());
+
+CREATE TABLE deportes_ciudades (
+	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	id_provincio INT NULL,    
+	nombre VARCHAR(50) NULL,    
+	fecha_alta DATETIME DEFAULT GETDATE());
+
+CREATE TABLE deportes_barrios (
+	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	id_ciudad INT NULL,    
+	nombre VARCHAR(50) NULL,    
 	fecha_alta DATETIME DEFAULT GETDATE());
 	
 CREATE TABLE libretas_log (
