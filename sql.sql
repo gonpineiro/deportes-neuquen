@@ -59,11 +59,10 @@ CREATE TABLE deportes_barrios (
 	nombre VARCHAR(50) NULL,    
 	fecha_alta DATETIME DEFAULT GETDATE());
 	
-CREATE TABLE libretas_log (
+CREATE TABLE deportes_log (
 	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	id_usuario INT NULL,
 	id_solicitud INT NULL,
-	id_capacitador INT NULL,
 	error VARCHAR(45) NULL,
 	class VARCHAR(45) NULL,
 	metodo VARCHAR(45) NULL,
