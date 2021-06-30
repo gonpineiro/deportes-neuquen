@@ -35,7 +35,7 @@ define('DB_CHARSET',  PROD ? $_ENV['DB_CHARSET'] : 'utf8');
 /* Configuración de tablas */
 define('USUARIOS', $_ENV['DB_USUARIOS_TABLE']);
 define('SOLICITUDES', $_ENV['DB_SOLICITUDES_TABLE']);
-define('CAPACITADORES', $_ENV['DB_CAPACITADORES_TABLE']);
+define('TRABAJOS', $_ENV['DB_TRABAJOS_TABLE']);
 define('LOG', $_ENV['DB_LOG_TABLE']);
 
 /* Limit Length columns */

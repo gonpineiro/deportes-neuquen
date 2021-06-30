@@ -1,56 +1,43 @@
 <?php
-
 /**
- * This is the model class for table "Grupo".
+ * This is the model class for table "Trabajo".
  *
- * @property int $id_usuario
- * @property int $id_usuario_admin
- * @property int $id_estado
- * @property string $profesion
- * @property string $modified_at
- * @property string $deleted_at
+ * @property int $id_solicitud
+ * @property string $lugar_de_trabajo
+ * @property string $foto_certificado_laboral
  * 
  */
-class Solicitud
+class Trabajo
 {
-    public $id_usuario;
-    public $id_usuario_admin;
-    public $id_estado;
-    public $profesion;
-    public $modified_at;
-    public $deleted_at;
+    public $id_solicitud;
+    public $lugar_de_trabajo;
+    public $foto_certificado_laboral;
 
     public function __construct()
     {
-        $this->id_usuario = "";
-        $this->id_usuario_admin = "";
-        $this->id_estado = "";
-        $this->profesion = "";
-        $this->modified_at = "";
-        $this->deleted_at = "";
+        $this->id_solicitud = "";
+        $this->lugar_de_trabajo = "";
+        $this->foto_certificado_laboral = "";
     }
 
-    public function set($id_usuario = null, $id_usuario_admin = null, $id_estado = null, $profesion = null, $modified_at = null, $deleted_at = null)
+    public function set($id_solicitud = null, $lugar_de_trabajo = null, $foto_certificado_laboral = null)
     {
-        $this->id_usuario = $id_usuario;
-        $this->id_usuario_admin = $id_usuario_admin;
-        $this->id_estado = $id_estado;
-        $this->profesion = $profesion;
-        $this->modified_at = $modified_at;
-        $this->deleted_at = $deleted_at;
+        $this->id_solicitud = $id_solicitud;
+        $this->lugar_de_trabajo = $lugar_de_trabajo;
+        $this->foto_certificado_laboral = $foto_certificado_laboral;
     }
 
     public function save()
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        $result = $conn->store(SOLICITUDES, $array);
+        $result = $conn->store(TRABAJOS, $array);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error al guardar una solicitud';
+            $error =  $conn->getError() . ' | Error al guardar un trabajo';
             $log = new Log();
-            $log->set($this->id_usuario, null, null, $error, get_class(), 'save');
+            $log->set($this->id_solicitud, null, null, $error, get_class(), 'save');
             $log->save();
         }
         return $result;
@@ -59,38 +46,38 @@ class Solicitud
     public static function list($param = [], $ops = [])
     {
         $conn = new BaseDatos();
-        $solicitud = $conn->search(SOLICITUDES, $param, $ops);
+        $trabajo = $conn->search(TRABAJOS, $param, $ops);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error al listar las solicitudes';
+            $error =  $conn->getError() . ' | Error al listar las trabajos';
             $log = new Log();
             $log->set(null, null, null, $error, get_class(), 'list');
             $log->save();
         }
-        return $solicitud;
+        return $trabajo;
     }
 
     public static function get($params)
     {
         $conn = new BaseDatos();
-        $result = $conn->search(SOLICITUDES, $params);
-        $solicitud = $conn->fetch_assoc($result);
+        $result = $conn->search(TRABAJOS, $params);
+        $trabajo = $conn->fetch_assoc($result);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error a obtener la solicitud: ' . $params[0];
+            $error =  $conn->getError() . ' | Error a obtener el trabajo: ' . $params[0];
             $log = new Log();
             $log->set(null, null, null, $error, get_class(), 'get');
             $log->save();
         }
-        return $solicitud;
+        return $trabajo;
     }
 
     public static function update($res, $id)
     {
         $conn = new BaseDatos();
-        $result = $conn->update(SOLICITUDES, $res, $id);
+        $result = $conn->update(TRABAJOS, $res, $id);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
