@@ -31,7 +31,7 @@ CREATE TABLE deportes_solicitudes (
 CREATE TABLE deportes_trabajos (
 	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	id_solicitud INT NULL,
-	lugar_de_trabajo INT NULL,
+	lugar_de_trabajo VARCHAR(250),
 	foto_certificado_laboral VARCHAR(45) NULL,    
 	fecha_alta DATETIME DEFAULT GETDATE());
 
