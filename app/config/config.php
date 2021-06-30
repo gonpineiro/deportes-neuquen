@@ -39,6 +39,7 @@ define('TRABAJOS', $_ENV['DB_TRABAJOS_TABLE']);
 define('TITULOS', $_ENV['DB_TITULOS_TABLE']);
 define('ESTADOS', $_ENV['DB_ESTADOS_TABLE']);
 define('CIUDADES', $_ENV['DB_ESTADOS_TABLE']);
+define('BARRIOS', $_ENV['DB_BARRIOS_TABLE']);
 define('LOG', $_ENV['DB_LOG_TABLE']);
 
 /* Limit Length columns */

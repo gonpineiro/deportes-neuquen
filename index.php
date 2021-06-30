@@ -61,6 +61,13 @@ $ciu = [
 ];
 $ciudadController->store($ciu);
 
+$barrioController = new BarrioController();
+$bar = [
+    'id_ciudad' => 52,
+    'nombre' => 'Barrio magica de BsAs',
+];
+$barrioController->store($ciu);
+
 
 die();
 header('HTTP/1.1 301 Moved Permanently');
