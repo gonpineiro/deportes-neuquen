@@ -48,6 +48,12 @@ $titu = [
 ];
 $tituloController->store($titu);
 
+$estadoController = new EstadoController();
+$est = [
+    'nombre' => 'Estro es un estado magico',
+];
+$estadoController->store($est);
+
 
 die();
 header('HTTP/1.1 301 Moved Permanently');
