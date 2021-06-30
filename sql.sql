@@ -49,7 +49,7 @@ CREATE TABLE deportes_estados (
 
 CREATE TABLE deportes_ciudades (
 	id int NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	id_provincio INT NULL,    
+	id_provincia INT NULL,    
 	nombre VARCHAR(50) NULL,    
 	fecha_alta DATETIME DEFAULT GETDATE());
 
