@@ -54,6 +54,13 @@ $est = [
 ];
 $estadoController->store($est);
 
+$ciudadController = new ciudadController();
+$ciu = [
+    'id_provincia' => 52,
+    'nombre' => 'Ciudad magica de BsAs',
+];
+$ciudadController->store($ciu);
+
 
 die();
 header('HTTP/1.1 301 Moved Permanently');
