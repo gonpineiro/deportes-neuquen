@@ -17,9 +17,9 @@ class Barrio
         $this->nombre = "";
     }
 
-    public function set($nombre = null, $id_ciudad = null)
+    public function set($id_ciudad = null, $nombre = null)
     {
-        $this->id_ciudad = $nombre;
+        $this->id_ciudad = $id_ciudad;
         $this->nombre = $nombre;
     }
 

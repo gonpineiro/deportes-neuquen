@@ -68,6 +68,12 @@ $bar = [
 ];
 $barrioController->store($ciu);
 
+$listado = $userController->index();
+
+while ($row = odbc_fetch_array($listado)) {
+    verEstructura($row);
+}
+
 
 die();
 header('HTTP/1.1 301 Moved Permanently');

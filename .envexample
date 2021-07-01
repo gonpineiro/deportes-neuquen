@@ -7,10 +7,16 @@ DB_NAME=
 DB_PORT=
 DB_CHARSET=utf8
 
-DB_USUARIOS_TABLE=libretas_usuarios
+DB_USUARIOS_TABLE=deportes_usuarios
+DB_SOLICITUDES_TABLE=deportes_solicitudes
+DB_TRABAJOS_TABLE=deportes_trabajos
+DB_TITULOS_TABLE=deportes_titulos
+DB_ESTADOS_TABLE=deportes_estados
+DB_CIUDADES_TABLE=deportes_ciudades
+DB_BARRIOS_TABLE=deportes_barrios
+
 DB_CAPACITADORES_TABLE=libretas_capacitadores
-DB_SOLICITUDES_TABLE=libretas_solicitudes
-DB_LOG_TABLE=libretas_log
+DB_LOG_TABLE=deportes_log
 
 LT_USU_NOMBRE=50
 LT_USU_APELLIDO=50
@@ -25,3 +31,4 @@ LT_CAP_NOMBRE=50
 LT_CAP_APELLIDO=50
 LT_CAP_MATRICULA=45
 LT_CAP_LUCAPACITACION=150
+
