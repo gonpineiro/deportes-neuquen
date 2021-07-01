@@ -15,7 +15,6 @@ class Log
 {
     public $id_usuario;
     public $id_solicitud;
-    public $id_capacitador;
     public $error;
     public $class;
     public $metodo;
@@ -24,17 +23,15 @@ class Log
     {
         $this->id_usuario = "";
         $this->id_solicitud = "";
-        $this->id_capacitador = "";
         $this->error = "";
         $this->class = "";
         $this->metodo = "";
     }
 
-    public function set($id_usuario, $id_solicitud, $id_capacitador, $error, $class, $metodo)
+    public function set($id_usuario, $id_solicitud, $error, $class, $metodo)
     {
         $this->id_usuario = $id_usuario;
         $this->id_solicitud = $id_solicitud;
-        $this->id_capacitador = $id_capacitador;
         $this->error = $error;
         $this->class = $class;
         $this->metodo = $metodo;

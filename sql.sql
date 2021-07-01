@@ -8,9 +8,9 @@ CREATE TABLE deportes_usuarios (
 	dni INT NULL,
 	genero VARCHAR(1) NULL,
 	nacionalidad VARCHAR(45) NULL,
-	id_ciudad INT NULL
-	id_barrio INT NULL
-	id_zona INT NULL
+	id_ciudad INT NULL,
+	id_barrio INT NULL,
+	id_zona INT NULL,
 	direccion_calle VARCHAR(250) NULL,
 	direccion_nro VARCHAR(250) NULL,
 	direccion_depto VARCHAR(250) NULL,

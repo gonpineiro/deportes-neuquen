@@ -16,7 +16,7 @@ class Ciudad
         $this->nombre = "";
     }
 
-    public function set($nombre = null, $id_provincia = null)
+    public function set($id_provincia = null, $nombre = null)
     {
         $this->id_provincia = $id_provincia;
         $this->nombre = $nombre;
@@ -26,7 +26,7 @@ class Ciudad
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        $result = $conn->store(ESTADOS, $array);
+        $result = $conn->store(CIUDADES, $array);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
