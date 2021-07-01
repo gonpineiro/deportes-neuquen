@@ -40,6 +40,7 @@ CREATE TABLE deportes_titulos (
 	id_solicitud INT NULL,
 	titulo VARCHAR(50) NULL,
 	foto_titulo VARCHAR(45) NULL,    
+	es_curso BIT NULL,
 	fecha_alta DATETIME DEFAULT GETDATE());
 
 CREATE TABLE deportes_estados (

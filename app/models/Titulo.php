@@ -5,6 +5,7 @@
  * @property int $id_solicitud
  * @property string $titulo
  * @property string $foto_titulo
+ * @property boolean $es_curso
  * 
  */
 class Titulo
@@ -12,19 +13,22 @@ class Titulo
     public $id_solicitud;
     public $titulo;
     public $foto_titulo;
+    public $es_curso;
 
     public function __construct()
     {
         $this->id_solicitud = "";
         $this->titulo = "";
         $this->foto_titulo = "";
+        $this->es_curso = "";
     }
 
-    public function set($id_solicitud = null, $titulo = null, $foto_titulo = null)
+    public function set($id_solicitud = null, $titulo = null, $foto_titulo = null,$es_curso = null)
     {
         $this->id_solicitud = $id_solicitud;
         $this->titulo = $titulo;
         $this->foto_titulo = $foto_titulo;
+        $this->es_curso = $es_curso;
     }
 
     public function save()
