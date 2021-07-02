@@ -2,7 +2,7 @@
 include 'app/config/config.php';
 
 
-$userController = new UsuarioController();
+/* $userController = new UsuarioController();
 $user = [
     'id_wappersonas' =>  2,
     'nombre' => 'Gonzalo',
@@ -67,13 +67,12 @@ $bar = [
     'id_ciudad' => 52,
     'nombre' => 'Barrio magica de BsAs',
 ];
-$barrioController->store($bar);
+$barrioController->store($bar); */
 
-$listado = $userController->index();
+$solicitud = new SolicitudController();
+$listado = $solicitud->getSolicitudesWhereEstado('Estro es un estado magico');
 
-while ($row = odbc_fetch_array($listado)) {
-    verEstructura($row);
-}
+verEstructura($listado);
 
 
 die();
