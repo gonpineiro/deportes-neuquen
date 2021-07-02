@@ -67,7 +67,7 @@ class SolicitudController
                 dbo.wappersonas as wap_adm
                 LEFT JOIN deportes_usuarios usu_adm ON wap_adm.ReferenciaID = usu_adm.id_wappersonas
             ) ON sol.id_usuario_admin = usu_adm.id 
-            -- Obtenemos el barrio
+            -- Obtenemos la ciudad
             LEFT OUTER JOIN (
                 dbo.deportes_ciudades as ciu
                 LEFT JOIN deportes_usuarios usu_ciu ON ciu.id = usu_ciu.id
