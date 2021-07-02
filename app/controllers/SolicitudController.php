@@ -53,6 +53,7 @@ class SolicitudController
             sol.id as id,
             wap_usr.nombre as nombre_te,
             wap_adm.nombre as nombre_admin,
+            bar.nombre as barrio,
             ciu.nombre as ciudad,
             profesion,
             est.nombre as estado
@@ -66,12 +67,17 @@ class SolicitudController
             LEFT OUTER JOIN (
                 dbo.wappersonas as wap_adm
                 LEFT JOIN deportes_usuarios usu_adm ON wap_adm.ReferenciaID = usu_adm.id_wappersonas
-            ) ON sol.id_usuario_admin = usu_adm.id 
+            ) ON sol.id_usuario_admin = usu_adm.id
+            -- Obtenemos el barrio
+            LEFT OUTER JOIN (
+                dbo.deportes_barrios as bar
+                LEFT JOIN deportes_usuarios usu_bar ON bar.id = usu_bar.id
+            ) ON sol.id_usuario = usu_bar.id 
             -- Obtenemos la ciudad
             LEFT OUTER JOIN (
                 dbo.deportes_ciudades as ciu
                 LEFT JOIN deportes_usuarios usu_ciu ON ciu.id = usu_ciu.id
-            ) ON sol.id_usuario = usu_ciu.id  
+            ) ON sol.id_usuario = usu_ciu.id 
             LEFT JOIN deportes_estados est ON est.id = sol.id_estado
             $where";
 
