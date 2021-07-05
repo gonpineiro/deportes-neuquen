@@ -43,6 +43,10 @@ if ($usuario) {
                 $estado_inscripcion = 'Aprobado';
             }
             break;
+        case '4':
+            /* Impreso */
+            $estado_inscripcion = 'Nuevo';
+            break;
     }
 } else {
     /* Nunca solicita una libreta */
@@ -85,6 +89,7 @@ if (isset($_POST) && !empty($_POST)) {
                 'modified_at' => null,
                 'deleted_at' => null,
                 'fecha_vencimiento' => null,
+                'fecha_evaluacion' => null,
             ];
             $idSolicitud = $solicitudController->store($solicitudParams);
 
@@ -155,7 +160,7 @@ if (isset($_POST) && !empty($_POST)) {
 
     switch ($estado_inscripcion) {
         case 'Nuevo':
-            isset($_GET['tipo']) && $_GET['tipo'] == 'e' && $_SESSION['userPerfiles'] == (2 || 3) ? include('inscripcion_empresarial.php') : include('inscripcion_individual.php');
+            include('inscripcion_individual.php');
             break;
 
         case 'Exitosa':
