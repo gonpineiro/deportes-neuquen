@@ -13,13 +13,7 @@ $sol = [
 ];
 $solController->store($sol);
 
-$trabajoController = new TrabajoController();
-$tra = [
-    'id_solicitud' => 1,
-    'lugar_de_trabajo' => 'Algun lugar horrible',
-    'foto_certificado_laboral' => 'EESTO ES UNA FOTO SUPER BASE 64',
-];
-$trabajoController->store($tra);
+);
 
 $tituloController = new TituloController();
 $titu = [
