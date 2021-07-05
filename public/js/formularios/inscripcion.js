@@ -225,27 +225,6 @@ function mostrarErrorEnAlta() {
 // // var add_button = $(".boton-agregar-titulo");
 // // var remove_button = $(".quitar-titulo-boton");
 
-<<<<<<< Updated upstream
-// function otroTitulo() {
-//     var max_fields = 10;
-//     var total_fields = $("#inputs-titulos")[0].childNodes.length;
-//     if (total_fields < max_fields) {
-//         $("#inputs-titulos").append(
-//         <div>
-//             <h2 classList="text-white">no anda</h2>
-//         </div>
-//         );
-//     }
-// }
-// $(".quitar-titulo-boton").click(function (e) {
-//     e.preventDefault();
-//     var total_fields = wrapper[0].childNodes.length;
-//     if (total_fields > 1) {
-//         $("#inputs-titulos")[0].childNodes[total_fields - 1].remove();
-//     }
-// });
-
-=======
 function otroTitulo() {
     var numInputs = document.getElementById('inputs-titulos').getElementsByTagName('input').length;
     var max_fields = 20;
@@ -313,4 +292,3 @@ function sacarOtroLugarTrabajo() {
         $("#inputs-lugar-trabajo")[0].childNodes[total_fields - 2].remove();
     }
 }
->>>>>>> Stashed changes
