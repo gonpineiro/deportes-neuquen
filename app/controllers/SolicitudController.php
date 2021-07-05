@@ -53,8 +53,12 @@ class SolicitudController
             sol.id as id,
             wap_usr.nombre as nombre_te,
             wap_adm.nombre as nombre_admin,
-            bar.nombre as barrio,
-            ciu.nombre as ciudad,
+            bar.nombre as barrio,    
+            CASE
+                WHEN bar.id IS NOT NULL      
+                THEN (select nombre from deportes_ciudades dep_ciu where dep_ciu.id = bar.id_ciudad)          
+                ELSE ciu.nombre       
+            END as ciudad,
             profesion,
             est.nombre as estado
             FROM deportes_solicitudes sol
@@ -71,12 +75,12 @@ class SolicitudController
             -- Obtenemos el barrio
             LEFT OUTER JOIN (
                 dbo.deportes_barrios as bar
-                LEFT JOIN deportes_usuarios usu_bar ON bar.id = usu_bar.id
+                LEFT JOIN deportes_usuarios usu_bar ON bar.id = usu_bar.id_barrio
             ) ON sol.id_usuario = usu_bar.id 
-            -- Obtenemos la ciudad
+            -- Obtenemos la ciudad    
             LEFT OUTER JOIN (
                 dbo.deportes_ciudades as ciu
-                LEFT JOIN deportes_usuarios usu_ciu ON ciu.id = usu_ciu.id
+                LEFT JOIN deportes_usuarios usu_ciu ON ciu.id = usu_ciu.id_ciudad
             ) ON sol.id_usuario = usu_ciu.id 
             LEFT JOIN deportes_estados est ON est.id = sol.id_estado
             $where";
