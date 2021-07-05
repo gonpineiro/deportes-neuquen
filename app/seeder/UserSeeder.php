@@ -93,3 +93,21 @@ $userController->store([
     'direccion_piso' => '8300',
     'direccion_cp' => '8300',
 ]);
+$userController->store([
+    'id_wappersonas' => 6,
+    'nombre' => 'ADMIN',
+    'apellido' => 'ADMIN',
+    'telefono' => '299569874',
+    'dni' => 36256251,
+    'genero' => 'H',
+    'email' => 'ADMIN@ADMIN.com',
+    'nacionalidad' => 'Argentino',
+    'id_ciudad' => NULL,
+    'id_barrio' => NULL,
+    'id_zona' => NULL,
+    'direccion_calle' => 'Lugar',
+    'direccion_nro' => '748',
+    'direccion_depto' => 'SI',
+    'direccion_piso' => '8300',
+    'direccion_cp' => '8300',
+]);

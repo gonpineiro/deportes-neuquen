@@ -1,10 +1,24 @@
 <?php
 
 $solController = new SolicitudController();
-$sol = [
+
+$solController->store([
     'id_usuario' => 1,
-    'id_usuario_admin' => 1,
+    'id_usuario_admin' => NULL,
     'id_estado' => 1,
-    'profesion' => 'Maestro jardinero',
-];
-$solController->store($sol);
+    'profesion' => 'Escuela Numero 5',
+]);
+
+$solController->store([
+    'id_usuario' => 2,
+    'id_usuario_admin' => NULL,
+    'id_estado' => 1,
+    'profesion' => 'Escuela Numero 2',
+]);
+
+$solController->store([
+    'id_usuario' => 3,
+    'id_usuario_admin' => NULL,
+    'id_estado' => 1,
+    'profesion' => 'Escuela Numero 5',
+]);
