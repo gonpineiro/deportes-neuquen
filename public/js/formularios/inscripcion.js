@@ -13,19 +13,19 @@ function validate() {
         form.addEventListener('submit', (event) => {
             let inputs = $('.form-control:invalid');
             let inputsSelectize = $('.invalid');
-            $('.invalid').css({"border-color": "#b94a48"});
-            $('.full').css({"border-color": "#28a745"});
+            $('.invalid').css({ "border-color": "#b94a48" });
+            $('.full').css({ "border-color": "#28a745" });
             if (inputsSelectize.length != 0) {
                 let targetEle = inputsSelectize.closest('.form-group');
                 animateToInput(targetEle);
             } else if (inputs.length != 0) {
                 let targetEle = $(`#${inputs[0].id}`).closest('.form-group');
                 animateToInput(targetEle);
-            } 
+            }
             if (form.checkValidity() === false) {
                 event.preventDefault();
                 event.stopPropagation();
-            }else{
+            } else {
                 $("#submit").addClass('hideDiv');
                 $("#enviando").removeClass('hideDiv');
             }
@@ -45,13 +45,13 @@ function processText(inputText) {
     return output;
 }
 
-$( function () {
+$(function () {
 
-    $(".custom-file-input").on("change", function() {
+    $(".custom-file-input").on("change", function () {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
-        
+
     dibujarAsteriscos();
 
     $("input[type='number']").on('keydown', function (e) {
@@ -70,16 +70,16 @@ $( function () {
     });
 
     $("#form").on('change', function () {
-            $('.invalid').css({"border-color": "#b94a48"});
-            $('.full').css({"border-color": "#28a745"});
-            validate();
-            bsSelectValidation();
-            var form = document.getElementsByClassName('needs-validation');
-            
-        } 
+        $('.invalid').css({ "border-color": "#b94a48" });
+        $('.full').css({ "border-color": "#28a745" });
+        validate();
+        bsSelectValidation();
+        var form = document.getElementsByClassName('needs-validation');
+
+    }
     );
-    
-    $('#ciudad').on('change', function(e) {
+
+    $('#ciudad').on('change', function (e) {
         if (this.value == 0) {
             $('#div-barrios').show(500);
             $('#div-barrios :input').attr('required', true);
@@ -98,21 +98,21 @@ $( function () {
             $('#div-barrio-nqn-otro :input').attr('required', false);
         }
     });
-    $('#path_certificado').on('change', function(e) {
+    $('#path_certificado').on('change', function (e) {
         checkArchivo(this);
     });
 
-    $('#path_comprobante_pago').on('change', function(e) {
+    $('#path_comprobante_pago').on('change', function (e) {
         checkArchivo(this);
     });
 
     $('#terminosycondiciones').on('change', terminosycondicionescheck(this))
-    
+
 });
 
-function checkArchivo(file){
+function checkArchivo(file) {
     var fileSize = file.files[0].size / 1024 / 1024, // in MB 
-        fileType = $(file).val().toLowerCase(), 
+        fileType = $(file).val().toLowerCase(),
         fileName = $(file).val().replace(/C:\\fakepath\\/i, ''),
         regex = new RegExp("(.*?)\.(pdf|jpg|png|jpeg)$", 'i'),
         max_file_size = 10;
@@ -121,10 +121,10 @@ function checkArchivo(file){
         $(file).val(null);
         $(file).closest(".form-group").find(".invalid-feedback").addClass("d-block");
         alert(`El tamaño del archivo max es de ${max_file_size} MB. Su archivo pesa ${~~fileSize} MB`);
-        
+
     } else {
         //* se verifica tipo de archivo
-        if ( !(regex.test(fileType)) ) {
+        if (!(regex.test(fileType))) {
             $(file).val(null);
             $(file).closest(".form-group").find(".invalid-feedback").addClass("d-block");
             alert('Formato de archivo no aceptado. Por favor ingrese un archivo del tipo pdf, jpg, png o jpeg.');
@@ -148,7 +148,7 @@ function mostrarInputOtro(value) {
     }
 }
 
-function animateToInput(targetEle){
+function animateToInput(targetEle) {
     $('html, body').stop().animate({
         'scrollTop': targetEle.offset().top
     }, 800, 'swing');
@@ -167,21 +167,21 @@ function dibujarAsteriscos() {
 
 function bsSelectValidation() {
     if ($("#form").hasClass('was-validated')) {
-      $(".selectpicker").each(function (i, el) {
-        if ($(el).is(":invalid")) {
-          $(el).closest(".form-group").find(".invalid-feedback").addClass("d-block");
-        }
-        else {
-          $(el).closest(".form-group").find(".invalid-feedback").removeClass("d-block");
-        }
-      });
+        $(".selectpicker").each(function (i, el) {
+            if ($(el).is(":invalid")) {
+                $(el).closest(".form-group").find(".invalid-feedback").addClass("d-block");
+            }
+            else {
+                $(el).closest(".form-group").find(".invalid-feedback").removeClass("d-block");
+            }
+        });
     }
 }
 
 function terminosycondicionescheck() {
     var terminos = $('#terminosycondiciones');
     var clausula = $('#clausulavalidezddjj');
-    if (terminos.is(":checked") && clausula.is(":checked") ) {
+    if (terminos.is(":checked") && clausula.is(":checked")) {
         $('#submit').prop('disabled', false);
     } else {
         $('#submit').prop('disabled', true);
@@ -201,11 +201,11 @@ function llamadaAjax(url) {
             'global': false,
             'dataType': 'html',
             'url': url,
-            'success': function(data) {
+            'success': function (data) {
                 tmp = JSON.parse(data);
             },
-            'error': function() {
-                console.log(url,tmp,'Error en llamaa Ajax!');
+            'error': function () {
+                console.log(url, tmp, 'Error en llamaa Ajax!');
             }
         });
         return tmp;
@@ -225,22 +225,70 @@ function mostrarErrorEnAlta() {
 // // var add_button = $(".boton-agregar-titulo");
 // // var remove_button = $(".quitar-titulo-boton");
 
-// function otroTitulo() {
-//     var max_fields = 10;
-//     var total_fields = $("#inputs-titulos")[0].childNodes.length;
-//     if (total_fields < max_fields) {
-//         $("#inputs-titulos").append(
-//         <div>
-//             <h2 classList="text-white">no anda</h2>
-//         </div>
-//         );
-//     }
-// }
-// $(".quitar-titulo-boton").click(function (e) {
-//     e.preventDefault();
-//     var total_fields = wrapper[0].childNodes.length;
-//     if (total_fields > 1) {
-//         $("#inputs-titulos")[0].childNodes[total_fields - 1].remove();
-//     }
-// });
+function otroTitulo() {
+    var numInputs = document.getElementById('inputs-titulos').getElementsByTagName('input').length;
+    var max_fields = 20;
+    var total_fields = $("#inputs-titulos")[0].childNodes.length;
+    if (total_fields < max_fields) {
+        $("#inputs-titulos").append(
+        
+        "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 '>"+
+            "<label for='tipo-titulo-" + numInputs + "' class='required'>Elegir título y/o curso " + numInputs +" </label>"+
+            "<select id='tipo-titulo-" + numInputs + "' class='selectpicker form-control' style='display:block!important' title='Seleccionar' name='tipo-titulo-" + numInputs +"' required>"+
+                "<option value='1'>Lic. Educación Física (Título Terciario).</option>"+
+                "<option value='2'>Master Educación Física (Título Terciario)</option>"+
+                "<option value='0'>Profesorado Educación Física (Título Terciario)</option>"+
+            "</select>"+
+            "<div class='invalid-feedback'>Por favor seleccionar un título/ ocupación.</div>"+
+            "</div>"+
+            "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12'>"+
+            "<label for='div-adjunto-titulo-" + numInputs + "' class='required'>Título o certificado " + numInputs +"(Formatos: .jpg - .jpeg - .png) </label>"+
+            "<div class='custom-file' id='div-adjunto-titulo" + numInputs + "'>"+
+            "<input id='imagen-titulo-" + numInputs + "' class='custom-file-input' type='file' name='imagen-titulo-" + numInputs +"' accept='image/png, image/jpeg' required>"+
+            "<label for='imagen-titulo-" + numInputs +"' class='custom-file-label' id='label-imagen-titulo'><span style='font-size: 1rem;'>Adjuntar imagen formato JPEG/PNG</span></label>"+
+                "</div>"+
+            "<div class='invalid-feedback'>Por favor cargue la imagen correctamente. </div>"+
+            "</div>"
+        );
+    }
+}
+function sacarOtroTitulo(){
+    wrapper = $("#inputs-titulos");
+    var total_fields = wrapper[0].childNodes.length;
+    if (total_fields > 1) {
+        $("#inputs-titulos")[0].childNodes[total_fields - 1].remove();
+        $("#inputs-titulos")[0].childNodes[total_fields - 2].remove();
+    }
+}
 
+function otroLugarTrabajo() {
+    var numInputs = document.getElementById('inputs-lugar-trabajo').getElementsByTagName('input').length;
+    var max_fields = 20;
+    var total_fields = $("#inputs-lugar-trabajo")[0].childNodes.length;
+    if (total_fields < max_fields) {
+        $("#inputs-lugar-trabajo").append(
+
+            "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 '>"+
+            "<label for='lugar-trabajo-" + numInputs + "' class='required'>Ingresar lugar de trabajo " + numInputs + " </label>"+
+                "<input type='text' id='lugar-trabajo-" + numInputs + "' class='form-control' placeholder='Dirección local de trabajo' name='lugar-trabajo-" + numInputs + "' required>"+
+                    "<div class='invalid-feedback'> Por favor ingrese un domicilio de trabajo.</div>"+
+                    "</div>"+
+                "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12'>"+
+            "<label for='div-certificacion-lugar-" + numInputs + "' class='required'>Imagen " + numInputs + " (Formatos: .jpg - .jpeg - .png) </label>"+
+                    "<div class='custom-file' id='div-certificacion-lugar-" + numInputs + "'>"+
+                        "<input id='imagen-certificacion-lugar-" + numInputs + "' class='custom-file-input' type='file' name='imagen-certificacion-lugar-" + numInputs + "' accept='image/png, image/jpeg' required>"+
+                            "<label for='imagen-certificacion-lugar-" + numInputs + "' class='custom-file-label' id='label-imagen-certificacion-lugar-0'><span style='font-size: 1rem;'>Adjuntar imagen formato JPEG/PNG</span></label>"+
+                                            "</div>"+
+                        "<div class='invalid-feedback'>Por favor cargue la imagen correctamente.</div>"+
+                    "</div>"
+        );
+    }
+}
+function sacarOtroLugarTrabajo() {
+    wrapper = $("#inputs-lugar-trabajo");
+    var total_fields = wrapper[0].childNodes.length;
+    if (total_fields > 1) {
+        $("#inputs-lugar-trabajo")[0].childNodes[total_fields - 1].remove();
+        $("#inputs-lugar-trabajo")[0].childNodes[total_fields - 2].remove();
+    }
+}

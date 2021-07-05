@@ -6,15 +6,15 @@ if (!isset($_SESSION['usuario'])) {
     header('Location: ' . WEBLOGIN);
     exit();
 }
-$usuarioController = new UsuarioController();
-$capacitadorController = new CapacitadorController();
-$solicitudController = new SolicitudController();
+ $usuarioController = new UsuarioController();
+// $capacitadorController = new CapacitadorController();
+// $solicitudController = new SolicitudController();
 
 /* datos de la sesion */
 include('session.php');
 
 /* Verificamos si existe el usuario */
-$usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
+ $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
 if ($usuario) {
     $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
     $id = $userWithSolicitud['id_solicitud'];
