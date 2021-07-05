@@ -1,6 +1,14 @@
 <?php
 
+include("../config/config.php");
+
+if (PROD) {
+    header('HTTP/1.1 301 Moved Permanently');
+    header('Location: ' . WEBLOGIN);
+}
+
 $trabajoController = new TrabajoController();
+
 $trabajoController->store([
     'id_solicitud' => 1,
     'lugar_de_trabajo' => 'Profesor',

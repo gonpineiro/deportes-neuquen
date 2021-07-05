@@ -1,6 +1,14 @@
 <?php
 
+include("../config/config.php");
+
+if (PROD) {
+    header('HTTP/1.1 301 Moved Permanently');
+    header('Location: ' . WEBLOGIN);
+}
+
 $estadoController = new EstadoController();
+
 $estadoController->store([
     'nombre' => 'Nuevo',
 ]);

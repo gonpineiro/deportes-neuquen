@@ -1,6 +1,14 @@
 <?php
 
+include("../config/config.php");
+
+if (PROD) {
+    header('HTTP/1.1 301 Moved Permanently');
+    header('Location: ' . WEBLOGIN);
+}
+
 $userController = new UsuarioController();
+
 $userController->store([
     'id_wappersonas' =>  1,
     'nombre' => 'Estefi',
@@ -19,6 +27,7 @@ $userController->store([
     'direccion_piso' => '8300',
     'direccion_cp' => '8300',
 ]);
+
 $userController->store([
     'id_wappersonas' =>  2,
     'nombre' => 'Juan',
@@ -37,6 +46,7 @@ $userController->store([
     'direccion_piso' => '8300',
     'direccion_cp' => '8300',
 ]);
+
 $userController->store([
     'id_wappersonas' =>  3,
     'nombre' => 'Kiol',
@@ -93,6 +103,7 @@ $userController->store([
     'direccion_piso' => '8300',
     'direccion_cp' => '8300',
 ]);
+
 $userController->store([
     'id_wappersonas' => 6,
     'nombre' => 'ADMIN',

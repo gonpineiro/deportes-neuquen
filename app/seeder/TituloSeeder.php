@@ -1,5 +1,12 @@
 <?php
 
+include("../config/config.php");
+
+if (PROD) {
+    header('HTTP/1.1 301 Moved Permanently');
+    header('Location: ' . WEBLOGIN);
+}
+
 $tituloController = new TituloController();
 
 $tituloController->store([
