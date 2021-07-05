@@ -2,6 +2,7 @@
 
 /**
  * This is the model class for table "Usuarios".
+ * 
  * @property int $id_wappersonas
  * @property string $nombre
  * @property string $apellido

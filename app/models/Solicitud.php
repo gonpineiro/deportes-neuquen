@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This is the model class for table "Grupo".
+ * This is the model class for table "Solicitud".
  *
  * @property int $id_usuario
  * @property int $id_usuario_admin

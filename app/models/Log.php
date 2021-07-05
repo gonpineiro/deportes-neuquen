@@ -1,11 +1,10 @@
 <?php
 
 /**
- * This is the model class for table "Grupo".
+ * This is the model class for table "Logs".
  *
  * @property int $id_usuario
  * @property int $id_solicitud
- * @property int $id_capacitador
  * @property int $error
  * @property int $class
  * @property int $metodo
