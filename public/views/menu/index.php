@@ -105,7 +105,7 @@ $apellido = $nombreapellido[0];
     <div class="container pt-5">
         <div class="row pt-5">
             <div class='col-sm d-flex justify-content-center'>
-                <div class='opcion' onclick='window.location.href = "../formularios/inscripcion.php?tipo=i"'>
+                <div class='opcion' onclick='window.location.href = "../formularios/inscripcion.php"'>
                     <table style='width: 100%;'>
                         <tbody>
                             <tr>

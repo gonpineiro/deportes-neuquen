@@ -23,9 +23,14 @@ CREATE TABLE deportes_solicitudes (
 	id_usuario INT NULL,
 	id_usuario_admin INT NULL,
 	id_estado INT NULL,
+	nro_recibo INT NULL,
+	path_comprobante_pago VARCHAR(5000) NULL,
 	profesion VARCHAR(45) NULL,
+	observaciones VARCHAR(1000) NULL,
 	modified_at VARCHAR(45) NULL,
 	deleted_at VARCHAR(45) NULL,
+	fecha_vencimiento VARCHAR(20) NULL,
+	fecha_evaluacion VARCHAR(20) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
 CREATE TABLE deportes_trabajos (

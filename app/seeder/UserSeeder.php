@@ -65,7 +65,7 @@ $userController->store([
 ]);
 
 $userController->store([
-    'id_wappersonas' =>  4,
+    'id_wappersonas' => 26662,
     'nombre' => 'Lop',
     'apellido' => 'Pedro',
     'telefono' => '299569874',

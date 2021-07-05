@@ -34,13 +34,13 @@ class UsuarioController
         $sql = "SELECT
         TOP 1
         usu.id_wappersonas, 
-        sol.fecha_vencimiento,
         sol.id as id_solicitud,
-        sol.fecha_evaluacion,
         sol.fecha_alta,
-        sol.estado 
-        FROM dbo.libretas_usuarios usu 
-        LEFT JOIN dbo.libretas_solicitudes sol ON usu.id = sol.id_usuario_solicitado 
+        sol.id_estado,
+        sol.fecha_vencimiento,
+        sol.fecha_evaluacion
+        FROM dbo.deportes_usuarios usu 
+        LEFT JOIN dbo.deportes_solicitudes sol ON usu.id = sol.id_usuario
         WHERE id_wappersonas = $id ORDER BY sol.fecha_alta DESC ";
 
         $conn = new BaseDatos();
