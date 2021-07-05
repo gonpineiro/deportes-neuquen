@@ -27,12 +27,7 @@ $tituloController->store($titu);
 
 
 
-$barrioController = new BarrioController();
-$bar = [
-    'id_ciudad' => 52,
-    'nombre' => 'Barrio magica de BsAs',
-];
-$barrioController->store($bar);
+
 
 $solicitud = new SolicitudController();
 $listado = $solicitud->getSolicitudesWhereEstado('Estro es un estado magico');
