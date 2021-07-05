@@ -9,9 +9,11 @@
  * @property int $nro_recibo
  * @property string $path_comprobante_pago
  * @property string $profesion
- * @property string $modified_at
+ * @property string $profesion
+ * @property string $observaciones
  * @property string $deleted_at
  * @property string $fecha_vencimiento
+ * @property string $fecha_evaluacion
  * 
  */
 class Solicitud
@@ -26,6 +28,7 @@ class Solicitud
     public $modified_at;
     public $deleted_at;
     public $fecha_vencimiento;
+    public $fecha_evaluacion;
 
     public function __construct()
     {
@@ -39,9 +42,10 @@ class Solicitud
         $this->modified_at = "";
         $this->deleted_at = "";
         $this->fecha_vencimiento = "";
+        $this->fecha_evaluacion = "";
     }
 
-    public function set($id_usuario = null, $id_usuario_admin = null, $id_estado = null, $nro_recibo = null, $path_comprobante_pago = null, $profesion = null, $observaciones = null, $modified_at = null, $deleted_at = null, $fecha_vencimiento = null)
+    public function set($id_usuario = null, $id_usuario_admin = null, $id_estado = null, $nro_recibo = null, $path_comprobante_pago = null, $profesion = null, $observaciones = null, $modified_at = null, $deleted_at = null, $fecha_vencimiento = null, $fecha_evaluacion = null)
     {
         $this->id_usuario = $id_usuario;
         $this->id_usuario_admin = $id_usuario_admin;
@@ -53,6 +57,7 @@ class Solicitud
         $this->modified_at = $modified_at;
         $this->deleted_at = $deleted_at;
         $this->fecha_vencimiento = $fecha_vencimiento;
+        $this->fecha_evaluacion = $fecha_evaluacion;
     }
 
     public function save()
