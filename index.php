@@ -25,12 +25,7 @@ $tituloController->store($titu);
 
 
 
-$ciudadController = new ciudadController();
-$ciu = [
-    'id_provincia' => 52,
-    'nombre' => 'Ciudad magica de BsAs',
-];
-$ciudadController->store($ciu);
+
 
 $barrioController = new BarrioController();
 $bar = [
