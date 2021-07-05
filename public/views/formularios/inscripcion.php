@@ -97,27 +97,10 @@ if (isset($_POST) && !empty($_POST)) {
                     cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nro $idSolicitud: Falla en update comprobante pago");
                 }
 
-                /* Update capacitadores with paths */
-                if (isset($_POST['capacitacion']) && $_POST['capacitacion'] === "1") {
-                    $pathCertificado = getDireccionesParaAdjunto($_FILES['path_certificado'], $idSolicitud, 'certificado');
-                    $capacitadorUpdated = $capacitadorController->update(
-                        ['path_certificado' => $pathCertificado],
-                        $idCapacitador
-                    );
-                    if (!$capacitadorUpdated) {
-                        $errores[] = "Solicitud nro $idSolicitud: Falla en update direccion capacitador.";
-                        cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nro $idSolicitud: Falla en update direccion capacitador.");
-                    }
-                }
-
                 /* upload comprobante & certificado */
                 if (!$solicitudUpdated || !copy($_FILES["path_comprobante_pago"]['tmp_name'], $pathComprobantePago)) {
                     $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
                     cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
-                }
-                if (isset($capacitadorUpdated) && (!$capacitadorUpdated || !copy($_FILES["path_certificado"]['tmp_name'], $pathCertificado))) {
-                    $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto certificado capacitacion fallida";
-                    cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto certificado capacitacion fallida");
                 }
             } else {
                 $errores[] = 'Error en alta de solicitud';
