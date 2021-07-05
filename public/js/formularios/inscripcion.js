@@ -225,6 +225,7 @@ function mostrarErrorEnAlta() {
 // // var add_button = $(".boton-agregar-titulo");
 // // var remove_button = $(".quitar-titulo-boton");
 
+<<<<<<< Updated upstream
 // function otroTitulo() {
 //     var max_fields = 10;
 //     var total_fields = $("#inputs-titulos")[0].childNodes.length;
@@ -244,3 +245,72 @@ function mostrarErrorEnAlta() {
 //     }
 // });
 
+=======
+function otroTitulo() {
+    var numInputs = document.getElementById('inputs-titulos').getElementsByTagName('input').length;
+    var max_fields = 20;
+    var total_fields = $("#inputs-titulos")[0].childNodes.length;
+    if (total_fields < max_fields) {
+        $("#inputs-titulos").append(
+        
+        "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 '>"+
+            "<label for='tipo-titulo-" + numInputs + "' class='required'>Elegir título y/o curso " + numInputs +" </label>"+
+            "<select id='tipo-titulo-" + numInputs + "' class='selectpicker form-control' style='display:block!important' title='Seleccionar' name='tipo-titulo-" + numInputs +"' required>"+
+                "<option value='1'>Lic. Educación Física (Título Terciario).</option>"+
+                "<option value='2'>Master Educación Física (Título Terciario)</option>"+
+                "<option value='0'>Profesorado Educación Física (Título Terciario)</option>"+
+            "</select>"+
+            "<div class='invalid-feedback'>Por favor seleccionar un título/ ocupación.</div>"+
+            "</div>"+
+            "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12'>"+
+            "<label for='div-adjunto-titulo-" + numInputs + "' class='required'>Título o certificado " + numInputs +"(Formatos: .jpg - .jpeg - .png) </label>"+
+            "<div class='custom-file' id='div-adjunto-titulo" + numInputs + "'>"+
+            "<input id='imagen-titulo-" + numInputs + "' class='custom-file-input' type='file' name='imagen-titulo-" + numInputs +"' accept='image/png, image/jpeg' required>"+
+            "<label for='imagen-titulo-" + numInputs +"' class='custom-file-label' id='label-imagen-titulo'><span style='font-size: 1rem;'>Adjuntar imagen formato JPEG/PNG</span></label>"+
+                "</div>"+
+            "<div class='invalid-feedback'>Por favor cargue la imagen correctamente. </div>"+
+            "</div>"
+        );
+    }
+}
+function sacarOtroTitulo(){
+    wrapper = $("#inputs-titulos");
+    var total_fields = wrapper[0].childNodes.length;
+    if (total_fields > 5) {
+        $("#inputs-titulos")[0].childNodes[total_fields - 1].remove();
+        $("#inputs-titulos")[0].childNodes[total_fields - 2].remove();
+    }
+}
+
+function otroLugarTrabajo() {
+    var numInputs = document.getElementById('inputs-lugar-trabajo').getElementsByTagName('input').length;
+    var max_fields = 20;
+    var total_fields = $("#inputs-lugar-trabajo")[0].childNodes.length;
+    if (total_fields < max_fields) {
+        $("#inputs-lugar-trabajo").append(
+
+            "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 '>"+
+            "<label for='lugar-trabajo-" + numInputs + "' class='required'>Ingresar lugar de trabajo " + numInputs + " </label>"+
+                "<input type='text' id='lugar-trabajo-" + numInputs + "' class='form-control' placeholder='Dirección local de trabajo' name='lugar-trabajo-" + numInputs + "' required>"+
+                    "<div class='invalid-feedback'> Por favor ingrese un domicilio de trabajo.</div>"+
+                    "</div>"+
+                "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12'>"+
+            "<label for='div-certificacion-lugar-" + numInputs + "' class='required'>Imagen " + numInputs + " (Formatos: .jpg - .jpeg - .png) </label>"+
+                    "<div class='custom-file' id='div-certificacion-lugar-" + numInputs + "'>"+
+                        "<input id='imagen-certificacion-lugar-" + numInputs + "' class='custom-file-input' type='file' name='imagen-certificacion-lugar-" + numInputs + "' accept='image/png, image/jpeg' required>"+
+                            "<label for='imagen-certificacion-lugar-" + numInputs + "' class='custom-file-label' id='label-imagen-certificacion-lugar-0'><span style='font-size: 1rem;'>Adjuntar imagen formato JPEG/PNG</span></label>"+
+                                            "</div>"+
+                        "<div class='invalid-feedback'>Por favor cargue la imagen correctamente.</div>"+
+                    "</div>"
+        );
+    }
+}
+function sacarOtroLugarTrabajo() {
+    wrapper = $("#inputs-lugar-trabajo");
+    var total_fields = wrapper[0].childNodes.length;
+    if (total_fields > 7) {
+        $("#inputs-lugar-trabajo")[0].childNodes[total_fields - 1].remove();
+        $("#inputs-lugar-trabajo")[0].childNodes[total_fields - 2].remove();
+    }
+}
+>>>>>>> Stashed changes

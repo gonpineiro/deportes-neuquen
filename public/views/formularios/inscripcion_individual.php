@@ -217,12 +217,19 @@ if ($errores) {
                                                 Por favor cargue la imagen correctamente.
                                             </div>
                                         </div>
+<<<<<<< Updated upstream
                                         <div id="inputs-titulos" class="inputs-titulos">
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                                             <button onclick="otroTitulo()" class="btn btn-light boton-agregar-titulo">Agregar Título</button>
                                             <button class="btn btn-light boton-quitar-titulo">Quitar Título</button>
                                         </div>
+=======
+                                    </div>
+                                    <div class="form-group">
+                                        <a onclick="otroTitulo()" class="btn btn-light boton-agregar-titulo">Agregar Título</a>
+                                        <a onclick="sacarOtroTitulo()" class="btn btn-light boton-quitar-titulo">Quitar Título</a>
+>>>>>>> Stashed changes
                                     </div>
                                 </div>
                                 <!-- DATOS LABORALES -->
@@ -249,12 +256,19 @@ if ($errores) {
                                                 Por favor cargue la imagen correctamente.
                                             </div>
                                         </div>
+<<<<<<< Updated upstream
                                         <div id="inputs-lugar-trabajo" class="inputs-lugar-trabajo">
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                                             <button class="btn btn-light boton-agregar-titulo">Agregar Lugar</button>
                                             <button class="btn btn-light boton-quitar-titulo">Quitar Lugar</button>
                                         </div>
+=======
+                                    </div>
+                                    <div class="form-group">
+                                        <a onclick="otroLugarTrabajo()" class="btn btn-light boton-agregar-titulo">Agregar Lugar</a>
+                                        <a onclick="sacarOtroLugarTrabajo()" class="btn btn-light boton-quitar-titulo">Quitar Lugar</a>
+>>>>>>> Stashed changes
                                     </div>
                                     <div class="form-group row">
                                         <!-- SELECCIÓN ACTIVIDADES LABORALES -->
