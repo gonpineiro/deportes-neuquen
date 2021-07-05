@@ -21,17 +21,20 @@ if ($usuario) {
     $vencimiento = $userWithSolicitud['fecha_vencimiento'];
     $fechaEvaluacion = $userWithSolicitud['fecha_evaluacion'];
 
-    switch ($userWithSolicitud['estado']) {
-        case 'Nuevo':
+    switch ($userWithSolicitud['id_estado']) {
+        case '1':
+            /* Nuevo */
             $estado_inscripcion = 'Enviado';
             break;
-
-        case 'Rechazado':
+            
+        case '2':
+            /* Rechazado */
             $userNot = "Su última solicitud fue rechazada. Puede generar una nueva solicitud.";
             $estado_inscripcion = 'Nuevo';
             break;
 
-        case 'Aprobado':
+        case '3':
+            /* Aprobado */
             $arrayFechas = compararFechas($vencimiento, 'days');
             if ($arrayFechas['dif'] <= 7 || $arrayFechas['date'] <= $arrayFechas['now']) {
                 $userNot = "La fecha de vencimiento de su libreta es : $vencimiento. Puede generar una nueva solicitud.";
