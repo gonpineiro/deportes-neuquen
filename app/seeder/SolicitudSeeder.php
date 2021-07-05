@@ -18,7 +18,21 @@ $solController->store([
 
 $solController->store([
     'id_usuario' => 3,
-    'id_usuario_admin' => NULL,
-    'id_estado' => 1,
-    'profesion' => 'Escuela Numero 5',
+    'id_usuario_admin' => 6,
+    'id_estado' => 2,
+    'profesion' => 'Escuela Numero 7',
+]);
+
+$solController->store([
+    'id_usuario' => 4,
+    'id_usuario_admin' => 6,
+    'id_estado' => 2,
+    'profesion' => 'Escuela Numero 7',
+]);
+
+$solController->store([
+    'id_usuario' => 5,
+    'id_usuario_admin' => 6,
+    'id_estado' => 3,
+    'profesion' => 'Escuela Numero 7',
 ]);
