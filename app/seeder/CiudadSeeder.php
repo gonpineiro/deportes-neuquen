@@ -5,7 +5,6 @@ if (PROD) {
     header('Location: ' . WEBLOGIN);
 }
 
-
 $ciudadController = new ciudadController();
 
 $ciudadController->store([
