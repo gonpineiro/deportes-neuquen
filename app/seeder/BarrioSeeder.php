@@ -1,5 +1,9 @@
 <?php
 
+if (PROD) {
+    header('HTTP/1.1 301 Moved Permanently');
+    header('Location: ' . WEBLOGIN);
+}
 
 $barrioController = new BarrioController();
 
