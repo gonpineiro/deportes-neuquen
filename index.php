@@ -13,7 +13,6 @@ $sol = [
 ];
 $solController->store($sol);
 
-);
 
 $tituloController = new TituloController();
 $titu = [
@@ -24,11 +23,7 @@ $titu = [
 ];
 $tituloController->store($titu);
 
-$estadoController = new EstadoController();
-$est = [
-    'nombre' => 'Estro es un estado magico',
-];
-$estadoController->store($est);
+
 
 $ciudadController = new ciudadController();
 $ciu = [
