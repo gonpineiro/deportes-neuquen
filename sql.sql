@@ -26,6 +26,7 @@ CREATE TABLE deportes_solicitudes (
 	profesion VARCHAR(45) NULL,
 	modified_at VARCHAR(45) NULL,
 	deleted_at VARCHAR(45) NULL,
+	fecha_vencimiento VARCHAR(20) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
 CREATE TABLE deportes_trabajos (
