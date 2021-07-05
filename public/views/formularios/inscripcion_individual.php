@@ -195,10 +195,10 @@ if ($errores) {
                                 <div class="card-body mb-5" style="border-radius: 20px;">
                                     <h4 class="text-white">Datos Profesionales</h4>
                                     <hr>
-                                    <div class="form-group row">
+                                    <div id="inputs-titulos" class="form-group row">
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
-                                            <label for="tipo-titulo" class="required">Elegir título y/o curso </label>
-                                            <select id="tipo-titulo" class="selectpicker form-control" title="Seleccionar" name='tipo-titulo' required>
+                                            <label for="tipo-titulo-0" class="required">Elegir título y/o curso </label>
+                                            <select id="tipo-titulo-0" class="selectpicker form-control" title="Seleccionar" name='tipo-titulo-0' required>
                                                 <option value="1">Lic. Educación Física (Título Terciario).</option>
                                                 <option value="2">Master Educación Física (Título Terciario)</option>
                                                 <option value="0">Profesorado Educación Física (Título Terciario)</option>
@@ -208,42 +208,43 @@ if ($errores) {
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
-                                            <label for="div-adjunto-titulo" class="required">Título o certificado (Formatos: .jpg - .jpeg - .png) </label>
-                                            <div class="custom-file" id="div-adjunto-titulo">
-                                                <input id="imagen-titulo" class="custom-file-input" type="file" name="imagen-titulo" accept="image/png, image/jpeg" required>
-                                                <label for="imagen-titulo" class="custom-file-label" id="label-imagen-titulo"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
+                                            <label for="div-adjunto-titulo-0" class="required">Título o certificado (Formatos: .jpg - .jpeg - .png) </label>
+                                            <div class="custom-file" id="div-adjunto-titulo-0">
+                                                <input id="imagen-titulo-0" class="custom-file-input" type="file" name="imagen-titulo-0" accept="image/png, image/jpeg" required>
+                                                <label for="imagen-titulo-0" class="custom-file-label" id="label-imagen-titulo"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
                                             </div>
                                             <div class="invalid-feedback">
                                                 Por favor cargue la imagen correctamente.
                                             </div>
                                         </div>
-                                        <div id="inputs-titulos" class="inputs-titulos">
+                                        <div class="form-group row col-12" style="width:100%">
                                         </div>
-                                        <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
-                                            <button onclick="otroTitulo()" class="btn btn-light boton-agregar-titulo">Agregar Título</button>
-                                            <button class="btn btn-light boton-quitar-titulo">Quitar Título</button>
-                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <a onclick="otroTitulo()" class="btn btn-light boton-agregar-titulo">Agregar Título</a>
+                                        <a onclick="sacarOtroTitulo()" class="btn btn-light boton-quitar-titulo">Quitar Título</a>
                                     </div>
                                 </div>
                                 <!-- DATOS LABORALES -->
                                 <div class="card-body mb-5" style="border-radius: 20px;">
                                     <h4 class="text-white">Experiencia Laboral</h4>
                                     <hr>
-                                    <div class="form-group row">
+                                    <div id="inputs-lugar-trabajo" class="form-group row">
                                         <!-- LUGAR Y CERTIFICACIÓN DE TRABAJO -->
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
-                                            <label for="lugar-trabajo" class="required">Ingresar lugar de trabajo </label>
-                                            <input type="text" id="lugar-trabajo" class="form-control" placeholder="Dirección local de trabajo" name="lugar-trabajo" required>
+                                            <label for="lugar-trabajo-0" class="required">Ingresar lugar de trabajo </label>
+                                            <input type="text" id="lugar-trabajo-0" class="form-control" placeholder="Dirección local de trabajo" name="lugar-trabajo-0" required>
 
                                             <div class="invalid-feedback">
                                                 Por favor ingrese un domicilio de trabajo.
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
-                                            <label for="div-certificacion-lugar" class="required">Imagen (Formatos: .jpg - .jpeg - .png) </label>
-                                            <div class="custom-file" id="div-certificacion-lugar">
-                                                <input id="imagen-certificacion-lugar" class="custom-file-input" type="file" name="imagen-certificacion-lugar" accept="image/png, image/jpeg" required>
-                                                <label for="imagen-certificacion-lugar" class="custom-file-label" id="label-imagen-certificacion-lugar"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
+                                            <label for="div-certificacion-lugar-0" class="required">Imagen (Formatos: .jpg - .jpeg - .png) </label>
+                                            <div class="custom-file" id="div-certificacion-lugar-0">
+                                                <input id="imagen-certificacion-lugar-0" class="custom-file-input" type="file" name="imagen-certificacion-lugar-0" accept="image/png, image/jpeg" required>
+                                                <label for="imagen-certificacion-lugar-0" class="custom-file-label" id="label-imagen-certificacion-lugar-0"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
                                             </div>
                                             <div class="invalid-feedback">
                                                 Por favor cargue la imagen correctamente.
@@ -251,10 +252,10 @@ if ($errores) {
                                         </div>
                                         <div id="inputs-lugar-trabajo" class="inputs-lugar-trabajo">
                                         </div>
-                                        <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
-                                            <button class="btn btn-light boton-agregar-titulo">Agregar Lugar</button>
-                                            <button class="btn btn-light boton-quitar-titulo">Quitar Lugar</button>
-                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <a onclick="otroLugarTrabajo()" class="btn btn-light boton-agregar-titulo">Agregar Lugar</a>
+                                        <a onclick="sacarOtroLugarTrabajo()" class="btn btn-light boton-quitar-titulo">Quitar Lugar</a>
                                     </div>
                                     <div class="form-group row">
                                         <!-- SELECCIÓN ACTIVIDADES LABORALES -->

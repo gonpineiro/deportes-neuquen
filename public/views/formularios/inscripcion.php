@@ -26,7 +26,7 @@ if ($usuario) {
             /* Nuevo */
             $estado_inscripcion = 'Enviado';
             break;
-            
+
         case '2':
             /* Rechazado */
             $userNot = "Su última solicitud fue rechazada. Puede generar una nueva solicitud.";
