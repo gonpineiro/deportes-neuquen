@@ -1,41 +1,37 @@
 <?php
 /**
- * This is the model class for table "Trabajo".
+ * This is the model class for table "Profesion".
  *
  * @property int $id_solicitud
- * @property string $lugar_de_trabajo
- * @property string $img_64
+ * @property string $nombre
  * 
  */
-class Trabajo
+class Profesion
 {
     public $id_solicitud;
-    public $lugar_de_trabajo;
-    public $img_64;
+    public $nombre;
 
     public function __construct()
     {
         $this->id_solicitud = "";
-        $this->lugar_de_trabajo = "";
-        $this->img_64 = "";
+        $this->nombre = "";
     }
 
-    public function set($id_solicitud = null, $lugar_de_trabajo = null, $img_64 = null)
+    public function set($id_solicitud = null, $nombre = null)
     {
         $this->id_solicitud = $id_solicitud;
-        $this->lugar_de_trabajo = $lugar_de_trabajo;
-        $this->img_64 = $img_64;
+        $this->nombre = $nombre;
     }
 
     public function save()
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        $result = $conn->store(TRABAJOS, $array);
+        $result = $conn->store(PROFESIONES, $array);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error al guardar un trabajo';
+            $error =  $conn->getError() . ' | Error al guardar un titulo';
             $log = new Log();
             $log->set($this->id_solicitud, null, null, $error, get_class(), 'save');
             $log->save();
@@ -46,42 +42,42 @@ class Trabajo
     public static function list($param = [], $ops = [])
     {
         $conn = new BaseDatos();
-        $trabajo = $conn->search(TRABAJOS, $param, $ops);
+        $result = $conn->search(PROFESIONES, $param, $ops);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error al listar las trabajos';
+            $error =  $conn->getError() . ' | Error al listar las titulos';
             $log = new Log();
             $log->set(null, null, null, $error, get_class(), 'list');
             $log->save();
         }
-        return $trabajo;
+        return $result;
     }
 
     public static function get($params)
     {
         $conn = new BaseDatos();
-        $result = $conn->search(TRABAJOS, $params);
-        $trabajo = $conn->fetch_assoc($result);
+        $result = $conn->search(PROFESIONES, $params);
+        $titulo = $conn->fetch_assoc($result);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error a obtener el trabajo: ' . $params[0];
+            $error =  $conn->getError() . ' | Error a obtener el titulo: ' . $params[0];
             $log = new Log();
             $log->set(null, null, null, $error, get_class(), 'get');
             $log->save();
         }
-        return $trabajo;
+        return $titulo;
     }
 
     public static function update($res, $id)
     {
         $conn = new BaseDatos();
-        $result = $conn->update(TRABAJOS, $res, $id);
+        $result = $conn->update(PROFESIONES, $res, $id);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error a modificar la solicitud';
+            $error =  $conn->getError() . ' | Error a modificar el titulo';
             $log = new Log();
             $log->set(null,  $id, null, $error, get_class(), 'update');
             $log->save();

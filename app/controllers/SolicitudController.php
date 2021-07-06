@@ -59,8 +59,8 @@ class SolicitudController
                 THEN (select nombre from deportes_ciudades dep_ciu where dep_ciu.id = bar.id_ciudad)          
                 ELSE ciu.nombre       
             END as ciudad,
-            profesion,
-            est.nombre as estado
+            est.nombre as estado,
+            sol.fecha_alta
             FROM deportes_solicitudes sol
             -- Obtenemos el usuario de wappersona
             LEFT OUTER JOIN (
