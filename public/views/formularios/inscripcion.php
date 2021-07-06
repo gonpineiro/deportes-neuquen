@@ -54,34 +54,33 @@ if ($usuario) {
 }
 /* Envio POST de la solicitud */
 if (isset($_POST) && !empty($_POST)) {
-
-    /* Verificamos si el nro_recibo ya se encuentra registrado */
-    $nroRecibo = $solicitudController->get(['nro_recibo' => (string) $_POST['nro_recibo']]);
-    if (!$nroRecibo) {
-
-        /* Cargamos usuario */
-        $id_wappersonas = $_SESSION['usuario']['wapPersonasId'];
-        $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
-        if (!$usuario) {
-            $usuarioController->store([
-                'id_wappersonas' => $id_wappersonas,
-                'nombre' => null,
-                'apellido' => null,
-                'telefono' => null,
-                'dni' => null,
-                'genero' => null,
-                'email' => null,
-                'nacionalidad' => $_POST['nacionalidad'],
-                'id_ciudad' => $_POST['ciudad'],
-                'id_barrio' => $_POST['barrio_nqn'],
-                'id_zona' => 3,
-                'direccion_calle' => $_POST['direccion-calle'],
-                'direccion_nro' => $_POST['direccion-numero'],
-                'direccion_depto' => $_POST['direccion-departamento'],
-                'direccion_piso' => $_POST['direccion-piso'],
-                'direccion_cp' => $_POST['direccion-cp'],
-            ]);
-        }
+    if (checkFile()) {
+        /* Verificamos si el nro_recibo ya se encuentra registrado */
+        $nroRecibo = $solicitudController->get(['nro_recibo' => (string) $_POST['nro_recibo']]);
+        if (!$nroRecibo) {
+            /* Cargamos usuario */
+            $id_wappersonas = $_SESSION['usuario']['wapPersonasId'];
+            $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
+            if (!$usuario) {
+                $usuarioController->store([
+                    'id_wappersonas' => $id_wappersonas,
+                    'nombre' => null,
+                    'apellido' => null,
+                    'telefono' => null,
+                    'dni' => null,
+                    'genero' => null,
+                    'email' => null,
+                    'nacionalidad' => $_POST['nacionalidad'],
+                    'id_ciudad' => $_POST['ciudad'],
+                    'id_barrio' => $_POST['barrio_nqn'],
+                    'id_zona' => 3,
+                    'direccion_calle' => $_POST['direccion-calle'],
+                    'direccion_nro' => $_POST['direccion-numero'],
+                    'direccion_depto' => $_POST['direccion-departamento'],
+                    'direccion_piso' => $_POST['direccion-piso'],
+                    'direccion_cp' => $_POST['direccion-cp'],
+                ]);
+            }
 
             /* Verificamos si cambio telefono o celular */
             if ($_POST['telefono'] !== (string)$celular || $_POST['email'] !== (string)$email) {
@@ -112,7 +111,6 @@ if (isset($_POST) && !empty($_POST)) {
             ];
             $idSolicitud = $solicitudController->store($solicitudParams);
 
-
             // Carga de imagenes en titulo
             if (isset($_FILES['imagenTitulos[]']) && $_FILES['imagenTitulos[]'] != (false or null)) {
 
@@ -126,49 +124,29 @@ if (isset($_POST) && !empty($_POST)) {
                 ];
                 $cargaTitulo = $titulo->store($tituloParams);
             }
-
         } else {
             $errores['duplicado'] = "Nro. de comprobante sellado " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
         }
-        /* Chequeamos las actividades seleccionadas en los checkboxes */
-        // if ($_POST['actividades[]']){
-        //     TODAVÍA NO HACEMOS NADA CON ESTO
-        // }
-        /* Guardamos la solicitud */
-        $solicitudParams = [
-            'id_usuario' => $usuario['id'],
-            'id_usuario_admin' => null,
-            'id_estado' => 1,
-            'nro_recibo' => ltrim($_POST['nro_recibo'], "0"),
-            'path_comprobante_pago' => null,
-            'profesion' => null,
-            'observaciones' => null,
-            'modified_at' => null,
-            'deleted_at' => null,
-            'fecha_vencimiento' => null,
-            'fecha_evaluacion' => null,
-        ];
-        $idSolicitud = $solicitudController->store($solicitudParams);
-    } else {
-        $errores['duplicado'] = "Nro. de comprobante sellado " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
-    }
 
-    if (count($errores) > 0) {
-        foreach ($errores as $error) {
-            console_log($error);
+        if (count($errores) > 0) {
+            foreach ($errores as $error) {
+                console_log($error);
+            }
+        } else {
+            /* Envio mail */
+            $enviarMailResult = enviarMailApi($_POST['email'], [$idSolicitud]);
+            console_log('enviar mail: ' . json_encode($enviarMailResult));
+            if ($enviarMailResult['error'] != null) {
+                $errores[] = 'Error envio de mail:' . $enviarMailResult['error'];
+                console_log($enviarMailResult['error']);
+                cargarLog($usuario['id'], $idSolicitud, $idCapacitador, $enviarMailResult['error']);
+            }
+        }
+        if (count($errores) == 0) {
+            $estado_inscripcion = 'Exitosa';
         }
     } else {
-        /* Envio mail */
-        $enviarMailResult = enviarMailApi($_POST['email'], [$idSolicitud]);
-        console_log('enviar mail: ' . json_encode($enviarMailResult));
-        if ($enviarMailResult['error'] != null) {
-            $errores[] = 'Error envio de mail:' . $enviarMailResult['error'];
-            console_log($enviarMailResult['error']);
-            cargarLog($usuario['id'], $idSolicitud, $idCapacitador, $enviarMailResult['error']);
-        }
-    }
-    if (count($errores) == 0) {
-        $estado_inscripcion = 'Exitosa';
+        $errores[] = 'Error adjunto';
     }
 }
 
