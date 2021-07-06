@@ -27,7 +27,7 @@ class Profesion
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        $result = $conn->store(TITULOS, $array);
+        $result = $conn->store(PROFESIONES, $array);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
@@ -42,7 +42,7 @@ class Profesion
     public static function list($param = [], $ops = [])
     {
         $conn = new BaseDatos();
-        $result = $conn->search(TITULOS, $param, $ops);
+        $result = $conn->search(PROFESIONES, $param, $ops);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
@@ -57,7 +57,7 @@ class Profesion
     public static function get($params)
     {
         $conn = new BaseDatos();
-        $result = $conn->search(TITULOS, $params);
+        $result = $conn->search(PROFESIONES, $params);
         $titulo = $conn->fetch_assoc($result);
 
         /* Guardamos los errores */
@@ -73,7 +73,7 @@ class Profesion
     public static function update($res, $id)
     {
         $conn = new BaseDatos();
-        $result = $conn->update(TITULOS, $res, $id);
+        $result = $conn->update(PROFESIONES, $res, $id);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
