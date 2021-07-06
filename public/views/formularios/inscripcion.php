@@ -77,6 +77,10 @@ if (isset($_POST) && !empty($_POST)) {
                 ];
                 $usuarioController->update($usuarioParams, $usuario['id']);
             }
+            /* Chequeamos las actividades seleccionadas en los checkboxes */
+            // if ($_POST['actividades[]']){
+            //     TODAVÍA NO HACEMOS NADA CON ESTO
+            // }
             /* Guardamos la solicitud */
             $solicitudParams = [
                 'id_usuario' => $usuario['id'],
@@ -93,27 +97,27 @@ if (isset($_POST) && !empty($_POST)) {
             ];
             $idSolicitud = $solicitudController->store($solicitudParams);
 
-            if (isset($idSolicitud) && $idSolicitud != (false or null)) {
-                /* Update solicitudes with paths */
-                $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $idSolicitud, 'comprobante_pago');
-                $solicitudUpdated = $solicitudController->update(
-                    ['path_comprobante_pago' => $pathComprobantePago],
-                    $idSolicitud
-                );
-                if (!$solicitudUpdated) {
-                    $errores[] = "Solicitud nro $idSolicitud: Falla en update comprobante pago";
-                    cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nro $idSolicitud: Falla en update comprobante pago");
-                }
+            // if (isset($idSolicitud) && $idSolicitud != (false or null)) {
+            //     /* Update solicitudes with paths */
+            //     $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $idSolicitud, 'comprobante_pago');
+            //     $solicitudUpdated = $solicitudController->update(
+            //         ['path_comprobante_pago' => $pathComprobantePago],
+            //         $idSolicitud
+            //     );
+            //     if (!$solicitudUpdated) {
+            //         $errores[] = "Solicitud nro $idSolicitud: Falla en update comprobante pago";
+            //         cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nro $idSolicitud: Falla en update comprobante pago");
+            //     }
 
-                /* upload comprobante & certificado */
-                if (!$solicitudUpdated || !copy($_FILES["path_comprobante_pago"]['tmp_name'], $pathComprobantePago)) {
-                    $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
-                    cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
-                }
-            } else {
-                $errores[] = 'Error en alta de solicitud';
-                cargarLog($usuario['id'], $idSolicitud, $idCapacitador, 'Error en alta de solicitud');
-            }
+            //     /* upload comprobante & certificado */
+            //     if (!$solicitudUpdated || !copy($_FILES["path_comprobante_pago"]['tmp_name'], $pathComprobantePago)) {
+            //         $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
+            //         cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
+            //     }
+            // } else {
+            //     $errores[] = 'Error en alta de solicitud';
+            //     cargarLog($usuario['id'], $idSolicitud, $idCapacitador, 'Error en alta de solicitud');
+            // }
         } else {
             $errores['duplicado'] = "Nro. de comprobante sellado " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
         }

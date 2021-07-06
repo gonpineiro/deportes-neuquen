@@ -181,7 +181,7 @@ if ($errores) {
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                                             <label for="adjunto-antecedentes" class="required">Adjuntar certificado de antecedentes penales (.jpg - .jpeg - .png - .pdf)</label>
                                             <div class="custom-file" id="adjunto-antecedentes">
-                                                <input id="path-antecedentes" class="custom-file-input" type="file" name="path-antecedentes" required>
+                                                <input id="path-antecedentes" class="custom-file-input" type="file" name="path-antecedentes">
                                                 <label for="path-antecedentes" class="custom-file-label required" id="label-path-antecedentes"><span style="font-size: 1rem;">Adjuntar Archivo (imagen o pdf)</span></label>
                                             </div>
                                             <div class="invalid-feedback">
@@ -198,7 +198,7 @@ if ($errores) {
                                     <div id="inputs-titulos" class="form-group row">
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                                             <label for="tipo-titulo" class="required">Elegir título y/o curso </label>
-                                            <select id="tipo-titulo" class="selectpicker form-control" title="Seleccionar" name='tipo-titulo' required>
+                                            <select id="tipo-titulo" class="selectpicker form-control" title="Seleccionar" name='titulos[]' required>
                                                 <option value="1">Lic. Educación Física (Título Terciario).</option>
                                                 <option value="2">Master Educación Física (Título Terciario)</option>
                                                 <option value="0">Profesorado Educación Física (Título Terciario)</option>
@@ -210,7 +210,7 @@ if ($errores) {
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                                             <label for="div-adjunto-titulo" class="required">Título o certificado (Formatos: .jpg - .jpeg - .png) </label>
                                             <div class="custom-file" id="div-adjunto-titulo">
-                                                <input id="imagen-titulo" class="custom-file-input" type="file" name="imagen-titulo" accept="image/png, image/jpeg" required>
+                                                <input id="imagen-titulo" class="custom-file-input" type="file" name="imagen-titulo" accept="image/png, image/jpeg">
                                                 <label for="imagen-titulo" class="custom-file-label" id="label-imagen-titulo"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
                                             </div>
                                             <div class="invalid-feedback">
@@ -230,8 +230,8 @@ if ($errores) {
                                     <div id="inputs-lugar-trabajo" class="form-group row">
                                         <!-- LUGAR Y CERTIFICACIÓN DE TRABAJO -->
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
-                                            <label for="lugar-trabajo" class="required">Ingresar lugar de trabajo </label>
-                                            <input type="text" id="lugar-trabajo" class="form-control" placeholder="Dirección local de trabajo" name="lugar-trabajo" required>
+                                            <label for="lugarTrabajo[]" class="required">Ingresar lugar de trabajo </label>
+                                            <input type="text" id="lugarTrabajo[]" class="form-control" placeholder="Dirección local de trabajo" name="lugarTrabajo[]" required>
 
                                             <div class="invalid-feedback">
                                                 Por favor ingrese un domicilio de trabajo.
@@ -240,7 +240,7 @@ if ($errores) {
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                                             <label for="div-certificacion-lugar" class="required">Imagen (Formatos: .jpg - .jpeg - .png) </label>
                                             <div class="custom-file" id="div-certificacion-lugar">
-                                                <input id="imagen-certificacion-lugar" class="custom-file-input" type="file" name="imagen-certificacion-lugar" accept="image/png, image/jpeg" required>
+                                                <input id="imagenLugar[]" class="custom-file-input" type="file" name="imagenLugar[]" accept="image/png, image/jpeg">
                                                 <label for="imagen-certificacion-lugar" class="custom-file-label" id="label-imagen-certificacion-lugar"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
                                             </div>
                                             <div class="invalid-feedback">
@@ -258,21 +258,21 @@ if ($errores) {
                                             <label for="actividades-laborales" class="required">Seleccionar actividad laboral (una o varias) </label>
                                             <div id="actividades-laborales">
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                    <input type="checkbox" class="custom-control-input" values="1" name="actividades[]">
                                                     <label class="custom-control-label" for="customCheck1">Una actividad</label>
                                                 </div>
 
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                                    <input type="checkbox" class="custom-control-input" values="2" name="actividades[]">
                                                     <label class="custom-control-label" for="customCheck2">Otra actividad</label>
                                                 </div>
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                                    <input type="checkbox" class="custom-control-input" values="3" name="actividades[]">
                                                     <label class="custom-control-label" for="customCheck3">Una actividad</label>
                                                 </div>
 
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck4">
+                                                    <input type="checkbox" class="custom-control-input" values="4" name="actividades[]">
                                                     <label class="custom-control-label" for="customCheck4">Otra actividad</label>
                                                 </div>
                                             </div>
@@ -297,7 +297,7 @@ if ($errores) {
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                                             <label for="div-imagen" class="required">Imagen (Formatos: .jpg - .jpeg - .png) </label>
                                             <div class="custom-file" id="div-imagen">
-                                                <input id="imagen" class="custom-file-input" type="file" name="imagen" accept="image/png, image/jpeg" required>
+                                                <input id="imagen" class="custom-file-input" type="file" name="imagen" accept="image/png, image/jpeg">
                                                 <label for="imagen" class="custom-file-label" id="label-imagen"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
                                             </div>
                                             <div class="invalid-feedback">
