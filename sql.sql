@@ -42,15 +42,16 @@ CREATE TABLE deportes_trabajos (
 CREATE TABLE deportes_titulos (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	id_solicitud INT NULL,
-	nombre VARCHAR(50) NULL,
+	titulo VARCHAR(50) NULL,
 	img_64 TEXT NULL,
+	es_curso BIT NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
 
 CREATE TABLE deportes_profesiones (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	id_solicitud INT NULL,
-	titulo VARCHAR(50) NULL,
+	nombre VARCHAR(50) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
 

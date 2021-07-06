@@ -22,7 +22,7 @@ class Solicitud
     public $id_usuario_admin;
     public $id_estado;
     public $nro_recibo;
-    public $path_comprobante_pago;
+    public $img_64;
     public $observaciones;
     public $modified_at;
     public $deleted_at;
@@ -35,7 +35,7 @@ class Solicitud
         $this->id_usuario_admin = "";
         $this->id_estado = "";
         $this->nro_recibo = "";
-        $this->path_comprobante_pago = "";
+        $this->img_64 = "";
         $this->observaciones = "";
         $this->modified_at = "";
         $this->deleted_at = "";
@@ -43,13 +43,13 @@ class Solicitud
         $this->fecha_evaluacion = "";
     }
 
-    public function set($id_usuario = null, $id_usuario_admin = null, $id_estado = null, $nro_recibo = null, $path_comprobante_pago = null, $observaciones = null, $modified_at = null, $deleted_at = null, $fecha_vencimiento = null, $fecha_evaluacion = null)
+    public function set($id_usuario = null, $id_usuario_admin = null, $id_estado = null, $nro_recibo = null, $img_64 = null, $observaciones = null, $modified_at = null, $deleted_at = null, $fecha_vencimiento = null, $fecha_evaluacion = null)
     {
         $this->id_usuario = $id_usuario;
         $this->id_usuario_admin = $id_usuario_admin;
         $this->id_estado = $id_estado;
         $this->nro_recibo = $nro_recibo;
-        $this->path_comprobante_pago = $path_comprobante_pago;
+        $this->img_64 = $img_64;
         $this->observaciones = $observaciones;
         $this->modified_at = $modified_at;
         $this->deleted_at = $deleted_at;

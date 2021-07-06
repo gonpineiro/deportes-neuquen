@@ -4,27 +4,27 @@
  *
  * @property int $id_solicitud
  * @property string $lugar_de_trabajo
- * @property string $foto_certificado_laboral
+ * @property string $img_64
  * 
  */
 class Trabajo
 {
     public $id_solicitud;
     public $lugar_de_trabajo;
-    public $foto_certificado_laboral;
+    public $img_64;
 
     public function __construct()
     {
         $this->id_solicitud = "";
         $this->lugar_de_trabajo = "";
-        $this->foto_certificado_laboral = "";
+        $this->img_64 = "";
     }
 
-    public function set($id_solicitud = null, $lugar_de_trabajo = null, $foto_certificado_laboral = null)
+    public function set($id_solicitud = null, $lugar_de_trabajo = null, $img_64 = null)
     {
         $this->id_solicitud = $id_solicitud;
         $this->lugar_de_trabajo = $lugar_de_trabajo;
-        $this->foto_certificado_laboral = $foto_certificado_laboral;
+        $this->img_64 = $img_64;
     }
 
     public function save()
