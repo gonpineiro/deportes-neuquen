@@ -22,7 +22,7 @@ define('PROD', $_ENV['PROD'] == 'true' ? true : false);
 define('APPID', PROD ? 53 : 55);
 
 /* Configuracion de URLs */
-define('WEBLOGIN', PROD ? 'https://weblogin.muninqn.gov.ar' : 'http://muninqn.gov.ar:90');
+define('WEBLOGIN', PROD ? 'https://weblogin.muninqn.gov.ar' : 'http://200.85.183.194:90');
 
 /* Configuracion base de datos */
 define('DB_HOST', PROD ? $_ENV['DB_HOST'] : '128.53.15.3');
