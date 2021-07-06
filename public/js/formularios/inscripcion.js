@@ -269,8 +269,8 @@ function otroLugarTrabajo() {
         $("#inputs-lugar-trabajo").append(
 
             "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 '>"+
-            "<label for='lugar-trabajo-" + numInputs + "' class='required'>Ingresar lugar de trabajo " + numInputs + " </label>"+
-                "<input type='text' id='lugar-trabajo-" + numInputs + "' class='form-control' placeholder='Dirección local de trabajo' name='lugar-trabajo-" + numInputs + "' required>"+
+            "<label for='lugarTrabajo[]' class='required'>Ingresar lugar de trabajo " + numInputs + " </label>"+
+                "<input type='text' id='lugarTrabajo[]' class='form-control' placeholder='Dirección local de trabajo' name='lugarTrabajo[]' required>"+
                     "<div class='invalid-feedback'> Por favor ingrese un domicilio de trabajo.</div>"+
                     "</div>"+
                 "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12'>"+
