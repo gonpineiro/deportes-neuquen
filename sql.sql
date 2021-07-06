@@ -22,7 +22,7 @@ CREATE TABLE deportes_solicitudes (
 	id_usuario_admin INT NULL,
 	id_estado INT NULL,
 	nro_recibo INT NULL,
-	path_comprobante_pago VARCHAR(5000) NULL,
+	img_64 TEXT NULL,
 	observaciones VARCHAR(1000) NULL,
 	modified_at VARCHAR(45) NULL,
 	deleted_at VARCHAR(45) NULL,
@@ -35,7 +35,7 @@ CREATE TABLE deportes_trabajos (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	id_solicitud INT NULL,
 	lugar_de_trabajo VARCHAR(250),
-	foto_certificado_laboral VARCHAR(45) NULL,
+	img_64 TEXT NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
 
@@ -43,6 +43,7 @@ CREATE TABLE deportes_titulos (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	id_solicitud INT NULL,
 	nombre VARCHAR(50) NULL,
+	img_64 TEXT NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
 
@@ -50,8 +51,6 @@ CREATE TABLE deportes_profesiones (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	id_solicitud INT NULL,
 	titulo VARCHAR(50) NULL,
-	foto_titulo VARCHAR(45) NULL,
-	es_curso BIT NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
 
