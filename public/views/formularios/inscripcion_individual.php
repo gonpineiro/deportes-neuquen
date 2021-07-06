@@ -210,7 +210,7 @@ if ($errores) {
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                                             <label for="div-adjunto-titulo" class="required">Título o certificado (Formatos: .jpg - .jpeg - .png) </label>
                                             <div class="custom-file" id="div-adjunto-titulo">
-                                                <input id="imagen-titulo" class="custom-file-input" type="file" name="imagen-titulo" accept="image/png, image/jpeg">
+                                                <input id="imagen-titulo" class="custom-file-input" type="file" name="imagenTitulos[]" accept="image/png, image/jpeg">
                                                 <label for="imagen-titulo" class="custom-file-label" id="label-imagen-titulo"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
                                             </div>
                                             <div class="invalid-feedback">
@@ -230,18 +230,17 @@ if ($errores) {
                                     <div id="inputs-lugar-trabajo" class="form-group row">
                                         <!-- LUGAR Y CERTIFICACIÓN DE TRABAJO -->
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
-                                            <label for="lugarTrabajo[]" class="required">Ingresar lugar de trabajo </label>
-                                            <input type="text" id="lugarTrabajo[]" class="form-control" placeholder="Dirección local de trabajo" name="lugarTrabajo[]" required>
-
+                                            <label for="lugarTrabajo" class="required">Ingresar lugar de trabajo </label>
+                                            <input type="text" id="lugarTrabajo" class="form-control" placeholder="Dirección local de trabajo" name="lugarTrabajo[]" required>
                                             <div class="invalid-feedback">
                                                 Por favor ingrese un domicilio de trabajo.
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
-                                            <label for="div-certificacion-lugar" class="required">Imagen (Formatos: .jpg - .jpeg - .png) </label>
-                                            <div class="custom-file" id="div-certificacion-lugar">
-                                                <input id="imagenLugar[]" class="custom-file-input" type="file" name="imagenLugar[]" accept="image/png, image/jpeg">
-                                                <label for="imagen-certificacion-lugar" class="custom-file-label" id="label-imagen-certificacion-lugar"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
+                                            <label for="div-certificacion-lugar-0" class="required">Imagen (Formatos: .jpg - .jpeg - .png) </label>
+                                            <div class="custom-file" id="div-certificacion-lugar-0">
+                                                <input id="imagen-certificacion-lugar-0" class="custom-file-input" type="file" name="imagenLugares[]" accept="image/png, image/jpeg">
+                                                <label for="imagen-certificacion-lugar-0" class="custom-file-label" id="label-imagen-certificacion-lugar"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
                                             </div>
                                             <div class="invalid-feedback">
                                                 Por favor cargue la imagen correctamente.
