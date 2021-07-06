@@ -226,12 +226,11 @@ function getImageByRenaper($array, $jsonStr = true)
     return utf8_converter($array, $jsonStr);
 }
 
-function compararFechas($string, $get, $format = 'd/m/Y')
+function compararFechas($string, $get, $format = 'Y-m-d')
 {
     $now = new DateTime();
-    $date = DateTime::createFromFormat('d/m/Y', $string);
+    $date = DateTime::createFromFormat($format, $string);
 
-    $compare = $now < $date;
     $array = [
         'now' => $now,
         'date' => $date,

@@ -31,7 +31,7 @@ class SolicitudController
     /* Obtiene listado de solicitudes vinculado con el resto de las tablas, where estado */
     public function getSolicitudesWhereEstado($estado)
     {
-        $where = "WHERE est.nombre = '$estado'";
+        $where = "WHERE est.nombre = '$estado' AND sol.deleted_at IS NULL";
         $conn = new BaseDatos();
         $array = [];
         $query =  $conn->query($this->insertSqlQuery($where));
