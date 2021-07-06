@@ -83,16 +83,52 @@ if (isset($_POST) && !empty($_POST)) {
             ]);
         }
 
-        /* buscamos el usuario  */
-        $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
+            /* Verificamos si cambio telefono o celular */
+            if ($_POST['telefono'] !== (string)$celular || $_POST['email'] !== (string)$email) {
+                $usuarioParams = [
+                    'telefono' =>  $_POST['telefono'],
+                    'email' => $_POST['email']
+                ];
+                $usuarioController->update($usuarioParams, $usuario['id']);
+            }
+            /* Chequeamos las actividades seleccionadas en los checkboxes */
+            // if ($_POST['actividades[]']){
+            //     TODAVÍA NO HACEMOS NADA CON ESTO
+            // }
+            /* Guardamos la solicitud */
+            $solicitudParams = [
+                'id_usuario' => $usuario['id'],
+                'id_usuario_admin' => null,
+                'id_estado' => 1,
+                'nro_recibo' => ltrim($_POST['nro_recibo'], "0"),
+                'path_comprobante_pago' => null,
+                'profesion' => $_POST['profesion'],
+                'observaciones' => null,
+                'modified_at' => null,
+                'deleted_at' => null,
+                'fecha_vencimiento' => null,
+                'fecha_evaluacion' => null,
 
-        /* Verificamos si cambio telefono o celular */
-        if ($_POST['telefono'] !== (string)$celular || $_POST['email'] !== (string)$email) {
-            $usuarioParams = [
-                'telefono' =>  $_POST['telefono'],
-                'email' => $_POST['email']
             ];
-            $usuarioController->update($usuarioParams, $usuario['id']);
+            $idSolicitud = $solicitudController->store($solicitudParams);
+
+
+            // Carga de imagenes en titulo
+            if (isset($_FILES['imagenTitulos[]']) && $_FILES['imagenTitulos[]'] != (false or null)) {
+
+                $imagen64 = convertirABase64($_FILES['imagenTitulos[0]["tmp_name"]']);
+                $titulo = new TituloController();
+                $tituloParams = [
+                    'id_solicitud' => $id,
+                    'titulo' => $_POST['profesion'],
+                    'foto_titulo' => $imagen64,
+                    'es_curso' => null
+                ];
+                $cargaTitulo = $titulo->store($tituloParams);
+            }
+
+        } else {
+            $errores['duplicado'] = "Nro. de comprobante sellado " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
         }
         /* Chequeamos las actividades seleccionadas en los checkboxes */
         // if ($_POST['actividades[]']){
