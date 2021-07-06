@@ -239,3 +239,9 @@ function compararFechas($string, $get, $format = 'd/m/Y')
 ];
     return $array;
 }
+
+function convertirABase64($rutaImagen){
+    $contenidoBinario = file_get_contents($rutaImagen);
+    $imagenComoBase64 = base64_encode($contenidoBinario);
+    return $imagenComoBase64;
+}

@@ -94,30 +94,25 @@ if (isset($_POST) && !empty($_POST)) {
                 'deleted_at' => null,
                 'fecha_vencimiento' => null,
                 'fecha_evaluacion' => null,
+
             ];
             $idSolicitud = $solicitudController->store($solicitudParams);
 
-            // if (isset($idSolicitud) && $idSolicitud != (false or null)) {
-            //     /* Update solicitudes with paths */
-            //     $pathComprobantePago = getDireccionesParaAdjunto($_FILES['path_comprobante_pago'], $idSolicitud, 'comprobante_pago');
-            //     $solicitudUpdated = $solicitudController->update(
-            //         ['path_comprobante_pago' => $pathComprobantePago],
-            //         $idSolicitud
-            //     );
-            //     if (!$solicitudUpdated) {
-            //         $errores[] = "Solicitud nro $idSolicitud: Falla en update comprobante pago";
-            //         cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nro $idSolicitud: Falla en update comprobante pago");
-            //     }
 
-            //     /* upload comprobante & certificado */
-            //     if (!$solicitudUpdated || !copy($_FILES["path_comprobante_pago"]['tmp_name'], $pathComprobantePago)) {
-            //         $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
-            //         cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
-            //     }
-            // } else {
-            //     $errores[] = 'Error en alta de solicitud';
-            //     cargarLog($usuario['id'], $idSolicitud, $idCapacitador, 'Error en alta de solicitud');
-            // }
+            // Carga de imagenes en titulo
+            if (isset($_FILES['imagenTitulos[]']) && $_FILES['imagenTitulos[]'] != (false or null)) {
+
+                $imagen64 = convertirABase64($_FILES['imagenTitulos[0]["tmp_name"]']);
+                $titulo = new TituloController();
+                $tituloParams = [
+                    'id_solicitud' => $id,
+                    'titulo' => $_POST['profesion'],
+                    'foto_titulo' => $imagen64,
+                    'es_curso' => null
+                ];
+                $cargaTitulo = $titulo->store($tituloParams);
+            }
+
         } else {
             $errores['duplicado'] = "Nro. de comprobante sellado " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
         }
