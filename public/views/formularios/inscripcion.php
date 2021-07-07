@@ -54,7 +54,7 @@ if ($usuario) {
 }
 /* Envio POST de la solicitud */
 if (isset($_POST) && !empty($_POST)) {
-    if (true) {
+    if (checkFile()) {
         /* Verificamos si el nro_recibo ya se encuentra registrado */
         $nroRecibo = $solicitudController->get(['nro_recibo' => (string) $_POST['nro_recibo']]);
         if (!$nroRecibo) {
