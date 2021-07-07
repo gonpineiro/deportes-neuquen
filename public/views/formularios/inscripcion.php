@@ -113,28 +113,38 @@ if (isset($_POST) && !empty($_POST)) {
             $idSolicitud = $solicitudController->store($solicitudParams);
 
             // Carga de imagenes en titulo
-            $imagen64 = convertirABase64($_FILES['imagenTitulos']['tmp_name'][0]);
-            $titulo = new TituloController();
-            $tituloParams = [
-                'id_solicitud' => $id,
-                'titulo' => $_POST['titulos[0]'],
-                'img_64' => $imagen64,
-                'es_curso' => null
-            ];
-            $cargaTitulo = $titulo->store($tituloParams);
+            if (isset($idSolicitud) && $idSolicitud != (false or null)) {
+                $tituloController = new TituloController();
+                /* Update solicitudes with paths */
+                $pathTítulo = getDireccionesParaAdjunto($_FILES['imagenTitulos']['path_file'][0], $idSolicitud, 'titulo', 'titulos');
+                $solicitudUpdated = $tituloController->update(
+                    ['path_file' => $pathTítulo],
+                    $idSolicitud
+                );
+                if (!$solicitudUpdated) {
+                    $errores[] = "Solicitud nro $idSolicitud: Falla en update comprobante pago";
+                    cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nro $idSolicitud: Falla en update comprobante pago");
+                }
 
-            // if (isset($_FILES['imagenTitulos[]']) && $_FILES['imagenTitulos[]'] != (false or null)) {
+                /* upload comprobante & certificado */
+                if (!$solicitudUpdated || !copy($_FILES["path_file"]['tmp_name'], $pathTítulo)) {
+                    $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
+                    cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
+                }
+            } else {
+                $errores[] = 'Error en alta de solicitud';
+                cargarLog($usuario['id'], $idSolicitud, $idCapacitador, 'Error en alta de solicitud');
+            }
+            // $imagen64 = convertirABase64($_FILES['imagenTitulos']['tmp_name'][0]);
+            // $titulo = new TituloController();
+            // $tituloParams = [
+            //     'id_solicitud' => $id,
+            //     'titulo' => $_POST['titulos[0]'],
+            //     'img_64' => $imagen64,
+            //     'es_curso' => null
+            // ];
+            // $cargaTitulo = $titulo->store($tituloParams);
 
-            //     $imagen64 = convertirABase64($_FILES['imagenTitulos[0]["tmp_name"]']);
-            //     $titulo = new TituloController();
-            //     $tituloParams = [
-            //         'id_solicitud' => $id,
-            //         'titulo' => $_POST['titulos[0]'],
-            //         'img_64' => $imagen64,
-            //         'es_curso' => null
-            //     ];
-            //     $cargaTitulo = $titulo->store($tituloParams);
-            // }
         } else {
             $errores['duplicado'] = "Nro. de comprobante sellado " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
         }
