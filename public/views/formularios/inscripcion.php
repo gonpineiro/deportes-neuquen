@@ -52,6 +52,8 @@ if ($usuario) {
     /* Nunca solicita una libreta */
     $estado_inscripcion = 'Nuevo';
 }
+
+
 /* Envio POST de la solicitud */
 if (isset($_POST) && !empty($_POST)) {
     if (true) {
@@ -91,18 +93,13 @@ if (isset($_POST) && !empty($_POST)) {
                 ];
                 $usuarioController->update($usuarioParams, $usuario['id']);
             }
-            /* Chequeamos las actividades seleccionadas en los checkboxes */
-            // if ($_POST['actividades[]']){
-            //     TODAVÍA NO HACEMOS NADA CON ESTO
-            // }
-            /* Guardamos la solicitud */
+
             $solicitudParams = [
                 'id_usuario' => $usuario['id'],
                 'id_usuario_admin' => null,
                 'id_estado' => 1,
                 'nro_recibo' => ltrim($_POST['nro_recibo'], "0"),
                 'path_file' => null,
-                //'profesion' => $_POST['profesion'],
                 'observaciones' => null,
                 'modified_at' => null,
                 'deleted_at' => null,
@@ -138,18 +135,8 @@ if (isset($_POST) && !empty($_POST)) {
                 }
             } else {
                 $errores[] = 'Error en alta de solicitud';
-                cargarLog($usuario['id'], $idSolicitud, $idCapacitador, 'Error en alta de solicitud');
+                //cargarLog($usuario['id'], $idSolicitud, $idCapacitador, 'Error en alta de solicitud');
             }
-            // $imagen64 = convertirABase64($_FILES['imagenTitulos']['tmp_name'][0]);
-            // $titulo = new TituloController();
-            // $tituloParams = [
-            //     'id_solicitud' => $id,
-            //     'titulo' => $_POST['titulos[0]'],
-            //     'img_64' => $imagen64,
-            //     'es_curso' => null
-            // ];
-            // $cargaTitulo = $titulo->store($tituloParams);
-
         } else {
             $errores['duplicado'] = "Nro. de comprobante sellado " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
         }
