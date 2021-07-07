@@ -70,7 +70,7 @@ if ($errores) {
                                     <div class="form-group row">
                                         <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                                             <label for="email" class="required">Compruebe su direcci&oacute;n de email </label>
-                                            <input type="email" id="email" class="form-control" value="<?= $email; ?>" placeholder="Email" name="email" maxlength="200" required>
+                                            <input type="email" id="email" class="form-control" value="<?= $email; ?>" placeholder="Email" name="email" maxlength="200" >
                                             <div class="invalid-feedback">
                                                 <strong>
                                                     Por favor ingrese el direcci&oacute;n.
@@ -79,7 +79,7 @@ if ($errores) {
                                         </div>
                                         <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                                             <label for="telefono" class="required">Actualice su n&uacute;mero de tel&eacute;fono </label>
-                                            <input type="number" id="telefono" class="form-control" value="<?= $celular; ?>" placeholder="Tel&eacute;fono" name="telefono" min="0" max="9999999999" pattern="^[0-9]" required>
+                                            <input type="number" id="telefono" class="form-control" value="<?= $celular; ?>" placeholder="Tel&eacute;fono" name="telefono" min="0" max="9999999999" pattern="^[0-9]" >
                                             <div class="invalid-feedback">
                                                 <strong>
                                                     Por favor ingrese solo números.
@@ -88,7 +88,7 @@ if ($errores) {
                                         </div>
                                         <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                                             <label for="nacionalidad" class="required">Nacionalidad </label>
-                                            <select id="nacionalidad" class="selectpicker form-control" title="Seleccionar" name='nacionalidad' required>
+                                            <select id="nacionalidad" class="selectpicker form-control" title="Seleccionar" name='nacionalidad'>
                                                 <option value="1" selected>Argentina</option>
                                                 <option value="2">Nacionalidad</option>
                                             </select>
@@ -102,7 +102,7 @@ if ($errores) {
 
                                         <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                                             <label for="ciudad" class="required">Seleccione su ciudad </label>
-                                            <select id="ciudad" class="selectpicker form-control" title="Seleccionar" name='ciudad' required>
+                                            <select id="ciudad" class="selectpicker form-control" title="Seleccionar" name='ciudad'>
                                                 <option value="0">Neuquén</option>
                                                 <option value="1">Cipolletti</option>
                                                 <option value="2">Allen</option>
@@ -113,7 +113,7 @@ if ($errores) {
                                         </div>
                                         <div id="div-barrios" style="display: none;" class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                                             <label for="barrio-nqn" class="required">Seleccione su barrio </label>
-                                            <select id="barrio-nqn" class="selectpicker form-control" title="Seleccionar" name='barrio-nqn' required>
+                                            <select id="barrio-nqn" class="selectpicker form-control" title="Seleccionar" name='barrio-nqn'>
                                                 <option value="1">Barrio 1</option>
                                                 <option value="2">Barrio 2</option>
                                                 <option value="3">Barrio 3</option>
@@ -125,7 +125,7 @@ if ($errores) {
                                         </div>
                                         <div id="div-barrio-nqn-otro" style="display: none;" class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                                             <label for="barrio-nqn-otro" class="required">Escriba su barrio </label>
-                                            <input type="text" id="barrio-nqn-otro" class="form-control" placeholder="Nombre Barrio" name="barrio-nqn-otro" maxlength="100" required>
+                                            <input type="text" id="barrio-nqn-otro" class="form-control" placeholder="Nombre Barrio" name="barrio-nqn-otro" maxlength="100" >
 
                                             <div class="invalid-feedback">
                                                 Por favor ingrese su barrio.
@@ -137,7 +137,7 @@ if ($errores) {
                                     <div class="form-group row">
                                         <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12 ">
                                             <label for="direccion-cp" class="required">Código Postal </label>
-                                            <input type="number" id="direccion-cp" class="form-control" placeholder="Código postal" name="direccion-cp" min="0" max="9999" pattern="^[0-9]" required>
+                                            <input type="number" id="direccion-cp" class="form-control" placeholder="Código postal" name="direccion-cp" min="0" max="9999" pattern="^[0-9]" >
 
                                             <div class="invalid-feedback">
                                                 Por favor ingrese su código postal. Ejemplo Neuquén: 8300
@@ -145,7 +145,7 @@ if ($errores) {
                                         </div>
                                         <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12 ">
                                             <label for="direccion-calle" class="required">Calle </label>
-                                            <input type="text" id="direccion-calle" class="form-control" placeholder="Calle" name="direccion-calle" maxlength="200" required>
+                                            <input type="text" id="direccion-calle" class="form-control" placeholder="Calle" name="direccion-calle" maxlength="200" >
 
                                             <div class="invalid-feedback">
                                                 Por favor ingrese su domicilio.
@@ -153,7 +153,7 @@ if ($errores) {
                                         </div>
                                         <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12 ">
                                             <label for="direccion-numero" class="required">Número </label>
-                                            <input type="number" id="direccion-numero" class="form-control" placeholder="Número" name="direccion-numero" min="0" max="99999" pattern="^[0-9]" required>
+                                            <input type="number" id="direccion-numero" class="form-control" placeholder="Número" name="direccion-numero" min="0" max="99999" pattern="^[0-9]" >
 
                                             <div class="invalid-feedback">
                                                 Por favor ingrese la númeración de su domicilio.
@@ -231,7 +231,7 @@ if ($errores) {
                                         <!-- LUGAR Y CERTIFICACIÓN DE TRABAJO -->
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                                             <label for="lugarTrabajo" class="required">Ingresar lugar de trabajo </label>
-                                            <input type="text" id="lugarTrabajo" class="form-control" placeholder="Dirección local de trabajo" name="lugarTrabajo[]" required>
+                                            <input type="text" id="lugarTrabajo" class="form-control" placeholder="Dirección local de trabajo" name="lugarTrabajo[]">
                                             <div class="invalid-feedback">
                                                 Por favor ingrese un domicilio de trabajo.
                                             </div>
@@ -288,7 +288,7 @@ if ($errores) {
                                     <div class="form-group row">
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                                             <label for="nro_recibo">Nro. de recibo Cannon (solo números)</label>
-                                            <input type="number" id="nro_recibo" min="0" max="9999999999" pattern="^[0-9]" class="form-control" placeholder="Ej: 257972906" name="nro_recibo" required>
+                                            <input type="number" id="nro_recibo" min="0" max="9999999999" pattern="^[0-9]" class="form-control" placeholder="Ej: 257972906" name="nro_recibo" >
                                             <div class="invalid-feedback">
                                                 Por favor ingrese un n&uacute;mero como el Ej: 257972906
                                             </div>
