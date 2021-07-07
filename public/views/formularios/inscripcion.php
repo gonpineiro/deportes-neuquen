@@ -54,7 +54,7 @@ if ($usuario) {
 }
 /* Envio POST de la solicitud */
 if (isset($_POST) && !empty($_POST)) {
-    if (checkFile()) {
+    if (true) {
         /* Verificamos si el nro_recibo ya se encuentra registrado */
         $nroRecibo = $solicitudController->get(['nro_recibo' => (string) $_POST['nro_recibo']]);
         if (!$nroRecibo) {
@@ -116,9 +116,12 @@ if (isset($_POST) && !empty($_POST)) {
             if (isset($idSolicitud) && $idSolicitud != (false or null)) {
                 $tituloController = new TituloController();
                 /* Update solicitudes with paths */
-                $pathTítulo = getDireccionesParaAdjunto($_FILES['imagenTitulos']['path_file'][0], $idSolicitud, 'titulo', 'titulos');
-                $solicitudUpdated = $tituloController->update(
-                    ['path_file' => $pathTítulo],
+                $pathTítulo = getDireccionesParaAdjunto($_FILES['imagenTitulos']['tmp_name'][0], $idSolicitud, 'titulo', 'titulos');
+                $solicitudUpdated = $tituloController->store(
+                    ['id_solicitud' => $id,
+                    'titulo' => $_POST['titulos[0]'],
+                    'path_file' => $pathTítulo,
+                    'es_curso' => null],
                     $idSolicitud
                 );
                 if (!$solicitudUpdated) {

@@ -99,7 +99,7 @@ function getDireccionesParaAdjunto($adjunto, $idsolicitud, $adjuntoInputName, $t
 {
     $path = null;
 
-    $target_path_local = $tipo != null ? "../../../../projects_files/formulario_deportes/" + $idsolicitud + "/" + $tipo : "../../../../projects_files/formulario_deportes/" + $idsolicitud;
+    $target_path_local = $tipo != null ? "../../../../projects_files/formulario_deportes/" . $idsolicitud . "/" . $tipo : "../../../../projects_files/formulario_deportes/" . $idsolicitud;
 
     if (!file_exists($target_path_local)) {
         mkdir($target_path_local, 0755, true);
