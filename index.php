@@ -1,6 +1,14 @@
 <?php
 include 'app/config/config.php';
 
+$titulos = new TituloController();
+$data = $titulos->index();
+
+while ($row = odbc_fetch_array($data)) {
+    echo $row['img_64'];
+}
+
+die();
 include('./app/seeder/BarrioSeeder.php');
 include('./app/seeder/CiudadSeeder.php');
 include('./app/seeder/EstadoSeeder.php');
