@@ -4,7 +4,7 @@
  *
  * @property int $id_solicitud
  * @property string $titulo
- * @property string $foto_titulo
+ * @property string $path_file
  * @property boolean $es_curso
  * 
  */
@@ -12,22 +12,22 @@ class Titulo
 {
     public $id_solicitud;
     public $titulo;
-    public $img_64;
+    public $path_file;
     public $es_curso;
 
     public function __construct()
     {
         $this->id_solicitud = "";
         $this->titulo = "";
-        $this->img_64 = "";
+        $this->path_file = "";
         $this->es_curso = "";
     }
 
-    public function set($id_solicitud = null, $titulo = null, $img_64 = null,$es_curso = null)
+    public function set($id_solicitud = null, $titulo = null, $path_file = null,$es_curso = null)
     {
         $this->id_solicitud = $id_solicitud;
         $this->titulo = $titulo;
-        $this->img_64 = $img_64;
+        $this->path_file = $path_file;
         $this->es_curso = $es_curso;
     }
 

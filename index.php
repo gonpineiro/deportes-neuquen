@@ -5,10 +5,10 @@ $titulos = new TituloController();
 $data = $titulos->index();
 
 while ($row = odbc_fetch_array($data)) {
-    echo $row['img_64'];
+    echo $row['path_file'];
 }
 
-die();
+
 include('./app/seeder/BarrioSeeder.php');
 include('./app/seeder/CiudadSeeder.php');
 include('./app/seeder/EstadoSeeder.php');
