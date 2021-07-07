@@ -80,7 +80,7 @@ function enviarMailRechazado($address, $solicitante, $observaciones, $idsolicitu
             <p>Motivos: " . $observaciones . "</p>
              <p>Le sugerimos mirar las instrucciones en este <a href='https://www.neuquencapital.gov.ar/wp-content/uploads/2021/05/LIBRETA-SANITARIA-.pdf' target='_blank'>instructivo</a>.</p>
             <p>Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href='mailto:carnetma@muninqn.gob.ar' target='_blank'>carnetma@muninqn.gob.ar</a></p><p>Direcci&oacute;n Municipal de Calidad Alimentaria</p><p>Municipalidad de Neuquén</p>";
-    
+
 
     $subject = "Solicitud de Libreta Sanitaria";
     $post_fields = json_encode(['address' => $address, 'subject' => $subject, 'htmlBody' => $body]);
@@ -152,19 +152,53 @@ function checkFile($maxsize = 15, $acceptable = array('application/pdf', 'image/
         $maxsize_multiplied = $maxsize * 1000000;
 
         foreach ($_FILES as $key => $value) {
-            if (($value['size'] >= $maxsize_multiplied) && ($value['size'] != 0)) {
-                $errors[] = "$key Archivo adjunto muy grande. Debe pesar menos de $maxsize megabytes.";
-            }
-            if ((!in_array($value['type'], $acceptable)) && !empty($value['type'])) {
-                $error = "$key Tipo de archivo invalido. Solamente tipos ";
-                foreach ($acceptable as $val) {
-                    $error .= $val . ', ';
+
+            if (is_array($value['name'])) {
+
+                foreach($value as $key => $array){
+                    if ($key == 'size') {
+                        foreach($array as $size){
+                            if (($size >= $maxsize_multiplied) && ($size != 0)) {
+                                $errors[] = "Uno de los adjuntos es muy grande. Debe pesar menos de $maxsize megabytes.";
+                            }
+                        }
+                    }
+                    if ($key == 'type') {
+                        foreach($array as $type){
+                            if ((!in_array($type, $acceptable)) && !empty($type)) {
+                                $error = "Tipo de archivo invalido. Solamente tipos ";
+                                foreach ($acceptable as $val) {
+                                    $error .= $val . ', ';
+                                }
+                                $error .= "se aceptan.";
+                                $errors[] = $error;
+                            }
+                        }
+                    }
+                    if ($key == 'error') {
+                        foreach($array as $error){
+                            if ($error != 0) {
+                                $errors[] = $phpFileUploadErrors[$error];
+                            }
+                        }
+                    }
                 }
-                $error .= "se aceptan.";
-                $errors[] = $error;
-            }
-            if ($value['error'] != 0 && !empty($value['type'])) {
-                $errors[] = $phpFileUploadErrors[$value['error']];
+
+            } else {
+                if (($value['size'] >= $maxsize_multiplied) && ($value['size'] != 0)) {
+                    $errors[] = "$key Archivo adjunto muy grande. Debe pesar menos de $maxsize megabytes.";
+                }
+                if ((!in_array($value['type'], $acceptable)) && !empty($value['type'])) {
+                    $error = "$key Tipo de archivo invalido. Solamente tipos ";
+                    foreach ($acceptable as $val) {
+                        $error .= $val . ', ';
+                    }
+                    $error .= "se aceptan.";
+                    $errors[] = $error;
+                }
+                if ($value['error'] != 0 && !empty($value['type'])) {
+                    $errors[] = $phpFileUploadErrors[$value['error']];
+                }
             }
         }
 
@@ -235,11 +269,12 @@ function compararFechas($string, $get, $format = 'Y-m-d')
         'now' => $now,
         'date' => $date,
         'dif' => $date->diff($now)->$get,
-];
+    ];
     return $array;
 }
 
-function convertirABase64($rutaImagen){
+function convertirABase64($rutaImagen)
+{
     $contenidoBinario = file_get_contents($rutaImagen);
     $imagenComoBase64 = base64_encode($contenidoBinario);
     return $imagenComoBase64;
