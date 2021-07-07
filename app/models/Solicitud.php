@@ -7,7 +7,7 @@
  * @property int $id_usuario_admin
  * @property int $id_estado
  * @property int $nro_recibo
- * @property string $path_comprobante_pago
+ * @property string $path_file
  * @property string $profesion
  * @property string $profesion
  * @property string $observaciones
@@ -22,7 +22,7 @@ class Solicitud
     public $id_usuario_admin;
     public $id_estado;
     public $nro_recibo;
-    public $img_64;
+    public $path_file;
     public $observaciones;
     public $modified_at;
     public $deleted_at;
@@ -35,7 +35,7 @@ class Solicitud
         $this->id_usuario_admin = "";
         $this->id_estado = "";
         $this->nro_recibo = "";
-        $this->img_64 = "";
+        $this->path_file = "";
         $this->observaciones = "";
         $this->modified_at = "";
         $this->deleted_at = "";
@@ -43,13 +43,13 @@ class Solicitud
         $this->fecha_evaluacion = "";
     }
 
-    public function set($id_usuario = null, $id_usuario_admin = null, $id_estado = null, $nro_recibo = null, $img_64 = null, $observaciones = null, $modified_at = null, $deleted_at = null, $fecha_vencimiento = null, $fecha_evaluacion = null)
+    public function set($id_usuario = null, $id_usuario_admin = null, $id_estado = null, $nro_recibo = null, $path_file = null, $observaciones = null, $modified_at = null, $deleted_at = null, $fecha_vencimiento = null, $fecha_evaluacion = null)
     {
         $this->id_usuario = $id_usuario;
         $this->id_usuario_admin = $id_usuario_admin;
         $this->id_estado = $id_estado;
         $this->nro_recibo = $nro_recibo;
-        $this->img_64 = $img_64;
+        $this->path_file = $path_file;
         $this->observaciones = $observaciones;
         $this->modified_at = $modified_at;
         $this->deleted_at = $deleted_at;
