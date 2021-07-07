@@ -101,7 +101,7 @@ if (isset($_POST) && !empty($_POST)) {
                 'id_usuario_admin' => null,
                 'id_estado' => 1,
                 'nro_recibo' => ltrim($_POST['nro_recibo'], "0"),
-                'img_64' => null,
+                'path_file' => null,
                 //'profesion' => $_POST['profesion'],
                 'observaciones' => null,
                 'modified_at' => null,
