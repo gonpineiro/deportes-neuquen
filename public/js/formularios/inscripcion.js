@@ -239,8 +239,8 @@ function otroTitulo() {
             "</div>" +
             "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12'>" +
             "<label for='div-adjunto-titulo-" + numInputs + "' class='required'>Título o certificado " + numInputs + "(Formatos: .jpg - .jpeg - .png) </label>" +
-            "<div class='custom-file' id='div-adjunto-titulo" + numInputs + "'>" +
-            "<input id='imagen-titulo-" + numInputs + "' class='custom-file-input' type='file' name='imagenTitulos[]' accept='image/png, image/jpeg'>" +
+            "<div class='custom-file' id='div-adjunto-titulo-" + numInputs + "'>" +
+            "<input id='imagen-titulo-" + numInputs + "' class='custom-file-input imagen' type='file' name='imagenTitulos[]' accept='image/png, image/jpeg'>" +
             "<label for='imagen-titulo-" + numInputs + "' class='custom-file-label' id='label-imagen-titulo'><span style='font-size: 1rem;'>Adjuntar imagen formato JPEG/PNG</span></label>" +
             "</div>" +
             "<div class='invalid-feedback'>Por favor cargue la imagen correctamente. </div>" +
@@ -288,3 +288,10 @@ function sacarOtroLugarTrabajo() {
         $("#inputs-lugar-trabajo")[0].childNodes[total_fields - 2].remove();
     }
 }
+
+document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+    var fileName = document.getElementsByClassName("imagen").files[0].name;
+    alert(fileName)
+    var nextSibling = e.target.nextElementSibling
+    nextSibling.innerText = fileName
+})
