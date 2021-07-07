@@ -116,12 +116,14 @@ if (isset($_POST) && !empty($_POST)) {
             if (isset($idSolicitud) && $idSolicitud != (false or null)) {
                 $tituloController = new TituloController();
                 /* Update solicitudes with paths */
-                $pathTítulo = getDireccionesParaAdjunto($_FILES['imagenTitulos']['tmp_name'][0], $idSolicitud, 'titulo', 'titulos');
+                $pathTítulo = getDireccionesParaAdjunto($_FILES['imagenTitulos'], $idSolicitud, 'titulo', 'titulos');
                 $solicitudUpdated = $tituloController->store(
-                    ['id_solicitud' => $id,
-                    'titulo' => $_POST['titulos[0]'],
-                    'path_file' => $pathTítulo,
-                    'es_curso' => null],
+                    [
+                        'id_solicitud' => $idSolicitud,
+                        'titulo' => $_POST['titulos'][0],
+                        'path_file' => $pathTítulo,
+                        'es_curso' => null
+                    ],
                     $idSolicitud
                 );
                 if (!$solicitudUpdated) {
@@ -130,7 +132,7 @@ if (isset($_POST) && !empty($_POST)) {
                 }
 
                 /* upload comprobante & certificado */
-                if (!$solicitudUpdated || !copy($_FILES["path_file"]['tmp_name'], $pathTítulo)) {
+                if (!copy($_FILES["imagenTitulos"]['tmp_name'][0], $pathTítulo)) {
                     $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
                     cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
                 }

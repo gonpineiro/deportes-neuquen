@@ -107,7 +107,7 @@ function getDireccionesParaAdjunto($adjunto, $idsolicitud, $adjuntoInputName, $t
 
     if (!empty($adjunto)) {
         $path = $target_path_local . $adjuntoInputName;
-        switch ($adjunto['type']) {
+        switch ($adjunto['type'][0]) {
             case ('image/jpeg'):
                 $path = $path . '.jpeg';
                 break;
