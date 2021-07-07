@@ -95,7 +95,7 @@ function enviarMailRechazado($address, $solicitante, $observaciones, $idsolicitu
 
     return json_decode($result, true);
 }
-function getDireccionesParaAdjunto($adjunto, $idsolicitud, $adjuntoInputName, $tipo = null)
+function getDireccionesParaAdjunto($adjunto, $idsolicitud, $adjuntoInputName, $tipo = null, $nroTitulo)
 {
     $path = null;
 
@@ -115,7 +115,7 @@ function getDireccionesParaAdjunto($adjunto, $idsolicitud, $adjuntoInputName, $t
 
     if (!empty($adjunto)) {
         $path = $target_path_local . $adjuntoInputName;
-        switch ($adjunto['type'][0]) {
+        switch ($adjunto) {
             case ('image/jpeg'):
                 $path = $path . '.jpeg';
                 break;

@@ -113,26 +113,30 @@ if (isset($_POST) && !empty($_POST)) {
             if (isset($idSolicitud) && $idSolicitud != (false or null)) {
                 $tituloController = new TituloController();
                 /* Update solicitudes with paths */
-                $pathTítulo = getDireccionesParaAdjunto($_FILES['imagenTitulos'], $idSolicitud, 'titulo', 'titulos');
-                $solicitudUpdated = $tituloController->store(
-                    [
-                        'id_solicitud' => $idSolicitud,
-                        'titulo' => $_POST['titulos'][0],
-                        'path_file' => $pathTítulo,
-                        'es_curso' => null
-                    ],
-                    $idSolicitud
-                );
-                if (!$solicitudUpdated) {
-                    $errores[] = "Solicitud nro $idSolicitud: Falla en update comprobante pago";
-                    cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nro $idSolicitud: Falla en update comprobante pago");
+                print_r($_FILES['imagenTitulos']);
+                foreach($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen){
+                    $pathTítulo = getDireccionesParaAdjunto($_FILES['imagenTitulos']['type'][$key], $idSolicitud, 'titulo', 'titulos', $key);
+                    $solicitudUpdated = $tituloController->store(
+                        [
+                            'id_solicitud' => $idSolicitud,
+                            'titulo' => $_POST['titulos'][$key],
+                            'path_file' => $pathTítulo,
+                            'es_curso' => null
+                        ],
+                        $idSolicitud
+                    );
+                    if (!$solicitudUpdated) {
+                        $errores[] = "Solicitud nro $idSolicitud: Falla en update comprobante pago";
+                        cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nro $idSolicitud: Falla en update comprobante pago");
+                    }
+
+                    /* upload comprobante & certificado */
+                    if (!copy($unaImagen, $pathTítulo)) {
+                        $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
+                        cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
+                    }
                 }
 
-                /* upload comprobante & certificado */
-                if (!copy($_FILES["imagenTitulos"]['tmp_name'][0], $pathTítulo)) {
-                    $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
-                    cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
-                }
             } else {
                 $errores[] = 'Error en alta de solicitud';
                 //cargarLog($usuario['id'], $idSolicitud, $idCapacitador, 'Error en alta de solicitud');
