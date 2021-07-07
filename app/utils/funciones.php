@@ -95,11 +95,11 @@ function enviarMailRechazado($address, $solicitante, $observaciones, $idsolicitu
 
     return json_decode($result, true);
 }
-function getDireccionesParaAdjunto($adjunto, $idsolicitud, $adjuntoInputName)
+function getDireccionesParaAdjunto($adjunto, $idsolicitud, $adjuntoInputName, $tipo = null)
 {
     $path = null;
 
-    $target_path_local = "../../archivos/$idsolicitud/$adjuntoInputName/";
+    $target_path_local = $tipo != null ? "../../../../projects_files/formulario_deportes/" + $idsolicitud + "/" + $tipo : "../../../../projects_files/formulario_deportes/" + $idsolicitud;
 
     if (!file_exists($target_path_local)) {
         mkdir($target_path_local, 0755, true);
@@ -119,6 +119,9 @@ function getDireccionesParaAdjunto($adjunto, $idsolicitud, $adjuntoInputName)
                 break;
             case 'application/pdf':
                 $path = $path . '.pdf';
+                break;
+            case 'image/svg+xml':
+                $path = $path . '.svg';
                 break;
         }
     };
