@@ -181,8 +181,8 @@ if ($errores) {
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                                             <label for="adjunto-antecedentes" class="required">Adjuntar certificado de antecedentes penales (.jpg - .jpeg - .png - .pdf)</label>
                                             <div class="custom-file" id="adjunto-antecedentes">
-                                                <input id="path-antecedentes" class="custom-file-input" type="file" name="path-antecedentes">
-                                                <label for="path-antecedentes" class="custom-file-label required" id="label-path-antecedentes"><span style="font-size: 1rem;">Adjuntar Archivo (imagen o pdf)</span></label>
+                                                <input id="antecedentes" class="custom-file-input" type="file" name="antecedentes">
+                                                <label for="antecedentes" class="custom-file-label required" id="label-antecedentes"><span style="font-size: 1rem;">Adjuntar Archivo (imagen o pdf)</span></label>
                                             </div>
                                             <div class="invalid-feedback">
                                                 Por favor cargue o compruebe que se cargo el adjunto correctamente.
@@ -201,8 +201,8 @@ if ($errores) {
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                                             <label for="div-imagen" class="required">Imagen (Formatos: .jpg - .jpeg - .png) </label>
                                             <div class="custom-file" id="div-imagen">
-                                                <input id="imagen" class="custom-file-input" type="file" name="imagen" accept="image/png, image/jpeg">
-                                                <label for="imagen" class="custom-file-label" id="label-imagen"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
+                                                <input id="recibo" class="custom-file-input" type="file" name="recibo" accept="image/png, image/jpeg">
+                                                <label for="recibo" class="custom-file-label" id="label-imagen"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
                                             </div>
                                             <div class="invalid-feedback">
                                                 Por favor cargue la imagen correctamente.
