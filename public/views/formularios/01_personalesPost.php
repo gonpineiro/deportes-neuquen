@@ -88,4 +88,6 @@ if (isset($_POST) && !empty($_POST)) {
     } else {
         $errores[] = 'Error adjunto';
     }
+    header('Location: inscripcion.php');
+    exit();
 }
