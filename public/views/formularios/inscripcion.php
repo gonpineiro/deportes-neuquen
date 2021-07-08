@@ -111,12 +111,13 @@ if (isset($_POST) && !empty($_POST)) {
 
             // Carga de imagenes en titulo
             if (isset($idSolicitud) && $idSolicitud != (false or null)) {
-                $tituloController = new TituloController();
+
 
                 /* Update solicitudes with paths */
+                $tituloController = new TituloController();
                 foreach ($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen) {
                     $fileType = $_FILES['imagenTitulos']['type'][$key];
-                    $pathTítulo = getDireccionesParaAdjunto($fileType, $idSolicitud, 'titulo-' . $_POST['titulos'][$key], 'titulos', $key);
+                    $pathTítulo = getDireccionesParaAdjunto($fileType, $idSolicitud, $_POST['titulos'][$key], 'titulos', $key);
                     $solicitudUpdated = $tituloController->store(
                         [
                             'id_solicitud' => $idSolicitud,
