@@ -8,8 +8,13 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
+
 if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
-    $idSolicitud = $_SESSION['idSolicitud'];
+    $usuarioController = new UsuarioController();
+    $id_wapusuarios = $_SESSION['usuario']['referenciaID'];
+    $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
+    $idSolicitud = $userWithSolicitud['id_solicitud'];
+
     $tituloController = new TituloController();
     foreach ($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen) {
         $fileType = $_FILES['imagenTitulos']['type'][$key];

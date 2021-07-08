@@ -62,7 +62,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
 
             ];
             $idSolicitud = $solicitudController->store($solicitudParams);
-            $_SESSION['idSolicitud'] = $idSolicitud;
+            //$_SESSION['idSolicitud'] = $idSolicitud;
 
             /* Cargar de antecedentes penales */
             $pathAp = getDireccionesParaAdjunto($_FILES['antecedentes']['type'], $idSolicitud, 'antecedentes', null);
