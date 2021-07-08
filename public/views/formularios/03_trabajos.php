@@ -1,4 +1,4 @@
-<div class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
+<div id="paso-2" class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
     <h4 class="text-white">Experiencia Laboral</h4>
     <hr>
     <div id="inputs-lugar-trabajo" class="form-group row">

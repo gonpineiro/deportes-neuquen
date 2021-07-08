@@ -1,6 +1,6 @@
 <!-- TITULO - PROFESIÓN -->
 <form action="02_titulosPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form" id="form" novalidate>
-    <div class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
+    <div id="paso-1" class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
         <h4 class="text-white">Datos Profesionales</h4>
         <hr>
         <div id="inputs-titulos" class="form-group row">

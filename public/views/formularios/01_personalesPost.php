@@ -89,6 +89,6 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
     } else {
         $errores[] = 'Error adjunto';
     }
-    header('Location: inscripcion.php');
+    header('Location: inscripcion.php#paso-1');
     exit();
 }
