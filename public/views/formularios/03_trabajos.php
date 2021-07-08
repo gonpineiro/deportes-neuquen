@@ -21,6 +21,10 @@
             </div>
         </div>
     </div>
+    <div class="form-group">
+        <a onclick="otroLugarTrabajo()" class="btn btn-light boton-agregar-titulo">Agregar Lugar</a>
+        <a onclick="sacarOtroLugarTrabajo()" class="btn btn-light boton-quitar-titulo">Quitar Lugar</a>
+    </div>
     <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit3" value="Siguiente" />
 
 </div>
