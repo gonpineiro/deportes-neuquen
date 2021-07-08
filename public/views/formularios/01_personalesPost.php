@@ -11,7 +11,7 @@ if (!isset($_SESSION['usuario'])) {
 $usuarioController = new UsuarioController();
 $solicitudController = new SolicitudController();
 
-if (isset($_POST) && !empty($_POST)) {
+if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
     if (true) {
         /* Verificamos si el nro_recibo ya se encuentra registrado */
         $nroRecibo = $solicitudController->get(['nro_recibo' => (string) $_POST['nro_recibo']]);
@@ -62,6 +62,7 @@ if (isset($_POST) && !empty($_POST)) {
 
             ];
             $idSolicitud = $solicitudController->store($solicitudParams);
+            $_SESSION['idSolicitud'] = $idSolicitud;
 
             /* Cargar de antecedentes penales */
             $pathAp = getDireccionesParaAdjunto($_FILES['antecedentes']['type'], $idSolicitud, 'antecedentes', null);
