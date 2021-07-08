@@ -23,8 +23,8 @@ if ($usuario) {
 
     switch ($userWithSolicitud['id_estado']) {
         case '1':
-            /* Titulo */
-            $estado_inscripcion = 'Titulo';
+            /* Titulos */
+            $estado_inscripcion = 'Titulos';
             break;
 
         case '2':
@@ -182,7 +182,7 @@ if (isset($_POST) && !empty($_POST)) {
             include('inscripcion_individual.php');
             break;
 
-        case 'Titulo':
+        case 'Titulos':
             include('inscripcion_individual.php');
             break;
 

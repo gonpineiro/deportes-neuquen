@@ -1,5 +1,5 @@
 <div class="">
-    <form action="" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form" id="form" novalidate>
+    <form action="01_personalesPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form" id="form" novalidate>
         <div class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
             <!-- DATOS PERSONALES -->
             <h4 class="text-white">Datos personales</h4>

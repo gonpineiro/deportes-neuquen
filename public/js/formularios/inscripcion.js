@@ -1,6 +1,6 @@
-(function () {
+(function() {
     'use strict';
-    window.addEventListener('load', function () {
+    window.addEventListener('load', function() {
         validate();
     }, false);
 })();
@@ -9,7 +9,7 @@ function validate() {
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.getElementsByClassName('needs-validation');
     // Loop over them and prevent submission
-    Array.prototype.filter.call(forms, function (form) {
+    Array.prototype.filter.call(forms, function(form) {
         form.addEventListener('submit', (event) => {
             let inputs = $('.form-control:invalid');
             let inputsSelectize = $('.invalid');
@@ -39,27 +39,27 @@ function validate() {
 function processText(inputText) {
     var output = [];
     var json = inputText.split(' ');
-    json.forEach(function (item) {
+    json.forEach(function(item) {
         output.push(item.replace(/\'/g, '').split(/(\d+)/).filter(Boolean));
     });
     return output;
 }
 
-$(function () {
+$(function() {
 
-    $(".custom-file-input").on("change", function () {
+    $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 
     dibujarAsteriscos();
 
-    $("input[type='number']").on('keydown', function (e) {
+    $("input[type='number']").on('keydown', function(e) {
         if (e.which === 38 || e.which === 40) {
             e.preventDefault();
         }
     });
-    $('input').on('keydown', function (event) {
+    $('input').on('keydown', function(event) {
         if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event.shiftKey) && !(event.ctrlKey) && !(event.metaKey) && !(event.altKey)) {
             var $t = $(this);
             event.preventDefault();
@@ -69,17 +69,16 @@ $(function () {
         }
     });
 
-    $("#form").on('change', function () {
+    $("#form").on('change', function() {
         $('.invalid').css({ "border-color": "#b94a48" });
         $('.full').css({ "border-color": "#28a745" });
         validate();
         bsSelectValidation();
         var form = document.getElementsByClassName('needs-validation');
 
-    }
-    );
+    });
 
-    $('#ciudad').on('change', function (e) {
+    $('#ciudad').on('change', function(e) {
         if (this.value == 0) {
             $('#div-barrios').show(500);
             $('#div-barrios :input').attr('required', true);
@@ -89,7 +88,7 @@ $(function () {
             $('#div-barrios :input').attr('required', false);
         }
     });
-    $('#barrio-nqn').on('change', function (e) {
+    $('#barrio-nqn').on('change', function(e) {
         if (this.value == 0) {
             $('#div-barrio-nqn-otro').show(500);
             $('#div-barrio-nqn-otro :input').attr('required', true);
@@ -98,11 +97,11 @@ $(function () {
             $('#div-barrio-nqn-otro :input').attr('required', false);
         }
     });
-    $('#path_certificado').on('change', function (e) {
+    $('#path_certificado').on('change', function(e) {
         checkArchivo(this);
     });
 
-    $('#path_comprobante_pago').on('change', function (e) {
+    $('#path_comprobante_pago').on('change', function(e) {
         checkArchivo(this);
     });
 
@@ -167,18 +166,17 @@ function dibujarAsteriscos() {
 
 function bsSelectValidation() {
     if ($("#form").hasClass('was-validated')) {
-        $(".selectpicker").each(function (i, el) {
+        $(".selectpicker").each(function(i, el) {
             if ($(el).is(":invalid")) {
                 $(el).closest(".form-group").find(".invalid-feedback").addClass("d-block");
-            }
-            else {
+            } else {
                 $(el).closest(".form-group").find(".invalid-feedback").removeClass("d-block");
             }
         });
     }
 }
 
-function terminosycondicionescheck() {
+/* function terminosycondicionescheck() {
     var terminos = $('#terminosycondiciones');
     var clausula = $('#clausulavalidezddjj');
     if (terminos.is(":checked") && clausula.is(":checked")) {
@@ -186,14 +184,14 @@ function terminosycondicionescheck() {
     } else {
         $('#submit').prop('disabled', true);
     }
-}
+} */
 /**
  * Sirve para realizar llamadas ajax GET
  * @param {string} url Url a realizar la llamada
  * @return {object} data json object
  */
 function llamadaAjax(url) {
-    var data = function () {
+    var data = function() {
         var tmp = null;
         $.ajax({
             'async': false,
@@ -201,10 +199,10 @@ function llamadaAjax(url) {
             'global': false,
             'dataType': 'html',
             'url': url,
-            'success': function (data) {
+            'success': function(data) {
                 tmp = JSON.parse(data);
             },
-            'error': function () {
+            'error': function() {
                 console.log(url, tmp, 'Error en llamaa Ajax!');
             }
         });
@@ -248,6 +246,7 @@ function otroTitulo() {
         );
     }
 }
+
 function sacarOtroTitulo() {
     wrapper = $("#inputs-titulos");
     var total_fields = wrapper[0].childNodes.length;
@@ -280,6 +279,7 @@ function otroLugarTrabajo() {
         );
     }
 }
+
 function sacarOtroLugarTrabajo() {
     wrapper = $("#inputs-lugar-trabajo");
     var total_fields = wrapper[0].childNodes.length;
@@ -289,7 +289,7 @@ function sacarOtroLugarTrabajo() {
     }
 }
 
-document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+document.querySelector('.custom-file-input').addEventListener('change', function(e) {
     var fileName = document.getElementsByClassName("imagen").files[0].name;
     alert(fileName)
     var nextSibling = e.target.nextElementSibling
