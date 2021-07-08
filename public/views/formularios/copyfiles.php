@@ -5,7 +5,7 @@ $solicitudController = new SolicitudController();
 /* Cargar de antecedentes penales */
 $pathAp = getDireccionesParaAdjunto($_FILES['antecedentes']['type'], $idSolicitud, 'antecedentes', null);
 
-$solicitudUpdated = $solicitudController->update(['path_file' => $pathAp], $idSolicitud);
+$solicitudUpdated = $solicitudController->update(['path_ap' => $pathAp], $idSolicitud);
 
 if (!copy($_FILES['antecedentes']['tmp_name'], $pathAp)) {
     $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
@@ -13,11 +13,11 @@ if (!copy($_FILES['antecedentes']['tmp_name'], $pathAp)) {
 }
 
 /* Cargar del recibo */
-$pathAp = getDireccionesParaAdjunto($_FILES['antecedentes']['type'], $idSolicitud, 'antecedentes', null);
+$pathRecibo = getDireccionesParaAdjunto($_FILES['recibo']['type'], $idSolicitud, 'recibo', null);
 
-$solicitudUpdated = $solicitudController->update(['path_file' => $pathAp], $idSolicitud);
+$solicitudUpdated = $solicitudController->update(['path_recibo' => $pathRecibo], $idSolicitud);
 
-if (!copy($_FILES['antecedentes']['tmp_name'], $pathAp)) {
+if (!copy($_FILES['recibo']['tmp_name'], $pathRecibo)) {
     $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
     cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
 }

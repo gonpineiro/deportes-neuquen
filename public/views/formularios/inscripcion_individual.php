@@ -296,8 +296,8 @@ if ($errores) {
                                         <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                                             <label for="div-imagen" class="required">Imagen (Formatos: .jpg - .jpeg - .png) </label>
                                             <div class="custom-file" id="div-imagen">
-                                                <input id="imagen" class="custom-file-input" type="file" name="imagen" accept="image/png, image/jpeg">
-                                                <label for="imagen" class="custom-file-label" id="label-imagen"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
+                                                <input id="recibo" class="custom-file-input" type="file" name="recibo" accept="image/png, image/jpeg">
+                                                <label for="recibo" class="custom-file-label" id="label-recibo"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
                                             </div>
                                             <div class="invalid-feedback">
                                                 Por favor cargue la imagen correctamente.
