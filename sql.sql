@@ -35,7 +35,7 @@ CREATE TABLE deportes_solicitudes (
 CREATE TABLE deportes_trabajos (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	id_solicitud INT NULL,
-	lugar_de_trabajo VARCHAR(250) NULL,
+	lugar VARCHAR(250) NULL,
 	path_file VARCHAR(500) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
@@ -85,3 +85,14 @@ CREATE TABLE deportes_log (
 	metodo VARCHAR(45) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
+
+INSERT INTO deportes_estados (nombre) values ('Titulos')
+INSERT INTO deportes_estados (nombre) values ('Trabajos')
+INSERT INTO deportes_estados (nombre) values ('Actividades')
+INSERT INTO deportes_estados (nombre) values ('Condiciones')
+INSERT INTO deportes_estados (nombre) values ('Resumen')
+INSERT INTO deportes_estados (nombre) values ('Nuevo')
+INSERT INTO deportes_estados (nombre) values ('Rechazado')
+INSERT INTO deportes_estados (nombre) values ('Aprobado')
+INSERT INTO deportes_estados (nombre) values ('Impreso')
+INSERT INTO deportes_estados (nombre) values ('Retirado')

@@ -1,4 +1,15 @@
 <?php
+
+$var = 'Nuevo';
+
+switch ($var){
+    case 'ASD':
+        echo 'Si';
+    break;
+}
+
+
+die();
 include 'app/config/config.php';
 
 $titulos = new TituloController();
