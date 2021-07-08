@@ -40,19 +40,19 @@ if ($errores) {
         <!-- COMIENZO DE TABS/ PESTAÑAS -->
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Datos Personales</a>
+                <a class="nav-link <?PHP if($estado_inscripcion == "DatosPersonales"){echo "active";} ?>" data-toggle="tab" href="#tabs-1" role="tab">Datos Personales</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Títulos</a>
+                <a class="nav-link <?PHP if($estado_inscripcion == "Titulos"){echo "active";} ?>" data-toggle="tab" href="#tabs-2" role="tab">Títulos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Lugar Trabajo</a>
+                <a class="nav-link <?PHP if($estado_inscripcion == "Trabajos"){echo "active";} ?>" data-toggle="tab" href="#tabs-3" role="tab">Lugar Trabajo</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">Actividades</a>
+                <a class="nav-link <?PHP if($estado_inscripcion == "Actividades"){echo "active";} ?>" data-toggle="tab" href="#tabs-4" role="tab">Actividades</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#tabs-5" role="tab">Condiciones</a>
+                <a class="nav-link <?PHP if($estado_inscripcion == "Condiciones"){echo "active";} ?>" data-toggle="tab" href="#tabs-5" role="tab">Condiciones</a>
             </li>
         </ul><!-- Tab panes -->
         <div class="tab-content">
