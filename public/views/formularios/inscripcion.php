@@ -23,17 +23,32 @@ if ($usuario) {
 
     switch ($userWithSolicitud['id_estado']) {
         case '1':
-            /* Nuevo */
-            $estado_inscripcion = 'Enviado';
+            /* Titulo */
+            $estado_inscripcion = 'Titulo';
             break;
 
         case '2':
-            /* Rechazado */
-            $userNot = "Su última solicitud fue rechazada. Puede generar una nueva solicitud.";
-            $estado_inscripcion = 'Nuevo';
+            /* Trabajos */
+            $estado_inscripcion = 'Trabajos';
             break;
 
         case '3':
+            /* Actividades */
+            //$userNot = "Su última solicitud fue rechazada. Puede generar una nueva solicitud.";
+            $estado_inscripcion = 'Actividades';
+            break;
+
+        case '4':
+            /* Condiciones */
+            $estado_inscripcion = 'Condiciones';
+            break;
+
+        case '5':
+            /* Resumen */
+            $estado_inscripcion = 'Resumen';
+            break;
+
+        case '8':
             /* Aprobado */
             $arrayFechas = compararFechas($vencimiento, 'days');
             if ($arrayFechas['dif'] <= 7 || $arrayFechas['date'] <= $arrayFechas['now']) {
@@ -43,14 +58,15 @@ if ($usuario) {
                 $estado_inscripcion = 'Aprobado';
             }
             break;
-        case '4':
+
+        case '9':
             /* Impreso */
             $estado_inscripcion = 'Nuevo';
             break;
     }
 } else {
     /* Nunca solicita una libreta */
-    $estado_inscripcion = 'Nuevo';
+    $estado_inscripcion = 'Titulo';
 }
 
 
@@ -161,8 +177,16 @@ if (isset($_POST) && !empty($_POST)) {
     <?php
     include('./components/header.php');
 
-    switch ($estado_inscripcion) {
-        case 'Nuevo':
+    switch ($estado_inscripcion) {        
+        case 'Titulo':
+            include('inscripcion_individual.php');
+            break;
+
+        case 'Trabajos':
+            include('inscripcion_individual.php');
+            break;
+
+        case 'Actividades':
             include('inscripcion_individual.php');
             break;
 
