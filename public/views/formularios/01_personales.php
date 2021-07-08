@@ -145,7 +145,7 @@
                     </div>
                 </div>
             </div>
-            <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Guardar" />
+            <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Siguiente" />
 
         </div>
 
