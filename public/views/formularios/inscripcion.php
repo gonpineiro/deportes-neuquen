@@ -66,7 +66,7 @@ if ($usuario) {
     }
 } else {
     /* Nunca solicita una libreta */
-    $estado_inscripcion = 'Titulo';
+    $estado_inscripcion = 'DatosPersonales';
 }
 
 
@@ -178,6 +178,10 @@ if (isset($_POST) && !empty($_POST)) {
     include('./components/header.php');
 
     switch ($estado_inscripcion) {        
+        case 'DatosPersonales':
+            include('inscripcion_individual.php');
+            break;
+
         case 'Titulo':
             include('inscripcion_individual.php');
             break;
