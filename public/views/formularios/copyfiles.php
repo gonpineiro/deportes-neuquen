@@ -1,4 +1,27 @@
 <?php
+
+$solicitudController = new SolicitudController();
+
+/* Cargar de antecedentes penales */
+$pathAp = getDireccionesParaAdjunto($_FILES['antecedentes']['type'], $idSolicitud, 'antecedentes', null);
+
+$solicitudUpdated = $solicitudController->update(['path_file' => $pathAp], $idSolicitud);
+
+if (!copy($_FILES['antecedentes']['tmp_name'], $pathAp)) {
+    $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
+    cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
+}
+
+/* Cargar del recibo */
+$pathAp = getDireccionesParaAdjunto($_FILES['antecedentes']['type'], $idSolicitud, 'antecedentes', null);
+
+$solicitudUpdated = $solicitudController->update(['path_file' => $pathAp], $idSolicitud);
+
+if (!copy($_FILES['antecedentes']['tmp_name'], $pathAp)) {
+    $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
+    cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
+}
+
 /* Carga de los titulos */
 $tituloController = new TituloController();
 foreach ($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen) {
@@ -29,15 +52,15 @@ foreach ($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen) {
 
 /* Carga de las profesiones */
 $profesionController = new ProfesionController();
-foreach ($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen) {
-    $fileType = $_FILES['imagenTitulos']['type'][$key];
-    $pathTítulo = getDireccionesParaAdjunto($fileType, $idSolicitud, $_POST['titulos'][$key], 'titulos', $key);
+foreach ($_FILES['imagenLugares']['tmp_name'] as $key => $unaImagen) {
+    $fileType = $_FILES['imagenLugares']['type'][$key];
+    $pathProfesion = getDireccionesParaAdjunto($fileType, $idSolicitud, $_POST['lugarTrabajo'][$key], 'profesiones', $key);
 
-    $solicitudUpdated = $tituloController->store(
+    $profesionUpdated = $profesionController->store(
         [
             'id_solicitud' => $idSolicitud,
-            'titulo' => $_POST['titulos'][$key],
-            'path_file' => $pathTítulo,
+            'nombre' => $_POST['lugarTrabajo'][$key],
+            'path_file' => $pathProfesion,
             'es_curso' => null
         ],
         $idSolicitud
@@ -49,7 +72,7 @@ foreach ($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen) {
     }
 
     /* upload comprobante & certificado */
-    if (!copy($unaImagen, $pathTítulo)) {
+    if (!copy($unaImagen, $pathProfesion)) {
         $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
         cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
     }
