@@ -3,27 +3,27 @@
  * This is the model class for table "Trabajo".
  *
  * @property int $id_solicitud
- * @property string $lugar_de_trabajo
+ * @property string $lugar
  * @property string $path_file
  * 
  */
 class Trabajo
 {
     public $id_solicitud;
-    public $lugar_de_trabajo;
+    public $lugar;
     public $path_file;
 
     public function __construct()
     {
         $this->id_solicitud = "";
-        $this->lugar_de_trabajo = "";
+        $this->lugar = "";
         $this->path_file = "";
     }
 
-    public function set($id_solicitud = null, $lugar_de_trabajo = null, $path_file = null)
+    public function set($id_solicitud = null, $lugar = null, $path_file = null)
     {
         $this->id_solicitud = $id_solicitud;
-        $this->lugar_de_trabajo = $lugar_de_trabajo;
+        $this->lugar = $lugar;
         $this->path_file = $path_file;
     }
 

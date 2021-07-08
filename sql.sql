@@ -35,7 +35,7 @@ CREATE TABLE deportes_solicitudes (
 CREATE TABLE deportes_trabajos (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	id_solicitud INT NULL,
-	lugar_de_trabajo VARCHAR(250) NULL,
+	lugar VARCHAR(250) NULL,
 	path_file VARCHAR(500) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
