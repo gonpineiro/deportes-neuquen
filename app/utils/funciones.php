@@ -95,7 +95,7 @@ function enviarMailRechazado($address, $solicitante, $observaciones, $idsolicitu
 
     return json_decode($result, true);
 }
-function getDireccionesParaAdjunto($adjunto, $idsolicitud, $adjuntoInputName, $tipo = null, $nroTitulo)
+function getDireccionesParaAdjunto($fileType, $idsolicitud, $adjuntoInputName, $tipo = null)
 {
     $path = null;
 
@@ -105,17 +105,15 @@ function getDireccionesParaAdjunto($adjunto, $idsolicitud, $adjuntoInputName, $t
         $target_path_local = $tipo != null ? "../../../projects_files/formulario_deportes/" . $idsolicitud . "/" . $tipo. "/": "../../../projects_files/formulario_deportes/" . $idsolicitud;
     }else{
         $target_path_local = $tipo != null ? "../../../../../../projects_files/formulario_deportes/" . $idsolicitud . "/" . $tipo. "/": "../../../../../../projects_files/formulario_deportes/" . $idsolicitud;
-    }
-    
-    
+    }    
     
     if (!file_exists($target_path_local)) {
         mkdir($target_path_local, 0755, true);
     };
 
-    if (!empty($adjunto)) {
+    if (!empty($fileType)) {
         $path = $target_path_local . $adjuntoInputName;
-        switch ($adjunto) {
+        switch ($fileType) {
             case ('image/jpeg'):
                 $path = $path . '.jpeg';
                 break;

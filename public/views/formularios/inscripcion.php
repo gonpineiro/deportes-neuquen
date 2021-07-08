@@ -112,10 +112,11 @@ if (isset($_POST) && !empty($_POST)) {
             // Carga de imagenes en titulo
             if (isset($idSolicitud) && $idSolicitud != (false or null)) {
                 $tituloController = new TituloController();
+
                 /* Update solicitudes with paths */
-                print_r($_FILES['imagenTitulos']);
-                foreach($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen){
-                    $pathTítulo = getDireccionesParaAdjunto($_FILES['imagenTitulos']['type'][$key], $idSolicitud, 'titulo', 'titulos', $key);
+                foreach ($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen) {
+                    $fileType = $_FILES['imagenTitulos']['type'][$key];
+                    $pathTítulo = getDireccionesParaAdjunto($fileType, $idSolicitud, 'titulo-' . $_POST['titulos'][$key], 'titulos', $key);
                     $solicitudUpdated = $tituloController->store(
                         [
                             'id_solicitud' => $idSolicitud,
@@ -136,7 +137,6 @@ if (isset($_POST) && !empty($_POST)) {
                         cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
                     }
                 }
-
             } else {
                 $errores[] = 'Error en alta de solicitud';
                 //cargarLog($usuario['id'], $idSolicitud, $idCapacitador, 'Error en alta de solicitud');
