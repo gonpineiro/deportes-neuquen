@@ -5,7 +5,7 @@ if (PROD) {
     header('Location: ' . WEBLOGIN);
 }
 
-$ciudadController = new ciudadController();
+$ciudadController = new CiudadController();
 
 $ciudadController->store([
     'id_provincia' => 1,

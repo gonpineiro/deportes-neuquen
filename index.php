@@ -1,5 +1,17 @@
 <?php
+include 'app/config/config.php';
+include('./app/seeder/BarrioSeeder.php');
+include('./app/seeder/CiudadSeeder.php');
+include('./app/seeder/EstadoSeeder.php');
+include('./app/seeder/SolicitudSeeder.php');
+include('./app/seeder/TituloSeeder.php');
+include('./app/seeder/TrabajoSeeder.php');
+include('./app/seeder/UserSeeder.php'); 
 
+include('./app/seeder/ActivadesSeeder.php'); 
+include('./app/seeder/CatActivadesSeeder.php'); 
+include('./app/seeder/TipoActivadesSeeder.php');
+die();
 $var = 'Nuevo';
 
 switch ($var){
@@ -10,7 +22,7 @@ switch ($var){
 
 
 die();
-include 'app/config/config.php';
+
 
 $titulos = new TituloController();
 $data = $titulos->index();
@@ -20,14 +32,6 @@ while ($row = odbc_fetch_array($data)) {
 }
 
 
-include('./app/seeder/BarrioSeeder.php');
-include('./app/seeder/CiudadSeeder.php');
-include('./app/seeder/EstadoSeeder.php');
-include('./app/seeder/SolicitudSeeder.php');
-include('./app/seeder/TituloSeeder.php');
-include('./app/seeder/TrabajoSeeder.php');
-include('./app/seeder/UserSeeder.php'); 
-include('./app/seeder/ProfesionSeeder.php'); 
 
 die();
 $trabajos = new TrabajoController();
