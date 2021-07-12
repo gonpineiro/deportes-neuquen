@@ -97,6 +97,13 @@ CREATE TABLE deportes_cat_actividades (
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
 
+CREATE TABLE deportes_solicitudes_actividades (
+	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	id_solicitud INT NULL,
+	id_actividad INT NULL,
+	fecha_alta DATETIME DEFAULT GETDATE()
+);
+
 CREATE TABLE deportes_log (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	id_usuario INT NULL,
