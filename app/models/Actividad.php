@@ -27,7 +27,7 @@ class Actividad
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        $result = $conn->store(BARRIOS, $array);
+        $result = $conn->store(ACTIVIDADES, $array);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
@@ -42,7 +42,7 @@ class Actividad
     public static function list($param = [], $ops = [])
     {
         $conn = new BaseDatos();
-        $result = $conn->search(BARRIOS, $param, $ops);
+        $result = $conn->search(ACTIVIDADES, $param, $ops);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
@@ -57,7 +57,7 @@ class Actividad
     public static function get($params)
     {
         $conn = new BaseDatos();
-        $result = $conn->search(BARRIOS, $params);
+        $result = $conn->search(ACTIVIDADES, $params);
         $barrio = $conn->fetch_assoc($result);
 
         /* Guardamos los errores */
@@ -73,7 +73,7 @@ class Actividad
     public static function update($res, $id)
     {
         $conn = new BaseDatos();
-        $result = $conn->update(BARRIOS, $res, $id);
+        $result = $conn->update(ACTIVIDADES, $res, $id);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
