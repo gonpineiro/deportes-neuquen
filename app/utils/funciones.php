@@ -146,7 +146,7 @@ function getDireccionesParaAdjunto($fileType, $idsolicitud, $adjuntoInputName, $
  * @param array formatos aceptados
  * @return bool false si hubo un error en el chequeo de archivos
  */
-function checkFile($maxsize = 15, $acceptable = array('application/pdf', 'image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'video/mp4', 'video/mpeg'))
+function checkFile($maxsize = 1, $acceptable = array('application/pdf', 'image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'video/mp4', 'video/mpeg'))
 {
     if (isset($_FILES) && !empty($_FILES)) {
         $errors = array();
@@ -162,7 +162,7 @@ function checkFile($maxsize = 15, $acceptable = array('application/pdf', 'image/
             8 => 'A PHP extension stopped the file upload.',
         );
 
-        $maxsize_multiplied = $maxsize * 1000000;
+        $maxsize_multiplied = $maxsize * 10000;
 
         foreach ($_FILES as $key => $value) {
 

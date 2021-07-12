@@ -4,10 +4,13 @@ $ciudades = $ciudadController->index();
 
 $barrioController = new BarrioController();
 $barrios = $barrioController->index();
+if ($errores) {
+    echo "<script>window.addEventListener('load', function () {mostrarErrorEnAlta();});</script>";
+}
 ?>
 
 <div class="">
-    <form action="01_personalesPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form" id="form" novalidate>
+    <form action="01_personalesPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form-1" id="form-1" novalidate>
         <div class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
             <!-- DATOS PERSONALES -->
             <h4 class="text-white">Datos personales</h4>
@@ -48,7 +51,7 @@ $barrios = $barrioController->index();
                     <label for="ciudad" class="required">Seleccione su ciudad </label>
                     <select id="ciudad" class="selectpicker form-control" title="Seleccionar" name='ciudad'>
                         <?php while ($row = odbc_fetch_array($ciudades)) { ?>
-                            <option value="<?= $row['id']?>"><?= utf8_encode($row['nombre']) ?></option>
+                            <option value="<?= $row['id'] ?>"><?= utf8_encode($row['nombre']) ?></option>
                         <?php } ?>
                     </select>
                     <div class="invalid-feedback">
@@ -58,8 +61,8 @@ $barrios = $barrioController->index();
                 <div id="div-barrios" style="display: none;" class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                     <label for="barrio-nqn" class="required">Seleccione su barrio </label>
                     <select id="barrio-nqn" class="selectpicker form-control" title="Seleccionar" name='barrio-nqn'>
-                    <?php while ($row = odbc_fetch_array($barrios)) { ?>
-                            <option value="<?= $row['id']?>"><?= utf8_encode($row['nombre']) ?></option>
+                        <?php while ($row = odbc_fetch_array($barrios)) { ?>
+                            <option value="<?= $row['id'] ?>"><?= utf8_encode($row['nombre']) ?></option>
                         <?php } ?>
                         <option value="0">Otro</option>
                     </select>
@@ -144,7 +147,7 @@ $barrios = $barrioController->index();
                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                     <label for="div-imagen" class="required">Imagen (Formatos: .jpg - .jpeg - .png) </label>
                     <div class="custom-file" id="div-imagen">
-                        <input id="recibo" class="custom-file-input" type="file" name="recibo" accept="image/png, image/jpeg">
+                        <input id="recibo" class="custom-file-input" type="file" name="recibo" accept="image/png, image/jpeg" required>
                         <label for="recibo" class="custom-file-label" id="label-imagen"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
                     </div>
                     <div class="invalid-feedback">

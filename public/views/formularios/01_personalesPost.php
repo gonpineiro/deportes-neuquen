@@ -10,9 +10,10 @@ if (!isset($_SESSION['usuario'])) {
 
 $usuarioController = new UsuarioController();
 $solicitudController = new SolicitudController();
+$_SESSION['erroresSolicitud']['titulos'] = null;
 
 if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
-    if (true) {
+    if (checkFile()) {
         /* Verificamos si el nro_recibo ya se encuentra registrado */
         $nroRecibo = $solicitudController->get(['nro_recibo' => (string) $_POST['nro_recibo']]);
         if (!$nroRecibo) {
@@ -90,9 +91,13 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
         } else {
             $errores['duplicado'] = "Nro. de comprobante sellado " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
         }
+        header('Location: inscripcion.php#paso-1');
+        exit();
     } else {
         $errores[] = 'Error adjunto';
+        header("Refresh:0.01; url=inscripcion.php", true, 303);
+        //header('Location: inscripcion.php');
+        exit();
     }
-    header('Location: inscripcion.php#paso-1');
-    exit();
+
 }
