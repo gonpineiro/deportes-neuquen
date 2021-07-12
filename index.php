@@ -28,6 +28,7 @@ include('./app/seeder/TituloSeeder.php');
 include('./app/seeder/TrabajoSeeder.php');
 include('./app/seeder/UserSeeder.php'); 
 include('./app/seeder/ProfesionSeeder.php'); 
+include('./app/seeder/CatActivadesSeeder.php'); 
 
 die();
 $trabajos = new TrabajoController();
