@@ -86,6 +86,7 @@ CREATE TABLE deportes_log (
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
 
+/* Insert Estados */
 INSERT INTO deportes_estados (nombre) values ('Titulos')
 INSERT INTO deportes_estados (nombre) values ('Trabajos')
 INSERT INTO deportes_estados (nombre) values ('Actividades')
@@ -96,3 +97,8 @@ INSERT INTO deportes_estados (nombre) values ('Rechazado')
 INSERT INTO deportes_estados (nombre) values ('Aprobado')
 INSERT INTO deportes_estados (nombre) values ('Impreso')
 INSERT INTO deportes_estados (nombre) values ('Retirado')
+
+/* Insert Estados */
+INSERT INTO deportes_ciudades (nombre) values ('Neuquén')
+INSERT INTO deportes_ciudades (nombre) values ('Cipolletti')
+INSERT INTO deportes_ciudades (nombre) values ('Allen')

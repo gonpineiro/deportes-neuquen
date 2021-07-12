@@ -1,3 +1,8 @@
+<?php
+$ciudadController = new CiudadController();
+$ciudades = $ciudadController->index();
+?>
+
 <div class="">
     <form action="01_personalesPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form" id="form" novalidate>
         <div class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
@@ -36,13 +41,12 @@
                     </div>
                 </div>
                 <!-- DOMICILIO -->
-
                 <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                     <label for="ciudad" class="required">Seleccione su ciudad </label>
                     <select id="ciudad" class="selectpicker form-control" title="Seleccionar" name='ciudad'>
-                        <option value="0">Neuquén</option>
-                        <option value="1">Cipolletti</option>
-                        <option value="2">Allen</option>
+                        <?php while ($row = odbc_fetch_array($ciudades)) { ?>
+                            <option value="<?= $row['id']?>"><?= utf8_encode($row['nombre']) ?></option>
+                        <?php } ?>
                     </select>
                     <div class="invalid-feedback">
                         Por favor indique su ciudad.
@@ -145,7 +149,7 @@
                     </div>
                 </div>
             </div>
-            <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Siguiente"  name="personalesSubmit"/>
+            <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Siguiente" name="personalesSubmit" />
 
         </div>
 

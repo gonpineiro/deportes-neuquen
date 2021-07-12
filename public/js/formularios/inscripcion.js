@@ -79,7 +79,7 @@ $(function() {
     });
 
     $('#ciudad').on('change', function(e) {
-        if (this.value == 0) {
+        if (this.value == 1) {
             $('#div-barrios').show(500);
             $('#div-barrios :input').attr('required', true);
         } else {
@@ -89,7 +89,7 @@ $(function() {
         }
     });
     $('#barrio-nqn').on('change', function(e) {
-        if (this.value == 0) {
+        if (this.value == 1) {
             $('#div-barrio-nqn-otro').show(500);
             $('#div-barrio-nqn-otro :input').attr('required', true);
         } else {
