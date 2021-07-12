@@ -13,7 +13,7 @@ $solicitudController = new SolicitudController();
 $_SESSION['erroresSolicitud']['titulos'] = null;
 
 if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
-    if (checkFile()) {
+    if (true) {
         /* Verificamos si el nro_recibo ya se encuentra registrado */
         $nroRecibo = $solicitudController->get(['nro_recibo' => (string) $_POST['nro_recibo']]);
         if (!$nroRecibo) {
@@ -21,7 +21,6 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
             $id_wappersonas = $_SESSION['usuario']['wapPersonasId'];
             $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
             if (!$usuario) {
-
                 $direccionDepto = $_POST['direccion-departamento'] = '' ? null : $_POST['direccion-departamento'];
                 $direccionPiso = $_POST['direccion-piso'] = '' ? null : $_POST['direccion-piso'];
                 $otroBarrio = $_POST['barrio-nqn-otro'] = '' ? null : $_POST['barrio-nqn-otro'];
@@ -53,51 +52,42 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
                 $usuarioController->update($usuarioParams, $usuario['id']);
             }
 
-            $solicitudParams = [
-                'id_usuario' => $usuario['id'],
-                'id_usuario_admin' => null,
-                'id_estado' => 1,
-                'nro_recibo' => ltrim($_POST['nro_recibo'], "0"),
-                'path_ap' => null,
-                'path_recibo' => null,
-                'observaciones' => null,
-                'modified_at' => null,
-                'deleted_at' => null,
-                'fecha_vencimiento' => null,
-                'fecha_evaluacion' => null,
-
-            ];
-            $idSolicitud = $solicitudController->store($solicitudParams);
-
             /* Cargar de antecedentes penales */
             $pathAp = getDireccionesParaAdjunto($_FILES['antecedentes']['type'], $idSolicitud, 'antecedentes', null);
+            if (copy($_FILES['antecedentes']['tmp_name'], $pathAp)) {
 
-            $solicitudUpdated = $solicitudController->update(['path_ap' => $pathAp], $idSolicitud);
+                /* Cargar del recibo */
+                $pathRecibo = getDireccionesParaAdjunto($_FILES['recibo']['type'], $idSolicitud, 'recibo', null);
+                if (copy($_FILES['recibo']['tmp_name'], $pathRecibo)) {
+                    $solicitudParams = [
+                        'id_usuario' => $usuario['id'],
+                        'id_usuario_admin' => null,
+                        'id_estado' => 1,
+                        'nro_recibo' => ltrim($_POST['nro_recibo'], "0"),
+                        'path_ap' => $pathAp,
+                        'path_recibo' => $pathRecibo,
+                        'observaciones' => null,
+                        'modified_at' => null,
+                        'deleted_at' => null,
+                        'fecha_vencimiento' => null,
+                        'fecha_evaluacion' => null,
 
-            if (!copy($_FILES['antecedentes']['tmp_name'], $pathAp)) {
-                $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
-                cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
-            }
-
-            /* Cargar del recibo */
-            $pathRecibo = getDireccionesParaAdjunto($_FILES['recibo']['type'], $idSolicitud, 'recibo', null);
-
-            $solicitudUpdated = $solicitudController->update(['path_recibo' => $pathRecibo], $idSolicitud);
-
-            if (!copy($_FILES['recibo']['tmp_name'], $pathRecibo)) {
-                $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
-                cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
+                    ];
+                    $idSolicitud = $solicitudController->store($solicitudParams);
+                } else {
+                    $_SESSION['errores'] = "Guardado de adjunto comprobante de pago fallida";
+                }
+            } else {
+                $_SESSION['errores'] = "Guardado de adjunto antecendetes penales fallido";
             }
         } else {
-            $errores['duplicado'] = "Nro. de comprobante sellado " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
+            $_SESSION['errores'] = "Nro. de comprobante sellado " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
         }
         header('Location: inscripcion.php#paso-1');
         exit();
     } else {
         $errores[] = 'Error adjunto';
         header("Refresh:0.01; url=inscripcion.php", true, 303);
-        //header('Location: inscripcion.php');
         exit();
     }
-
 }
