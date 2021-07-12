@@ -27,7 +27,7 @@ class Actividad
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error al guardar un barrio';
+            $error =  $conn->getError() . ' | Error al guardar una categoria de actividad';
             $log = new Log();
             $log->set($this->nombre, null, null, $error, get_class(), 'save');
             $log->save();
@@ -42,7 +42,7 @@ class Actividad
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error al listar los barrios';
+            $error =  $conn->getError() . ' | Error al listar las categorias de actividades';
             $log = new Log();
             $log->set(null, null, null, $error, get_class(), 'list');
             $log->save();
@@ -58,7 +58,7 @@ class Actividad
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error a obtener la actividad: ' . $params[0];
+            $error =  $conn->getError() . ' | Error a obtener la categoria de actividad: ' . $params[0];
             $log = new Log();
             $log->set(null, null, null, $error, get_class(), 'get');
             $log->save();
@@ -73,7 +73,7 @@ class Actividad
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error a modificar la actividad';
+            $error =  $conn->getError() . ' | Error a modificar la categoria de actividad';
             $log = new Log();
             $log->set(null,  $id, null, $error, get_class(), 'update');
             $log->save();
