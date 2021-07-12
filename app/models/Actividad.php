@@ -31,7 +31,7 @@ class Actividad
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error al guardar un barrio';
+            $error =  $conn->getError() . ' | Error al guardar una actividad';
             $log = new Log();
             $log->set($this->nombre, null, null, $error, get_class(), 'save');
             $log->save();
@@ -46,7 +46,7 @@ class Actividad
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error al listar los barrios';
+            $error =  $conn->getError() . ' | Error al listar las actividades';
             $log = new Log();
             $log->set(null, null, null, $error, get_class(), 'list');
             $log->save();
