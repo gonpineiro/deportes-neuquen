@@ -27,7 +27,7 @@ class SolicitudActividad
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        $result = $conn->store(SOLICITUDES_SOLICITUDES_ACTIVIDADES, $array);
+        $result = $conn->store(SOLICITUDES_ACTIVIDADES, $array);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
