@@ -5,7 +5,7 @@
  * @property string $nombre
  * 
  */
-class Actividad
+class CatActividad
 {
     public $nombre;
 
