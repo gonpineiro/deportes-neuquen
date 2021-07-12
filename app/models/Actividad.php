@@ -58,16 +58,16 @@ class Actividad
     {
         $conn = new BaseDatos();
         $result = $conn->search(ACTIVIDADES, $params);
-        $barrio = $conn->fetch_assoc($result);
+        $actividad = $conn->fetch_assoc($result);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error a obtener el barrio: ' . $params[0];
+            $error =  $conn->getError() . ' | Error a obtener la actividad: ' . $params[0];
             $log = new Log();
             $log->set(null, null, null, $error, get_class(), 'get');
             $log->save();
         }
-        return $barrio;
+        return $actividad;
     }
 
     public static function update($res, $id)
@@ -77,7 +77,7 @@ class Actividad
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error a modificar el barrio';
+            $error =  $conn->getError() . ' | Error a modificar la actividad';
             $log = new Log();
             $log->set(null,  $id, null, $error, get_class(), 'update');
             $log->save();
