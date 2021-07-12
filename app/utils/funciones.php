@@ -102,15 +102,15 @@ function getDireccionesParaAdjunto($fileType, $idsolicitud, $adjuntoInputName, $
     $local = true;
 
     if ($local) {
-        $target_path_local = $tipo != null 
-        ? "../../../projects_files/formulario_deportes/" . $idsolicitud . "/" . $tipo. "/" 
-        : "../../../projects_files/formulario_deportes/" . $idsolicitud . "/";
-    }else{
-        $target_path_local = $tipo != null 
-        ? "../../../../../../projects_files/formulario_deportes/" . $idsolicitud . "/" . $tipo. "/"
-        : "../../../../../../projects_files/formulario_deportes/" . $idsolicitud . "/";
-    }    
-    
+        $target_path_local = $tipo != null
+            ? "../../../projects_files/formulario_deportes/" . $idsolicitud . "/" . $tipo . "/"
+            : "../../../projects_files/formulario_deportes/" . $idsolicitud . "/";
+    } else {
+        $target_path_local = $tipo != null
+            ? "../../../../../../projects_files/formulario_deportes/" . $idsolicitud . "/" . $tipo . "/"
+            : "../../../../../../projects_files/formulario_deportes/" . $idsolicitud . "/";
+    }
+
     if (!file_exists($target_path_local)) {
         mkdir($target_path_local, 0755, true);
     };
@@ -146,7 +146,7 @@ function getDireccionesParaAdjunto($fileType, $idsolicitud, $adjuntoInputName, $
  * @param array formatos aceptados
  * @return bool false si hubo un error en el chequeo de archivos
  */
-function checkFile($maxsize = 1, $acceptable = array('application/pdf', 'image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'video/mp4', 'video/mpeg'))
+function checkFile($maxsize = 15, $acceptable = array('application/pdf', 'image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'video/mp4', 'video/mpeg'))
 {
     if (isset($_FILES) && !empty($_FILES)) {
         $errors = array();
@@ -165,64 +165,85 @@ function checkFile($maxsize = 1, $acceptable = array('application/pdf', 'image/j
         $maxsize_multiplied = $maxsize * 10000;
 
         foreach ($_FILES as $key => $value) {
-
-            if (is_array($value['name'])) {
-
-                foreach($value as $key => $array){
-                    if ($key == 'size') {
-                        foreach($array as $size){
-                            if (($size >= $maxsize_multiplied) && ($size != 0)) {
-                                $errors[] = "Uno de los adjuntos es muy grande. Debe pesar menos de $maxsize megabytes.";
-                            }
-                        }
-                    }
-                    if ($key == 'type') {
-                        foreach($array as $type){
-                            if ((!in_array($type, $acceptable)) && !empty($type)) {
-                                $error = "Tipo de archivo invalido. Solamente tipos ";
-                                foreach ($acceptable as $val) {
-                                    $error .= $val . ', ';
-                                }
-                                $error .= "se aceptan.";
-                                $errors[] = $error;
-                            }
-                        }
-                    }
-                    if ($key == 'error') {
-                        foreach($array as $error){
-                            if ($error != 0) {
-                                $errors[] = $phpFileUploadErrors[$error];
-                            }
+            foreach ($value as $key => $array) {
+                if ($key == 'size') {
+                    foreach ($array as $size) {
+                        if (($size >= $maxsize_multiplied) && ($size != 0)) {
+                            $_SESSION['errores'] = "Uno de los adjuntos es muy grande. Debe pesar menos de $maxsize megabytes.";
+                            return false;
                         }
                     }
                 }
-
-            } else {
-                if (($value['size'] >= $maxsize_multiplied) && ($value['size'] != 0)) {
-                    $errors[] = "$key Archivo adjunto muy grande. Debe pesar menos de $maxsize megabytes.";
-                }
-                if ((!in_array($value['type'], $acceptable)) && !empty($value['type'])) {
-                    $error = "$key Tipo de archivo invalido. Solamente tipos ";
-                    foreach ($acceptable as $val) {
-                        $error .= $val . ', ';
+                if ($key == 'type') {
+                    foreach ($array as $type) {
+                        if ((!in_array($type, $acceptable)) && !empty($type)) {
+                            $error = "Tipo de archivo invalido. Solamente tipos ";
+                            foreach ($acceptable as $val) {
+                                $error .= $val . ', ';
+                            }
+                            $error .= "se aceptan.";
+                            $_SESSION['errores'] = $error;
+                            return false;
+                        }
                     }
-                    $error .= "se aceptan.";
-                    $errors[] = $error;
                 }
-                if ($value['error'] != 0 && !empty($value['type'])) {
-                    $errors[] = $phpFileUploadErrors[$value['error']];
+                if ($key == 'error') {
+                    foreach ($array as $error) {
+                        if ($error != 0) {
+                            $_SESSION['errores'] =  $phpFileUploadErrors[$error];
+                            return false;
+                        }
+                    }
                 }
             }
         }
+        return true;
+    }
+}
+/**
+ * Chequea que el tamaño y tipo de archivos subidos sean los correctos
+ * JS Alert si no lo son
+ * @param int maxsize en mb del archivo, default 15mb
+ * @param array formatos aceptados
+ * @return bool false si hubo un error en el chequeo de archivos
+ */
+function checkFileDp($maxsize = 8, $acceptable = array('application/pdf', 'image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'video/mp4', 'video/mpeg'))
+{
+    if (isset($_FILES) && !empty($_FILES)) {
 
-        if (count($errors) === 0) {
-            return true;
-        } else {
-            foreach ($errors as $error) {
-                echo '<script>alert("' . $error . '");</script>';
+        $phpFileUploadErrors = array(
+            0 => 'There is no error, the file uploaded with success',
+            1 => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
+            2 => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
+            3 => 'The uploaded file was only partially uploaded',
+            4 => 'No file was uploaded',
+            6 => 'Missing a temporary folder',
+            7 => 'Failed to write file to disk.',
+            8 => 'A PHP extension stopped the file upload.',
+        );
+
+        $maxsize_multiplied = $maxsize * 1000000;
+        foreach ($_FILES as $key => $value) {
+            if (($value['size'] >= $maxsize_multiplied) && ($value['size'] != 0)) {
+                $_SESSION['errores'] = "Archivo adjunto de " . ucwords($key) . " es muy grande. Debe pesar menos de $maxsize megabytes.";
+                return false;
             }
-            return false;
+            if ((!in_array($value['type'], $acceptable)) && !empty($value['type'])) {
+                $error = "El Tipo de archivo " . ucwords($key)  . " es invalido. Solamente tipos ";
+                foreach ($acceptable as $val) {
+                    $error .= $val . ', ';
+                }
+                $error .= "se aceptan.";
+                $_SESSION['errores'] = $error;
+
+                return false;
+            }
+            if ($value['error'] != 0 && !empty($value['type'])) {
+                $_SESSION['errores'] = $phpFileUploadErrors[$value['error']];
+                return false;
+            }
         }
+        return true;
     }
 }
 

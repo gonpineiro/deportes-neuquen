@@ -10,10 +10,9 @@ if (!isset($_SESSION['usuario'])) {
 
 $usuarioController = new UsuarioController();
 $solicitudController = new SolicitudController();
-$_SESSION['erroresSolicitud']['titulos'] = null;
 
 if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
-    if (true) {
+    if (checkFileDp()) {
         /* Verificamos si el nro_recibo ya se encuentra registrado */
         $nroRecibo = $solicitudController->get(['nro_recibo' => (string) $_POST['nro_recibo']]);
         if (!$nroRecibo) {
@@ -75,10 +74,10 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
                     ];
                     $idSolicitud = $solicitudController->store($solicitudParams);
                 } else {
-                    $_SESSION['errores'] = "Guardado de adjunto comprobante de pago fallida";
+                    $_SESSION['errores'] = "Guardado de adjunto comprobante de pago fallida, hubo un error con el servidor.";
                 }
             } else {
-                $_SESSION['errores'] = "Guardado de adjunto antecendetes penales fallido";
+                $_SESSION['errores'] = "Guardado de adjunto antecendetes penales fallido, hubo un error con el servidor.";
             }
         } else {
             $_SESSION['errores'] = "Nro. de comprobante sellado " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
@@ -86,7 +85,6 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
         header('Location: inscripcion.php#paso-1');
         exit();
     } else {
-        $errores[] = 'Error adjunto';
         header("Refresh:0.01; url=inscripcion.php", true, 303);
         exit();
     }
