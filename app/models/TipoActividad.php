@@ -2,20 +2,24 @@
 /**
  * This is the model class for table "tipo_actividades".
  *
+ * @property int $id_categoria
  * @property string $nombre
  * 
  */
 class TipoActividad
 {
+    public $id_categoria;
     public $nombre;
 
     public function __construct()
     {
+        $this->id_categoria = "";
         $this->nombre = "";
     }
 
-    public function set($nombre = null)
+    public function set($id_categoria = null, $nombre = null)
     {
+        $this->id_categoria = $id_categoria;
         $this->nombre = $nombre;
     }
 
