@@ -8,10 +8,11 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
+/* datos de la sesion */
+include('session.php');
 
 if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
     $usuarioController = new UsuarioController();
-    $id_wapusuarios = $_SESSION['usuario']['referenciaID'];
     $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
     $idSolicitud = $userWithSolicitud['id_solicitud'];
 
