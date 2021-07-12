@@ -77,6 +77,26 @@ CREATE TABLE deportes_barrios (
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
 
+CREATE TABLE deportes_actividades (
+	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	id_tipo INT NULL,
+	nombre VARCHAR(250) NULL,
+	fecha_alta DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE deportes_tipo_actividades (
+	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	id_categoria INT NULL,
+	nombre VARCHAR(250) NULL,
+	fecha_alta DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE deportes_cat_actividades (
+	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	nombre VARCHAR(250) NULL,
+	fecha_alta DATETIME DEFAULT GETDATE()
+);
+
 CREATE TABLE deportes_log (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	id_usuario INT NULL,
