@@ -7,14 +7,14 @@ if (PROD) {
 
 $catActividadController = new CatActividadController();
 
-$ciudadController->store([
+$catActividadController->store([
     'nombre' => 'Clasificación y votación',
 ]);
 
-$ciudadController->store([
+$catActividadController->store([
     'nombre' => 'Anotación',
 ]);
 
-$ciudadController->store([
+$catActividadController->store([
     'nombre' => 'Medición',
 ]);
