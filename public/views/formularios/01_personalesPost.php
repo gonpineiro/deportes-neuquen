@@ -20,6 +20,10 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
             $id_wappersonas = $_SESSION['usuario']['wapPersonasId'];
             $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
             if (!$usuario) {
+
+                $direccionDepto = $_POST['direccion-departamento'] = '' ? null : $_POST['direccion-departamento'];
+                $direccionPiso = $_POST['direccion-piso'] = '' ? null : $_POST['direccion-piso'];
+                $otroBarrio = $_POST['barrio-nqn-otro'] = '' ? null : $_POST['barrio-nqn-otro'];
                 $usuarioController->store([
                     'id_wappersonas' => $id_wappersonas,
                     'nombre' => null,
@@ -29,10 +33,11 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
                     'nacionalidad' => $_POST['nacionalidad'],
                     'id_ciudad' => $_POST['ciudad'],
                     'id_barrio' => $_POST['barrio-nqn'],
+                    'otro_barrio' => $otroBarrio,
                     'direccion_calle' => $_POST['direccion-calle'],
                     'direccion_nro' => $_POST['direccion-numero'],
-                    'direccion_depto' => $_POST['direccion-departamento'],
-                    'direccion_piso' => $_POST['direccion-piso'],
+                    'direccion_depto' => $direccionDepto,
+                    'direccion_piso' => $direccionPiso,
                     'direccion_cp' => $_POST['direccion-cp'],
                 ]);
             }

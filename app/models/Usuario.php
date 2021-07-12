@@ -9,8 +9,9 @@
  * @property string $telefono
  * @property string $email
  * @property string $nacionalidad 
- * @property string $id_ciudad
- * @property string $id_barrio
+ * @property int $id_ciudad
+ * @property int $id_barrio
+ * @property string $otro_barrio
  * @property string $direccion_calle
  * @property string $direccion_nro
  * @property string $direccion_depto
@@ -27,6 +28,7 @@ class Usuario
     public $nacionalidad;
     public $id_ciudad;
     public $id_barrio;
+    public $otro_barrio;
     public $direccion_calle;
     public $direccion_nro;
     public $direccion_depto;
@@ -43,13 +45,14 @@ class Usuario
         $this->nacionalidad = "";
         $this->id_ciudad = "";
         $this->id_barrio = "";
+        $this->otro_barrio = "";
         $this->direccion_calle = "";
         $this->direccion_nro = "";
         $this->direccion_piso = "";
         $this->direccion_depto = "";
         $this->direccion_cp = "";
     }
-    public function set($id_wappersonas = null, $nombre = null, $apellido = null, $telefono = null, $email = null, $nacionalidad = null, $id_ciudad = null, $id_barrio = null, $direccion_calle = null, $direccion_nro = null, $direccion_depto = null, $direccion_piso = null, $direccion_cp = null)
+    public function set($id_wappersonas = null, $nombre = null, $apellido = null, $telefono = null, $email = null, $nacionalidad = null, $id_ciudad = null, $id_barrio = null, $otro_barrio = null, $direccion_calle = null, $direccion_nro = null, $direccion_depto = null, $direccion_piso = null, $direccion_cp = null)
     {
         $this->id_wappersonas = $id_wappersonas;
         $this->nombre = substr($nombre, 0, LT_USU_NOMBRE);
@@ -59,6 +62,7 @@ class Usuario
         $this->nacionalidad = $nacionalidad;
         $this->id_ciudad = $id_ciudad;
         $this->id_barrio = $id_barrio;
+        $this->otro_barrio = $otro_barrio;
         $this->direccion_calle = $direccion_calle;
         $this->direccion_nro = $direccion_nro;
         $this->direccion_depto = $direccion_depto;

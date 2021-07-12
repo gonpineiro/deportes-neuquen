@@ -94,8 +94,8 @@ if (isset($_POST) && !empty($_POST)) {
                     'id_zona' => 3,
                     'direccion_calle' => $_POST['direccion-calle'],
                     'direccion_nro' => $_POST['direccion-numero'],
-                    'direccion_depto' => $_POST['direccion-departamento'],
-                    'direccion_piso' => $_POST['direccion-piso'],
+                    'direccion_depto' => $direccionDepto,
+                    'direccion_piso' => $direccionPiso,
                     'direccion_cp' => $_POST['direccion-cp'],
                 ]);
             }
