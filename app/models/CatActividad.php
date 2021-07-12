@@ -1,6 +1,6 @@
 <?php
 /**
- * This is the model class for table "categoria_actividades".
+ * This is the model class for table "cat_actividades".
  *
  * @property string $nombre
  * 
