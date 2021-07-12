@@ -1,6 +1,9 @@
 <?php
 $ciudadController = new CiudadController();
 $ciudades = $ciudadController->index();
+
+$barrioController = new BarrioController();
+$barrios = $barrioController->index();
 ?>
 
 <div class="">
@@ -55,9 +58,9 @@ $ciudades = $ciudadController->index();
                 <div id="div-barrios" style="display: none;" class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                     <label for="barrio-nqn" class="required">Seleccione su barrio </label>
                     <select id="barrio-nqn" class="selectpicker form-control" title="Seleccionar" name='barrio-nqn'>
-                        <option value="1">Barrio 1</option>
-                        <option value="2">Barrio 2</option>
-                        <option value="3">Barrio 3</option>
+                    <?php while ($row = odbc_fetch_array($barrios)) { ?>
+                            <option value="<?= $row['id']?>"><?= utf8_encode($row['nombre']) ?></option>
+                        <?php } ?>
                         <option value="0">Otro</option>
                     </select>
                     <div class="invalid-feedback">

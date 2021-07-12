@@ -89,7 +89,7 @@ $(function() {
         }
     });
     $('#barrio-nqn').on('change', function(e) {
-        if (this.value == 1) {
+        if (this.value == 0) {
             $('#div-barrio-nqn-otro').show(500);
             $('#div-barrio-nqn-otro :input').attr('required', true);
         } else {
