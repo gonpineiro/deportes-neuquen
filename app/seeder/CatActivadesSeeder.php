@@ -16,6 +16,5 @@ $ciudadController->store([
 ]);
 
 $ciudadController->store([
-    'id_provincia' => 3,
     'nombre' => 'Medición',
 ]);
