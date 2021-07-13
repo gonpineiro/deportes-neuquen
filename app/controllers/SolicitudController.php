@@ -45,7 +45,24 @@ class SolicitudController
         while ($row = odbc_fetch_array($query)) array_push($array, $row);
         return $array;
     }
-
+    /* Obtiene listado de solicitudes vinculado con el resto de las tablas, where estado */
+    public function getSolicitudesWhereID($id)
+    {
+        $where = "WHERE sol.id = '$id'";
+        $conn = new BaseDatos();
+        $array = [];
+        $query =  $conn->query($this->insertSqlQuery($where));
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Obtener una solicitud';
+            $log = new Log();
+            $log->set(null, null, null, $error, get_class(), 'getSolicitudesWhereEstado');
+            $log->save();
+        }
+        while ($row = odbc_fetch_array($query)) array_push($array, $row);
+        return $array;
+    }
+    
     private function insertSqlQuery($where)
     {
         $sql =
