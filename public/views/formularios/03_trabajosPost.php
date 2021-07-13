@@ -30,7 +30,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['trabajoSubmit'])) {
                         'id_solicitud' => $idSolicitud,
                         'lugar' => $_POST['lugarTrabajo'][$key],
                         'path_file' => $pathTrabajo,
-                    ],
+                    ]
                 );
 
                 if (!$trabajoStore) {

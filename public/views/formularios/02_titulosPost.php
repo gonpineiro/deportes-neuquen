@@ -31,7 +31,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
                         'titulo' => $_POST['titulos'][$key],
                         'path_file' => $pathTítulo,
                         'es_curso' => null
-                    ],
+                    ]
                 );
 
                 if (!$tituloStore) {
@@ -47,7 +47,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
         }
 
         /* Si todo salio bien Cambiamos el estado a Trabajos*/
-        if ($success) {            
+        if ($success) {
             unset($_SESSION['errores']);
             $solicitudController = new SolicitudController();
             $solicitudController->update(['id_estado' => 2], $idSolicitud);
