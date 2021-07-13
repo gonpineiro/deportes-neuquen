@@ -4,9 +4,7 @@ $ciudades = $ciudadController->index();
 
 $barrioController = new BarrioController();
 $barrios = $barrioController->index();
-if ($errores) {
-    echo "<script>window.addEventListener('load', function () {mostrarErrorEnAlta();});</script>";
-}
+
 ?>
 
 <div class="">
@@ -127,7 +125,7 @@ if ($errores) {
                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                     <label for="adjunto-antecedentes" class="required">Adjuntar certificado de antecedentes penales (.jpg - .jpeg - .png - .pdf)</label>
                     <div class="custom-file" id="adjunto-antecedentes">
-                        <input id="antecedentes" class="custom-file-input" type="file" name="antecedentes">
+                        <input id="antecedentes" class="custom-file-input" type="file" name="antecedentes" accept="image/png, image/jpeg, application/pdf">
                         <label for="antecedentes" class="custom-file-label required" id="label-antecedentes"><span style="font-size: 1rem;">Adjuntar Archivo (imagen o pdf)</span></label>
                     </div>
                     <div class="invalid-feedback">
@@ -147,7 +145,7 @@ if ($errores) {
                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                     <label for="div-imagen" class="required">Imagen (Formatos: .jpg - .jpeg - .png) </label>
                     <div class="custom-file" id="div-imagen">
-                        <input id="recibo" class="custom-file-input" type="file" name="recibo" accept="image/png, image/jpeg" required>
+                        <input id="recibo" class="custom-file-input" type="file" name="recibo" accept="image/png, image/jpeg, application/pdf" required>
                         <label for="recibo" class="custom-file-label" id="label-imagen"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
                     </div>
                     <div class="invalid-feedback">

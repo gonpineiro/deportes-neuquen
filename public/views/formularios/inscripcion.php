@@ -61,7 +61,7 @@ if ($usuario) {
 
         case '9':
             /* Impreso */
-            $estado_inscripcion = 'Nuevo';
+            $estado_inscripcion = 'Condiciones';
             break;
     }
 } else {
@@ -177,7 +177,7 @@ if (isset($_POST) && !empty($_POST)) {
     <?php
     include('./components/header.php');
 
-    switch ($estado_inscripcion) {        
+    switch ($estado_inscripcion) {
         case 'DatosPersonales':
             include('inscripcion_individual.php');
             break;
@@ -191,6 +191,9 @@ if (isset($_POST) && !empty($_POST)) {
             break;
 
         case 'Actividades':
+            include('inscripcion_individual.php');
+            break;
+        case 'Condiciones':
             include('inscripcion_individual.php');
             break;
 
@@ -213,5 +216,6 @@ if (isset($_POST) && !empty($_POST)) {
 <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../../node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 <script src="../../js/formularios/inscripcion.js"></script>
+
 
 </html>
