@@ -162,7 +162,7 @@ function checkFile($maxsize = 15, $acceptable = array('application/pdf', 'image/
             8 => 'A PHP extension stopped the file upload.',
         );
 
-        $maxsize_multiplied = $maxsize * 10000;
+        $maxsize_multiplied = $maxsize * 1000000;
 
         foreach ($_FILES as $key => $value) {
             foreach ($value as $key => $array) {

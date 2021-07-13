@@ -74,7 +74,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
 
                 /* Cargar del recibo */
                 $pathRecibo = getDireccionesParaAdjunto($_FILES['recibo']['type'], $idSolicitud, 'recibo', null);
-                if (!copy($_FILES['recibo']['tmp_name'], $pathRecibo)) {
+                if (copy($_FILES['recibo']['tmp_name'], $pathRecibo)) {
                     $solicitudController->update(['path_recibo' => $pathRecibo], $idSolicitud);
                     unset($_SESSION['errores']);
                 } else {

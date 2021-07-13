@@ -21,10 +21,10 @@ $datosTrabajo = $trabajos->get($solicitudParams);
 $titulos = new TituloController();
 $datosTitulos = $titulos->get($solicitudParams);
 // Busco los datos de las actividades laborales
-$actividades = new 
-
+/* $actividades = new */
 
 ?>
+
 <div class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
     <form action="05_actualizarPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form-51" id="form-51">
         <h4 class="text-white">Resumen</h4>
