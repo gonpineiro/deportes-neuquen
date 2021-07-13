@@ -1,4 +1,7 @@
 <?php
+
+$date = date('Y-m-d');
+die();
 include 'app/config/config.php';
 include('./app/seeder/BarrioSeeder.php');
 include('./app/seeder/CiudadSeeder.php');

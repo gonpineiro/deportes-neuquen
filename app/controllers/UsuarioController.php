@@ -40,7 +40,7 @@ class UsuarioController
         sol.fecha_evaluacion
         FROM dbo.deportes_usuarios usu 
         LEFT JOIN dbo.deportes_solicitudes sol ON usu.id = sol.id_usuario
-        WHERE id_wappersonas = $id ORDER BY sol.fecha_alta DESC ";
+        WHERE id_wappersonas = $id AND deleted_at IS NULL ORDER BY sol.fecha_alta DESC ";
 
         $conn = new BaseDatos();
         $query =  $conn->query($sql);
