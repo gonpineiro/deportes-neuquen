@@ -103,7 +103,7 @@ function getDireccionesParaAdjunto($fileType, $idsolicitud, $adjuntoInputName, $
 {
     $path = null;
 
-    $local = true;
+    $local = false;
 
     if ($local) {
         $target_path_local = $tipo != null
@@ -111,8 +111,8 @@ function getDireccionesParaAdjunto($fileType, $idsolicitud, $adjuntoInputName, $
             : "../../../projects_files/formulario_deportes/" . $idsolicitud . "/";
     } else {
         $target_path_local = $tipo != null
-            ? "../../../../../../projects_files/formulario_deportes/" . $idsolicitud . "/" . $tipo . "/"
-            : "../../../../../../projects_files/formulario_deportes/" . $idsolicitud . "/";
+            ? "../../../../../../../../../DataServer/replica/projects_files/formulario_deportes/" . $idsolicitud . "/" . $tipo . "/"
+            : "../../../../../../../../../DataServer/replica/projects_files/formulario_deportes/" . $idsolicitud . "/";
     }
 
     if (!file_exists($target_path_local)) {
