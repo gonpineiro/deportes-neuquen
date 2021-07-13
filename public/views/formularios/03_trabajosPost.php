@@ -21,7 +21,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['trabajoSubmit'])) {
         $success = true;
         foreach ($_FILES['imagenLugares']['tmp_name'] as $key => $unaImagen) {
             $fileType = $_FILES['imagenLugares']['type'][$key];
-            $pathTrabajo = getDireccionesParaAdjunto($fileType, $idSolicitud, $_POST['lugarTrabajo'][$key], 'trabajos', $key);
+            $pathTrabajo = getDireccionesParaAdjunto($fileType, $idSolicitud, $key, 'trabajos', $key);
 
             /* upload comprobante & certificado */
             if (copy($unaImagen, $pathTrabajo)) {
