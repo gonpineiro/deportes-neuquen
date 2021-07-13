@@ -103,7 +103,7 @@ function getDireccionesParaAdjunto($fileType, $idsolicitud, $adjuntoInputName, $
 {
     $path = null;
 
-    $local = true;
+    $local = false;
 
     if ($local) {
         $target_path_local = $tipo != null
