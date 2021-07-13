@@ -21,12 +21,14 @@ function verEstructura($e)
     print_r($e);
     echo "</pre>";
 }
+
 function console_log($data)
 {
     echo "<script>";
     echo "console.log('$data')";
     echo "</script>";
 }
+
 function verificarSesion()
 {
     if (!isset($_SESSION['usuario'])) {
@@ -74,6 +76,7 @@ function enviarMailApi($address, $arrIdSolicitud)
 
     return json_decode($result, true);
 }
+
 function enviarMailRechazado($address, $solicitante, $observaciones, $idsolicitud)
 {
     $body = "<p>Estimado/a " . $solicitante . ", su solicitud (Nº $idsolicitud) para Libreta Sanitaria fue rechazada.</p>
@@ -95,6 +98,7 @@ function enviarMailRechazado($address, $solicitante, $observaciones, $idsolicitu
 
     return json_decode($result, true);
 }
+
 function getDireccionesParaAdjunto($fileType, $idsolicitud, $adjuntoInputName, $tipo = null)
 {
     $path = null;
@@ -200,6 +204,7 @@ function checkFile($maxsize = 15, $acceptable = array('application/pdf', 'image/
         return true;
     }
 }
+
 /**
  * Chequea que el tamaño y tipo de archivos subidos sean los correctos
  * JS Alert si no lo son
@@ -312,4 +317,20 @@ function convertirABase64($rutaImagen)
     $contenidoBinario = file_get_contents($rutaImagen);
     $imagenComoBase64 = base64_encode($contenidoBinario);
     return $imagenComoBase64;
+}
+
+function mostrarError($tipo, $detalle = null)
+{
+    if ($tipo == "store" && $detalle == null) {
+        return "Hubo un error con el servidor";
+    }
+
+    if ($tipo == 'file' && $detalle != null) {
+        return "Guardado del archivo " . $detalle . " fallido, hubo un error con el servidor.";
+    }
+
+    if ($tipo == 'dp' && $detalle != null) {
+        return "Guardado de adjunto ". $detalle ." fallida, hubo un error con el servidor.";
+    }
+
 }

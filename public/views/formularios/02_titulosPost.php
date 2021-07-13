@@ -39,11 +39,11 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
                 $solicitudController->update(['id_estado' => 2], $idSolicitud);
 
                 if (!$tituloStore) {
-                    $errores[] = "Solicitud nro $idSolicitud: Falla en update comprobante pago";
-                }                
+                    $_SESSION['errores'] = mostrarError('store');
+                }
                 unset($_SESSION['errores']);
             } else {
-                $_SESSION['errores'] = "Guardado del archivo " . $_FILES['imagenTitulos']['name'][$key] . " fallido, hubo un error con el servidor.";
+                $_SESSION['errores'] = mostrarError('file', $_FILES['imagenTitulos']['name'][$key]);
             }
         }
         header('Location: inscripcion.php#paso-2');
