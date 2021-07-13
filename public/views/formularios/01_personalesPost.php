@@ -78,11 +78,11 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
                     $solicitudController->update(['path_recibo' => $pathRecibo], $idSolicitud);
                 } else {
                     $_SESSION['errores'] = "Guardado de adjunto comprobante de pago fallida, hubo un error con el servidor.";
-                    $solicitudController->update(['observaciones' => $_SESSION['errores'], 'deleted_at' => date('Y-m-d')], $idSolicitud);
+                    $solicitudController->update(['observaciones' => $_SESSION['errores'], 'deleted_at' => date('Y-m-d'), 'nro_recibo' => null], $idSolicitud);
                 }
             } else {
                 $_SESSION['errores'] = "Guardado de adjunto antecendetes penales fallido, hubo un error con el servidor.";
-                $solicitudController->update(['observaciones' => $_SESSION['errores'], 'deleted_at' => date('Y-m-d')], $idSolicitud);
+                $solicitudController->update(['observaciones' => $_SESSION['errores'], 'deleted_at' => date('Y-m-d'), 'nro_recibo' => null], $idSolicitud);
             }
         } else {
             $_SESSION['errores'] = "Nro. de comprobante sellado " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
