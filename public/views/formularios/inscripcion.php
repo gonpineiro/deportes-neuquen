@@ -63,6 +63,11 @@ if ($usuario) {
             /* Impreso */
             $estado_inscripcion = 'Condiciones';
             break;
+
+        case false:
+            /* Impreso */
+            $estado_inscripcion = 'DatosPersonales';
+            break;
     }
 } else {
     /* Nunca solicita una libreta */

@@ -12,40 +12,43 @@ if (!isset($_SESSION['usuario'])) {
 include('session.php');
 
 if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
-    $usuarioController = new UsuarioController();
-    $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
-    $idSolicitud = $userWithSolicitud['id_solicitud'];
+    if (checkFile()) {
+        $usuarioController = new UsuarioController();
+        $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
+        $idSolicitud = $userWithSolicitud['id_solicitud'];
 
-    $tituloController = new TituloController();
-    foreach ($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen) {
-        $fileType = $_FILES['imagenTitulos']['type'][$key];
-        $pathTítulo = getDireccionesParaAdjunto($fileType, $idSolicitud, $_POST['titulos'][$key], 'titulos', $key);
+        $tituloController = new TituloController();
+        foreach ($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen) {
+            $fileType = $_FILES['imagenTitulos']['type'][$key];
+            $pathTítulo = getDireccionesParaAdjunto($fileType, $idSolicitud, $_POST['titulos'][$key], 'titulos', $key);
 
-        /* upload comprobante & certificado */
-        if (copy($unaImagen, $pathTítulo)) {
-            $solicitudUpdated = $tituloController->store(
-                [
-                    'id_solicitud' => $idSolicitud,
-                    'titulo' => $_POST['titulos'][$key],
-                    'path_file' => $pathTítulo,
-                    'es_curso' => null
-                ],
-            );
+            /* upload comprobante & certificado */
+            if (copy($unaImagen, $pathTítulo)) {
+                $tituloStore = $tituloController->store(
+                    [
+                        'id_solicitud' => $idSolicitud,
+                        'titulo' => $_POST['titulos'][$key],
+                        'path_file' => $pathTítulo,
+                        'es_curso' => null
+                    ],
+                );
 
-            $solicitudController = new SolicitudController();
+                $solicitudController = new SolicitudController();
 
-            /* Cambiamos el estado a Trabajos */
-            $solicitudController->update(['id_estado' => 2], $idSolicitud);
+                /* Cambiamos el estado a Trabajos */
+                $solicitudController->update(['id_estado' => 2], $idSolicitud);
 
-            if (!$solicitudUpdated) {
-                $errores[] = "Solicitud nro $idSolicitud: Falla en update comprobante pago";
-                cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nro $idSolicitud: Falla en update comprobante pago");
+                if (!$tituloStore) {
+                    $errores[] = "Solicitud nro $idSolicitud: Falla en update comprobante pago";
+                }
+            } else {
+                $_SESSION['errores'] = "Guardado del archivo " . $_FILES['imagenTitulos']['name'][$key] . " fallido, hubo un error con el servidor.";
             }
-        } else {            
-            $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
-            cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");
         }
-    }    
-    header('Location: inscripcion.php#paso-2');
-    exit();
+        header('Location: inscripcion.php#paso-2');
+        exit();
+    } else {
+        header("Refresh:0.01; url=inscripcion.php", true, 303);
+        exit();
+    }
 }
