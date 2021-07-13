@@ -41,7 +41,7 @@ if ($errores) {
         if(isset($_SESSION['errores']) AND !empty($_SESSION['errores'])){
             echo
                 "<div class='alert alert-danger mt-3' role='alert'>
-                Error: " . $error . "
+                Error: " . $_SESSION['errores'] . "
                 </div>";
         }
         ?>

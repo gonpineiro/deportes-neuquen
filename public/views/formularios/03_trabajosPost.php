@@ -39,7 +39,8 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['trabajoSubmit'])) {
             if (!$solicitudUpdated) {
                 $errores[] = "Solicitud nro $idSolicitud: Falla en update comprobante pago";
                 cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nro $idSolicitud: Falla en update comprobante pago");
-            }
+            }            
+            unset($_SESSION['errores']);
         } else {            
             $errores[] = "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida";
             cargarLog($usuario['id'], $idSolicitud, $idCapacitador, "Solicitud nº $idSolicitud: Guardado de adjunto comprobante pago fallida");

@@ -6,6 +6,7 @@ if (!isset($_SESSION['usuario'])) {
     header('Location: ' . WEBLOGIN);
     exit();
 }
+
 $usuarioController = new UsuarioController();
 $solicitudController = new SolicitudController();
 

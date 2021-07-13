@@ -40,7 +40,8 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
 
                 if (!$tituloStore) {
                     $errores[] = "Solicitud nro $idSolicitud: Falla en update comprobante pago";
-                }
+                }                
+                unset($_SESSION['errores']);
             } else {
                 $_SESSION['errores'] = "Guardado del archivo " . $_FILES['imagenTitulos']['name'][$key] . " fallido, hubo un error con el servidor.";
             }

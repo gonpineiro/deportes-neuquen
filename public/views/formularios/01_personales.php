@@ -34,7 +34,7 @@ $barrios = $barrioController->index();
                 </div>
                 <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                     <label for="nacionalidad" class="required">Nacionalidad </label>
-                    <select id="nacionalidad" class="selectpicker form-control" title="Seleccionar" name='nacionalidad'>
+                    <select id="nacionalidad" class="selectpicker form-control" title="Seleccionar" name='nacionalidad' style="display:block !important;">
                         <option value="1" selected>Argentina</option>
                         <option value="2">Nacionalidad</option>
                     </select>
@@ -47,7 +47,7 @@ $barrios = $barrioController->index();
                 <!-- DOMICILIO -->
                 <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                     <label for="ciudad" class="required">Seleccione su ciudad </label>
-                    <select id="ciudad" class="selectpicker form-control" title="Seleccionar" name='ciudad'>
+                    <select id="ciudad" class="selectpicker form-control" title="Seleccionar" name='ciudad' style="display:block !important;">
                         <?php while ($row = odbc_fetch_array($ciudades)) { ?>
                             <option value="<?= $row['id'] ?>"><?= utf8_encode($row['nombre']) ?></option>
                         <?php } ?>
