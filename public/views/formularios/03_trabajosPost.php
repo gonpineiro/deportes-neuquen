@@ -12,38 +12,48 @@ if (!isset($_SESSION['usuario'])) {
 include('session.php');
 
 if (isset($_POST) && !empty($_POST) && isset($_POST['trabajoSubmit'])) {
-    $usuarioController = new UsuarioController();
-    $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
-    $idSolicitud = $userWithSolicitud['id_solicitud'];
+    if (checkFile()) {
+        $usuarioController = new UsuarioController();
+        $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
+        $idSolicitud = $userWithSolicitud['id_solicitud'];
 
-    $trabajoController = new TrabajoController();
-    foreach ($_FILES['imagenLugares']['tmp_name'] as $key => $unaImagen) {
-        $fileType = $_FILES['imagenLugares']['type'][$key];
-        $pathTrabajo = getDireccionesParaAdjunto($fileType, $idSolicitud, $_POST['lugarTrabajo'][$key], 'trabajos', $key);
+        $trabajoController = new TrabajoController();
+        $success = true;
+        foreach ($_FILES['imagenLugares']['tmp_name'] as $key => $unaImagen) {
+            $fileType = $_FILES['imagenLugares']['type'][$key];
+            $pathTrabajo = getDireccionesParaAdjunto($fileType, $idSolicitud, $_POST['lugarTrabajo'][$key], 'trabajos', $key);
 
-        /* upload comprobante & certificado */
-        if (copy($unaImagen, $pathTrabajo)) {
-            $trabajoStore = $trabajoController->store(
-                [
-                    'id_solicitud' => $idSolicitud,
-                    'lugar' => $_POST['lugarTrabajo'][$key],
-                    'path_file' => $pathTrabajo,
-                ],
-            );
+            /* upload comprobante & certificado */
+            if (copy($unaImagen, $pathTrabajo)) {
+                $trabajoStore = $trabajoController->store(
+                    [
+                        'id_solicitud' => $idSolicitud,
+                        'lugar' => $_POST['lugarTrabajo'][$key],
+                        'path_file' => $pathTrabajo,
+                    ],
+                );
 
-            $solicitudController = new SolicitudController();
-
-            /* Cambiamos el estado a Trabajos */
-            $solicitudController->update(['id_estado' => 3], $idSolicitud);
-
-            if (!$trabajoStore) {
-                $_SESSION['errores'] = mostrarError('store');
-            }            
-            unset($_SESSION['errores']);
-        } else {            
-            $_SESSION['errores'] = mostrarError('file', $_FILES['imagenLugares']['name'][$key]);
+                if (!$trabajoStore) {
+                    $_SESSION['errores'] = mostrarError('store');
+                    $success = false;
+                    break;
+                }
+            } else {
+                $_SESSION['errores'] = mostrarError('file', $_FILES['imagenLugares']['name'][$key]);
+                $success = false;
+                break;
+            }
         }
-    }    
-    header('Location: inscripcion.php#paso-3');
-    exit();
+        /* Si todo salio bien Cambiamos el estado a Actividades */
+        if ($success) {
+            unset($_SESSION['errores']);
+            $solicitudController = new SolicitudController();
+            $solicitudController->update(['id_estado' => 3], $idSolicitud);
+        }
+        header('Location: inscripcion.php#paso-3');
+        exit();
+    } else {
+        header("Refresh:0.01; url=inscripcion.php", true, 303);
+        exit();
+    }
 }

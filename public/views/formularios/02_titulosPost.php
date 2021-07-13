@@ -18,6 +18,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
         $idSolicitud = $userWithSolicitud['id_solicitud'];
 
         $tituloController = new TituloController();
+        $success = true;
         foreach ($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen) {
             $fileType = $_FILES['imagenTitulos']['type'][$key];
             $pathTítulo = getDireccionesParaAdjunto($fileType, $idSolicitud, $_POST['titulos'][$key], 'titulos', $key);
@@ -33,19 +34,25 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
                     ],
                 );
 
-                $solicitudController = new SolicitudController();
-
-                /* Cambiamos el estado a Trabajos */
-                $solicitudController->update(['id_estado' => 2], $idSolicitud);
-
                 if (!$tituloStore) {
                     $_SESSION['errores'] = mostrarError('store');
+                    $success = false;
+                    break;
                 }
-                unset($_SESSION['errores']);
             } else {
                 $_SESSION['errores'] = mostrarError('file', $_FILES['imagenTitulos']['name'][$key]);
+                $success = false;
+                break;
             }
         }
+
+        /* Si todo salio bien Cambiamos el estado a Trabajos*/
+        if ($success) {            
+            unset($_SESSION['errores']);
+            $solicitudController = new SolicitudController();
+            $solicitudController->update(['id_estado' => 2], $idSolicitud);
+        }
+
         header('Location: inscripcion.php#paso-2');
         exit();
     } else {

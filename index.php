@@ -1,6 +1,7 @@
 <?php
+include 'app/config/config.php';
 
-$date = date('Y-m-d');
+
 die();
 include 'app/config/config.php';
 include('./app/seeder/BarrioSeeder.php');
@@ -9,30 +10,25 @@ include('./app/seeder/EstadoSeeder.php');
 include('./app/seeder/SolicitudSeeder.php');
 include('./app/seeder/TituloSeeder.php');
 include('./app/seeder/TrabajoSeeder.php');
-include('./app/seeder/UserSeeder.php'); 
+include('./app/seeder/UserSeeder.php');
 
-include('./app/seeder/ActivadesSeeder.php'); 
-include('./app/seeder/CatActivadesSeeder.php'); 
+include('./app/seeder/ActivadesSeeder.php');
+include('./app/seeder/CatActivadesSeeder.php');
 include('./app/seeder/TipoActivadesSeeder.php');
 die();
 $var = 'Nuevo';
 
-switch ($var){
+switch ($var) {
     case 'ASD':
         echo 'Si';
-    break;
+        break;
 }
 
 
 die();
 
 
-$titulos = new TituloController();
-$data = $titulos->index();
 
-while ($row = odbc_fetch_array($data)) {
-    echo $row['path_file'];
-}
 
 
 

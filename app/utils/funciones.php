@@ -153,7 +153,6 @@ function getDireccionesParaAdjunto($fileType, $idsolicitud, $adjuntoInputName, $
 function checkFile($maxsize = 15, $acceptable = array('application/pdf', 'image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'video/mp4', 'video/mpeg'))
 {
     if (isset($_FILES) && !empty($_FILES)) {
-        $errors = array();
 
         $phpFileUploadErrors = array(
             0 => 'There is no error, the file uploaded with success',
