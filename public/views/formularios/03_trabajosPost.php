@@ -56,4 +56,8 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['trabajoSubmit'])) {
         header("Refresh:0.01; url=inscripcion.php", true, 303);
         exit();
     }
+} else {
+
+    echo 'No Envio';
+    phpinfo();
 }
