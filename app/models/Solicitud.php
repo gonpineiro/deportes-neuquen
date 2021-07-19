@@ -109,7 +109,7 @@ class Solicitud
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error a modificar la solicitud';
+            $error =  $conn->getError() . ' | Error a modificar la solicitud ' . $id;
             cargarLog(null, $id, $error, get_class(), __FUNCTION__);
         }
         return $result;

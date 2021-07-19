@@ -37,7 +37,7 @@ class Trabajo
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al guardar un trabajo';
-            cargarLog($this->id_solicitud, null, $error, get_class(), __FUNCTION__);
+            cargarLog(null, $this->id_solicitud, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
@@ -76,7 +76,7 @@ class Trabajo
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error a modificar la solicitud ' . $id;
+            $error =  $conn->getError() . ' | Error a modificar el trabajo ' . $id;
             cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
