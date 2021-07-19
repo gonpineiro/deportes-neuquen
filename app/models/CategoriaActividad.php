@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This is the model class for table "CATEGORIAS_ACTIVIDADES".
  *
@@ -28,9 +29,7 @@ class CategoriaActividad
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al guardar una categoria de actividad';
-            $log = new Log();
-            $log->set($this->nombre, null, null, $error, get_class(), 'save');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
@@ -43,9 +42,7 @@ class CategoriaActividad
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al listar las categorias de actividades';
-            $log = new Log();
-            $log->set(null, null, null, $error, get_class(), 'list');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
@@ -59,9 +56,7 @@ class CategoriaActividad
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error a obtener la categoria de actividad: ' . $params[0];
-            $log = new Log();
-            $log->set(null, null, null, $error, get_class(), 'get');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $actividad;
     }
@@ -73,10 +68,8 @@ class CategoriaActividad
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error a modificar la categoria de actividad';
-            $log = new Log();
-            $log->set(null,  $id, null, $error, get_class(), 'update');
-            $log->save();
+            $error =  $conn->getError() . ' | Error a modificar la categoria de actividad ' . $id;
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
