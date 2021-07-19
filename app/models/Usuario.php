@@ -118,9 +118,6 @@ class Usuario
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error a modificar el usuario ' . $id;
-            $log = new Log();
-            $log->set(null,  $id, null, $error, get_class(), 'update');
-            $log->save();
             cargarLog($id, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
