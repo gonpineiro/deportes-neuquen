@@ -1,6 +1,6 @@
 <?php
 /**
- * This is the model class for table "cat_actividades".
+ * This is the model class for table "CATEGORIAS_ACTIVIDADES".
  *
  * @property string $nombre
  * 
@@ -23,7 +23,7 @@ class CatActividad
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        $result = $conn->store(CAT_ACTIVIDADES, $array);
+        $result = $conn->store(CATEGORIAS_ACTIVIDADES, $array);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
@@ -38,7 +38,7 @@ class CatActividad
     public static function list($param = [], $ops = [])
     {
         $conn = new BaseDatos();
-        $result = $conn->search(CAT_ACTIVIDADES, $param, $ops);
+        $result = $conn->search(CATEGORIAS_ACTIVIDADES, $param, $ops);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
@@ -53,7 +53,7 @@ class CatActividad
     public static function get($params)
     {
         $conn = new BaseDatos();
-        $result = $conn->search(CAT_ACTIVIDADES, $params);
+        $result = $conn->search(CATEGORIAS_ACTIVIDADES, $params);
         $actividad = $conn->fetch_assoc($result);
 
         /* Guardamos los errores */
@@ -69,7 +69,7 @@ class CatActividad
     public static function update($res, $id)
     {
         $conn = new BaseDatos();
-        $result = $conn->update(CAT_ACTIVIDADES, $res, $id);
+        $result = $conn->update(CATEGORIAS_ACTIVIDADES, $res, $id);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
