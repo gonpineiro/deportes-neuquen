@@ -50,13 +50,6 @@ CREATE TABLE deportes_titulos (
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
 
-CREATE TABLE deportes_profesiones (
-	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-	id_solicitud INT NULL,
-	nombre VARCHAR(50) NULL,
-	fecha_alta DATETIME DEFAULT GETDATE()
-);
-
 CREATE TABLE deportes_estados (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	nombre VARCHAR(50) NULL,
@@ -65,7 +58,6 @@ CREATE TABLE deportes_estados (
 
 CREATE TABLE deportes_ciudades (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-	id_provincia INT NULL,
 	nombre VARCHAR(50) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
@@ -79,19 +71,13 @@ CREATE TABLE deportes_barrios (
 
 CREATE TABLE deportes_actividades (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-	id_tipo INT NULL,
-	nombre VARCHAR(250) NULL,
-	fecha_alta DATETIME DEFAULT GETDATE()
-);
-
-CREATE TABLE deportes_tipo_actividades (
-	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	id_categoria INT NULL,
+	estado INT NULL,
 	nombre VARCHAR(250) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
 
-CREATE TABLE deportes_cat_actividades (
+CREATE TABLE deportes_categorias_actividades (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	nombre VARCHAR(250) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
@@ -108,9 +94,9 @@ CREATE TABLE deportes_log (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	id_usuario INT NULL,
 	id_solicitud INT NULL,
-	error VARCHAR(45) NULL,
-	class VARCHAR(45) NULL,
-	metodo VARCHAR(45) NULL,
+	error VARCHAR(200) NULL,
+	class VARCHAR(200) NULL,
+	metodo VARCHAR(200) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
 
