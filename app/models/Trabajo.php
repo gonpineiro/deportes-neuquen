@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This is the model class for table "Trabajo".
  *
@@ -36,9 +37,7 @@ class Trabajo
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al guardar un trabajo';
-            $log = new Log();
-            $log->set($this->id_solicitud, null, null, $error, get_class(), 'save');
-            $log->save();
+            cargarLog(null, $this->id_solicitud, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
@@ -51,9 +50,7 @@ class Trabajo
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al listar las trabajos';
-            $log = new Log();
-            $log->set(null, null, null, $error, get_class(), 'list');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $trabajo;
     }
@@ -67,9 +64,7 @@ class Trabajo
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error a obtener el trabajo: ' . $params[0];
-            $log = new Log();
-            $log->set(null, null, null, $error, get_class(), 'get');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $trabajo;
     }
@@ -81,10 +76,8 @@ class Trabajo
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error a modificar la solicitud';
-            $log = new Log();
-            $log->set(null,  $id, null, $error, get_class(), 'update');
-            $log->save();
+            $error =  $conn->getError() . ' | Error a modificar el trabajo ' . $id;
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }

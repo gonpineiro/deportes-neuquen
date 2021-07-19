@@ -1,11 +1,12 @@
 <?php
+
 /**
- * This is the model class for table "cat_actividades".
+ * This is the model class for table "CATEGORIAS_ACTIVIDADES".
  *
  * @property string $nombre
  * 
  */
-class CatActividad
+class CategoriaActividad
 {
     public $nombre;
 
@@ -23,14 +24,12 @@ class CatActividad
     {
         $array = json_decode(json_encode($this), true);
         $conn = new BaseDatos();
-        $result = $conn->store(CAT_ACTIVIDADES, $array);
+        $result = $conn->store(CATEGORIAS_ACTIVIDADES, $array);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al guardar una categoria de actividad';
-            $log = new Log();
-            $log->set($this->nombre, null, null, $error, get_class(), 'save');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
@@ -38,14 +37,12 @@ class CatActividad
     public static function list($param = [], $ops = [])
     {
         $conn = new BaseDatos();
-        $result = $conn->search(CAT_ACTIVIDADES, $param, $ops);
+        $result = $conn->search(CATEGORIAS_ACTIVIDADES, $param, $ops);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al listar las categorias de actividades';
-            $log = new Log();
-            $log->set(null, null, null, $error, get_class(), 'list');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
@@ -53,15 +50,13 @@ class CatActividad
     public static function get($params)
     {
         $conn = new BaseDatos();
-        $result = $conn->search(CAT_ACTIVIDADES, $params);
+        $result = $conn->search(CATEGORIAS_ACTIVIDADES, $params);
         $actividad = $conn->fetch_assoc($result);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error a obtener la categoria de actividad: ' . $params[0];
-            $log = new Log();
-            $log->set(null, null, null, $error, get_class(), 'get');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $actividad;
     }
@@ -69,14 +64,12 @@ class CatActividad
     public static function update($res, $id)
     {
         $conn = new BaseDatos();
-        $result = $conn->update(CAT_ACTIVIDADES, $res, $id);
+        $result = $conn->update(CATEGORIAS_ACTIVIDADES, $res, $id);
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error a modificar la categoria de actividad';
-            $log = new Log();
-            $log->set(null,  $id, null, $error, get_class(), 'update');
-            $log->save();
+            $error =  $conn->getError() . ' | Error a modificar la categoria de actividad ' . $id;
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }

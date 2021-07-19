@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This is the model class for table "Ciudad".
  *
@@ -31,9 +32,7 @@ class Ciudad
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al guardar una ciudad';
-            $log = new Log();
-            $log->set($this->nombre, null, null, $error, get_class(), 'save');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
@@ -46,9 +45,7 @@ class Ciudad
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al listar las ciudades';
-            $log = new Log();
-            $log->set(null, null, null, $error, get_class(), 'list');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
@@ -62,9 +59,7 @@ class Ciudad
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error a obtener la ciudad: ' . $params[0];
-            $log = new Log();
-            $log->set(null, null, null, $error, get_class(), 'get');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $ciudad;
     }
@@ -76,10 +71,8 @@ class Ciudad
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error a modificar la ciudad';
-            $log = new Log();
-            $log->set(null,  $id, null, $error, get_class(), 'update');
-            $log->save();
+            $error =  $conn->getError() . ' | Error a modificar la ciudad ' . $id;
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
