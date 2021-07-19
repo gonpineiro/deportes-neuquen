@@ -29,5 +29,6 @@
                 Por favor ingrese las actividades.
             </div>
         </div>
+        <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Registrar datos" name="actividadesSubmit" />
     </div>
 </form>
