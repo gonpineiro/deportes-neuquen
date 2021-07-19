@@ -111,6 +111,7 @@ INSERT INTO deportes_estados (nombre) values ('Rechazado')
 INSERT INTO deportes_estados (nombre) values ('Aprobado')
 INSERT INTO deportes_estados (nombre) values ('Impreso')
 INSERT INTO deportes_estados (nombre) values ('Retirado')
+INSERT INTO deportes_estados (nombre) values ('Cancelado')
 
 /* Insert Ciudades */
 INSERT INTO deportes_ciudades (nombre) values ('Neuquén')
