@@ -70,9 +70,7 @@ class Solicitud
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al guardar una solicitud';
-            $log = new Log();
-            $log->set($this->id_usuario, null, null, $error, get_class(), 'save');
-            $log->save();
+            cargarLog($this->id_usuario, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
@@ -85,9 +83,7 @@ class Solicitud
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al listar las solicitudes';
-            $log = new Log();
-            $log->set(null, null, null, $error, get_class(), 'list');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $solicitud;
     }
@@ -101,9 +97,7 @@ class Solicitud
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error a obtener la solicitud: ' . $params[0];
-            $log = new Log();
-            $log->set(null, null, null, $error, get_class(), 'get');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $solicitud;
     }
@@ -116,9 +110,7 @@ class Solicitud
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error a modificar la solicitud';
-            $log = new Log();
-            $log->set(null,  $id, null, $error, get_class(), 'update');
-            $log->save();
+            cargarLog(null, $id, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
