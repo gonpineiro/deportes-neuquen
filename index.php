@@ -13,7 +13,7 @@ include('./app/seeder/TrabajoSeeder.php');
 include('./app/seeder/UserSeeder.php');
 
 include('./app/seeder/ActivadesSeeder.php');
-include('./app/seeder/CatActivadesSeeder.php');
+include('./app/seeder/CategoriaActividadSeeder.php');
 include('./app/seeder/TipoActivadesSeeder.php');
 die();
 $var = 'Nuevo';

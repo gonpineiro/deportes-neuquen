@@ -5,7 +5,7 @@ if (PROD) {
     header('Location: ' . WEBLOGIN);
 }
 
-$catActividadController = new CatActividadController();
+$catActividadController = new CategoriaActividadController();
 
 $catActividadController->store([
     'nombre' => 'Clasificación y votación',
