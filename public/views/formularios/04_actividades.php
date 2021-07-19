@@ -1,6 +1,6 @@
 <form action="04_actividadesPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form-4" id="form-4" novalidate>
     <div class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
-        <h4 class="text-white">Experiencia Laboral</h4>
+        <h4 class="text-white">Inscripción por Actividades</h4>
         <hr>
         <!-- SELECCIÓN ACTIVIDADES LABORALES -->
         <div class="form-group">
@@ -114,6 +114,7 @@
                 </div>
             </div>
         </div>
+        <input class="btn btn-primary mt-3 mb-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
         <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Registrar datos" name="actividadesSubmit" />
     </div>
 </form>

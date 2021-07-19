@@ -295,3 +295,21 @@ document.querySelector('.custom-file-input').addEventListener('change', function
     var nextSibling = e.target.nextElementSibling
     nextSibling.innerText = fileName
 })
+
+function reiniciarForm(){
+    const mensaje = '¿Está seguro de reiniciar el formulario?';
+    if (confirm(mensaje)){
+        $.ajax({
+            url: "../../views/formularios/reiniciar.php",
+            type: "POST",
+            async: false,
+            success: function () {
+                window.location.href = "../../views/formularios/inscripcion.php";
+            },
+            error: function (errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    }
+        
+}

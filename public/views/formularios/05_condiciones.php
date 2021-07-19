@@ -66,11 +66,11 @@ $recibo_archivo = explode("/", $solicitud['path_recibo'])[6];
                 ?>
             </span>
         </p>
-        <p>Titulo Archivo: 
+        <p>Titulo Archivo:
             <span>
-                <?php 
-                    $archivo = explode("/", utf8_encode($row['path_file']));
-                    echo $archivo[6] . $archivo[7]; 
+                <?php
+                $archivo = explode("/", utf8_encode($row['path_file']));
+                echo $archivo[6] . $archivo[7];
                 ?>
             </span>
         </p>
@@ -116,6 +116,7 @@ $recibo_archivo = explode("/", $solicitud['path_recibo'])[6];
                 Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a class="text-white" href="mailto:carnetma@muninqn.gob.ar" target="_blank" style="text-decoration: underline;">carnetma@muninqn.gob.ar</a>
             </span>
         </div>
+        <input class="btn btn-primary mt-3 mb-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
         <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Registrar datos" name="condicionesSubmit" />
     </form>
 </div>

@@ -65,6 +65,11 @@ if ($usuario) {
             $estado_inscripcion = 'Condiciones';
             break;
 
+        case '11':
+            /* Cancelado */
+            $estado_inscripcion = 'DatosPersonales';
+            break;
+
         case false:
             /* Impreso */
             $estado_inscripcion = 'DatosPersonales';
@@ -200,8 +205,13 @@ if (isset($_POST) && !empty($_POST)) {
         case 'Actividades':
             include('inscripcion_individual.php');
             break;
+
         case 'Condiciones':
             include('inscripcion_individual.php');
+            break;
+
+        case 'Cancelado':
+            include('./components/inscripcion_individual.php');
             break;
 
         case 'Exitosa':
@@ -215,6 +225,7 @@ if (isset($_POST) && !empty($_POST)) {
         case 'Aprobado':
             include('./components/inscripcion_aprobado.php');
             break;
+
     }
     ?>
 </body>

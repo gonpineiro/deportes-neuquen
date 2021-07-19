@@ -59,7 +59,12 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
         header("Refresh:0.01; url=inscripcion.php", true, 303);
         exit();
     }
-} else {
+}
+if(isset($_POST['reiniciarFormulario'])) {
+    header('https://google.com.ar');
+    exit();
+}
+else {
     $usuarioController = new UsuarioController();
     $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
     $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
