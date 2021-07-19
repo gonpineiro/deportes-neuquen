@@ -27,7 +27,7 @@ class Log
         $this->metodo = "";
     }
 
-    public function set($id_usuario, $id_solicitud, $error, $class, $metodo)
+    public function set($id_usuario = null, $id_solicitud = null, $error = null, $class = null, $metodo = null)
     {
         $this->id_usuario = $id_usuario;
         $this->id_solicitud = $id_solicitud;

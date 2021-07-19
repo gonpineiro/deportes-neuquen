@@ -73,6 +73,7 @@ if ($usuario) {
 } else {
     /* Nunca solicita una libreta */
     $estado_inscripcion = 'DatosPersonales';
+    unset($_SESSION['errores']);
 }
 
 

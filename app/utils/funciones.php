@@ -37,13 +37,12 @@ function verificarSesion()
     }
 }
 
-function cargarLog($id_usuario = null, $id_solicitud = null, $id_capacitador = null, $error = '-', $class = '-', $metodo = '-')
+function cargarLog($id_usuario = null, $id_solicitud = null, $error = '-', $class = '-', $metodo = '-')
 {
     $log_controller = new LogController();
     $log_controller->store([
         'id_usuario' =>  $id_usuario,
         'id_solicitud' => $id_solicitud,
-        'id_capacitador' => $id_capacitador,
         'error' => $error,
         'class' => $class,
         'metodo' => $metodo
@@ -330,6 +329,10 @@ function mostrarError($tipo, $detalle = null)
 
     if ($tipo == 'dp' && $detalle != null) {
         return "Guardado de adjunto ". $detalle ." fallida, hubo un error con el servidor.";
+    }
+
+    if ($tipo == "postFile" && $detalle == null) {
+        return "Hubo un error en la carga de los archivos, porfavor intente nuevamente mas tarde.";
     }
 
 }

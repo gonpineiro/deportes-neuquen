@@ -60,6 +60,10 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
         exit();
     }
 } else {
-
-    echo 'No Envio';
+    $usuarioController = new UsuarioController();
+    $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
+    $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
+    $_SESSION['errores'] = mostrarError('postFile');
+    cargarLog($usuario['id'], $userWithSolicitud['id_solicitud'], 'No se realizo el POST: posible problema de limite de archivos por PHP', null, '02_titulosPost');
+    header("Refresh:0.01; url=inscripcion.php#paso-1", true, 303);
 }
