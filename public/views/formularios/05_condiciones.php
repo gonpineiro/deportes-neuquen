@@ -3,91 +3,87 @@ $ciudadController = new CiudadController();
 $ciudades = $ciudadController->index();
 
 $barrioController = new BarrioController();
-$barrios = $barrioController->index();
-// Busco el id de la solicitud
-$usuario = new UsuarioController();
-$userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
+$barrio = $barrioController->get(['id' => $usuario['id_barrio']]);
 
-// Busco datos del usuario en nuestra BD
-$datosUsuario = $usuario->get(['id_wappersonas' => $id_wappersonas,]);
+// Busco el id de la solicitud
+$usuarioController = new UsuarioController();
+$userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
 $idSolicitud = $userWithSolicitud['id_solicitud'];
 
+// Busco datos del usuario en nuestra BD
+$usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
+
 // Busco los datos de la solicitud
-$solicitud = new SolicitudController();
-$solicitudParams = [
-    'id' => $idSolicitud
-];
-$solicitudParamsH = [
-    'id_solicitud' => $idSolicitud,
-];
-// Busco la ciudad
+$solicitudController = new SolicitudController();
 
-// Busco el barrio
-$barrioController = new BarrioController();
-$barrio = $barrioController->get(['id' => $datosUsuario['id_barrio'],]);
-
-$datosSolicitud = $solicitud->get($solicitudParams);
-// Busco datos de los trabajos
+$solicitud = $solicitudController->get(['id' => $idSolicitud]);
 $trabajos = new TrabajoController();
-$datosTrabajo = $trabajos->index($solicitudParamsH);
+$datosTrabajo = $trabajos->index(['id_solicitud' => $idSolicitud]);
+
 // Busco los datos de los titulos
 $titulos = new TituloController();
-$datosTitulos = $titulos->index($solicitudParamsH);
-// Busco los datos de las actividades laborales
-// $actividades = new ActividadController();
-// $datosActividades = $actividades->index($solicitudParamsH);
+$datosTitulos = $titulos->index(['id_solicitud' => $idSolicitud]);
+
 // ASIGNO TODOS LOS DATOS EN VARIABLES
 $barrio = $barrio['nombre'];
-$direccion_calle = $datosUsuario['direccion_calle'];
-$direccion_nro = $datosUsuario['direccion_nro'];
-$direccion_cp = $datosUsuario['direccion_cp'];
-$antecedentes = explode("/", $datosSolicitud['path_ap']);
-$antecedentes = $antecedentes[6];
-$nro_recibo =  $datosSolicitud['nro_recibo'];
-$recibo_archivo = explode("/", $datosSolicitud['path_recibo']);
-$recibo_archivo = $recibo_archivo[6];
-//print_r($datosSolicitud);
+$direccion_calle = $usuario['direccion_calle'];
+$direccion_nro = $usuario['direccion_nro'];
+$direccion_cp = $usuario['direccion_cp'];
+$antecedentes = explode("/", $solicitud['path_ap'])[6];
+$nro_recibo =  $solicitud['nro_recibo'];
+$recibo_archivo = explode("/", $solicitud['path_recibo'])[6];
 
 ?>
 
 <div class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
     <h5 class="text-white">Datos Personales:</h5>
-    <p>Ciudad: <span><?PHP echo $email; ?></span></p>
-    <p>Barrio: <span><?PHP echo $barrio; ?></span></p>
-    <p>Dirección: <span><?PHP echo $direccion_calle . " " . $direccion_nro; ?></span></p>
-    <p>Código Postal: <span><?PHP echo $direccion_cp; ?></span></p>
+    <p>Ciudad: <span><?= $email; ?></span></p>
+    <p>Barrio: <span><?= utf8_encode($barrio); ?></span></p>
+    <p>Dirección: <span><?= $direccion_calle . " " . $direccion_nro; ?></span></p>
+    <p>Código Postal: <span><?= $direccion_cp; ?></span></p>
     <hr>
-    <p>Antecedentes Archivo: <span><?PHP echo $antecedentes; ?></span></p>
-    <p>Recibo Nº: <span><?PHP echo $nro_recibo; ?></span></p>
-    <p>Recibo Archivo: <span><?PHP echo $recibo_archivo; ?></span></p>
+    <p>Antecedentes Archivo: <span><?= $antecedentes; ?></span></p>
+    <p>Recibo Nº: <span><?= $nro_recibo; ?></span></p>
+    <p>Recibo Archivo: <span><?= $recibo_archivo; ?></span></p>
     <hr>
     <?php while ($row = odbc_fetch_array($datosTitulos)) { ?>
-        <p class="text-white">Titulo: <span><?PHP 
-            $titulo = utf8_encode($row['titulo']);
-        switch ($titulo) {
-            case '1':
-                $titulo = 'Lic. Educación Física (Título Terciario)';
-                break;
-            case '2':
-                $titulo = 'Master Educación Física (Título Terciario)';
-                break;
-            case '3':
-                $titulo = 'Profesorado Educación Física (Título Terciario)';
-                break;
-        } 
-        echo $titulo;
-            ?></span></p>
-        <p>Titulo Archivo: <span><?PHP $archivo = explode("/", utf8_encode($row['path_file'])); echo $archivo[6]. $archivo[7]; ?></span></p>
+        <p class="text-white">Titulo:
+            <span>
+                <?php
+                $titulo = utf8_encode($row['titulo']);
+                switch ($titulo) {
+                    case '1':
+                        $titulo = 'Lic. Educación Física (Título Terciario)';
+                        break;
+                    case '2':
+                        $titulo = 'Master Educación Física (Título Terciario)';
+                        break;
+                    case '3':
+                        $titulo = 'Profesorado Educación Física (Título Terciario)';
+                        break;
+                }
+                echo $titulo;
+                ?>
+            </span>
+        </p>
+        <p>Titulo Archivo: 
+            <span>
+                <?php 
+                    $archivo = explode("/", utf8_encode($row['path_file']));
+                    echo $archivo[6] . $archivo[7]; 
+                ?>
+            </span>
+        </p>
     <?php } ?>
 
     <hr>
     <?php while ($row = odbc_fetch_array($datosTitulos)) { ?>
         <p class="text-white"><?= utf8_encode($row['titulo']) ?></p>
     <?php } ?>
-    <p>Trabajo: <span><?PHP echo $email; ?></span></p>
-    <p>Trabajo Archivo: <span><?PHP echo $email; ?></span></p>
+    <p>Trabajo: <span><?= $email; ?></span></p>
+    <p>Trabajo Archivo: <span><?= $email; ?></span></p>
     <hr>
-    <p>Actividad: <span><?PHP echo $email; ?></span></p>
+    <p>Actividad: <span><?= $email; ?></span></p>
 
     <?php while ($row = odbc_fetch_array($datosTitulos)) { ?>
         <p class=" text-white"><?= utf8_encode($row['titulo']) ?></p>
