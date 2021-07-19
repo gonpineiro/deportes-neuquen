@@ -78,9 +78,7 @@ class Usuario
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al guardar un usuario';
-            $log = new Log();
-            $log->set($this->id_wappersonas, null, null, $error, get_class(), 'save');
-            $log->save();
+            cargarLog($this->id_wappersonas, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
@@ -93,9 +91,7 @@ class Usuario
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al listar el usuario';
-            $log = new Log();
-            $log->set(null, null, null, $error, get_class(), 'list');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $usuarios;
     }
@@ -109,9 +105,7 @@ class Usuario
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error a obtener la solicitud: ' . $params['id'];
-            $log = new Log();
-            $log->set(null, null, null, $error, get_class(), 'get');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $usuario;
     }
@@ -123,10 +117,11 @@ class Usuario
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error a modificar el usuario';
+            $error =  $conn->getError() . ' | Error a modificar el usuario ' . $id;
             $log = new Log();
             $log->set(null,  $id, null, $error, get_class(), 'update');
             $log->save();
+            cargarLog($id, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
