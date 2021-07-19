@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This is the model class for table "solicitudes_actividades".
  *
@@ -32,9 +33,7 @@ class SolicitudActividad
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al guardar solicitud_actividad';
-            $log = new Log();
-            $log->set($this->nombre, null, null, $error, get_class(), 'save');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
@@ -47,9 +46,7 @@ class SolicitudActividad
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al listar las solicitud_actividad';
-            $log = new Log();
-            $log->set(null, null, null, $error, get_class(), 'list');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
@@ -63,9 +60,7 @@ class SolicitudActividad
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error a obtener la solicitud_actividad: ' . $params[0];
-            $log = new Log();
-            $log->set(null, null, null, $error, get_class(), 'get');
-            $log->save();
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $solicitud_actividad;
     }
@@ -77,10 +72,8 @@ class SolicitudActividad
 
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Error a modificar la solicitud_actividad';
-            $log = new Log();
-            $log->set(null,  $id, null, $error, get_class(), 'update');
-            $log->save();
+            $error =  $conn->getError() . ' | Error a modificar la solicitud_actividad ' . $id;
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
