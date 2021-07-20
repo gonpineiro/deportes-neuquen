@@ -7,11 +7,15 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-$usuarioController = new UsuarioController();
-$solicitudController = new SolicitudController();
-
 /* datos de la sesion */
 include('session.php');
+
+/* Inicializamos los controladores */
+$usuarioController = new UsuarioController();
+$solicitudController = new SolicitudController();
+$tituloController = new TituloController();
+$trabajoController = new TrabajoController();
+$barrioController = new BarrioController();
 
 /* Verificamos si existe el usuario */
 $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);

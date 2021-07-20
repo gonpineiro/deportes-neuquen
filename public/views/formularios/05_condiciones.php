@@ -1,30 +1,22 @@
 <?php
 // Busco el id de la solicitud
-$usuarioController = new UsuarioController();
 $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
 $idSolicitud = $userWithSolicitud['id_solicitud'];
 
 // Busco datos del usuario en nuestra BD
 $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
-//
 
-// Busco los datos de la solicitud
-$solicitudController = new SolicitudController();
-
-$solicitud = $solicitudController->get(['id' => $idSolicitud]);
+$solicitud = $solicitudController->index(['id' => $idSolicitud]);
 
 // Busco el o los lugares de trabajo que el usuario ingresó
-$trabajos = new TrabajoController();
-$datosTrabajo = $trabajos->index(['id_solicitud' => $idSolicitud]);
+$datosTrabajo = $trabajoController->index(['id_solicitud' => $idSolicitud]);
 
 // Busco los datos de los titulos
-$titulosController = new TituloController();
-$datosTitulos = $titulosController->index(['id_solicitud' => $idSolicitud]);
-//print_r(odbc_fetch_array($datosTitulos));
+$datosTitulos = $tituloController->index(['id_solicitud' => $idSolicitud]);
+
 // Busco la ciudad con el id de ciudad que trae el usuario
-$barrioController = new BarrioController();
-$barrio = $barrioController->get(['id' => $usuario['id_barrio']]);
-$ciudad = $ciudadController->get(['id' => $usuario['id_ciudad']]);
+$barrio = $barrioController->index(['id' => $usuario['id_barrio']]);
+$ciudad = $ciudadController->index(['id' => $usuario['id_ciudad']]);
 
 // ASIGNO TODOS LOS DATOS EN VARIABLES
 $ciudad = $ciudad['nombre'];
@@ -48,18 +40,21 @@ $recibo_archivo = explode("/", $solicitud['path_recibo'])[6];
             <p>Código Postal: <span><?= $direccion_cp; ?></span></p>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12">
-            <p>Antecedentes Archivo: <span><?PHP if ($antecedentes) {
-                                                echo "Cargado <i class='bi bi-check-square-fill text-success'></i>";
-                                            }; ?></span></p>
+            <p>Antecedentes Archivo:
+                <span>
+                    <?php
+                    if ($antecedentes) {
+                        echo "Cargado <i class='bi bi-check-square-fill text-success'></i>";
+                    };
+                    ?>
+                </span>
+            </p>
             <p>Recibo Nº: <span><?= $nro_recibo . " Cargado <i class='bi bi-check-square-fill text-success'></i>"; ?></span></p>
         </div>
     </div>
     <hr>
     <h5>Educación:</h5>
     <?php
-    // if (!empty(odbc_fetch_array($datosTitulos))) {
-    //     echo "<h5>Educación:</h5>";
-    // }
     while ($row = odbc_fetch_array($datosTitulos)) { ?>
         <p>Titulo:
             <span>
