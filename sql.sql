@@ -72,8 +72,9 @@ CREATE TABLE deportes_barrios (
 CREATE TABLE deportes_actividades (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	id_categoria INT NULL,
-	estado INT NULL,
 	nombre VARCHAR(250) NULL,
+	tipo VARCHAR(250) NULL,
+	estado INT NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
 

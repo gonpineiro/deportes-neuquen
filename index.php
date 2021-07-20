@@ -1,6 +1,8 @@
 <?php
 include 'app/config/config.php';
 
+include('./app/seeder/ActivadesSeeder.php');
+include('./app/seeder/CategoriaActividadSeeder.php');
 
 die();
 include 'app/config/config.php';
@@ -12,9 +14,7 @@ include('./app/seeder/TituloSeeder.php');
 include('./app/seeder/TrabajoSeeder.php');
 include('./app/seeder/UserSeeder.php');
 
-include('./app/seeder/ActivadesSeeder.php');
-include('./app/seeder/CatActivadesSeeder.php');
-include('./app/seeder/TipoActivadesSeeder.php');
+
 die();
 $var = 'Nuevo';
 
