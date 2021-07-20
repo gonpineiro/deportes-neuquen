@@ -3,25 +3,33 @@
 /**
  * This is the model class for table "Actividades".
  *
- * @property int $id_tipo
+ * @property int $id_categoria
  * @property string $nombre
+ * @property string $tipo
+ * @property int $estado
  * 
  */
 class Actividad
 {
-    public $id_tipo;
+    public $id_categoria;
     public $nombre;
+    public $tipo;
+    public $estado;
 
     public function __construct()
     {
-        $this->id_tipo = "";
+        $this->id_categoria = "";
         $this->nombre = "";
+        $this->tipo = "";
+        $this->estado = "";
     }
 
-    public function set($id_tipo = null, $nombre = null)
+    public function set($id_categoria = null, $nombre = null, $tipo = null, $estado = null)
     {
-        $this->id_tipo = $id_tipo;
+        $this->id_categoria = $id_categoria;
         $this->nombre = $nombre;
+        $this->tipo = $tipo;
+        $this->estado = $estado;
     }
 
     public function save()
