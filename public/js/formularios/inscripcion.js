@@ -307,6 +307,7 @@ function reiniciarForm(){
                 window.location.href = "../../views/formularios/inscripcion.php";
             },
             error: function (errorThrown) {
+                alert('Error en el reinicio. Intente nuevamente.')
                 console.log(errorThrown);
             }
         });

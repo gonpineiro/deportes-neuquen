@@ -181,6 +181,7 @@ if (isset($_POST) && !empty($_POST)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.css"> 
     <link rel="stylesheet" href="../../estilos/estilo.css">
     <title>Registro de profesionales y afines a la actividad física</title>
 </head>
@@ -225,7 +226,6 @@ if (isset($_POST) && !empty($_POST)) {
         case 'Aprobado':
             include('./components/inscripcion_aprobado.php');
             break;
-
     }
     ?>
 </body>
