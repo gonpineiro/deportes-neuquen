@@ -1,6 +1,6 @@
 <?php
 
-class SolicitudSolicitudActividadController
+class SolicitudActividadController
 {
     /* Guarda un solicitud_actividad */
     public function store($res)

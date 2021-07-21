@@ -1,4 +1,5 @@
 <?php
+
 // Busco el id de la solicitud
 $usuarioController = new UsuarioController();
 $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
@@ -6,8 +7,6 @@ $idSolicitud = $userWithSolicitud['id_solicitud'];
 
 // Busco datos del usuario en nuestra BD
 $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
-//
-
 // Busco los datos de la solicitud
 $solicitudController = new SolicitudController();
 
@@ -20,9 +19,16 @@ $datosTrabajo = $trabajos->index(['id_solicitud' => $idSolicitud]);
 // Busco los datos de los titulos
 $titulosController = new TituloController();
 $datosTitulos = $titulosController->index(['id_solicitud' => $idSolicitud]);
+
+// Busco las actividades del usuario
+$deportesSolicitudesActividadesController = new SolicitudActividadController();
+$actividadesSolicitud = $deportesSolicitudesActividadesController->index(['id_solicitud' => $idSolicitud]);
+$actividadController = new ActividadController();
+
 //print_r(odbc_fetch_array($datosTitulos));
 // Busco la ciudad con el id de ciudad que trae el usuario
 $barrioController = new BarrioController();
+$ciudadController = new CiudadController();
 $barrio = $barrioController->get(['id' => $usuario['id_barrio']]);
 $ciudad = $ciudadController->get(['id' => $usuario['id_ciudad']]);
 
@@ -38,7 +44,7 @@ $recibo_archivo = explode("/", $solicitud['path_recibo'])[6];
 
 ?>
 
-<div class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;background-color:#F8FDFF;color:black;">
+<div id="paso-4" class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;background-color:#F8FDFF;color:black;">
     <h5>Datos Personales:</h5>
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12">
@@ -90,7 +96,15 @@ $recibo_archivo = explode("/", $solicitud['path_recibo'])[6];
         <p><?= utf8_encode($row['lugar']) . " <i class='bi bi-check-square-fill text-success'></i>" ?></p>
     <?php } ?>
     <hr>
-    <form action=" 05_condicionesPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form-52" id="form-52">
+    <h5>Actividades</h5>
+    <?PHP
+    while ($row = odbc_fetch_array($actividadesSolicitud)) {
+        $actividad = $actividadController->get(['id' => $row['id_actividad']]); ?>
+        <p><?= utf8_encode($actividad['nombre']); ?></p>
+    <?php }
+    ?>
+    <hr>
+    <form action="05_condicionesPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form-52" id="form-52">
         <h4>Aceptar Términos</h4>
         <div class="form-group">
             <div class="form-check">
@@ -117,7 +131,7 @@ $recibo_archivo = explode("/", $solicitud['path_recibo'])[6];
                 Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href="mailto:carnetma@muninqn.gob.ar" target="_blank" style="text-decoration: underline;">carnetma@muninqn.gob.ar</a>
             </span>
         </div>
-        <input class="btn btn-primary mt-3 mb-3" style="background-color: white; border-color:white;color:black;" type="button" onclick="reiniciarForm()" value="Reiniciar" />
+        <input class="btn btn-primary mt-3 mb-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
         <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Registrar datos" name="condicionesSubmit" />
     </form>
 </div>

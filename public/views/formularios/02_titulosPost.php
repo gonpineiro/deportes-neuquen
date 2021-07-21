@@ -60,10 +60,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
         exit();
     }
 }
-if(isset($_POST['reiniciarFormulario'])) {
-    header('https://google.com.ar');
-    exit();
-}
+
 else {
     $usuarioController = new UsuarioController();
     $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
