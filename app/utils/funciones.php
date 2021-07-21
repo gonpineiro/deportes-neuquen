@@ -49,20 +49,10 @@ function cargarLog($id_usuario = null, $id_solicitud = null, $error = '-', $clas
     ]);
 }
 
-function enviarMailApi($address, $arrIdSolicitud)
+function enviarMailApi($address, $idSolicitud)
 {
-    if (count($arrIdSolicitud) > 1) {
-        $body = "<p>Tus solicitudes ( ";
-        foreach ($arrIdSolicitud as $id) {
-            $body .= "Nro. $id ";
-        }
-        $body .= ") han sido recibidas y están siendo procesadas. Dentro de las próximas 72 hs. recibirás un nuevo correo electrónico de la aprobación o no de los beneficios. </p><p>Dirección General SUBE - Subsecretaría de Transporte</p><p>Municipalidad de Neuquén</p>";
-    } else {
-        $idsolicitud = $arrIdSolicitud[0];
-        $body = "<p>Su solicitud (Nº $idsolicitud) para Libreta Sanitaria fue recibida. En el transcurso de 48hs hábiles nos comunicaremos con usted. </p><p>Recuerde que para retirar su libreta sanitaria debe presentar el comprobante de pago de sellado y el certificado de capacitación en caso que corresponda.</p><p>Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href='mailto:carnetma@muninqn.gob.ar' target='_blank'>carnetma@muninqn.gob.ar</a></p><p>Direcci&oacute;n Municipal de Calidad Alimentaria</p><p>Municipalidad de Neuquén</p>";
-    }
-
-    $subject = "Solicitud de Libreta Sanitaria";
+    $body = "<p>Su solicitud (Nº ". $idSolicitud. ") para 'Registro de profesionales y afines a la actividad física' fue recibida. En el transcurso de 48hs hábiles nos comunicaremos con usted. </p><p>Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href='mailto:carnetma@muninqn.gob.ar' target='_blank'>carnetma@muninqn.gob.ar</a></p><p>Direcci&oacute;n Municipal de Calidad Alimentaria</p><p>Municipalidad de Neuquén</p>";
+    $subject = "Registro de profesionales y afines a la actividad física";
     $post_fields = json_encode(['address' => $address, 'subject' => $subject, 'htmlBody' => $body]);
 
     $uri = "https://weblogin.muninqn.gov.ar/api/Mail";
@@ -328,11 +318,10 @@ function mostrarError($tipo, $detalle = null)
     }
 
     if ($tipo == 'dp' && $detalle != null) {
-        return "Guardado de adjunto ". $detalle ." fallida, hubo un error con el servidor.";
+        return "Guardado de adjunto " . $detalle . " fallida, hubo un error con el servidor.";
     }
 
     if ($tipo == "postFile" && $detalle == null) {
         return "Hubo un error en la carga de los archivos, porfavor intente nuevamente mas tarde.";
     }
-
 }

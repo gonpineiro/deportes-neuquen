@@ -32,7 +32,8 @@ class UsuarioController
     {
         $sql = "SELECT
         TOP 1
-        usu.id_wappersonas, 
+        usu.id_wappersonas,
+        usu.email as usuario_email,
         sol.id as id_solicitud,
         sol.fecha_alta,
         sol.id_estado,

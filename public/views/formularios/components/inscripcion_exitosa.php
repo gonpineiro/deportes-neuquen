@@ -1,13 +1,23 @@
 <?php
-include_once '../../../app/config/config.php'
+include_once '../../../app/config/config.php';
+if (!isset($_SESSION['usuario'])) {
+    header('HTTP/1.1 301 Moved Permanently');
+    header('Location: ' . WEBLOGIN);
+    exit();
+}
+/* datos de la sesion */
+include('session.php');
+$usuarioController = new UsuarioController();
+$userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
+$idSolicitud = $userWithSolicitud['id_solicitud'];
 ?>
 
 <body>
     <div class="body container">
         <div class="elementor-divider"> <span class="elementor-divider-separator"></span></div>
         <div class="info row mb-5" id="info">
-            <div class="col">
-                <div class="alert alert-success mt-3" role="alert" id="msje-exito">
+            <div class="col-12">
+                <div class="alert alert-success mt-3 text-center" role="alert" id="msje-exito">
                     ¡Se ha realizado la solicitud con &eacute;xito!
                 </div>
                 <div class="card-body mb-3">
@@ -26,8 +36,3 @@ include_once '../../../app/config/config.php'
         animateToInput(targetEle);
     });
 </script>
-<?php
-foreach ($_POST as $key => $val) {
-    unset($_POST[$key]);
-}
-?>

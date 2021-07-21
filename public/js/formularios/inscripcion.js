@@ -176,15 +176,15 @@ function bsSelectValidation() {
     }
 }
 
-/* function terminosycondicionescheck() {
+ function terminosycondicionescheck() {
     var terminos = $('#terminosycondiciones');
     var clausula = $('#clausulavalidezddjj');
     if (terminos.is(":checked") && clausula.is(":checked")) {
-        $('#submit').prop('disabled', false);
+        $('#condicionesSubmit').prop('disabled', false);
     } else {
-        $('#submit').prop('disabled', true);
+        $('#condicionesSubmit').prop('disabled', true);
     }
-} */
+} 
 /**
  * Sirve para realizar llamadas ajax GET
  * @param {string} url Url a realizar la llamada

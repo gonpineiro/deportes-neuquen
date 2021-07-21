@@ -48,7 +48,10 @@ if ($usuario) {
             /* Resumen */
             $estado_inscripcion = 'Resumen';
             break;
-
+        case '6':
+            /* Resumen */
+            $estado_inscripcion = 'Exitosa';
+            break;
         case '8':
             /* Aprobado */
             $arrayFechas = compararFechas($vencimiento, 'days');
@@ -212,7 +215,7 @@ if (isset($_POST) && !empty($_POST)) {
             break;
 
         case 'Cancelado':
-            include('./components/inscripcion_individual.php');
+            include('../components/inscripcion_individual.php');
             break;
 
         case 'Exitosa':
