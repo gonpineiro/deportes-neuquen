@@ -153,7 +153,7 @@ $barrios = $barrioController->index();
                     </div>
                 </div>
             </div>
-            <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Siguiente" name="personalesSubmit" />
+            <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Confirmar y Guardar" name="personalesSubmit" />
 
         </div>
 

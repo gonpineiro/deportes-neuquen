@@ -30,8 +30,8 @@
             <a onclick="otroTitulo()" class="btn btn-light boton-agregar-titulo">Agregar Título</a>
             <a onclick="sacarOtroTitulo()" class="btn btn-light boton-quitar-titulo">Quitar Título</a>
         </div>
-        <input class="btn btn-primary mt-3 mb-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
-        <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit2" value="Siguiente" name="tituloSubmit" />
+        <input class="btn btn-primary mt-3 mb-3" type="button" onclick="reiniciarForm()" value="Cancelar" />
+        <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit2" value="Confirmar y Guardar" name="tituloSubmit" data-toggle="tooltip" data-placement="top" title="Tooltip on top" />
 
     </div>
 </form>

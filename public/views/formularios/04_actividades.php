@@ -34,6 +34,6 @@ $categorias = $categoriaController->index();
             <hr>
         </div>
         <input class="btn btn-primary mt-3 mb-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
-        <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Registrar datos" name="actividadesSubmit" />
+        <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Confirmar y Guardar" name="actividadesSubmit" />
     </div>
 </form>

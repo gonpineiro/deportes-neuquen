@@ -27,7 +27,7 @@
             <a onclick="sacarOtroLugarTrabajo()" class="btn btn-light boton-quitar-titulo">Quitar Lugar</a>
         </div>
         <input class="btn btn-primary mt-3 mb-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
-        <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit3" value="Siguiente" name="trabajoSubmit" />
+        <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit3" value="Confirmar y Guardar" name="trabajoSubmit" />
 
     </div>
 </form>

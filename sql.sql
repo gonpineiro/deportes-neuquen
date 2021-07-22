@@ -116,5 +116,10 @@ INSERT INTO deportes_estados (nombre) values ('Cancelado')
 
 /* Insert Ciudades */
 INSERT INTO deportes_ciudades (nombre) values ('Neuquén')
+INSERT INTO deportes_ciudades (nombre) values ('Plottier')
+INSERT INTO deportes_ciudades (nombre) values ('Senillosa')
+INSERT INTO deportes_ciudades (nombre) values ('Vista Alegre')
+INSERT INTO deportes_ciudades (nombre) values ('Chañar')
 INSERT INTO deportes_ciudades (nombre) values ('Cipolletti')
+INSERT INTO deportes_ciudades (nombre) values ('Roca')
 INSERT INTO deportes_ciudades (nombre) values ('Allen')

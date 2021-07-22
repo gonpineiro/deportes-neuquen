@@ -120,24 +120,6 @@ $apellido = $nombreapellido[0];
                     </table>
                 </div>
             </div>
-            <?= $_SESSION['userProfiles'] != 3 ?:
-                "<div class='col-sm d-flex justify-content-center'>
-                    <div class='opcion' onclick='window.location.href = \"../administrar/index.php\"'>
-                        <table style='width: 100%;'>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class='icono' style='background-image: url(../../estilos/menu/icono-admin.png);'></div>
-                                    </td>
-                                </tr>
-                                <tr style='height: 60px;'>
-                                    <td class='opcion-titulo text-center'>ADMIN</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>";
-            ?>
         </div>
     </div>
 

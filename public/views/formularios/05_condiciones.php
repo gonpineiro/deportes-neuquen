@@ -132,6 +132,6 @@ $recibo_archivo = explode("/", $solicitud['path_recibo'])[6];
             </span>
         </div>
         <input class="btn btn-primary mt-3 mb-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
-        <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Registrar datos" onload="terminosycondicionescheck()" name="condicionesSubmit" />
+        <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Confirmar y Guardar" onload="terminosycondicionescheck()" name="condicionesSubmit" />
     </form>
 </div>
