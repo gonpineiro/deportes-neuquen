@@ -4,10 +4,9 @@ $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
 $idSolicitud = $userWithSolicitud['id_solicitud'];
 
 // Busco datos del usuario en nuestra BD
-$usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
+/* $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]); */
 
-$solicitud = $solicitudController->index(['id' => $idSolicitud]);
-
+$solicitud = $solicitudController->getSolicitudesWhereID($idSolicitud);
 // Busco el o los lugares de trabajo que el usuario ingresó
 $datosTrabajo = $trabajoController->index(['id_solicitud' => $idSolicitud]);
 
