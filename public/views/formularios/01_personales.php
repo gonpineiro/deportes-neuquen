@@ -1,10 +1,6 @@
 <?php
-$ciudadController = new CiudadController();
 $ciudades = $ciudadController->index();
-
-$barrioController = new BarrioController();
 $barrios = $barrioController->index();
-
 ?>
 
 <div class="">

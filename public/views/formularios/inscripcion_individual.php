@@ -1,11 +1,3 @@
-<?php
-
-if ($errores) {
-    echo "<script>window.addEventListener('load', function () {mostrarErrorEnAlta();});</script>";
-}
-
-?>
-
 <body>
     <div class="body container" style="margin-bottom: 5em;">
         <div class="datos-perfil">

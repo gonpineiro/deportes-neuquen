@@ -9,6 +9,10 @@ if (!isset($_SESSION['usuario'])) {
 
 $usuarioController = new UsuarioController();
 $solicitudController = new SolicitudController();
+$ciudadController = new CiudadController();
+$barrioController = new BarrioController();
+$categoriaActividadController = new CategoriaActividadController();
+$actividadController = new ActividadController();
 
 /* datos de la sesion */
 include('session.php');

@@ -16,13 +16,7 @@ if (isset($_POST)) {
     $usuarioController = new UsuarioController();
     $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
     $idSolicitud = $userWithSolicitud['id_solicitud'];
-
-    $solicitudParams = [
-        'id_estado' => 11,
-    ];
-    if($solicitudController->update($solicitudParams, $idSolicitud)){
-
-    }
+    $solicitudController->update(['id_estado' => 11], $idSolicitud);
     exit();
 } else {
     $_SESSION['errores'] = "Hubo un error al reiniciar la inscripción. Intente nuevamente.";

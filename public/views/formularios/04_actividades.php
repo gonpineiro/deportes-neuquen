@@ -1,8 +1,5 @@
-<?PHP
-$categoriaController = new CategoriaActividadController();
-$actividadController = new ActividadController();
-
-$categorias = $categoriaController->index();
+<?php
+$categoriasActividades = $categoriaActividadController->index();
 ?>
 
 <form action="04_actividadesPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form-4" id="form-4" novalidate>
@@ -12,7 +9,7 @@ $categorias = $categoriaController->index();
         <!-- SELECCIÓN ACTIVIDADES LABORALES -->
         <div class="form-group">
 
-            <?php while ($row = odbc_fetch_array($categorias)) {
+            <?php while ($row = odbc_fetch_array($categoriasActividades)) {
                 $actividades = $actividadController->index(['id_categoria' => $row['id']]);
             ?>
                 <h5 class="text-white pt-4 pb-2"><?= $row['nombre'] ?></h5>
