@@ -1,6 +1,9 @@
 <?php
 include 'app/config/config.php';
+$solicitudController = new SolicitudController();
+$solicitud = $solicitudController->getAllData(1);
 
+die();
 include('./app/seeder/ActivadesSeeder.php');
 include('./app/seeder/CategoriaActividadSeeder.php');
 
