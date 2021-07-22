@@ -27,4 +27,31 @@ class SolicitudActividadController
     {
         return SolicitudActividad::update($res, $id);
     }
+
+    public function getActividad($id)
+    {
+        $where = "WHERE id_solicitud = '$id'";
+        $conn = new BaseDatos();
+        $query =  $conn->query($this->insertSqlQuery($where));
+        $array = [];
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Obtener las actividades';
+            cargarLog(null, $id, $error, get_class(), __FUNCTION__);
+        }
+        while ($row = odbc_fetch_array($query)) array_push($array, $row);
+        return $array;
+    }
+
+    private function insertSqlQuery($where)
+    {
+        $sql =
+            "SELECT 
+            act.nombre
+            FROM deportes_solicitudes_actividades sol_act
+            LEFT JOIN dbo.deportes_actividades act ON act.id = sol_act.id_actividad 
+            $where";
+
+        return $sql;
+    }
 }

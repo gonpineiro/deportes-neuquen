@@ -60,6 +60,9 @@ class SolicitudController
         $data['trabajo'] = [];
         while ($row = odbc_fetch_array($trabajo)) array_push($data['trabajo'], $row);
 
+        $solicitudesActividadesController = new SolicitudActividadController();
+        $data['actividades'] = $solicitudesActividadesController->getActividad($id);
+
         return $data;
     }
 
@@ -92,6 +95,9 @@ class SolicitudController
             bar.nombre as barrio,
             usu_te.otro_barrio,
             ciu.nombre as ciudad_barrio,
+            sol.path_ap as path_ap,
+            sol.path_recibo as path_recibo,
+            sol.nro_recibo as nro_recibo,
             CASE
                 WHEN bar.id IS NOT NULL      
                 THEN (select nombre from deportes_ciudades dep_ciu where dep_ciu.id = bar.id_ciudad)          
