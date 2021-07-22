@@ -66,19 +66,19 @@ if ($errores) {
         </ul><!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane <?PHP if ($estado_inscripcion == "DatosPersonales") {echo "active"; } ?>" id="tabs-1" role="tabpanel">
-                <?PHP include('./01_personales.php'); ?>
+                <?PHP if ($estado_inscripcion == "DatosPersonales") include('./01_personales.php'); ?>
             </div>
             <div class="tab-pane <?PHP if ($estado_inscripcion == "Titulos") {echo "active";} ?>" id="tabs-2" role="tabpanel">
-                <?PHP include('./02_titulos.php'); ?>
+                <?PHP if ($estado_inscripcion == "Titulos") include('./02_titulos.php'); ?>
             </div>
             <div class="tab-pane <?PHP if ($estado_inscripcion == "Trabajos") {echo "active";} ?>" id="tabs-3" role="tabpanel">
-                <?PHP include('./03_trabajos.php'); ?>
+                <?PHP if ($estado_inscripcion == "Trabajos") include('./03_trabajos.php'); ?>
             </div>
             <div class="tab-pane <?PHP if ($estado_inscripcion == "Actividades") {echo "active";} ?>" id="tabs-4" role="tabpanel">
-                <?PHP include('./04_actividades.php'); ?>
+                <?PHP if ($estado_inscripcion == "Actividades") include('./04_actividades.php'); ?>
             </div>
             <div class="tab-pane <?PHP if ($estado_inscripcion == "Condiciones") {echo "active"; } ?>" id="tabs-5" role="tabpanel">
-                <?PHP include('./05_condiciones.php'); ?>
+                <?PHP if ($estado_inscripcion == "Condiciones") include('./05_condiciones.php'); ?>
             </div>
         </div>
     </div>

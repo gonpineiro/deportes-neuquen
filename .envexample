@@ -19,6 +19,8 @@ DB_CATEGORIAS_ACTIVIDADES_TABLE=deportes_categorias_actividades
 DB_SOLICITUDES_ACTIVIDADES_TABLE=deportes_solicitudes_actividades
 DB_LOG_TABLE=deportes_log
 
+PATH_FILE_LOCAL=true
+
 LT_USU_NOMBRE=50
 LT_USU_APELLIDO=50
 LT_USU_TELEFONO=250
