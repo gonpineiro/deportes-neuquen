@@ -118,8 +118,3 @@ INSERT INTO deportes_estados (nombre) values ('Cancelado')
 INSERT INTO deportes_ciudades (nombre) values ('Neuquén')
 INSERT INTO deportes_ciudades (nombre) values ('Cipolletti')
 INSERT INTO deportes_ciudades (nombre) values ('Allen')
-
-/* Insert Barrios */
-INSERT INTO deportes_barrios (nombre) values ('Barrio Unó Cón Tíldés')
-INSERT INTO deportes_barrios (nombre) values ('Barrio Dós Cón Tíldés')
-INSERT INTO deportes_barrios (nombre) values ('Barrio Trés Cón Tíldés')
