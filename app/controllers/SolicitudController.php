@@ -37,10 +37,8 @@ class SolicitudController
         $query =  $conn->query($this->insertSqlQuery($where));
         /* Guardamos los errores */
         if ($conn->getError()) {
-            $error =  $conn->getError() . ' | Obtener una solicitud';
-            $log = new Log();
-            $log->set(null, null, null, $error, get_class(), 'getSolicitudesWhereEstado');
-            $log->save();
+            $error =  $conn->getError() . ' | Obtener una solicitud por estado';
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         while ($row = odbc_fetch_array($query)) array_push($array, $row);
         return $array;
@@ -76,9 +74,7 @@ class SolicitudController
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Obtener una solicitud';
-            $log = new Log();
-            $log->set(null, null, null, $error, get_class(), 'getSolicitudesWhereEstado');
-            $log->save();
+            cargarLog(null, $id, $error, get_class(), __FUNCTION__);
         }
         return odbc_fetch_array($query);
     }
