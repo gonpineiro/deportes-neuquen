@@ -131,7 +131,10 @@ $recibo_archivo = explode("/", $solicitud['path_recibo'])[6];
                 Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href="mailto:carnetma@muninqn.gob.ar" target="_blank" style="text-decoration: underline;">carnetma@muninqn.gob.ar</a>
             </span>
         </div>
-        <input class="btn btn-primary mt-3 mb-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
-        <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Confirmar y Guardar" onload="terminosycondicionescheck()" name="condicionesSubmit" />
+        <hr>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
+            <input class="btn btn-primary" type="submit" id="submit" value="Confirmar y Guardar" onload="terminosycondicionescheck()" name="condicionesSubmit" />
+        </div>
     </form>
 </div>

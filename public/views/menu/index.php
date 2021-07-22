@@ -114,7 +114,7 @@ $apellido = $nombreapellido[0];
                                 </td>
                             </tr>
                             <tr style='height: 60px;'>
-                                <td class='opcion-titulo text-center'>INSCRIPCIÓN</td>
+                                <td class='opcion-titulo text-center'>REGISTRO DE PROFESIONALES</td>
                             </tr>
                         </tbody>
                     </table>

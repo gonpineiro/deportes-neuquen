@@ -6,9 +6,9 @@
             <!-- LUGAR Y CERTIFICACIÓN DE TRABAJO -->
             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                 <label for="lugarTrabajo" class="required">Ingresar lugar de trabajo </label>
-                <input type="text" id="lugarTrabajo" class="form-control" placeholder="Dirección local de trabajo" name="lugarTrabajo[]">
+                <input type="text" id="lugarTrabajo" class="form-control" placeholder="Lugar de trabajo" name="lugarTrabajo[]">
                 <div class="invalid-feedback">
-                    Por favor ingrese un domicilio de trabajo.
+                    Por favor ingrese un lugar de trabajo.
                 </div>
             </div>
             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
@@ -26,8 +26,10 @@
             <a onclick="otroLugarTrabajo()" class="btn btn-light boton-agregar-titulo">Agregar Lugar</a>
             <a onclick="sacarOtroLugarTrabajo()" class="btn btn-light boton-quitar-titulo">Quitar Lugar</a>
         </div>
-        <input class="btn btn-primary mt-3 mb-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
-        <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit3" value="Confirmar y Guardar" name="trabajoSubmit" />
-
+        <hr>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
+            <input class="btn btn-primary" type="submit" id="submit3" value="Confirmar y Guardar" name="trabajoSubmit" />
+        </div>
     </div>
 </form>

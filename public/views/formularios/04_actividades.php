@@ -31,9 +31,11 @@ $categorias = $categoriaController->index();
                     ?>
                 </div>
             <?php } ?>
-            <hr>
         </div>
-        <input class="btn btn-primary mt-3 mb-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
-        <input class="btn btn-primary mt-3 mb-3" type="submit" id="submit" value="Confirmar y Guardar" name="actividadesSubmit" />
+        <hr>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
+            <input class="btn btn-primary" type="submit" id="submit" value="Confirmar y Guardar" name="actividadesSubmit" />
+        </div>
     </div>
 </form>

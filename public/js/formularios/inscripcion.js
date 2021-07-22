@@ -229,9 +229,17 @@ function otroTitulo() {
             "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 '>" +
             "<label for='tipo-titulo-" + numInputs + "' class='required'>Elegir título y/o curso " + numInputs + " </label>" +
             "<select id='tipo-titulo-" + numInputs + "' class='selectpicker form-control' style='display:block!important' title='Seleccionar' name='titulos[]' required>" +
-            "<option value='1'>Lic. Educación Física (Título Terciario).</option>" +
+            "<option value='1'>Lic. Educación Física (Título Terciario)</option>" +
             "<option value='2'>Master Educación Física (Título Terciario)</option>" +
-            "<option value='0'>Profesorado Educación Física (Título Terciario)</option>" +
+            "<option value='3'>Profesorado Educación Física (Título Terciario)</option>" +
+            "<option value='4'>Técnico Nacional (Título Federación u organismo estatal o privado reconocido por el Ministerio de Educación de Nación)</option>" +
+            "<option value='5'>Técnico Provincial (Título Federación u organismo estatal con reconocimiento de C.P.E.)</option>" +
+            "<option value='6'>Instructor Nacional (Título Federación Nacional o Institución privada con reconocimiento Nacional)</option>" +
+            "<option value='7'>Instructor Deportivo (habilitación nacional-provincial o de federación u organismo municipal)</option>" +
+            "<option value='8'>Instructor de Artes Marciales (habilitación Federación c/cinturón acorde)</option>" +
+            "<option value='9'>Instructor Aerobic y/o aparatos y/o musculación (con habilitación oficial)</option>" +
+            "<option value='10'>Instructor/profesor de prácticas introyectivas</option>" +
+            "<option value='11'>Instructor/profesor de prácticas acrobáticas</option>" +
             "</select>" +
             "<div class='invalid-feedback'>Por favor seleccionar un título/ ocupación.</div>" +
             "</div>" +
@@ -265,8 +273,8 @@ function otroLugarTrabajo() {
 
             "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 '>" +
             "<label for='lugar-trabajo" + numInputs + "' class='required'>Ingresar lugar de trabajo " + numInputs + " </label>" +
-            "<input type='text' id='lugar-trabajo" + numInputs + "' class='form-control' placeholder='Dirección local de trabajo' name='lugarTrabajo[]' required>" +
-            "<div class='invalid-feedback'> Por favor ingrese un domicilio de trabajo.</div>" +
+            "<input type='text' id='lugar-trabajo" + numInputs + "' class='form-control' placeholder='Lugar local de trabajo' name='lugarTrabajo[]' required>" +
+            "<div class='invalid-feedback'> Por favor ingrese un lugar de trabajo.</div>" +
             "</div>" +
             "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12'>" +
             "<label for='div-certificacion-lugar-" + numInputs + "' class='required'>Imagen " + numInputs + " (Formatos: .jpg - .jpeg - .png) </label>" +
