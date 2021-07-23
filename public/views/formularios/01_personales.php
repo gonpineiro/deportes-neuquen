@@ -151,9 +151,11 @@ $barrios = $barrioController->index();
             </div>
             <hr>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <input class="btn btn-primary" type="submit" id="submit" value="Confirmar y Guardar" name="personalesSubmit" />
+                <div class="buttonsRow">
+                    <input class="btn btn-primary submitBtn" type="submit" id="submit" value="Confirmar y Guardar" name="personalesSubmit" />
+                </div>
+                <p class="process" style="display: none;">Procesando...</p>
             </div>
         </div>
-
     </form>
 </div>

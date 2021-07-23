@@ -31,8 +31,11 @@ $categoriasActividades = $categoriaActividadController->index();
         </div>
         <hr>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
-            <input class="btn btn-primary" type="submit" id="actividadesSubmit" value="Confirmar y Guardar" name="actividadesSubmit" />
+            <div class="buttonsRow">
+                <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
+                <input class="btn btn-primary submitBtn" type="submit" id="actividadesSubmit" value="Confirmar y Guardar" name="actividadesSubmit" />
+            </div>
+            <p class="process" style="display: none;">Procesando...</p>
         </div>
     </div>
 </form>

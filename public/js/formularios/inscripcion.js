@@ -27,8 +27,8 @@ function validate() {
                 event.preventDefault();
                 event.stopPropagation();
             } else {
-                $("#submit").addClass('hideDiv');
-                $("#enviando").removeClass('hideDiv');
+                $(".buttonsRow").hide();
+                $(".process").show();
             }
             form.classList.add('was-validated');
             bsSelectValidation();
@@ -326,9 +326,7 @@ function reiniciarForm(){
 
 function checkboxes(){
     var boxes = $('.checkboxes');
-
     boxes.on('change', function () {
         $('#actividadesSubmit').prop('disabled', !boxes.filter(':checked').length);
     }).trigger('change');
-    validate();
 }

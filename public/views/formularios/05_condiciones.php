@@ -115,8 +115,11 @@ $solicitud = $solicitudController->getAllData($idSolicitud);
         </div>
         <hr>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
-            <input class="btn btn-primary" type="submit" id="submit" value="Confirmar y Guardar" onload="terminosycondicionescheck()" name="condicionesSubmit" />
+            <div class="buttonsRow">
+                <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
+                <input class="btn btn-primary submitBtn" type="submit" id="submit5" value="Confirmar y Guardar" onload="terminosycondicionescheck()" name="condicionesSubmit" />
+            </div>
+            <p class="process" style="display: none;">Procesando...</p>
         </div>
     </form>
 </div>
