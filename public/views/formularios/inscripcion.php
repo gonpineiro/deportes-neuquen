@@ -20,13 +20,21 @@ include('session.php');
 /* Verificamos si existe el usuario */
 $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
 if ($usuario) {
-    $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
-    /* $id = $userWithSolicitud['id_solicitud']; */
-    $alta = $userWithSolicitud['fecha_alta'];
-    $vencimiento = $userWithSolicitud['fecha_vencimiento'];
-    $fechaEvaluacion = $userWithSolicitud['fecha_evaluacion'];
+    if (!isset($_POST['RenovarSolicitud'])) {
+        $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
+        $alta = $userWithSolicitud['fecha_alta'];
+        $vencimiento = $userWithSolicitud['fecha_vencimiento'];
+        $fechaEvaluacion = $userWithSolicitud['fecha_evaluacion'];
+    } else {
+        $estado_nueva_solicitud = 'RenovarSolicitud';
+        $userWithSolicitud['id_estado'] = '0';
+    }
 
     switch ($userWithSolicitud['id_estado']) {
+        case '0':
+            /* Datos Personales */
+            $estado_inscripcion = 'DatosPersonales';
+            break;
         case '1':
             /* Titulos */
             $estado_inscripcion = 'Titulos';
@@ -68,7 +76,7 @@ if ($usuario) {
             break;
 
         case '9':
-            /* Impreso */
+            /* Condiciones */
             $estado_inscripcion = 'Condiciones';
             break;
 
@@ -78,7 +86,7 @@ if ($usuario) {
             break;
 
         case false:
-            /* Impreso */
+            /* DatosPersonales */
             $estado_inscripcion = 'DatosPersonales';
             break;
     }
@@ -88,72 +96,47 @@ if ($usuario) {
     unset($_SESSION['errores']);
 }
 
-?>
+include('./components/header.php');
 
-<!DOCTYPE html>
-<html lang="es">
+switch ($estado_inscripcion) {
+    case 'DatosPersonales':
+        include('inscripcion_individual.php');
+        break;
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../../estilos/estilo.css">
-    <title>Registro de profesionales y afines a la actividad física</title>
-</head>
+    case 'Titulos':
+        include('inscripcion_individual.php');
+        break;
 
-<body>
-    <?php
-    include('./components/header.php');
+    case 'Trabajos':
+        include('inscripcion_individual.php');
+        break;
 
-    switch ($estado_inscripcion) {
-        case 'DatosPersonales':
-            include('inscripcion_individual.php');
-            break;
+    case 'Actividades':
+        include('inscripcion_individual.php');
+        break;
 
-        case 'Titulos':
-            include('inscripcion_individual.php');
-            break;
+    case 'Condiciones':
+        include('inscripcion_individual.php');
+        break;
 
-        case 'Trabajos':
-            include('inscripcion_individual.php');
-            break;
+    case 'Cancelado':
+        include('../components/inscripcion_individual.php');
+        break;
 
-        case 'Actividades':
-            include('inscripcion_individual.php');
-            break;
+    case 'Exitosa':
+        include('./components/inscripcion_exitosa.php');
+        break;
 
-        case 'Condiciones':
-            include('inscripcion_individual.php');
-            break;
+    case 'Enviado':
+        include('./components/inscripcion_enviado.php');
+        break;
 
-        case 'Cancelado':
-            include('../components/inscripcion_individual.php');
-            break;
+    case 'Aprobado':
+        include('./components/inscripcion_aprobado.php');
+        break;
 
-        case 'Exitosa':
-            include('./components/inscripcion_exitosa.php');
-            break;
-
-        case 'Enviado':
-            include('./components/inscripcion_enviado.php');
-            break;
-
-        case 'Aprobado':
-            include('./components/inscripcion_aprobado.php');
-            break;
-
-        case 'Opciones Generar':
-            include('./components/inscripcion_opciones.php');
-            break;
-    }
-    ?>
-</body>
-
-<script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
-<script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../../node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-<script src="../../js/formularios/inscripcion.js"></script>
-
-</html>
+    case 'Opciones Generar':
+        include('./components/inscripcion_opciones.php');
+        break;
+}
+include('./components/footer.php');

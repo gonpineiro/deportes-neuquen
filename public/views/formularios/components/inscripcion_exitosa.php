@@ -1,17 +1,3 @@
-<?php
-include_once '../../../app/config/config.php';
-if (!isset($_SESSION['usuario'])) {
-    header('HTTP/1.1 301 Moved Permanently');
-    header('Location: ' . WEBLOGIN);
-    exit();
-}
-/* datos de la sesion */
-include('session.php');
-$usuarioController = new UsuarioController();
-$userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
-$idSolicitud = $userWithSolicitud['id_solicitud'];
-?>
-
 <body>
     <div class="body container">
         <div class="elementor-divider"> <span class="elementor-divider-separator"></span></div>
@@ -21,7 +7,7 @@ $idSolicitud = $userWithSolicitud['id_solicitud'];
                     ¡Se ha realizado la solicitud con &eacute;xito!
                 </div>
                 <div class="card-body mb-3">
-                    <p class="card-text text-center">Nº de Solicitud: <?= $idSolicitud; ?></p>
+                    <p class="card-text text-center">Nº de Solicitud: <?= $userWithSolicitud['id_solicitud']; ?></p>
                 </div>
                 <div class="text-center">
                     <a class="btn btn-primary" href=<?= WEBLOGIN ?> id="boton-volver">Volver al Inicio</a>
