@@ -11,6 +11,7 @@ $solicitud = $solicitudController->getAllData($idSolicitud);
     <h5>Datos Personales:</h5>
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12">
+            <p>Email: <?= $solicitud['email'] ? $solicitud['email'] : 'No actualizado' ?>
             <p>Ciudad: <?= utf8_encode($solicitud['ciudad']); ?> CP: <?= $solicitud['cp']; ?></span></p>
             <p>Barrio: <span><?= utf8_encode($solicitud['barrio']); ?></span></p>
             <p>Dirección: <span><?= utf8_encode($solicitud['calle']) . " " . $solicitud['nro_calle']; ?></span></p>

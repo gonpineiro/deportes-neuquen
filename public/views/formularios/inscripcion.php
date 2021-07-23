@@ -88,96 +88,6 @@ if ($usuario) {
     unset($_SESSION['errores']);
 }
 
-
-/* Envio POST de la solicitud */
-if (isset($_POST) && !empty($_POST)) {
-    if (true) {
-        /* Verificamos si el nro_recibo ya se encuentra registrado */
-        $nroRecibo = $solicitudController->get(['nro_recibo' => (string) $_POST['nro_recibo']]);
-        if (!$nroRecibo) {
-            /* Cargamos usuario */
-            $id_wappersonas = $_SESSION['usuario']['wapPersonasId'];
-            $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
-            if (!$usuario) {
-                $usuarioController->store([
-                    'id_wappersonas' => $id_wappersonas,
-                    'nombre' => null,
-                    'apellido' => null,
-                    'telefono' => null,
-                    'dni' => null,
-                    'genero' => null,
-                    'email' => null,
-                    'nacionalidad' => $_POST['nacionalidad'],
-                    'id_ciudad' => $_POST['ciudad'],
-                    'id_barrio' => $_POST['barrio-nqn'],
-                    'id_zona' => 3,
-                    'direccion_calle' => $_POST['direccion-calle'],
-                    'direccion_nro' => $_POST['direccion-numero'],
-                    'direccion_depto' => $direccionDepto,
-                    'direccion_piso' => $direccionPiso,
-                    'direccion_cp' => $_POST['direccion-cp'],
-                ]);
-            }
-            $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
-
-            /* Verificamos si cambio telefono o celular */
-            if ($_POST['telefono'] !== (string)$celular || $_POST['email'] !== (string)$email) {
-                $usuarioParams = [
-                    'telefono' =>  $_POST['telefono'],
-                    'email' => $_POST['email']
-                ];
-                $usuarioController->update($usuarioParams, $usuario['id']);
-            }
-
-            $solicitudParams = [
-                'id_usuario' => $usuario['id'],
-                'id_usuario_admin' => null,
-                'id_estado' => 1,
-                'nro_recibo' => ltrim($_POST['nro_recibo'], "0"),
-                'path_file' => null,
-                'observaciones' => null,
-                'modified_at' => null,
-                'deleted_at' => null,
-                'fecha_vencimiento' => null,
-                'fecha_evaluacion' => null,
-
-            ];
-            $idSolicitud = $solicitudController->store($solicitudParams);
-
-            // Carga de imagenes en titulo
-            if (isset($idSolicitud) && $idSolicitud != (false or null)) {
-
-                include('./copyfiles.php');
-            } else {
-                $errores[] = 'Error en alta de solicitud';
-                //cargarLog($usuario['id'], $idSolicitud, $idCapacitador, 'Error en alta de solicitud');
-            }
-        } else {
-            $errores['duplicado'] = "Nro. de comprobante sellado " . ltrim($_POST['nro_recibo'], "0") . " ya se encuentra registrado";
-        }
-
-        if (count($errores) > 0) {
-            foreach ($errores as $error) {
-                console_log($error);
-            }
-        } else {
-            /* Envio mail */
-            $enviarMailResult = enviarMailApi($_POST['email'], [$idSolicitud]);
-            console_log('enviar mail: ' . json_encode($enviarMailResult));
-            if ($enviarMailResult['error'] != null) {
-                $errores[] = 'Error envio de mail:' . $enviarMailResult['error'];
-                console_log($enviarMailResult['error']);
-                cargarLog($usuario['id'], $idSolicitud, $idCapacitador, $enviarMailResult['error']);
-            }
-        }
-        if (count($errores) == 0) {
-            $estado_inscripcion = 'Exitosa';
-        }
-    } else {
-        $errores[] = 'Error adjunto';
-    }
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -188,7 +98,7 @@ if (isset($_POST) && !empty($_POST)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.css"> 
+    <link rel="stylesheet" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../estilos/estilo.css">
     <title>Registro de profesionales y afines a la actividad física</title>
 </head>
@@ -241,6 +151,5 @@ if (isset($_POST) && !empty($_POST)) {
 <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../../node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 <script src="../../js/formularios/inscripcion.js"></script>
-
 
 </html>

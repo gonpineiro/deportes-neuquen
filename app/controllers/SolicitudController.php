@@ -88,6 +88,7 @@ class SolicitudController
             usu.direccion_cp as cp,
             usu.direccion_calle as calle,
             usu.direccion_nro as nro_calle,
+            usu.email as email,
             bar.nombre as barrio,
             usu_te.otro_barrio,
             ciu.nombre as ciudad_barrio,

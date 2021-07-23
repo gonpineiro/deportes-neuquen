@@ -11,6 +11,9 @@ if (!isset($_SESSION['usuario'])) {
 $usuarioController = new UsuarioController();
 $solicitudController = new SolicitudController();
 
+/* datos de la sesion */
+include('session.php');
+
 if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
     if (checkFileDp()) {
         /* Verificamos si el nro_recibo ya se encuentra registrado */
@@ -22,6 +25,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
             if (!$usuario) {
                 $direccionDepto = $_POST['direccion-departamento'] = '' ? null : $_POST['direccion-departamento'];
                 $direccionPiso = $_POST['direccion-piso'] = '' ? null : $_POST['direccion-piso'];
+                $barrio = $_POST['barrio-nqn'] = '' ? null : (int) $_POST['barrio-nqn'];
                 $otroBarrio = $_POST['barrio-nqn-otro'] = '' ? null : $_POST['barrio-nqn-otro'];
                 $usuarioController->store([
                     'id_wappersonas' => $id_wappersonas,
@@ -30,8 +34,8 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
                     'telefono' => null,
                     'email' => null,
                     'nacionalidad' => $_POST['nacionalidad'],
-                    'id_ciudad' => $_POST['ciudad'],
-                    'id_barrio' => $_POST['barrio-nqn'],
+                    'id_ciudad' => (int) $_POST['ciudad'],
+                    'id_barrio' => $barrio,
                     'otro_barrio' => $otroBarrio,
                     'direccion_calle' => $_POST['direccion-calle'],
                     'direccion_nro' => $_POST['direccion-numero'],
@@ -43,7 +47,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
             $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
 
             /* Verificamos si cambio telefono o celular */
-            if ($_POST['telefono'] !== (string)$celular || $_POST['email'] !== (string)$email) {
+            if ($_POST['telefono'] !== (string) $celular || $_POST['email'] !== (string) $email) {
                 $usuarioParams = [
                     'telefono' =>  $_POST['telefono'],
                     'email' => $_POST['email']
