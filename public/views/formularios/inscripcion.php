@@ -21,7 +21,7 @@ include('session.php');
 $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
 if ($usuario) {
     $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
-    $id = $userWithSolicitud['id_solicitud'];
+    /* $id = $userWithSolicitud['id_solicitud']; */
     $alta = $userWithSolicitud['fecha_alta'];
     $vencimiento = $userWithSolicitud['fecha_vencimiento'];
     $fechaEvaluacion = $userWithSolicitud['fecha_evaluacion'];
@@ -39,7 +39,6 @@ if ($usuario) {
 
         case '3':
             /* Actividades */
-            //$userNot = "Su última solicitud fue rechazada. Puede generar una nueva solicitud.";
             $estado_inscripcion = 'Actividades';
             break;
 
@@ -52,6 +51,7 @@ if ($usuario) {
             /* Resumen */
             $estado_inscripcion = 'Resumen';
             break;
+
         case '6':
             /* Resumen */
             $estado_inscripcion = 'Exitosa';
@@ -61,7 +61,7 @@ if ($usuario) {
             $arrayFechas = compararFechas($vencimiento, 'days');
             if ($arrayFechas['dif'] <= 7 || $arrayFechas['date'] <= $arrayFechas['now']) {
                 $userNot = "La fecha de vencimiento de su libreta es : $vencimiento. Puede generar una nueva solicitud.";
-                $estado_inscripcion = 'Nuevo';
+                $estado_inscripcion = 'Opciones Generar';
             } else {
                 $estado_inscripcion = 'Aprobado';
             }
@@ -142,6 +142,10 @@ if ($usuario) {
 
         case 'Aprobado':
             include('./components/inscripcion_aprobado.php');
+            break;
+
+        case 'Opciones Generar':
+            include('./components/inscripcion_opciones.php');
             break;
     }
     ?>
