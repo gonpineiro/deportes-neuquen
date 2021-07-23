@@ -2,6 +2,7 @@
     'use strict';
     window.addEventListener('load', function() {
         validate();
+        checkboxes();
     }, false);
 })();
 
@@ -321,4 +322,13 @@ function reiniciarForm(){
         });
     }
         
+}
+
+function checkboxes(){
+    var boxes = $('.checkboxes');
+
+    boxes.on('change', function () {
+        $('#actividadesSubmit').prop('disabled', !boxes.filter(':checked').length);
+    }).trigger('change');
+    validate();
 }

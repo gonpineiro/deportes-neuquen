@@ -19,7 +19,7 @@ $categoriasActividades = $categoriaActividadController->index();
                     while ($row = odbc_fetch_array($actividades)) { ?>
                         <div class="col-lg-3 col-md-12 pb-2">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="checkbox<?= $row['id'] ?>" value="<?= $row['id'] ?>" name="actividades[]">
+                                <input type="checkbox" class="custom-control-input checkboxes" id="checkbox<?= $row['id'] ?>" value="<?= $row['id'] ?>" name="actividades[]">
                                 <label class="custom-control-label" for="checkbox<?= $row['id'] ?>"><?= $row['nombre'] ?></label>
                             </div>
                         </div>
@@ -32,7 +32,7 @@ $categoriasActividades = $categoriaActividadController->index();
         <hr>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
-            <input class="btn btn-primary" type="submit" id="submit" value="Confirmar y Guardar" name="actividadesSubmit" />
+            <input class="btn btn-primary" type="submit" id="actividadesSubmit" value="Confirmar y Guardar" name="actividadesSubmit" />
         </div>
     </div>
 </form>
