@@ -121,7 +121,7 @@ $barrios = $barrioController->index();
                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                     <label for="adjunto-antecedentes" class="required">Adjuntar certificado de antecedentes penales (.jpg - .jpeg - .png - .pdf)</label>
                     <div class="custom-file" id="adjunto-antecedentes">
-                        <input id="antecedentes" class="custom-file-input" type="file" name="antecedentes" accept="image/png, image/jpeg, application/pdf">
+                        <input id="antecedentes" class="custom-file-input" type="file" name="antecedentes" accept="image/png, image/jpeg, application/pdf" required>
                         <label for="antecedentes" class="custom-file-label required" id="label-antecedentes"><span style="font-size: 1rem;">Adjuntar Archivo (imagen o pdf)</span></label>
                     </div>
                     <div class="invalid-feedback">
@@ -132,8 +132,8 @@ $barrios = $barrioController->index();
             <hr>
             <div class="form-group row">
                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
-                    <label for="nro_recibo">Nro. de recibo Cannon (solo números)</label>
-                    <input type="number" id="nro_recibo" min="0" max="9999999999" pattern="^[0-9]" class="form-control" placeholder="Ej: 257972906" name="nro_recibo">
+                    <label for="nro_recibo" class="required">Nro. de recibo Cannon (solo números)</label>
+                    <input type="number" id="nro_recibo" min="0" max="9999999999" pattern="^[0-9]" class="form-control" placeholder="Ej: 257972906" name="nro_recibo" required>
                     <div class="invalid-feedback">
                         Por favor ingrese un n&uacute;mero como el Ej: 257972906
                     </div>
@@ -151,9 +151,11 @@ $barrios = $barrioController->index();
             </div>
             <hr>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <input class="btn btn-primary" type="submit" id="submit" value="Confirmar y Guardar" name="personalesSubmit" />
+                <div class="buttonsRow">
+                    <input class="btn btn-primary submitBtn" type="submit" id="submit" value="Confirmar y Guardar" name="personalesSubmit" />
+                </div>
+                <p class="process" style="display: none;">Procesando...</p>
             </div>
         </div>
-
     </form>
 </div>

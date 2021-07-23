@@ -26,7 +26,7 @@
             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                 <label for="div-adjunto-titulo" class="required">Título o certificado (Formatos: .jpg - .jpeg - .png) </label>
                 <div class="custom-file" id="div-adjunto-titulo">
-                    <input id="imagen-titulo" class="custom-file-input imagen" type="file" name="imagenTitulos[]" accept="image/png, image/jpeg, application/pdf">
+                    <input id="imagen-titulo" class="custom-file-input imagen" type="file" name="imagenTitulos[]" accept="image/png, image/jpeg, application/pdf" required>
                     <label for="imagen-titulo" class="custom-file-label" id="label-imagen-titulo"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
                 </div>
                 <div class="invalid-feedback">
@@ -40,8 +40,11 @@
         </div>
         <hr>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Cancelar" />
-            <input class="btn btn-primary" type="submit" id="submit2" value="Confirmar y Guardar" name="tituloSubmit" data-toggle="tooltip" data-placement="top" title="Tooltip on top" />
+            <div class="buttonsRow">
+                <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
+                <input class="btn btn-primary submitBtn" type="submit" id="submit2" value="Confirmar y Guardar" name="tituloSubmit" data-toggle="tooltip" data-placement="top" title="Tooltip on top" />
+            </div>
+            <p class="process" style="display: none;">Procesando...</p>
         </div>
     </div>
 </form>
