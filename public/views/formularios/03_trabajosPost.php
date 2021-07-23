@@ -15,21 +15,25 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['trabajoSubmit'])) {
     if (checkFile()) {
         $usuarioController = new UsuarioController();
         $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
-        $idSolicitud = $userWithSolicitud['id_solicitud'];
+        $id_solicitud = $userWithSolicitud['id_solicitud'];
+        $id_usuario = $userWithSolicitud['id_usuario'];
 
         $trabajoController = new TrabajoController();
         $success = true;
         foreach ($_FILES['imagenLugares']['tmp_name'] as $key => $unaImagen) {
             $fileType = $_FILES['imagenLugares']['type'][$key];
-            $pathTrabajo = getDireccionesParaAdjunto($fileType, $idSolicitud, $key, 'trabajos', $key);
+            $pathTrabajo = getDireccionesParaAdjunto($fileType, $id_solicitud, $key, 'trabajos', $key);
 
             /* upload comprobante & certificado */
             if (copy($unaImagen, $pathTrabajo)) {
                 $trabajoStore = $trabajoController->store(
                     [
-                        'id_solicitud' => $idSolicitud,
+                        'id_solicitud' => $id_solicitud,
+                        'id_usuario' => $id_usuario,
                         'lugar' => $_POST['lugarTrabajo'][$key],
+                        'estado' => 'Nuevo',
                         'path_file' => $pathTrabajo,
+                        'deleted_at' => null,
                     ]
                 );
 
@@ -48,7 +52,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['trabajoSubmit'])) {
         if ($success) {
             unset($_SESSION['errores']);
             $solicitudController = new SolicitudController();
-            $solicitudController->update(['id_estado' => 3], $idSolicitud);
+            $solicitudController->update(['id_estado' => 3], $id_solicitud);
         }
         header('Location: inscripcion.php#paso-3');
         exit();
