@@ -1,6 +1,6 @@
 {
-  "name": "Formulario_LibretaSanitaria",
-  "version": "1.0.0",
+  "name": "formulario_deportes",
+  "version": "0.0.1",
   "description": "Este proyecto esta basado en los formularios de Concursos y Boleto Esenciales.",
   "main": "index.js",
   "dependencies": {
