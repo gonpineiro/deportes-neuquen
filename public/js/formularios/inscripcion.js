@@ -266,6 +266,16 @@ function sacarOtroTitulo() {
   }
 }
 
+function sacarTituloAprobado() {
+  wrapper = document.getElementsByClassName('titulos-aprobados');
+  console.log(wrapper);
+  var total_fields = wrapper[0].childNodes.length;
+  if (total_fields > 5) {
+    $("#inputs-titulos")[0].childNodes[total_fields - 1].remove();
+    $("#inputs-titulos")[0].childNodes[total_fields - 2].remove();
+  }
+}
+
 function otroLugarTrabajo() {
   var numInputs = document.getElementById('inputs-lugar-trabajo').getElementsByTagName('input').length;
   var max_fields = 20;

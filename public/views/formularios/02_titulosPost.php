@@ -12,13 +12,13 @@ if (!isset($_SESSION['usuario'])) {
 include('session.php');
 
 if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
-    if (checkFile()) {
-        $usuarioController = new UsuarioController();
-        $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
-        $id_solicitud = $userWithSolicitud['id_solicitud'];
-        $id_usuario = $userWithSolicitud['id_usuario'];
+    $usuarioController = new UsuarioController();
+    $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
+    $id_solicitud = $userWithSolicitud['id_solicitud'];
+    $id_usuario = $userWithSolicitud['id_usuario'];
+    $tituloController = new TituloController();
 
-        $tituloController = new TituloController();
+    if (checkFile()) {
         $success = true;
         foreach ($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen) {
             $fileType = $_FILES['imagenTitulos']['type'][$key];
@@ -62,6 +62,22 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
     } else {
         header("Refresh:0.01; url=inscripcion.php", true, 303);
         exit();
+    }
+
+    if (isset($_POST['titulos-aprobados']) && count($_POST['titulos-aprobados']) > 0) {
+        foreach ($_POST['titulos-aprobados'] as $key => $titulo) {
+            $tituloStore = $tituloController->store(
+                [
+                    'id_solicitud' => $id_solicitud,
+                    'id_usuario' => $id_usuario,
+                    'titulo' => $titulo['titulo'],
+                    'estado' => 'Nuevo',
+                    'path_file' => $pathTítulo,
+                    'es_curso' => null,
+                    'deleted_at' => null
+                ]
+            );
+        }
     }
 } else {
     $usuarioController = new UsuarioController();

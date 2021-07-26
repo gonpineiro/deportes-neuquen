@@ -6,12 +6,23 @@ $titulosAprobados = $tituloController->index([
 
 $titulos = [];
 while ($row = odbc_fetch_array($titulosAprobados)) array_push($titulos, $row);
-
 ?>
 <!-- TITULO - PROFESIÓN -->
 <form action="02_titulosPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form-2" id="form-2" novalidate>
     <div id="paso-1" class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
         <h4 class="text-white">Datos de Títulos y/o Cursos</h4>
+        <hr>
+        <?php foreach ($titulos as $titulo) { ?>
+            <div class="form-group row titulos-aprobados" id=<?= $titulo['id'] ?>>
+                <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
+                    <input class="form-control" value="<?= $titulo['titulo']; ?>" name="titulos-aprobados[]" readonly>
+                    <input class="form-control" value="<?= $titulo['path_file']; ?>" name="titulos-aprobados[]" readonly>
+                    </div>
+                <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
+                    <input class="btn btn-danger mr-3" type="button" onclick="sacarTituloAprobado()" value="Eliminar" />
+                </div>
+            </div>
+        <?php } ?>
         <hr>
         <div id="inputs-titulos" class="form-group row">
             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
