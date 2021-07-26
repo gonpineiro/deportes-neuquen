@@ -51,7 +51,7 @@ function cargarLog($id_usuario = null, $id_solicitud = null, $error = '-', $clas
 
 function enviarMailApi($address, $idSolicitud)
 {
-    $body = "<p>Su solicitud (Nº " . $idSolicitud . ") para 'Registro de profesionales y afines a la actividad física' fue recibida. En el transcurso de 48hs hábiles nos comunicaremos con usted. </p><p>Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href='mailto:carnetma@muninqn.gob.ar' target='_blank'>carnetma@muninqn.gob.ar</a></p><p>Direcci&oacute;n Municipal de Calidad Alimentaria</p><p>Municipalidad de Neuquén</p>";
+    $body = "<p>Su solicitud (Nº " . $idSolicitud . ") para 'Registro de profesionales y afines a la actividad física' fue recibida. En el transcurso de 48hs hábiles nos comunicaremos con usted. </p><p>Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href='mailto:fiscalizaciondeportiva@muninqn.gov.ar' target='_blank'>fiscalizaciondeportiva@muninqn.gov.ar</a></p><p>Direcci&oacute;n Municipal de Calidad Alimentaria</p><p>Municipalidad de Neuquén</p>";
     $subject = "Registro de profesionales y afines a la actividad física";
     $post_fields = json_encode(['address' => $address, 'subject' => $subject, 'htmlBody' => $body]);
 
