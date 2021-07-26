@@ -33,6 +33,7 @@ class UsuarioController
         $sql = "SELECT
         TOP 1
         usu.id_wappersonas,
+        usu.id as id_usuario,
         usu.email as usuario_email,
         sol.id as id_solicitud,
         sol.fecha_alta,
@@ -42,6 +43,27 @@ class UsuarioController
         FROM dbo.deportes_usuarios usu 
         LEFT JOIN dbo.deportes_solicitudes sol ON usu.id = sol.id_usuario
         WHERE id_wappersonas = $id AND deleted_at IS NULL ORDER BY sol.fecha_alta DESC ";
+
+        $conn = new BaseDatos();
+        $query =  $conn->query($sql);
+        return odbc_fetch_array($query);
+    }
+
+    public function getLastSolicitudAprobada($id)
+    {
+        $sql = "SELECT
+        TOP 1
+        usu.id_wappersonas,
+        usu.id as id_usuario,
+        usu.email as usuario_email,
+        sol.id as id_solicitud,
+        sol.fecha_alta,
+        sol.id_estado,
+        sol.fecha_vencimiento,
+        sol.fecha_evaluacion
+        FROM dbo.deportes_usuarios usu 
+        LEFT JOIN dbo.deportes_solicitudes sol ON usu.id = sol.id_usuario
+        WHERE id_wappersonas = $id AND id_estado = 8 AND deleted_at IS NULL ORDER BY sol.fecha_alta DESC ";
 
         $conn = new BaseDatos();
         $query =  $conn->query($sql);

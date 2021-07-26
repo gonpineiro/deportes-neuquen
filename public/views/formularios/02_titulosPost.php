@@ -15,22 +15,26 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
     if (checkFile()) {
         $usuarioController = new UsuarioController();
         $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
-        $idSolicitud = $userWithSolicitud['id_solicitud'];
+        $id_solicitud = $userWithSolicitud['id_solicitud'];
+        $id_usuario = $userWithSolicitud['id_usuario'];
 
         $tituloController = new TituloController();
         $success = true;
         foreach ($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen) {
             $fileType = $_FILES['imagenTitulos']['type'][$key];
-            $pathTítulo = getDireccionesParaAdjunto($fileType, $idSolicitud, $_POST['titulos'][$key], 'titulos', $key);
+            $pathTítulo = getDireccionesParaAdjunto($fileType, $id_solicitud, $_POST['titulos'][$key], 'titulos', $key);
 
             /* upload comprobante & certificado */
             if (copy($unaImagen, $pathTítulo)) {
                 $tituloStore = $tituloController->store(
                     [
-                        'id_solicitud' => $idSolicitud,
+                        'id_solicitud' => $id_solicitud,
+                        'id_usuario' => $id_usuario,
                         'titulo' => $_POST['titulos'][$key],
+                        'estado' => 'Nuevo',
                         'path_file' => $pathTítulo,
-                        'es_curso' => null
+                        'es_curso' => null,
+                        'deleted_at' => null
                     ]
                 );
 
@@ -50,7 +54,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
         if ($success) {
             unset($_SESSION['errores']);
             $solicitudController = new SolicitudController();
-            $solicitudController->update(['id_estado' => 2], $idSolicitud);
+            $solicitudController->update(['id_estado' => 2], $id_solicitud);
         }
 
         header('Location: inscripcion.php#paso-2');
@@ -59,9 +63,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
         header("Refresh:0.01; url=inscripcion.php", true, 303);
         exit();
     }
-}
-
-else {
+} else {
     $usuarioController = new UsuarioController();
     $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
     $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);

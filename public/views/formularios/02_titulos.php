@@ -1,3 +1,13 @@
+<?php
+$ultimaSolicitudAprobada = $usuarioController->getLastSolicitudAprobada($id_wappersonas);
+$titulosAprobados = $tituloController->index([
+    'id_solicitud' => $ultimaSolicitudAprobada['id_solicitud'],
+]);
+
+$titulos = [];
+while ($row = odbc_fetch_array($titulosAprobados)) array_push($titulos, $row);
+
+?>
 <!-- TITULO - PROFESIÓN -->
 <form action="02_titulosPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form-2" id="form-2" novalidate>
     <div id="paso-1" class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">

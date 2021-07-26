@@ -4,28 +4,40 @@
  * This is the model class for table "Trabajo".
  *
  * @property int $id_solicitud
+ * @property int $id_usuario
  * @property string $lugar
+ * @property string $estado
  * @property string $path_file
+ * @property string $deleted_at
  * 
  */
 class Trabajo
 {
     public $id_solicitud;
+    public $id_usuario;
     public $lugar;
+    public $estado;
     public $path_file;
+    public $deleted_at;
 
     public function __construct()
     {
         $this->id_solicitud = "";
+        $this->id_usuario = "";
         $this->lugar = "";
+        $this->estado = "";
         $this->path_file = "";
+        $this->deleted_at = "";
     }
 
-    public function set($id_solicitud = null, $lugar = null, $path_file = null)
+    public function set($id_solicitud = null, $id_usuario = null, $lugar = null, $estado = null, $path_file = null, $deleted_at = null)
     {
         $this->id_solicitud = $id_solicitud;
+        $this->id_usuario = $id_usuario;
         $this->lugar = $lugar;
+        $this->estado = $estado;
         $this->path_file = $path_file;
+        $this->deleted_at = $deleted_at;
     }
 
     public function save()
@@ -37,7 +49,7 @@ class Trabajo
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Error al guardar un trabajo';
-            cargarLog(null, $this->id_solicitud, $error, get_class(), __FUNCTION__);
+            cargarLog($this->id_usuario, $this->id_solicitud, $error, get_class(), __FUNCTION__);
         }
         return $result;
     }
