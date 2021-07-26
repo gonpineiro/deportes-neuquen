@@ -32,44 +32,7 @@ $solicitud = $solicitudController->getAllData($idSolicitud);
     <?php foreach ($solicitud['titulo'] as $titulo) { ?>
         <p>Titulo:
             <span>
-                <?php
-                switch ($titulo['titulo']) {
-                    case '1':
-                        $value = 'Lic. Educación Física (Título Terciario)';
-                        break;
-                    case '2':
-                        $value = 'Master Educación Física (Título Terciario)';
-                        break;
-                    case '3':
-                        $value = 'Profesorado Educación Física (Título Terciario)';
-                        break;
-                    case '4':
-                        $value = 'Técnico Nacional (Título Federación u organismo estatal o privado reconocido por el Ministerio de Educación de Nación';
-                        break;
-                    case '5':
-                        $value = 'Técnico Provincial (Título Federación u organismo estatal con reconocimiento de C.P.E.)';
-                        break;
-                    case '6':
-                        $value = 'Instructor Nacional (Título Federación Nacional o Institución privada con reconocimiento Nacional)';
-                        break;
-                    case '7':
-                        $value = 'Instructor Deportivo (habilitación nacional-provincial o de federación u organismo municipal)';
-                        break;
-                    case '8':
-                        $value = 'Instructor de Artes Marciales (habilitación Federación c/cinturón acorde)';
-                        break;
-                    case '9':
-                        $value = 'Instructor Aerobic y/o aparatos y/o musculación (con habilitación oficial)';
-                        break;
-                    case '10':
-                        $value = 'Instructor/profesor de prácticas introyectivas';
-                        break;
-                    case '11':
-                        $value = 'Instructor/profesor de prácticas acrobáticas';
-                        break;
-                }
-                echo $value . " <i class='bi bi-check-square-fill text-success'></i>";
-                ?>
+                <?= $titulo['titulo'] ?> <i class='bi bi-check-square-fill text-success'></i>
             </span>
         </p>
     <?php } ?>

@@ -13,6 +13,7 @@ $ciudadController = new CiudadController();
 $barrioController = new BarrioController();
 $categoriaActividadController = new CategoriaActividadController();
 $actividadController = new ActividadController();
+$tituloController = new TituloController();
 
 /* datos de la sesion */
 include('session.php');

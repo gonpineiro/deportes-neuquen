@@ -48,7 +48,7 @@ CREATE TABLE deportes_titulos (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	id_solicitud INT NULL,
 	id_usuario INT NULL,
-	titulo VARCHAR(50) NULL,
+	titulo VARCHAR(500) NULL,
 	estado VARCHAR(50) NULL,
 	path_file VARCHAR(500) NULL,
 	es_curso BIT NULL,
