@@ -35,7 +35,11 @@ $categoriasActividades = $categoriaActividadController->index();
                 <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
                 <input class="btn btn-primary submitBtn" type="submit" id="actividadesSubmit" value="Confirmar y Guardar" name="actividadesSubmit" />
             </div>
-            <p class="process" style="display: none;">Procesando...</p>
+            <div class="process" style="display: none;">
+                <div class="spinner-border text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
         </div>
     </div>
 </form>

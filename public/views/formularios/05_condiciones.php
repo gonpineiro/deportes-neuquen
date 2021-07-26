@@ -119,7 +119,11 @@ $solicitud = $solicitudController->getAllData($idSolicitud);
                 <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
                 <input class="btn btn-primary submitBtn" type="submit" id="submit5" value="Confirmar y Guardar" onload="terminosycondicionescheck()" name="condicionesSubmit" />
             </div>
-            <p class="process" style="display: none;">Procesando...</p>
+            <div class="process" style="display: none;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
         </div>
     </form>
 </div>

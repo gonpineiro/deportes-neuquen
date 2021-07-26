@@ -229,7 +229,8 @@ function otroTitulo() {
 
             "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 '>" +
             "<label for='tipo-titulo-" + numInputs + "' class='required'>Elegir título y/o curso " + numInputs + " </label>" +
-            "<select id='tipo-titulo-" + numInputs + "' class='selectpicker form-control' style='display:block!important' title='Seleccionar' name='titulos[]' required>" +
+            "<select id='tipo-titulo-" + numInputs + "' class='custom-select form-control' style='display:block!important' title='Seleccionar' name='titulos[]' required>" +
+            "<option selected disabled value=''>Elegir título o curso</option>" +
             "<option value='1'>Lic. Educación Física (Título Terciario)</option>" +
             "<option value='2'>Master Educación Física (Título Terciario)</option>" +
             "<option value='3'>Profesorado Educación Física (Título Terciario)</option>" +
@@ -242,13 +243,13 @@ function otroTitulo() {
             "<option value='10'>Instructor/profesor de prácticas introyectivas</option>" +
             "<option value='11'>Instructor/profesor de prácticas acrobáticas</option>" +
             "</select>" +
-            "<div class='invalid-feedback'>Por favor seleccionar un título/ ocupación.</div>" +
+            "<div class='invalid-feedback'>Por favor seleccionar un título/ curso.</div>" +
             "</div>" +
             "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12'>" +
-            "<label for='div-adjunto-titulo-" + numInputs + "' class='required'>Título o certificado " + numInputs + "(Formatos: .jpg - .jpeg - .png) </label>" +
+            "<label for='div-adjunto-titulo-" + numInputs + "' class='required'>Título o certificado " + numInputs + " (Formatos: .jpg - .jpeg - .png) </label>" +
             "<div class='custom-file' id='div-adjunto-titulo-" + numInputs + "'>" +
-            "<input id='imagen-titulo-" + numInputs + "' class='custom-file-input imagen' type='file' name='imagenTitulos[]' accept='image/png, image/jpeg'>" +
-            "<label for='imagen-titulo-" + numInputs + "' class='custom-file-label' id='label-imagen-titulo'><span style='font-size: 1rem;'>Adjuntar imagen formato JPEG/PNG</span></label>" +
+            "<input id='imagen-titulo-" + numInputs + "' class='custom-file-input imagen' type='file' name='imagenTitulos[]' accept='image/png, image/jpeg' required>" +
+            "<label for='imagen-titulo-" + numInputs + "' class='custom-file-label' id='label-imagen-titulo'><span style='font-size: 1rem;'>Título o certificado (imagen o pdf)</span></label>" +
             "</div>" +
             "<div class='invalid-feedback'>Por favor cargue la imagen correctamente. </div>" +
             "</div>"

@@ -43,7 +43,8 @@ $barrios = $barrioController->index();
                 <!-- DOMICILIO -->
                 <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                     <label for="ciudad" class="required">Seleccione su ciudad </label>
-                    <select id="ciudad" class="selectpicker form-control" title="Seleccionar" name='ciudad' style="display:block !important;">
+                    <select id="ciudad" class="custom-select form-control" title="Seleccionar" name='ciudad' style="display:block !important;" required>
+                        <option selected disabled value="">Elegir ciudad...</option>
                         <?php while ($row = odbc_fetch_array($ciudades)) { ?>
                             <option value="<?= $row['id'] ?>"><?= utf8_encode($row['nombre']) ?></option>
                         <?php } ?>
@@ -54,14 +55,15 @@ $barrios = $barrioController->index();
                 </div>
                 <div id="div-barrios" style="display: none;" class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                     <label for="barrio-nqn" class="required">Seleccione su barrio </label>
-                    <select id="barrio-nqn" class="selectpicker form-control" title="Seleccionar" name='barrio-nqn'>
+                    <select id="barrio-nqn" class="custom-select form-control" title="Seleccionar" name='barrio-nqn'>
+                        <option selected disabled value="">Elegir barrio...</option>
                         <?php while ($row = odbc_fetch_array($barrios)) { ?>
                             <option value="<?= $row['id'] ?>"><?= utf8_encode($row['nombre']) ?></option>
                         <?php } ?>
                         <option value="0">Otro</option>
                     </select>
                     <div class="invalid-feedback">
-                        Por favor seleccionar un barrio o ingreselo manualmente en 'otro'.
+                        Por favor seleccionar un barrio o ingréselo manualmente seleccionando 'otro'.
                     </div>
                 </div>
                 <div id="div-barrio-nqn-otro" style="display: none;" class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
@@ -77,7 +79,7 @@ $barrios = $barrioController->index();
             <div class="form-group row">
                 <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12 ">
                     <label for="direccion-cp" class="required">Código Postal </label>
-                    <input type="number" id="direccion-cp" class="form-control" placeholder="Código postal" name="direccion-cp" min="0" max="9999" pattern="^[0-9]">
+                    <input type="number" id="direccion-cp" class="form-control" placeholder="Código postal" name="direccion-cp" min="0" max="9999" pattern="^[0-9]" required>
 
                     <div class="invalid-feedback">
                         Por favor ingrese su código postal. Ejemplo Neuquén: 8300
@@ -85,7 +87,7 @@ $barrios = $barrioController->index();
                 </div>
                 <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12 ">
                     <label for="direccion-calle" class="required">Calle </label>
-                    <input type="text" id="direccion-calle" class="form-control" placeholder="Calle" name="direccion-calle" maxlength="200">
+                    <input type="text" id="direccion-calle" class="form-control" placeholder="Calle" name="direccion-calle" maxlength="200" required>
 
                     <div class="invalid-feedback">
                         Por favor ingrese su domicilio.
@@ -93,7 +95,7 @@ $barrios = $barrioController->index();
                 </div>
                 <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12 ">
                     <label for="direccion-numero" class="required">Número </label>
-                    <input type="number" id="direccion-numero" class="form-control" placeholder="Número" name="direccion-numero" min="0" max="99999" pattern="^[0-9]">
+                    <input type="number" id="direccion-numero" class="form-control" placeholder="Número" name="direccion-numero" min="0" max="99999" pattern="^[0-9]" required>
 
                     <div class="invalid-feedback">
                         Por favor ingrese la númeración de su domicilio.
@@ -119,10 +121,10 @@ $barrios = $barrioController->index();
             <hr>
             <div class="form-group row">
                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
-                    <label for="adjunto-antecedentes" class="required">Adjuntar certificado de antecedentes penales (.jpg - .jpeg - .png - .pdf)</label>
+                    <label for="adjunto-antecedentes" class="required">Adjuntar certificado de antecedentes penales (.jpg - .jpeg - .png - .pdf) </label>
                     <div class="custom-file" id="adjunto-antecedentes">
                         <input id="antecedentes" class="custom-file-input" type="file" name="antecedentes" accept="image/png, image/jpeg, application/pdf" required>
-                        <label for="antecedentes" class="custom-file-label required" id="label-antecedentes"><span style="font-size: 1rem;">Adjuntar Archivo (imagen o pdf)</span></label>
+                        <label for="antecedentes" class="custom-file-label required" id="label-antecedentes"><span style="font-size: 1rem;">Certificado Antecedentes (imagen o pdf)</span></label>
                     </div>
                     <div class="invalid-feedback">
                         Por favor cargue o compruebe que se cargo el adjunto correctamente.
@@ -132,17 +134,17 @@ $barrios = $barrioController->index();
             <hr>
             <div class="form-group row">
                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
-                    <label for="nro_recibo" class="required">Nro. de recibo Cannon (solo números)</label>
+                    <label for="nro_recibo" class="required">Nro. de recibo Cannon (solo números) </label>
                     <input type="number" id="nro_recibo" min="0" max="9999999999" pattern="^[0-9]" class="form-control" placeholder="Ej: 257972906" name="nro_recibo" required>
                     <div class="invalid-feedback">
                         Por favor ingrese un n&uacute;mero como el Ej: 257972906
                     </div>
                 </div>
                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
-                    <label for="div-imagen" class="required">Imagen (Formatos: .jpg - .jpeg - .png) </label>
+                    <label for="div-imagen" class="required">Adjuntar archivo del recibo (.jpg - .jpeg - .png - .pdf) </label>
                     <div class="custom-file" id="div-imagen">
                         <input id="recibo" class="custom-file-input" type="file" name="recibo" accept="image/png, image/jpeg, application/pdf" required>
-                        <label for="recibo" class="custom-file-label" id="label-imagen"><span style="font-size: 1rem;">Adjuntar imagen formato JPEG/PNG</span></label>
+                        <label for="recibo" class="custom-file-label" id="label-imagen"><span style="font-size: 1rem;">Recibo pagado (imagen o pdf)</span></label>
                     </div>
                     <div class="invalid-feedback">
                         Por favor cargue la imagen correctamente.
@@ -154,7 +156,11 @@ $barrios = $barrioController->index();
                 <div class="buttonsRow">
                     <input class="btn btn-primary submitBtn" type="submit" id="submit" value="Confirmar y Guardar" name="personalesSubmit" />
                 </div>
-                <p class="process" style="display: none;">Procesando...</p>
+                <div class="process" style="display: none;">
+                    <div class="spinner-border text-light" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
