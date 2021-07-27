@@ -1,6 +1,6 @@
 <?php
-$ciudades = $ciudadController->index();
-$barrios = $barrioController->index();
+$ciudades = $ciudadController->indexOrderBy();
+$barrios = $barrioController->indexOrderBy();
 ?>
 
 <div class="">

@@ -50,7 +50,18 @@ class Barrio
         }
         return $result;
     }
+    public static function listOrderBy($param = [], $ops = [], $orderBy, $order)
+    {
+        $conn = new BaseDatos();
+        $result = $conn->searchOrderBy(BARRIOS, $param, $ops, $orderBy, $order);
 
+        /* Guardamos los errores */
+        if ($conn->getError()) {
+            $error =  $conn->getError() . ' | Error al listar los barrios';
+            cargarLog(null, null, $error, get_class(), __FUNCTION__);
+        }
+        return $result;
+    }
     public static function get($params)
     {
         $conn = new BaseDatos();

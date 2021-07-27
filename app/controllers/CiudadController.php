@@ -15,7 +15,11 @@ class CiudadController
     {
         return Ciudad::list($param, $ops);
     }
-
+    /* Busca todos los ciudad por orden alfabético */
+    public static function indexOrderBy($param = [], $ops = [])
+    {
+        return Ciudad::listOrderBy($param, $ops, "nombre", "ASC");
+    }
     /* Busca un ciudad */
     public static function get($params)
     {

@@ -15,7 +15,11 @@ class BarrioController
     {
         return Barrio::list($param, $ops);
     }
-
+    /* Busca todos los barrio */
+    public static function indexOrderBy($param = [], $ops = [])
+    {
+        return Barrio::listOrderBy($param, $ops, "nombre", "ASC");
+    }
     /* Busca un barrio */
     public static function get($params)
     {
