@@ -20,9 +20,11 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
 
         $tituloController = new TituloController();
         $success = true;
+        $nroTitulo = 1;
         foreach ($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen) {
+            $nombreTitulo = "titulo_$nroTitulo";
             $fileType = $_FILES['imagenTitulos']['type'][$key];
-            $pathTítulo = getDireccionesParaAdjunto($fileType, $id_solicitud, $_POST['titulos'][$key], 'titulos', $key);
+            $pathTítulo = getDireccionesParaAdjunto($fileType, $id_solicitud, $nombreTitulo, 'titulos');
 
             /* upload comprobante & certificado */
             if (copy($unaImagen, $pathTítulo)) {
@@ -30,14 +32,14 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
                     [
                         'id_solicitud' => $id_solicitud,
                         'id_usuario' => $id_usuario,
-                        'titulo' => $_POST['titulos'][$key],
+                        'titulo' => $nombreTitulo,
                         'estado' => 'Nuevo',
                         'path_file' => $pathTítulo,
                         'es_curso' => null,
                         'deleted_at' => null
                     ]
                 );
-
+                $nroTitulo++;
                 if (!$tituloStore) {
                     $_SESSION['errores'] = mostrarError('store');
                     $success = false;
