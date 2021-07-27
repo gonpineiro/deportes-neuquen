@@ -2,10 +2,15 @@
 $ultimaSolicitudAprobada = $usuarioController->getLastSolicitudAprobada($id_wappersonas);
 $titulosAprobados = $tituloController->index([
     'id_solicitud' => $ultimaSolicitudAprobada['id_solicitud'],
+    'estado' => "'Aprobado'"
 ]);
 
 $titulos = [];
 while ($row = odbc_fetch_array($titulosAprobados)) array_push($titulos, $row);
+
+/* Si ya viene titulos de otra solicitud convertimos los inputs como no requeridos */
+$required = 'required';
+if (count($titulos) > 0) $required = '';
 ?>
 <!-- TITULO - PROFESIÓN -->
 <form action="02_titulosPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form-2" id="form-2" novalidate>
@@ -14,11 +19,11 @@ while ($row = odbc_fetch_array($titulosAprobados)) array_push($titulos, $row);
         <hr>
         <?php foreach ($titulos as $titulo) { ?>
             <div class="form-group row titulos-aprobados" id=<?= $titulo['id'] ?>>
-                <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
+                <div class="form-group col-lg-10 col-md-10 col-sd-12 col-xs-12 ">
                     <input class="form-control" value="<?= $titulo['titulo']; ?>" name="titulos-aprobados[]" readonly>
-                    <input class="form-control" value="<?= $titulo['path_file']; ?>" name="titulos-aprobados[]" readonly>
-                    </div>
-                <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
+                    <input class="form-control" value="<?= $titulo['path_file']; ?>" name="titulos-aprobados-path[]" hidden>
+                </div>
+                <div class="form-group col-lg-2 col-md-2 col-sd-12 col-xs-12 ">
                     <input class="btn btn-danger mr-3" type="button" onclick="sacarTituloAprobado()" value="Eliminar" />
                 </div>
             </div>
@@ -27,7 +32,7 @@ while ($row = odbc_fetch_array($titulosAprobados)) array_push($titulos, $row);
         <div id="inputs-titulos" class="form-group row">
             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                 <label for="tipo-titulo" class="required">Elegir título y/o curso </label>
-                <select id="tipo-titulo" class="selectpicker form-control" title="Seleccionar" name='titulos[]' required>
+                <select id="tipo-titulo" class="selectpicker form-control" title="Seleccionar" name='titulos[]' <?= $required ?>>
                     <option value="Lic. Educación Física (Título Terciario)">Lic. Educación Física (Título Terciario)</option>
                     <option value="Master Educación Física (Título Terciario)">Master Educación Física (Título Terciario)</option>
                     <option value="Profesorado Educación Física (Título Terciario)">Profesorado Educación Física (Título Terciario)</option>
@@ -47,7 +52,7 @@ while ($row = odbc_fetch_array($titulosAprobados)) array_push($titulos, $row);
             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                 <label for="div-adjunto-titulo" class="required">Título o certificado (Formatos: .jpg - .jpeg - .png) </label>
                 <div class="custom-file" id="div-adjunto-titulo">
-                    <input id="imagen-titulo" class="custom-file-input imagen" type="file" name="imagenTitulos[]" accept="image/png, image/jpeg, application/pdf" required>
+                    <input id="imagen-titulo" class="custom-file-input imagen" type="file" name="imagenTitulos[]" accept="image/png, image/jpeg, application/pdf" <?= $required ?>>
                     <label for="imagen-titulo" class="custom-file-label" id="label-imagen-titulo"><span style="font-size: 1rem;">Título o certificado (imagen o pdf)</span></label>
                 </div>
                 <div class="invalid-feedback">

@@ -18,68 +18,77 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
     $id_usuario = $userWithSolicitud['id_usuario'];
     $tituloController = new TituloController();
 
-    if (checkFile()) {
-        $success = true;
-        $nroTitulo = 1;
-        foreach ($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen) {
-            $nombreTitulo = "titulo_$nroTitulo";
-            $fileType = $_FILES['imagenTitulos']['type'][$key];
-            $pathTítulo = getDireccionesParaAdjunto($fileType, $id_solicitud, $nombreTitulo, 'titulos');
-
-            /* upload comprobante & certificado */
-            if (copy($unaImagen, $pathTítulo)) {
-                $tituloStore = $tituloController->store(
-                    [
-                        'id_solicitud' => $id_solicitud,
-                        'id_usuario' => $id_usuario,
-                        'titulo' => $_POST['titulos'][$key],
-                        'estado' => 'Nuevo',
-                        'path_file' => $pathTítulo,
-                        'es_curso' => null,
-                        'deleted_at' => null
-                    ]
-                );
-                $nroTitulo++;
-                if (!$tituloStore) {
-                    $_SESSION['errores'] = mostrarError('store');
-                    $success = false;
-                    break;
-                }
-            } else {
-                $_SESSION['errores'] = mostrarError('file', $_FILES['imagenTitulos']['name'][$key]);
-                $success = false;
-                break;
-            }
-        }
-
-        /* Si todo salio bien Cambiamos el estado a Trabajos*/
-        if ($success) {
-            unset($_SESSION['errores']);
-            $solicitudController = new SolicitudController();
-            $solicitudController->update(['id_estado' => 2], $id_solicitud);
-        }
-
-        header('Location: inscripcion.php#paso-2');
-        exit();
-    } else {
-        header("Refresh:0.01; url=inscripcion.php", true, 303);
-        exit();
-    }
-
     if (isset($_POST['titulos-aprobados']) && count($_POST['titulos-aprobados']) > 0) {
         foreach ($_POST['titulos-aprobados'] as $key => $titulo) {
+            $path = $_POST["titulos-aprobados-path"][$key];
             $tituloStore = $tituloController->store(
                 [
                     'id_solicitud' => $id_solicitud,
                     'id_usuario' => $id_usuario,
-                    'titulo' => $titulo['titulo'],
+                    'titulo' => $titulo,
                     'estado' => 'Nuevo',
-                    'path_file' => $pathTítulo,
+                    'path_file' => $_POST["titulos-aprobados-path"][$key],
                     'es_curso' => null,
                     'deleted_at' => null
                 ]
             );
         }
+    }
+    
+    if (count($_FILES['imagenTitulos']['size']) > 1 && $_FILES['imagenTitulos']['size'] != 0) {
+        if (checkFile()) {
+            $success = true;
+            $nroTitulo = 1;
+            foreach ($_FILES['imagenTitulos']['tmp_name'] as $key => $unaImagen) {
+                $nombreTitulo = "titulo_$nroTitulo";
+                $fileType = $_FILES['imagenTitulos']['type'][$key];
+                $pathTítulo = getDireccionesParaAdjunto($fileType, $id_solicitud, $nombreTitulo, 'titulos');
+
+                /* upload comprobante & certificado */
+                if (copy($unaImagen, $pathTítulo)) {
+                    $tituloStore = $tituloController->store(
+                        [
+                            'id_solicitud' => $id_solicitud,
+                            'id_usuario' => $id_usuario,
+                            'titulo' => $_POST['titulos'][$key],
+                            'estado' => 'Nuevo',
+                            'path_file' => $pathTítulo,
+                            'es_curso' => null,
+                            'deleted_at' => null
+                        ]
+                    );
+                    $nroTitulo++;
+                    if (!$tituloStore) {
+                        $_SESSION['errores'] = mostrarError('store');
+                        $success = false;
+                        break;
+                    }
+                } else {
+                    $_SESSION['errores'] = mostrarError('file', $_FILES['imagenTitulos']['name'][$key]);
+                    $success = false;
+                    break;
+                }
+            }
+
+            /* Si todo salio bien Cambiamos el estado a Trabajos*/
+            if ($success) {
+                unset($_SESSION['errores']);
+                $solicitudController = new SolicitudController();
+                $solicitudController->update(['id_estado' => 2], $id_solicitud);
+            }
+
+            header('Location: inscripcion.php#paso-2');
+            exit();
+        } else {
+            header("Refresh:0.01; url=inscripcion.php", true, 303);
+            exit();
+        }
+    } else {
+        unset($_SESSION['errores']);
+        $solicitudController = new SolicitudController();
+        $solicitudController->update(['id_estado' => 2], $id_solicitud);
+        header("Refresh:0.01; url=inscripcion.php", true, 303);
+        exit();
     }
 } else {
     $usuarioController = new UsuarioController();
