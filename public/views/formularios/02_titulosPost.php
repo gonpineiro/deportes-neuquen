@@ -32,7 +32,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
                     [
                         'id_solicitud' => $id_solicitud,
                         'id_usuario' => $id_usuario,
-                        'titulo' => $nombreTitulo,
+                        'titulo' => $_POST['titulos'][$key],
                         'estado' => 'Nuevo',
                         'path_file' => $pathTítulo,
                         'es_curso' => null,
