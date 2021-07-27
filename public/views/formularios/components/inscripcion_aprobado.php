@@ -5,7 +5,7 @@
             <div class="col">
                 <div class="card-body mb-3">
                     <p class="text-center">
-                        Su SOLICITUD se encuentra vigente con vencimiento: <?= $userWithSolicitud['fecha_vencimiento']; ?>, ante cualquier duda, contactarse al email: carnetma@muninqn.gob.ar
+                        Su SOLICITUD se encuentra vigente con vencimiento: <?= $userWithSolicitud['fecha_vencimiento']; ?>, ante cualquier duda, contactarse al email: fiscalizaciondeportiva@muninqn.gov.ar
                     </p>
                 </div>
 

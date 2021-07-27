@@ -9,7 +9,7 @@ include_once '../../../app/config/config.php'
             <div class="col">
                 <div class="card-body mb-3">
                     <p class="text-center">
-                        Su solicitud N° <?= $userWithSolicitud['id_solicitud']; ?> esta en proceso de evaluación. Fue recibida el dia: <?= date("d/m/Y", strtotime($alta)); ?>, ante cualquier duda, contactarse al email: carnetma@muninqn.gob.ar
+                        Su solicitud N° <?= $userWithSolicitud['id_solicitud']; ?> esta en proceso de evaluación. Fue recibida el dia: <?= date("d/m/Y", strtotime($alta)); ?>, ante cualquier duda, contactarse al email: fiscalizaciondeportiva@muninqn.gov.ar
                     </p>
                 </div>
                 <div class="text-center">
