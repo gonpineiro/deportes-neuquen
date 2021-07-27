@@ -44,10 +44,13 @@ $solicitud = $solicitudController->getAllData($idSolicitud);
     <?php } ?>
     <hr>
     <h5>Actividades</h5>
-    <?php foreach ($solicitud['actividades'] as $actividad) { ?>
-        <p><?= $actividad['nombre']; ?></p>
-    <?php } ?>
-
+    <div class="row">
+        <?php foreach ($solicitud['actividades'] as $actividad) { ?>
+            <div class="col-lg-2 col-md-12 pb-2">
+                <span><?= $actividad['nombre']; ?></span>
+            </div>
+        <?php } ?>
+    </div>
     <hr>
     <form action="05_condicionesPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form-52" id="form-52">
         <h4>Aceptar Términos</h4>

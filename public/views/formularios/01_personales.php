@@ -123,7 +123,7 @@ $barrios = $barrioController->indexOrderBy();
                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                     <label for="adjunto-antecedentes" class="required">Adjuntar certificado de antecedentes penales (.jpg - .jpeg - .png - .pdf) </label>
                     <div class="custom-file" id="adjunto-antecedentes">
-                        <input id="antecedentes" class="custom-file-input" type="file" name="antecedentes" accept="image/png, image/jpeg, application/pdf" required>
+                        <input id="antecedentes" class="custom-file-input pointer" type="file" name="antecedentes" accept="image/png, image/jpeg, application/pdf" required>
                         <label for="antecedentes" class="custom-file-label required" id="label-antecedentes"><span style="font-size: 1rem;">Certificado Antecedentes (imagen o pdf)</span></label>
                     </div>
                     <div class="invalid-feedback">
@@ -133,7 +133,7 @@ $barrios = $barrioController->indexOrderBy();
             </div>
             <hr>
             <div class="form-group row">
-                <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
+                <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                     <label for="nro_recibo" class="required">Nro. de recibo Cannon (solo números) </label>
                     <input type="number" id="nro_recibo" min="0" max="9999999999" pattern="^[0-9]" class="form-control" placeholder="Ej: 257972906" name="nro_recibo" required>
                     <div class="invalid-feedback">
@@ -143,7 +143,7 @@ $barrios = $barrioController->indexOrderBy();
                 <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                     <label for="div-imagen" class="required">Adjuntar archivo del recibo (.jpg - .jpeg - .png - .pdf) </label>
                     <div class="custom-file" id="div-imagen">
-                        <input id="recibo" class="custom-file-input" type="file" name="recibo" accept="image/png, image/jpeg, application/pdf" required>
+                        <input id="recibo" class="custom-file-input pointer" type="file" name="recibo" accept="image/png, image/jpeg, application/pdf" required>
                         <label for="recibo" class="custom-file-label" id="label-imagen"><span style="font-size: 1rem;">Recibo pagado (imagen o pdf)</span></label>
                     </div>
                     <div class="invalid-feedback">

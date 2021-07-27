@@ -98,7 +98,7 @@ table.dataTable tbody tr:hover {
 .invalid-feedback {
     color: lightsalmon;
 }
-
+.pointer {cursor: pointer;}
 /* modal más ancho en pantallas 800x600 */
 @media (min-width: 576px) {
     .modal-dialog {

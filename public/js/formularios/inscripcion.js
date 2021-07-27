@@ -246,9 +246,9 @@ function otroTitulo() {
       "<div class='invalid-feedback'>Por favor seleccionar un título/ curso.</div>" +
       "</div>" +
       "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12'>" +
-      "<label for='div-adjunto-titulo-" + numInputs + "' class='required'>Título o certificado " + numInputs + " (Formatos: .jpg - .jpeg - .png) </label>" +
+      "<label for='div-adjunto-titulo-" + numInputs + "' class='required'>Título o certificado " + numInputs + " (Formatos: .jpg - .jpeg - .png - .pdf) </label>" +
       "<div class='custom-file' id='div-adjunto-titulo-" + numInputs + "'>" +
-      "<input id='imagen-titulo-" + numInputs + "' class='custom-file-input imagen' type='file' name='imagenTitulos[]' accept='image/png, image/jpeg' required>" +
+      "<input id='imagen-titulo-" + numInputs + "' class='custom-file-input imagen pointer' type='file' name='imagenTitulos[]' accept='image/png, image/jpeg' required>" +
       "<label for='imagen-titulo-" + numInputs + "' class='custom-file-label' id='label-imagen-titulo'><span style='font-size: 1rem;'>Título o certificado (imagen o pdf)</span></label>" +
       "</div>" +
       "<div class='invalid-feedback'>Por favor cargue la imagen correctamente. </div>" +
@@ -275,14 +275,14 @@ function otroLugarTrabajo() {
 
       "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 '>" +
       "<label for='lugar-trabajo" + numInputs + "' class='required'>Ingresar lugar de trabajo " + numInputs + " </label>" +
-      "<input type='text' id='lugar-trabajo" + numInputs + "' class='form-control' placeholder='Lugar local de trabajo' name='lugarTrabajo[]' required>" +
+      "<input type='text' id='lugar-trabajo" + numInputs + "' class='form-control' placeholder='Lugar de trabajo' name='lugarTrabajo[]' required>" +
       "<div class='invalid-feedback'> Por favor ingrese un lugar de trabajo.</div>" +
       "</div>" +
       "<div class='form-group col-lg-6 col-md-6 col-sd-12 col-xs-12'>" +
-      "<label for='div-certificacion-lugar-" + numInputs + "' class='required'>Imagen " + numInputs + " (Formatos: .jpg - .jpeg - .png) </label>" +
+      "<label for='div-certificacion-lugar-" + numInputs + "' class='required'>Imagen " + numInputs + " (Formatos: .jpg - .jpeg - .png - .pdf) </label>" +
       "<div class='custom-file' id='div-certificacion-lugar-" + numInputs + "'>" +
-      "<input id='imagen-certificacion-lugar-" + numInputs + "' class='custom-file-input' type='file' name='imagenLugares[]' accept='image/png, image/jpeg'>" +
-      "<label for='imagen-certificacion-lugar-" + numInputs + "' class='custom-file-label' id='label-imagen-certificacion-lugar-0'><span style='font-size: 1rem;'>Adjuntar imagen formato JPEG/PNG</span></label>" +
+      "<input id='imagen-certificacion-lugar-" + numInputs + "' class='custom-file-input pointer' type='file' name='imagenLugares[]' accept='image/png, image/jpeg'>" +
+      "<label for='imagen-certificacion-lugar-" + numInputs + "' class='custom-file-label' id='label-imagen-certificacion-lugar-0'><span style='font-size: 1rem;'>Certificación Laboral (imagen o pdf)</span></label>" +
       "</div>" +
       "<div class='invalid-feedback'>Por favor cargue la imagen correctamente.</div>" +
       "</div>"

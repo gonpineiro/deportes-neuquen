@@ -12,10 +12,10 @@
                 </div>
             </div>
             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
-                <label for="div-certificacion-lugar-0"> Archivo Cetificación Laboral (Formatos: .jpg - .jpeg - .png) Opcional </label>
+                <label for="div-certificacion-lugar-0"> Archivo Cetificación Laboral (Formatos: .jpg - .jpeg - .png - .pdf) Opcional </label>
                 <div class="custom-file" id="div-certificacion-lugar-0">
-                    <input id="imagen-certificacion-lugar-0" class="custom-file-input" type="file" name="imagenLugares[]" accept="image/png, image/jpeg" required>
-                    <label for="imagen-certificacion-lugar-0" class="custom-file-label" id="label-imagen-certificacion-lugar"><span style="font-size: 1rem;">Cetificación Laboral</span></label>
+                    <input id="imagen-certificacion-lugar-0" class="custom-file-input pointer" type="file" name="imagenLugares[]" accept="image/png, image/jpeg" required>
+                    <label for="imagen-certificacion-lugar-0" class="custom-file-label" id="label-imagen-certificacion-lugar"><span style="font-size: 1rem;">Cetificación Laboral (imagen o pdf)</span></label>
                 </div>
                 <div class="invalid-feedback">
                     Por favor cargue la imagen correctamente.
