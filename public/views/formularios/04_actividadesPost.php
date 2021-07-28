@@ -18,16 +18,16 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['actividadesSubmit'])) {
     $actividades = $_POST['actividades'];
     $usuarioController = new UsuarioController();
     $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
-    $idSolicitud = $userWithSolicitud['id_solicitud'];
+    $id_solicitud = $userWithSolicitud['id_solicitud'];
     foreach($actividades as $actividad){
         $deportesSolicitudesActividadesController->store(
             [
-                'id_solicitud' => $idSolicitud,
+                'id_solicitud' => $id_solicitud,
                 'id_actividad' => $actividad,
             ]
             );
     }
-    $solicitudController->update(['id_estado' => 4], $idSolicitud);
+    $solicitudController->update(['id_estado' => 4], $id_solicitud);
     header('Location: inscripcion.php#paso-4');
     exit();
 } else {
