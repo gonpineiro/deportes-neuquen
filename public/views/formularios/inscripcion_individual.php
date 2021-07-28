@@ -44,7 +44,7 @@
                 <a class="nav-link <?PHP if ($estado_inscripcion == "DatosPersonales") {echo "active";} else {echo "disabled";} ?>" data-toggle="tab" href="#tabs-1" role="tab">1 - Datos Personales</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?PHP if ($estado_inscripcion == "Titulos") {echo "active";} else {echo "disabled";   } ?>" data-toggle="tab" href="#tabs-2" role="tab">2 - Títulos</a>
+                <a class="nav-link <?PHP if ($estado_inscripcion == "Titulos") {echo "active";} else {echo "disabled";   } ?>" data-toggle="tab" href="#tabs-2" role="tab">2 - Formación Académica</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?PHP if ($estado_inscripcion == "Trabajos") {echo "active";} else {echo "disabled";  } ?>" data-toggle="tab" href="#tabs-3" role="tab">3 - Lugar Trabajo</a>

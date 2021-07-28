@@ -15,7 +15,7 @@ if (count($titulos) > 0) $required = '';
 <!-- TITULO - PROFESIÓN -->
 <form action="02_titulosPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form-2" id="form-2" novalidate>
     <div id="paso-1" class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
-        <h4 class="text-white">Datos de Títulos y/o Cursos</h4>
+        <h4 class="text-white">Formación Académica</h4>
         <hr>
         <?php foreach ($titulos as $titulo) { ?>
             <div class="form-group row titulos-aprobados" id=<?= $titulo['id'] ?>>
@@ -50,9 +50,9 @@ if (count($titulos) > 0) $required = '';
                 </div>
             </div>
             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
-                <label for="div-adjunto-titulo" class="required">Título o certificado (Formatos: .jpg - .jpeg - .png) </label>
+                <label for="div-adjunto-titulo" class="required">Título o certificado (Formatos: .jpg - .jpeg - .png - .pdf) </label>
                 <div class="custom-file" id="div-adjunto-titulo">
-                    <input id="imagen-titulo" class="custom-file-input imagen" type="file" name="imagenTitulos[]" accept="image/png, image/jpeg, application/pdf" <?= $required ?>>
+                    <input id="imagen-titulo" class="custom-file-input imagen pointer" type="file" name="imagenTitulos[]" accept="image/png, image/jpeg, application/pdf" <?= $required ?>>
                     <label for="imagen-titulo" class="custom-file-label" id="label-imagen-titulo"><span style="font-size: 1rem;">Título o certificado (imagen o pdf)</span></label>
                 </div>
                 <div class="invalid-feedback">
