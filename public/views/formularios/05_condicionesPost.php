@@ -8,18 +8,20 @@ if (!isset($_SESSION['usuario'])) {
     header('Location: ' . WEBLOGIN);
     exit();
 }
+
+/* datos de la sesion */
+include('session.php');
+
 $solicitudController = new SolicitudController();
 
 if (isset($_POST) && !empty($_POST) && isset($_POST['condicionesSubmit'])) {
     $usuarioController = new UsuarioController();
     $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
-    $idSolicitud = $userWithSolicitud['id_solicitud'];
-
-    $solicitudParams = [
-        'id_estado' => 6,
-    ];
-    $solicitudController->update($solicitudParams, $idSolicitud);
-    $enviarMailResult = enviarMailApi($userWithSolicitud['usuario_email'], $idSolicitud);
+    $id_solicitud = $userWithSolicitud['id_solicitud'];
+    
+    $solicitudController->update(['id_estado' => 6], $id_solicitud);
+    $address = $userWithSolicitud['usuario_email'] != '' ? $userWithSolicitud['usuario_email'] : $email; 
+    $enviarMailResult = enviarMailApi($address, $id_solicitud);
     header('Location: inscripcion.php');
     exit();
 }else{
