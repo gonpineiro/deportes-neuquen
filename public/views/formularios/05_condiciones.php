@@ -46,7 +46,7 @@ $solicitud = $solicitudController->getAllData($idSolicitud);
     <h5>Actividades</h5>
     <div class="row">
         <?php foreach ($solicitud['actividades'] as $actividad) { ?>
-            <div class="col-lg-2 col-md-12 pb-2">
+            <div class="col-lg-2 col-md-4 col-sm-6 col-6 pb-2">
                 <span><?= $actividad['nombre']; ?></span>
             </div>
         <?php } ?>
@@ -54,25 +54,13 @@ $solicitud = $solicitudController->getAllData($idSolicitud);
     <hr>
     <form action="05_condicionesPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form-52" id="form-52">
         <h4>Aceptar Términos</h4>
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="terminosycondiciones" id="terminosycondiciones" required>
-                <label class="form-check-label" for="terminosycondiciones">
-                    He le&iacute;do y acepto las <a class="ml-1" href="BASES_Y_CONDICIONES.pdf" target="_blank" style="text-decoration: underline;"> Bases y condiciones </a>
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="clausulavalidezddjj" id="clausulavalidezddjj" required>
-                <label class="form-check-label" for="clausulavalidezddjj">
-                    He le&iacute;do y acepto la <a class="ml-1" href="BASES_Y_CONDICIONES.pdf" target="_blank" style="text-decoration: underline;"> Cláusula de Validez de DDJJ</a>
-                </label>
-            </div>
-
-            <div class="invalid-feedback" style="color: #dc3545;">
-                <strong>
-                    Debe aceptar los t&eacute;rminos.
-                </strong>
-            </div>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input finalCheckboxes" id="terminosFinal" value="" name="">
+            <label class="custom-control-label" for="terminosFinal">Confirmo los datos ingresados para continuar.</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input finalCheckboxes" id="clausulaFinal" value="" name="" required>
+            <label class="custom-control-label" for="clausulaFinal">He leído y acepto la Cláusula de Validez de DDJJ.</label>
         </div>
         <div class="form-inline">
             <span>
@@ -83,7 +71,7 @@ $solicitud = $solicitudController->getAllData($idSolicitud);
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <div class="buttonsRow">
                 <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
-                <input class="btn btn-primary submitBtn" type="submit" id="submit5" value="Confirmar y Guardar" onload="terminosycondicionescheck()" name="condicionesSubmit" />
+                <input class="btn btn-primary" type="submit" id="finalSubmit" disabled value="Confirmar y Guardar" name="condicionesSubmit" />
             </div>
             <div class="process" style="display: none;">
                 <div class="spinner-border text-primary" role="status">

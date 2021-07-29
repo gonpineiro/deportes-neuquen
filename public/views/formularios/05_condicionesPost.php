@@ -22,7 +22,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['condicionesSubmit'])) {
     $solicitudController->update(['id_estado' => 6], $id_solicitud);
     $address = $userWithSolicitud['usuario_email'] != '' ? $userWithSolicitud['usuario_email'] : $email;
     $enviarMailResult = enviarMailApi('$address', $id_solicitud);
-    if ($enviarMailResult['error'] == (null | '')) {
+    if ($enviarMailResult['error'] == (null || '')) {
         $id_usuario = $userWithSolicitud['id_usuario'];
         $error = $enviarMailResult['error'] . ' | ' . $address;
         cargarLog($id_usuario, $id_solicitud, $error, '05_condicionesPost.php', 'enviarMailApi');
