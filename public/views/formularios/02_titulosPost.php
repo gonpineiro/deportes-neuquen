@@ -18,7 +18,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
     $id_usuario = $userWithSolicitud['id_usuario'];
     $tituloController = new TituloController();
 
-    if (isset($_POST['titulos-aprobados']) && count($_POST['titulos-aprobados']) > 0) {
+/*     if (isset($_POST['titulos-aprobados']) && count($_POST['titulos-aprobados']) > 0) {
         foreach ($_POST['titulos-aprobados'] as $key => $titulo) {
             $path = $_POST["titulos-aprobados-path"][$key];
             $tituloStore = $tituloController->store(
@@ -32,7 +32,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
                 ]
             );
         }
-    }
+    } */
     
     if (count($_FILES['imagenTitulos']['size']) >= 1 && $_FILES['imagenTitulos']['size'] != 0) {
         if (checkFile()) {

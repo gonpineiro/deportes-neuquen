@@ -18,7 +18,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['trabajoSubmit']) && $_FILES
     $id_usuario = $userWithSolicitud['id_usuario'];
     $trabajoController = new TrabajoController();
 
-    if (isset($_POST['trabajos-aprobados']) && count($_POST['trabajos-aprobados']) > 0) {
+    /* if (isset($_POST['trabajos-aprobados']) && count($_POST['trabajos-aprobados']) > 0) {
         foreach ($_POST['trabajos-aprobados'] as $key => $lugar) {
             $path = $_POST["trabajos-aprobados-path"][$key];
             $tituloStore = $tituloController->store(
@@ -32,7 +32,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['trabajoSubmit']) && $_FILES
                 ]
             );
         }
-    }
+    } */
 
     if (count($_FILES['imagenLugares']['size']) >= 1 && $_FILES['imagenLugares']['size'] != 0) {
         if (checkFile()) {
