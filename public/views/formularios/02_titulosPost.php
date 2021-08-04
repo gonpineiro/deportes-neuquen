@@ -34,7 +34,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
         }
     } */
     
-    if (count($_FILES['imagenTitulos']['size']) >= 1 && $_FILES['imagenTitulos']['size'] != 0) {
+    if (count($_FILES['imagenTitulos']['size']) >= 1 && $_FILES['imagenTitulos']['size'][0] != 0) {
         if (checkFile()) {
             $success = true;
             $nroTitulo = 1;

@@ -20,7 +20,7 @@ if (count($trabajos) > 0) $required = '';
         <?php foreach ($trabajos as $trabajo) { ?>
             <div class="form-group row titulos-aprobados" id=<?= $trabajo['id'] ?>>
                 <div class="form-group col-lg-12 col-md-12 col-sd-12 col-xs-12 ">
-                    <input class="form-control" value="<?= $trabajo['lugar']; ?>" name="trabajos-aprobados[]" readonly disabled>
+                    <input class="form-control" value="<?= $trabajo['lugar']; ?>" name="trabajos-aprobados[]" readonly >
                     <input class="form-control" value="<?= $trabajo['path_file']; ?>" name="trabajos-aprobados-path[]" hidden>
                 </div>
             </div>
@@ -31,7 +31,7 @@ if (count($trabajos) > 0) $required = '';
             <!-- LUGAR Y CERTIFICACIÓN DE TRABAJO -->
             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                 <label for="lugarTrabajo">Ingresar lugar de trabajo </label>
-                <input type="text" id="lugarTrabajo" class="form-control" placeholder="Lugar de trabajo" name="lugarTrabajo[]" required>
+                <input type="text" id="lugarTrabajo" class="form-control" placeholder="Lugar de trabajo" name="lugarTrabajo[]" <?= $required ?>>
                 <div class="invalid-feedback">
                     Por favor ingrese un lugar de trabajo.
                 </div>
@@ -39,7 +39,7 @@ if (count($trabajos) > 0) $required = '';
             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12">
                 <label for="div-certificacion-lugar-0"> Archivo Cetificación Laboral (Formatos: .jpg - .jpeg - .png - .pdf) Opcional </label>
                 <div class="custom-file" id="div-certificacion-lugar-0">
-                    <input id="imagen-certificacion-lugar-0" class="custom-file-input pointer" type="file" name="imagenLugares[]" accept="image/png, image/jpeg" required>
+                    <input id="imagen-certificacion-lugar-0" class="custom-file-input pointer" type="file" name="imagenLugares[]" accept="image/png, image/jpeg" <?= $required ?>>
                     <label for="imagen-certificacion-lugar-0" class="custom-file-label" id="label-imagen-certificacion-lugar"><span style="font-size: 1rem;">Cetificación Laboral (imagen o pdf)</span></label>
                 </div>
                 <div class="invalid-feedback">

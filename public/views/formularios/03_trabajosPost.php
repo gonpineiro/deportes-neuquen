@@ -34,7 +34,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['trabajoSubmit']) && $_FILES
         }
     } */
 
-    if (count($_FILES['imagenLugares']['size']) >= 1 && $_FILES['imagenLugares']['size'] != 0) {
+    if (count($_FILES['imagenLugares']['size']) >= 1 && $_FILES['imagenLugares']['size'][0] != 0) {
         if (checkFile()) {
             $success = true;
             foreach ($_FILES['imagenLugares']['tmp_name'] as $key => $unaImagen) {
