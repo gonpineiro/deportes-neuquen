@@ -22,29 +22,28 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
             /* Cargamos usuario */
             $id_wappersonas = $_SESSION['usuario']['wapPersonasId'];
             $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
+
+            $userParams = [
+                'id_wappersonas' => $id_wappersonas,
+                'nombre' => null,
+                'apellido' => null,
+                'telefono' => null,
+                'email' => null,
+                'nacionalidad' => $_POST['nacionalidad'],
+                'id_ciudad' => (int) $_POST['ciudad'],
+                'id_barrio' => $_POST['barrio-nqn'] = '' ? null : (int) $_POST['barrio-nqn'],
+                'otro_barrio' => $_POST['barrio-nqn-otro'] = '' ? null : $_POST['barrio-nqn-otro'],
+                'otra_ciudad' => $_POST['otra-ciudad'] = '' ? null : $_POST['otra-ciudad'],
+                'direccion_calle' => $_POST['direccion-calle'],
+                'direccion_nro' => $_POST['direccion-numero'],
+                'direccion_depto' => $_POST['direccion-departamento'] = '' ? null : $_POST['direccion-departamento'],
+                'direccion_piso' => $_POST['direccion-piso'] = '' ? null : $_POST['direccion-piso'],
+                'direccion_cp' => $_POST['direccion-cp'],
+            ];
             if (!$usuario) {
-                $direccionDepto = $_POST['direccion-departamento'] = '' ? null : $_POST['direccion-departamento'];
-                $direccionPiso = $_POST['direccion-piso'] = '' ? null : $_POST['direccion-piso'];
-                $barrio = $_POST['barrio-nqn'] = '' ? null : (int) $_POST['barrio-nqn'];
-                $otroBarrio = $_POST['barrio-nqn-otro'] = '' ? null : $_POST['barrio-nqn-otro'];
-                $otroCiudad = $_POST['otra-ciudad'] = '' ? null : $_POST['otra-ciudad'];
-                $usuarioController->store([
-                    'id_wappersonas' => $id_wappersonas,
-                    'nombre' => null,
-                    'apellido' => null,
-                    'telefono' => null,
-                    'email' => null,
-                    'nacionalidad' => $_POST['nacionalidad'],
-                    'id_ciudad' => (int) $_POST['ciudad'],
-                    'id_barrio' => $barrio,
-                    'otro_barrio' => $otroBarrio,
-                    'otra_ciudad' => $otroCiudad,
-                    'direccion_calle' => $_POST['direccion-calle'],
-                    'direccion_nro' => $_POST['direccion-numero'],
-                    'direccion_depto' => $direccionDepto,
-                    'direccion_piso' => $direccionPiso,
-                    'direccion_cp' => $_POST['direccion-cp'],
-                ]);
+                $usuarioController->store($userParams);
+            } else {
+                $usuarioController->update($userParams, $usuario['id']);
             }
             $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);
 
