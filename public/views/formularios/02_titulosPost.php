@@ -28,7 +28,6 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
                     'titulo' => $titulo,
                     'estado' => 'Nuevo',
                     'path_file' => $_POST["titulos-aprobados-path"][$key],
-                    'es_curso' => null,
                     'deleted_at' => null
                 ]
             );
@@ -53,7 +52,6 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
                             'titulo' => $_POST['titulos'][$key],
                             'estado' => 'Nuevo',
                             'path_file' => $pathTítulo,
-                            'es_curso' => null,
                             'deleted_at' => null
                         ]
                     );
