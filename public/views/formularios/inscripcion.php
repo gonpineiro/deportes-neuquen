@@ -106,6 +106,7 @@ switch ($estado_inscripcion) {
         break;
 
     case 'Titulos':
+
         include('inscripcion_individual.php');
         break;
 

@@ -9,6 +9,7 @@ CREATE TABLE deportes_usuarios (
 	id_ciudad INT NULL,
 	id_barrio INT NULL,
 	otro_barrio VARCHAR(250) NULL,
+	otra_ciudad VARCHAR(250) NULL,
 	direccion_calle VARCHAR(250) NULL,
 	direccion_nro VARCHAR(250) NULL,
 	direccion_depto VARCHAR(250) NULL,

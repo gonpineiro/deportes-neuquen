@@ -63,15 +63,23 @@ if (count($titulos) > 0) $required = null;
             <a onclick="sacarOtroTitulo()" class="btn btn-light boton-quitar-titulo">Quitar Título</a>
         </div>
         <hr>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <div class="buttonsRow">
-                <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
-                <input class="btn btn-primary submitBtn" type="submit" id="submit2" value="Confirmar y Guardar" name="tituloSubmit" data-toggle="tooltip" data-placement="top" title="Tooltip on top" />
-            </div>
-            <div class="process" style="display: none;">
-                <div class="spinner-border text-light" role="status">
-                    <span class="sr-only">Loading...</span>
+        <div class="buttonsRow container">
+            <div class="row">
+                <div class="custom-control custom-checkbox col-md-6 col-xs-12 my-2">
+                    <input type="checkbox" class="custom-control-input" id="checkPaso2" value="" name="checkboxx">
+                    <label class="custom-control-label" for="checkPaso2">Confirmo los datos ingresados para continuar.</label>
                 </div>
+                <div class="col-md-6 col-xs-12 my-1">
+                    <div class="float-md-right float-xs-left">
+                        <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
+                        <input class="btn btn-primary" type="submit" id="submitBtn2" disabled value="Confirmar y Guardar" name="tituloSubmit" data-toggle="tooltip" data-placement="top" title="Tooltip on top" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="process" style="display: none;">
+            <div class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
             </div>
         </div>
     </div>

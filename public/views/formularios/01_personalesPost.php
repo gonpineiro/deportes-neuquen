@@ -27,6 +27,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
                 $direccionPiso = $_POST['direccion-piso'] = '' ? null : $_POST['direccion-piso'];
                 $barrio = $_POST['barrio-nqn'] = '' ? null : (int) $_POST['barrio-nqn'];
                 $otroBarrio = $_POST['barrio-nqn-otro'] = '' ? null : $_POST['barrio-nqn-otro'];
+                $otroCiudad = $_POST['otra-ciudad'] = '' ? null : $_POST['otra-ciudad'];
                 $usuarioController->store([
                     'id_wappersonas' => $id_wappersonas,
                     'nombre' => null,
@@ -37,6 +38,7 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
                     'id_ciudad' => (int) $_POST['ciudad'],
                     'id_barrio' => $barrio,
                     'otro_barrio' => $otroBarrio,
+                    'otra_ciudad' => $otroCiudad,
                     'direccion_calle' => $_POST['direccion-calle'],
                     'direccion_nro' => $_POST['direccion-numero'],
                     'direccion_depto' => $direccionDepto,

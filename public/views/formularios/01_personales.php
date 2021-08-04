@@ -48,9 +48,18 @@ $barrios = $barrioController->indexOrderBy();
                         <?php while ($row = odbc_fetch_array($ciudades)) { ?>
                             <option value="<?= $row['id'] ?>"><?= utf8_encode($row['nombre']) ?></option>
                         <?php } ?>
+                        <option value="otra-ciudad-op">Otra...</option>
                     </select>
                     <div class="invalid-feedback">
                         Por favor indique su ciudad.
+                    </div>
+                </div>
+                <div id="div-otra-ciudad" style="display: none;" class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
+                    <label for="otra-ciudad" class="required">Escriba su ciudad </label>
+                    <input type="text" id="otra-ciudad" class="form-control" placeholder="Nombre Ciudad" name="otra-ciudad" maxlength="100">
+
+                    <div class="invalid-feedback">
+                        Por favor seleccionar un barrio o ingréselo manualmente seleccionando 'otro'.
                     </div>
                 </div>
                 <div id="div-barrios" style="display: none;" class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
@@ -66,6 +75,7 @@ $barrios = $barrioController->indexOrderBy();
                         Por favor seleccionar un barrio o ingréselo manualmente seleccionando 'otro'.
                     </div>
                 </div>
+
                 <div id="div-barrio-nqn-otro" style="display: none;" class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                     <label for="barrio-nqn-otro" class="required">Escriba su barrio </label>
                     <input type="text" id="barrio-nqn-otro" class="form-control" placeholder="Nombre Barrio" name="barrio-nqn-otro" maxlength="100">
@@ -152,14 +162,22 @@ $barrios = $barrioController->indexOrderBy();
                 </div>
             </div>
             <hr>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <div class="buttonsRow">
-                    <input class="btn btn-primary submitBtn" type="submit" id="submit" value="Confirmar y Guardar" name="personalesSubmit" />
-                </div>
-                <div class="process" style="display: none;">
-                    <div class="spinner-border text-light" role="status">
-                        <span class="sr-only">Loading...</span>
+            <div class="buttonsRow container">
+                <div class="row">
+                    <div class="custom-control custom-checkbox col-md-6 col-xs-12 my-2">
+                        <input type="checkbox" class="custom-control-input" id="checkPaso1" value="" name="checkboxx">
+                        <label class="custom-control-label" for="checkPaso1">Confirmo los datos ingresados para continuar.</label>
                     </div>
+                    <div class="col-md-6 col-xs-12 my-1">
+                        <div class="float-md-right float-xs-left">
+                            <input class="btn btn-primary submitBtn1" type="submit" disabled id="submitBtn1" value="Confirmar y Guardar" disabled name="personalesSubmit" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="process" style="display: none;">
+                <div class="spinner-border text-light" role="status">
+                    <span class="sr-only">Loading...</span>
                 </div>
             </div>
         </div>

@@ -53,15 +53,24 @@ if (count($trabajos) > 0) $required = '';
         </div>
         <hr>
 
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <div class="buttonsRow">
-                <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
-                <input class="btn btn-primary submitBtn" type="submit" id="submit3" value="Confirmar y Guardar" name="trabajoSubmit" />
-            </div>
-            <div class="process" style="display: none;">
-                <div class="spinner-border text-light" role="status">
-                    <span class="sr-only">Loading...</span>
+
+        <div class="buttonsRow container">
+            <div class="row">
+                <div class="custom-control custom-checkbox col-md-6 col-xs-12 my-2">
+                    <input type="checkbox" class="custom-control-input" id="checkPaso3" value="" name="checkboxx">
+                    <label class="custom-control-label" for="checkPaso3">Confirmo los datos ingresados para continuar.</label>
                 </div>
+                <div class="col-md-6 col-xs-12 my-1">
+                    <div class="float-md-right float-xs-left">
+                        <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
+                        <input class="btn btn-primary" type="submit" id="submitBtn3" disabled value="Confirmar y Guardar" name="trabajoSubmit" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="process" style="display: none;">
+            <div class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
             </div>
         </div>
     </div>

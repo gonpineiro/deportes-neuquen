@@ -17,7 +17,7 @@ $categoriasActividades = $categoriaActividadController->index();
                     <?php
 
                     while ($row = odbc_fetch_array($actividades)) { ?>
-                        <div class="col-lg-3 col-md-12 pb-2">
+                        <div class="col-lg-3 col-md-6 pb-2">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input checkboxes" id="checkbox<?= $row['id'] ?>" value="<?= $row['id'] ?>" name="actividades[]">
                                 <label class="custom-control-label" for="checkbox<?= $row['id'] ?>"><?= $row['nombre'] ?></label>
@@ -30,15 +30,23 @@ $categoriasActividades = $categoriaActividadController->index();
             <?php } ?>
         </div>
         <hr>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <div class="buttonsRow">
-                <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
-                <input class="btn btn-primary submitBtn" type="submit" id="actividadesSubmit" value="Confirmar y Guardar" name="actividadesSubmit" />
-            </div>
-            <div class="process" style="display: none;">
-                <div class="spinner-border text-light" role="status">
-                    <span class="sr-only">Loading...</span>
+        <div class="buttonsRow container">
+            <div class="row">
+                <div class="custom-control custom-checkbox col-md-6 col-xs-12 my-2">
+                    <input type="checkbox" class="custom-control-input checkboxes" id="checkPaso4" value="" name="">
+                    <label class="custom-control-label" for="checkPaso4">Confirmo los datos ingresados para continuar.</label>
                 </div>
+                <div class="col-md-6 col-xs-12 my-1">
+                    <div class="float-md-right float-xs-left">
+                        <input class="btn btn-primary mr-3" type="button" onclick="reiniciarForm()" value="Reiniciar" />
+                        <input class="btn btn-primary submitBtn" type="submit" id="actividadesSubmit" value="Confirmar y Guardar" name="actividadesSubmit" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="process" style="display: none;">
+            <div class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
             </div>
         </div>
     </div>
