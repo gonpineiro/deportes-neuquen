@@ -71,7 +71,12 @@ if ($usuario) {
             $arrayFechas = compararFechas($vencimiento, 'days');
             if ($arrayFechas['dif'] <= 7 || $arrayFechas['date'] <= $arrayFechas['now']) {
                 $userNot = "La fecha de vencimiento de su libreta es : $vencimiento. Puede generar una nueva solicitud.";
-                $estado_inscripcion = 'Opciones Generar';
+                /* Para controlar cuando quizo generar una nueva solicitud pero pero el nro de recibo esta duplicado */
+                if ($_SESSION['errores'] != null) {
+                    $estado_inscripcion = 'DatosPersonales';
+                } else {
+                    $estado_inscripcion = 'Opciones Generar';
+                }
             } else {
                 $estado_inscripcion = 'Aprobado';
             }
