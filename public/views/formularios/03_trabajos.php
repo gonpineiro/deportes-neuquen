@@ -1,7 +1,31 @@
+<?php
+$ultimaSolicitudAprobada = $usuarioController->getLastSolicitudAprobada($id_wappersonas);
+$trabajosAprobados = $trabajoController->index([
+    'id_solicitud' => $ultimaSolicitudAprobada['id_solicitud'],
+    'estado' => "'Aprobado'"
+]);
+
+$trabajos = [];
+while ($row = odbc_fetch_array($trabajosAprobados)) array_push($trabajos, $row);
+
+/* Si ya viene trabajos de otra solicitud convertimos los inputs como no requeridos */
+$required = 'required';
+if (count($trabajos) > 0) $required = '';
+?>
+
 <form action="03_trabajosPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form" id="form" novalidate>
     <div id="paso-2" class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
         <h4 class="text-white">Lugar de Trabajo</h4>
         <hr>
+        <?php foreach ($trabajos as $trabajo) { ?>
+            <div class="form-group row titulos-aprobados" id=<?= $trabajo['id'] ?>>
+                <div class="form-group col-lg-12 col-md-12 col-sd-12 col-xs-12 ">
+                    <input class="form-control" value="<?= $trabajo['lugar']; ?>" name="trabajos-aprobados[]" readonly disabled>
+                    <input class="form-control" value="<?= $trabajo['path_file']; ?>" name="trabajos-aprobados-path[]" hidden>
+                </div>
+            </div>
+            <hr>
+        <?php } ?>
         <div id="inputs-lugar-trabajo" class="form-group row">
             <!-- LUGAR Y CERTIFICACIÓN DE TRABAJO -->
             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">

@@ -14,6 +14,7 @@ $barrioController = new BarrioController();
 $categoriaActividadController = new CategoriaActividadController();
 $actividadController = new ActividadController();
 $tituloController = new TituloController();
+$trabajoController = new TrabajoController();
 
 /* datos de la sesion */
 include('session.php');

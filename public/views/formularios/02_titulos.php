@@ -24,8 +24,8 @@ if (count($titulos) > 0) $required = '';
                     <input class="form-control" value="<?= $titulo['path_file']; ?>" name="titulos-aprobados-path[]" hidden>
                 </div>
             </div>
+            <hr>
         <?php } ?>
-        <hr>
         <div id="inputs-titulos" class="form-group row">
             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                 <label for="tipo-titulo" class="required">Elegir título y/o curso </label>
