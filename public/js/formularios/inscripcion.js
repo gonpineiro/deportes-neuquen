@@ -103,6 +103,13 @@ $(function () {
       $("#div-barrio-nqn-otro").hide(500);
       $("#div-barrios :input").attr("required", false);
     }
+    if (this.value == "otra-ciudad-op") {
+      $("#div-otra-ciudad").show(500);
+      $("#div-otra-ciudad :input").attr("required", true);
+    } else {
+      $("#div-otra-ciudad").hide(500);
+      $("#div-otra-ciudad :input").attr("required", false);
+    }
   });
   $("#barrio-nqn").on("change", function (e) {
     if (this.value == 0) {
@@ -430,9 +437,7 @@ function checkboxes() {
     .on("change", function () {
       var cant = boxes.filter(":checked").length;
       if (cant >= 2 && $("#checkPaso4").is(":checked")) {
-
-          $("#actividadesSubmit").prop("disabled", false);
-        
+        $("#actividadesSubmit").prop("disabled", false);
       } else {
         $("#actividadesSubmit").prop("disabled", true);
       }

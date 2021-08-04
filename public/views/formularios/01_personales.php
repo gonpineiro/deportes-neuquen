@@ -48,9 +48,18 @@ $barrios = $barrioController->indexOrderBy();
                         <?php while ($row = odbc_fetch_array($ciudades)) { ?>
                             <option value="<?= $row['id'] ?>"><?= utf8_encode($row['nombre']) ?></option>
                         <?php } ?>
+                        <option value="otra-ciudad-op">Otra...</option>
                     </select>
                     <div class="invalid-feedback">
                         Por favor indique su ciudad.
+                    </div>
+                </div>
+                <div id="div-otra-ciudad" style="display: none;" class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
+                    <label for="otra-ciudad" class="required">Escriba su ciudad </label>
+                    <input type="text" id="otra-ciudad" class="form-control" placeholder="Nombre Ciudad" name="otra-ciudad" maxlength="100">
+
+                    <div class="invalid-feedback">
+                        Por favor seleccionar un barrio o ingréselo manualmente seleccionando 'otro'.
                     </div>
                 </div>
                 <div id="div-barrios" style="display: none;" class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
@@ -66,6 +75,7 @@ $barrios = $barrioController->indexOrderBy();
                         Por favor seleccionar un barrio o ingréselo manualmente seleccionando 'otro'.
                     </div>
                 </div>
+
                 <div id="div-barrio-nqn-otro" style="display: none;" class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                     <label for="barrio-nqn-otro" class="required">Escriba su barrio </label>
                     <input type="text" id="barrio-nqn-otro" class="form-control" placeholder="Nombre Barrio" name="barrio-nqn-otro" maxlength="100">
