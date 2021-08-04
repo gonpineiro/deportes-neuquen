@@ -12,20 +12,21 @@ if (!isset($_SESSION['usuario'])) {
 include('session.php');
 
 $solicitudController = new SolicitudController();
-$deportesSolicitudesActividadesController = new SolicitudActividadController();    
+$deportesSolicitudesActividadesController = new SolicitudActividadController();
 
 if (isset($_POST) && !empty($_POST) && isset($_POST['actividadesSubmit'])) {
     $actividades = $_POST['actividades'];
     $usuarioController = new UsuarioController();
     $userWithSolicitud = $usuarioController->getSolicitud($id_wappersonas);
     $id_solicitud = $userWithSolicitud['id_solicitud'];
-    foreach($actividades as $actividad){
+    foreach ($actividades as $actividad) {
         $deportesSolicitudesActividadesController->store(
             [
                 'id_solicitud' => $id_solicitud,
                 'id_actividad' => $actividad,
+                'deleted_at' => null,
             ]
-            );
+        );
     }
     $solicitudController->update(['id_estado' => 4], $id_solicitud);
     header('Location: inscripcion.php#paso-4');
