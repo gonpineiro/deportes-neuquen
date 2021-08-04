@@ -19,12 +19,9 @@ if (count($titulos) > 0) $required = '';
         <hr>
         <?php foreach ($titulos as $titulo) { ?>
             <div class="form-group row titulos-aprobados" id=<?= $titulo['id'] ?>>
-                <div class="form-group col-lg-10 col-md-10 col-sd-12 col-xs-12 ">
-                    <input class="form-control" value="<?= $titulo['titulo']; ?>" name="titulos-aprobados[]" readonly>
+                <div class="form-group col-lg-12 col-md-12 col-sd-12 col-xs-12 ">
+                    <input class="form-control" value="<?= $titulo['titulo']; ?>" name="titulos-aprobados[]" readonly disabled>
                     <input class="form-control" value="<?= $titulo['path_file']; ?>" name="titulos-aprobados-path[]" hidden>
-                </div>
-                <div class="form-group col-lg-2 col-md-2 col-sd-12 col-xs-12 ">
-                    <input class="btn btn-danger mr-3" type="button" onclick="sacarTituloAprobado()" value="Eliminar" />
                 </div>
             </div>
         <?php } ?>
