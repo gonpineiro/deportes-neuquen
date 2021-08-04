@@ -52,7 +52,6 @@ CREATE TABLE deportes_titulos (
 	titulo VARCHAR(500) NULL,
 	estado VARCHAR(50) NULL,
 	path_file VARCHAR(500) NULL,
-	es_curso BIT NULL,
 	deleted_at VARCHAR(45) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
@@ -95,6 +94,7 @@ CREATE TABLE deportes_solicitudes_actividades (
 	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	id_solicitud INT NULL,
 	id_actividad INT NULL,
+	deleted_at VARCHAR(45) NULL,
 	fecha_alta DATETIME DEFAULT GETDATE()
 );
 
