@@ -5,23 +5,27 @@
  *
  * @property int $id_solicitud
  * @property int $id_actividad
+ * @property string $deleted_at
  * 
  */
 class SolicitudActividad
 {
     public $id_solicitud;
     public $id_actividad;
+    public $deleted_at;
 
     public function __construct()
     {
         $this->id_solicitud = "";
         $this->id_actividad = "";
+        $this->deleted_at = "";
     }
 
-    public function set($id_solicitud = null, $id_actividad = null)
+    public function set($id_solicitud = null, $id_actividad = null, $deleted_at = null)
     {
         $this->id_solicitud = $id_solicitud;
         $this->id_actividad = $id_actividad;
+        $this->deleted_at = $deleted_at;
     }
 
     public function save()
