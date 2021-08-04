@@ -1,7 +1,7 @@
 <?php
 $ultimaSolicitudAprobada = $usuarioController->getLastSolicitudAprobada($id_wappersonas);
 $trabajosAprobados = $trabajoController->index([
-    'id_solicitud' => $ultimaSolicitudAprobada['id_solicitud'],
+    'id_usuario' => $ultimaSolicitudAprobada['id_usuario'],
     'estado' => "'Aprobado'"
 ]);
 
@@ -24,8 +24,9 @@ if (count($trabajos) > 0) $required = '';
                     <input class="form-control" value="<?= $trabajo['path_file']; ?>" name="trabajos-aprobados-path[]" hidden>
                 </div>
             </div>
-            <hr>
-        <?php } ?>
+        <?php }
+        if (!$required) echo "<hr>"; ?>
+
         <div id="inputs-lugar-trabajo" class="form-group row">
             <!-- LUGAR Y CERTIFICACIÓN DE TRABAJO -->
             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">

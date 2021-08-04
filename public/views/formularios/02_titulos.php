@@ -1,7 +1,7 @@
 <?php
 $ultimaSolicitudAprobada = $usuarioController->getLastSolicitudAprobada($id_wappersonas);
 $titulosAprobados = $tituloController->index([
-    'id_solicitud' => $ultimaSolicitudAprobada['id_solicitud'],
+    'id_usuario' => $ultimaSolicitudAprobada['id_usuario'],
     'estado' => "'Aprobado'"
 ]);
 
@@ -10,7 +10,7 @@ while ($row = odbc_fetch_array($titulosAprobados)) array_push($titulos, $row);
 
 /* Si ya viene titulos de otra solicitud convertimos los inputs como no requeridos */
 $required = 'required';
-if (count($titulos) > 0) $required = '';
+if (count($titulos) > 0) $required = null;
 ?>
 <!-- TITULO - PROFESIÓN -->
 <form action="02_titulosPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form-2" id="form-2" novalidate>
@@ -24,8 +24,9 @@ if (count($titulos) > 0) $required = '';
                     <input class="form-control" value="<?= $titulo['path_file']; ?>" name="titulos-aprobados-path[]" hidden>
                 </div>
             </div>
-            <hr>
-        <?php } ?>
+        <?php }
+        if (!$required) echo "<hr>"; ?>
+
         <div id="inputs-titulos" class="form-group row">
             <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
                 <label for="tipo-titulo" class="required">Elegir título y/o curso </label>
