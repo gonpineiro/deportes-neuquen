@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../../../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../estilos/estilo.css">
+    <link rel="stylesheet" href="../../estilos/menu/menu.css">
+
     <title>Registro de profesionales y afines a la actividad física</title>
 </head>
 
