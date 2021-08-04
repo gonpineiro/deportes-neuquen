@@ -20,8 +20,8 @@ if (count($titulos) > 0) $required = null;
         <?php foreach ($titulos as $titulo) { ?>
             <div class="form-group row titulos-aprobados" id=<?= $titulo['id'] ?>>
                 <div class="form-group col-lg-12 col-md-12 col-sd-12 col-xs-12 ">
-                    <input class="form-control" value="<?= $titulo['titulo']; ?>" name="titulos-aprobados[]" readonly disabled>
-                    <input class="form-control" value="<?= $titulo['path_file']; ?>" name="titulos-aprobados-path[]" hidden>
+                    <input class="form-control" value="<?= $titulo['titulo']; ?>" readonly>
+                    <input class="form-control" value="<?= $titulo['path_file']; ?>" hidden>
                 </div>
             </div>
         <?php }
