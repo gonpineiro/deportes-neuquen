@@ -64,7 +64,7 @@ $solicitud = $solicitudController->getAllData($idSolicitud);
         </div>
         <div class="form-inline">
             <span>
-                Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href="fiscalizaciondeportiva@muninqn.gov.ar" target="_blank" style="text-decoration: underline;">fiscalizaciondeportiva@muninqn.gov.ar</a>
+                Cualquier duda o consulta pod&eacute;s enviarnos un email a: <a href="mailto:fiscalizaciondeportiva@muninqn.gov.ar" target="_blank" style="text-decoration: underline;">fiscalizaciondeportiva@muninqn.gov.ar</a>
             </span>
         </div>
         <hr>
