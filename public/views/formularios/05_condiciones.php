@@ -60,7 +60,7 @@ $solicitud = $solicitudController->getAllData($idSolicitud);
         </div>
         <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input finalCheckboxes" id="clausulaFinal" value="" name="" required>
-            <label class="custom-control-label" for="clausulaFinal">He leído y acepto la Cláusula de Validez de DDJJ.</label>
+            <label class="custom-control-label" for="clausulaFinal">He leído y acepto las <a href="../../BASES_Y_CONDICIONES.pdf">Bases y Condiciones</a>.</label>
         </div>
         <div class="form-inline">
             <span>
