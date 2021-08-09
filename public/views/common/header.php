@@ -9,12 +9,10 @@
     <link rel="stylesheet" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../estilos/estilo.css">
     <link rel="stylesheet" href="../../estilos/menu/menu.css">
-
     <title>Registro de profesionales y afines a la actividad física</title>
 </head>
 
 <body>
-
     <div class="header container">
         <div class="card-header">
             <img src="../../estilos/libreta/header.png" />

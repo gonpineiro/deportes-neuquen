@@ -103,7 +103,7 @@ if ($usuario) {
     unset($_SESSION['errores']);
 }
 
-include('./components/header.php');
+include('../common/header.php');
 
 switch ($estado_inscripcion) {
     case 'DatosPersonales':
