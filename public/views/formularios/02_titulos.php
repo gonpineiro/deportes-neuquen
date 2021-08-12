@@ -1,30 +1,35 @@
 <?php
+
 $ultimaSolicitudAprobada = $usuarioController->getLastSolicitudAprobada($id_wappersonas);
-$titulosAprobados = $tituloController->index([
-    'id_usuario' => $ultimaSolicitudAprobada['id_usuario'],
-    'estado' => "'Aprobado'"
-]);
+if ($ultimaSolicitudAprobada) {
+    $titulosAprobados = $tituloController->index([
+        'id_usuario' => $ultimaSolicitudAprobada['id_usuario'],
+        'estado' => "'Aprobado'"
+    ]);
 
-$titulos = [];
-while ($row = odbc_fetch_array($titulosAprobados)) array_push($titulos, $row);
-
+    $titulos = [];
+    while ($row = odbc_fetch_array($titulosAprobados)) array_push($titulos, $row);
+}
 /* Si ya viene titulos de otra solicitud convertimos los inputs como no requeridos */
 $required = 'required';
-if (count($titulos) > 0) $required = null;
+if (isset($titulos) && count($titulos) > 0) $required = null;
 ?>
 <!-- TITULO - PROFESIÓN -->
 <form action="02_titulosPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form-2" id="form-2" novalidate>
     <div id="paso-1" class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
         <h4 class="text-white">Formación Académica</h4>
         <hr>
-        <?php foreach ($titulos as $titulo) { ?>
-            <div class="form-group row titulos-aprobados" id=<?= $titulo['id'] ?>>
-                <div class="form-group col-lg-12 col-md-12 col-sd-12 col-xs-12 ">
-                    <input class="form-control" value="<?= $titulo['titulo']; ?>" readonly>
-                    <input class="form-control" value="<?= $titulo['path_file']; ?>" hidden>
+        <?php
+        if (isset($titulos) && count($titulos) > 0) {
+            foreach ($titulos as $titulo) { ?>
+                <div class="form-group row titulos-aprobados" id=<?= $titulo['id'] ?>>
+                    <div class="form-group col-lg-12 col-md-12 col-sd-12 col-xs-12 ">
+                        <input class="form-control" value="<?= $titulo['titulo']; ?>" readonly>
+                        <input class="form-control" value="<?= $titulo['path_file']; ?>" hidden>
+                    </div>
                 </div>
-            </div>
         <?php }
+        }
         if (!$required) echo "<hr>"; ?>
 
         <div id="inputs-titulos" class="form-group row">
