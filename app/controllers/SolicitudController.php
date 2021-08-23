@@ -98,7 +98,7 @@ class SolicitudController
             CASE
                 WHEN bar.id IS NOT NULL      
                 THEN (select nombre from deportes_ciudades dep_ciu where dep_ciu.id = bar.id_ciudad)          
-                ELSE ciu.nombre       
+                ELSE ciu.nombre    
             END as ciudad
             FROM deportes_solicitudes sol
             -- Obtenemos el usuario de wappersona
@@ -116,12 +116,13 @@ class SolicitudController
                 dbo.deportes_barrios as bar
                 LEFT JOIN deportes_usuarios usu_bar ON bar.id = usu_bar.id_barrio
             ) ON sol.id_usuario = usu_bar.id 
-            -- Obtenemos la ciudad    
+            -- Obtenemos la ciudad
             LEFT OUTER JOIN (
                 dbo.deportes_ciudades as ciu
                 LEFT JOIN deportes_usuarios usu_ciu ON ciu.id = usu_ciu.id_ciudad
             ) ON sol.id_usuario = usu_ciu.id
             LEFT JOIN deportes_usuarios usu ON usu.id = sol.id_usuario
+            LEFT JOIN deportes_estados est ON est.id = sol.id_estado
             $where";
 
         return $sql;
