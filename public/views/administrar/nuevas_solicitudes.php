@@ -25,7 +25,7 @@ include('../common/session.php');
     <link rel="stylesheet" type="text/css" href="../../../node_modules/bootstrap-icons/font/bootstrap-icons.css">
 
 
-    <title>Solicitudes Nuevas y Aprobadas - Libreta Sanitaria</title>
+    <title>Panel Admin - Registro Profesionales Deporte</title>
 </head>
 
 <body>
@@ -34,7 +34,46 @@ include('../common/session.php');
 
     <div class="body container" style="padding-bottom: 50px;">
         <?php include('../common/navbar.php'); ?>
+        <div style="min-height: 50px;">
+            <h2 style="padding:30px 0px;color: #076AB3;">SOLICITUDES NUEVAS</h2>
+        </div>
+        <div class="table-responsive">
+            <table id="tabla_solicitudes_nuevas" class="table tablas_solicitudes">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">N°</th>
+                        <th scope="col">DNI</th>
+                        <th scope="col">Apellido y Nombre</th>
+                        <th scope="col">Fecha Evaluación</th>
+                        <th scope="col">Retiro</th>
+                        <th scope="col">Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="elementor-divider"> <span class="elementor-divider-separator"></span></div>
 
+        <div style="min-height: 50px;">
+            <h2 style="padding:30px 0px;color: #076AB3;">SOLICITUDES APROBADAS</h2>
+        </div>
+        <div class="table-responsive">
+            <table id="tabla_solicitudes_aprobadas" class="table tablas_solicitudes">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">N°</th>
+                        <th scope="col">DNI</th>
+                        <th scope="col">Apellido y Nombre</th>
+                        <th scope="col">Fecha Evaluación</th>
+                        <th scope="col">Retiro</th>
+                        <th scope="col">Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 
