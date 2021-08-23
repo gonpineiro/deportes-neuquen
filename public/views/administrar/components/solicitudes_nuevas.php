@@ -14,7 +14,7 @@
         </thead>
         <tbody>
             <?php foreach ($solicitudesNuevas as $solicitud) { ?>
-                <tr>
+                <tr id=<?= $solicitud['id'] ?>>
                     <th scope="row"><?= $solicitud['id'] ?></th>
                     <td><?= $solicitud['dni'] ?></td>
                     <td><?= $solicitud['apellido'] ?></td>
