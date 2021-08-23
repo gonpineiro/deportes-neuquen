@@ -10,26 +10,18 @@
                 <th scope="col">Apellido</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Fecha Solicitud</th>
-                <th scope="col">Retiro</th>
             </tr>
         </thead>
         <tbody>
-            <tr id="1">
-                <th id="1" scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-            </tr>
-            <tr id="2">
-                <th id="2" scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-            </tr>
+            <?php foreach ($solicitudesNuevas as $solicitud) { ?>
+                <tr>
+                    <th scope="row"><?= $solicitud['id'] ?></th>
+                    <td><?= $solicitud['dni'] ?></td>
+                    <td><?= $solicitud['apellido'] ?></td>
+                    <td><?= $solicitud['nombre'] ?></td>
+                    <td><?= $solicitud['fecha_alta'] ?></td>
+                </tr>
+            <?php } ?>
         </tbody>
     </table>
 </div>

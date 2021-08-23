@@ -40,7 +40,17 @@ class SolicitudController
             $error =  $conn->getError() . ' | Obtener una solicitud por estado';
             cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
-        while ($row = odbc_fetch_array($query)) array_push($array, $row);
+        while ($row = odbc_fetch_array($query)) {
+            $row['nombre'] = formatName(explode(",", $row['nombre_te'])[1]);
+            $row['apellido'] = formatName(explode(",", $row['nombre_te'])[0]);
+            $row['fecha_alta'] = formatDate($row['fecha_alta']);
+            if (!is_null($row['fecha_evaluacion'])) {
+                $row['fecha_evaluacion'] = formatDate($row['fecha_evaluacion']);
+            }
+            unset($row['nombre_te']);
+            array_push($array, $row);
+        };
+
         return $array;
     }
 
@@ -85,6 +95,7 @@ class SolicitudController
             "SELECT 
             sol.id as id,
             wap_usr.nombre as nombre_te,
+            wap_usr.Documento as dni,
             usu.direccion_cp as cp,
             usu.direccion_calle as calle,
             usu.direccion_nro as nro_calle,
@@ -95,6 +106,8 @@ class SolicitudController
             sol.path_ap as path_ap,
             sol.path_recibo as path_recibo,
             sol.nro_recibo as nro_recibo,
+            sol.fecha_alta as fecha_alta,
+            sol.fecha_evaluacion as fecha_evaluacion,
             CASE
                 WHEN bar.id IS NOT NULL      
                 THEN (select nombre from deportes_ciudades dep_ciu where dep_ciu.id = bar.id_ciudad)          

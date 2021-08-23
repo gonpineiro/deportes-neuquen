@@ -14,22 +14,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-            </tr>
+            <?php foreach ($solicitudesAprobadas as $solicitud) { ?>
+                <tr>
+                    <th scope="row"><?= $solicitud['id'] ?></th>
+                    <td><?= $solicitud['dni'] ?></td>
+                    <td><?= $solicitud['apellido'] ?></td>
+                    <td><?= $solicitud['nombre'] ?></td>
+                    <td><?= $solicitud['fecha_evaluacion'] ?></td>
+                </tr>
+            <?php } ?>
         </tbody>
     </table>
 </div>
