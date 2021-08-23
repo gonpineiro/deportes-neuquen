@@ -41,12 +41,13 @@ class SolicitudController
             cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         while ($row = odbc_fetch_array($query)) {
-            $row['nombre'] = formatName(explode(",", $row['nombre_te'])[1]);
-            $row['apellido'] = formatName(explode(",", $row['nombre_te'])[0]);
+            $nombreApellido = explode(",", $row['nombre_te']);
+            $row['nombre'] = formatName($nombreApellido[1]);
+            $row['apellido'] = formatName($nombreApellido[0]);
             $row['fecha_alta'] = formatDate($row['fecha_alta']);
-            if (!is_null($row['fecha_evaluacion'])) {
-                $row['fecha_evaluacion'] = formatDate($row['fecha_evaluacion']);
-            }
+
+            $row['fecha_evaluacion'] = !is_null($row['fecha_evaluacion']) ? formatDate($row['fecha_evaluacion']) : null;
+
             unset($row['nombre_te']);
             array_push($array, $row);
         };
