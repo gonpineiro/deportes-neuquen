@@ -40,7 +40,18 @@ class SolicitudController
             $error =  $conn->getError() . ' | Obtener una solicitud por estado';
             cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
-        while ($row = odbc_fetch_array($query)) array_push($array, $row);
+        while ($row = odbc_fetch_array($query)) {
+            $nombreApellido = explode(",", $row['nombre_te']);
+            $row['nombre'] = formatName($nombreApellido[1]);
+            $row['apellido'] = formatName($nombreApellido[0]);
+            $row['fecha_alta'] = formatDate($row['fecha_alta']);
+
+            $row['fecha_evaluacion'] = !is_null($row['fecha_evaluacion']) ? formatDate($row['fecha_evaluacion']) : null;
+
+            unset($row['nombre_te']);
+            array_push($array, $row);
+        };
+
         return $array;
     }
 
@@ -85,6 +96,7 @@ class SolicitudController
             "SELECT 
             sol.id as id,
             wap_usr.nombre as nombre_te,
+            wap_usr.Documento as dni,
             usu.direccion_cp as cp,
             usu.direccion_calle as calle,
             usu.direccion_nro as nro_calle,
@@ -95,10 +107,12 @@ class SolicitudController
             sol.path_ap as path_ap,
             sol.path_recibo as path_recibo,
             sol.nro_recibo as nro_recibo,
+            sol.fecha_alta as fecha_alta,
+            sol.fecha_evaluacion as fecha_evaluacion,
             CASE
                 WHEN bar.id IS NOT NULL      
                 THEN (select nombre from deportes_ciudades dep_ciu where dep_ciu.id = bar.id_ciudad)          
-                ELSE ciu.nombre       
+                ELSE ciu.nombre    
             END as ciudad
             FROM deportes_solicitudes sol
             -- Obtenemos el usuario de wappersona
@@ -116,12 +130,13 @@ class SolicitudController
                 dbo.deportes_barrios as bar
                 LEFT JOIN deportes_usuarios usu_bar ON bar.id = usu_bar.id_barrio
             ) ON sol.id_usuario = usu_bar.id 
-            -- Obtenemos la ciudad    
+            -- Obtenemos la ciudad
             LEFT OUTER JOIN (
                 dbo.deportes_ciudades as ciu
                 LEFT JOIN deportes_usuarios usu_ciu ON ciu.id = usu_ciu.id_ciudad
             ) ON sol.id_usuario = usu_ciu.id
             LEFT JOIN deportes_usuarios usu ON usu.id = sol.id_usuario
+            LEFT JOIN deportes_estados est ON est.id = sol.id_estado
             $where";
 
         return $sql;

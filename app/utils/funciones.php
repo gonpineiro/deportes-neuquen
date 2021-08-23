@@ -323,3 +323,14 @@ function mostrarError($tipo, $detalle = null)
         return "Hubo un error en la carga de los archivos, porfavor intente nuevamente mas tarde.";
     }
 }
+
+function formatName(string $string): string
+{
+    return utf8_encode(trim($string));
+}
+
+function formatDate(string $date, string $format = 'd/m/Y'): string
+{
+    $timestamp = strtotime($date);
+    return date($format, $timestamp);
+}
