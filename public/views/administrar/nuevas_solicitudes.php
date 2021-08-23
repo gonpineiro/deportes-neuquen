@@ -9,6 +9,9 @@ if (!isset($_SESSION['usuario'])) {
 /* datos de la sesion */
 include('../common/session.php');
 
+$solicitudController = new SolicitudController();
+$solicitudesNuevas = $solicitudController->getSolicitudesWhereEstado('Nuevo');
+$solicitudesAprobadas = $solicitudController->getSolicitudesWhereEstado('Aprobado');
 ?>
 
 <?php include('../common/header.php'); ?>
