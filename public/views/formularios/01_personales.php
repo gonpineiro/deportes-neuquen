@@ -1,6 +1,7 @@
 <?php
 $ciudades = $ciudadController->indexOrderBy();
 $barrios = $barrioController->indexOrderBy();
+$paises = Nacionalidad::get();
 ?>
 
 <div class="">
@@ -31,8 +32,12 @@ $barrios = $barrioController->indexOrderBy();
                 <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                     <label for="nacionalidad" class="required">Nacionalidad </label>
                     <select id="nacionalidad" class="selectpicker form-control" title="Seleccionar" name='nacionalidad' style="display:block !important;">
-                        <option value="1" selected>Argentina</option>
-                        <option value="2">Nacionalidad</option>
+                        <option value="Argentina" selected>Argentina</option>
+
+                        <?PHP foreach ($paises as $pais) {
+                        ?>
+                            <option value="<?= $pais ?>"><?= $pais ?></option>
+                        <?PHP } ?>
                     </select>
                     <div class="invalid-feedback">
                         <strong>
