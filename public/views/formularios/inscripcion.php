@@ -17,7 +17,7 @@ $tituloController = new TituloController();
 $trabajoController = new TrabajoController();
 
 /* datos de la sesion */
-include('session.php');
+include('../common/session.php');
 
 /* Verificamos si existe el usuario */
 $usuario = $usuarioController->get(['id_wappersonas' => $id_wappersonas]);

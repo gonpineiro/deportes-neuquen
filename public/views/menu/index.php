@@ -70,6 +70,7 @@ $apellido = $nombreapellido[0];
     <div class="container pt-5">
         <div class="row pt-5">
             <div class='col-sm d-flex justify-content-center'>
+
                 <div class='opcion' onclick='window.location.href = "../formularios/inscripcion.php"'>
                     <table style='width: 100%;'>
                         <tbody>
@@ -80,6 +81,20 @@ $apellido = $nombreapellido[0];
                             </tr>
                             <tr style='height: 60px;'>
                                 <td class='opcion-titulo text-center'>REGISTRO DE PROFESIONALES</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class='opcion' onclick='window.location.href = "../administrar/index.php"'>
+                    <table style='width: 100%;'>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class='icono' style='background-image: url(../../estilos/menu/icono-admin.png);'></div>
+                                </td>
+                            </tr>
+                            <tr style='height: 60px;'>
+                                <td class='opcion-titulo text-center'>PANEL ADMIN</td>
                             </tr>
                         </tbody>
                     </table>
