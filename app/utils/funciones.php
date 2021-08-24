@@ -343,3 +343,9 @@ function verificarUsuario(int $id): void
         exit();
     }
 }
+
+function verFormatoArchivo(string $string): string
+{
+    $indice = strrpos($string, '.') + 1;
+    return substr($string, $indice);
+}
