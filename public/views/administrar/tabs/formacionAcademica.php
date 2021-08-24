@@ -8,13 +8,13 @@
                 <div class="input-group col-md-8 col-12 pb-2">
                     <input type="text" class="form-control" style="border-radius: 0px;;" value="<?= $titulo['titulo'] ?>" disabled>
                     <span class="input-group-text" style="border-radius: 0px;"><?= $titulo['estado'] ?> </span>
-                    <button type="button" class="input-group-text tooltip-test" title="Tooltip" style="border-radius: 0px;" data-toggle="modal" data-target="#ModalTitulo<?= $titulo['id'] ?>"><i class="bi bi-download"></i></button>
+                    <button type="button" class="input-group-text tooltip-test" title="Tooltip" style="border-radius: 0px" data-toggle="modal" data-target="#ModalTitulo<?= $titulo['id'] ?>"><i class="bi bi-download"></i></button>
                 </div>
                 <div class="col pb-2 text-center">
-                    <button class="btn btn-primary bg-danger" style="width: 100%;" id="verBtn">Rechazar</button>
+                    <button class="btn btn-primary bg-danger" style="width: 100%;border:0px!important" id="verBtn">Rechazar</button>
                 </div>
                 <div class="col pb-2 text-center">
-                    <button class="btn btn-primary bg-success" style="width: 100%;" id="verBtn">Aprobar</button>
+                    <button class="btn btn-primary bg-success" style="width: 100%;border:0px!important" id="verBtn">Aprobar</button>
                 </div>
             </div>
             <br>
