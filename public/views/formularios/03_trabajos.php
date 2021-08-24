@@ -12,7 +12,7 @@ if ($ultimaSolicitudAprobada) {
 
 /* Si ya viene trabajos de otra solicitud convertimos los inputs como no requeridos */
 $required = 'required';
-if (count($trabajos) > 0) $required = '';
+if (isset($trabajos) && count($trabajos) > 0) $required = '';
 ?>
 
 <form action="03_trabajosPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form" id="form" novalidate>

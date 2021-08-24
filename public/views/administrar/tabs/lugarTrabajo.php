@@ -13,10 +13,10 @@
                     <button type="button" class="input-group-text tooltip-test" title="Tooltip" style="border-radius: 0px;" data-toggle="modal" data-target="#ModalLugar<?= $trabajo['id'] ?>"><i class="bi bi-download"></i></button>
                 </div>
                 <div class="col pb-2 text-center">
-                    <button class="btn btn-primary bg-danger" style="width: 100%;" id="verBtn">Rechazar</button>
+                    <button class="btn btn-primary bg-danger" id="verBtn">Rechazar</button>
                 </div>
                 <div class="col pb-2 text-center">
-                    <button class="btn btn-primary bg-success" style="width: 100%;" id="verBtn">Aprobar</button>
+                    <button class="btn btn-primary bg-success" id="verBtn">Aprobar</button>
                 </div>
 
             </div>
