@@ -1,8 +1,6 @@
 <?php
 
 include '../../../app/config/config.php';
-/* datos de la sesion */
-include('session.php');
 if (!isset($_SESSION['usuario'])) {
     header('HTTP/1.1 301 Moved Permanently');
     header('Location: ' . WEBLOGIN);
@@ -10,7 +8,7 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 /* datos de la sesion */
-include('session.php');
+include('../common/session.php');
 
 $solicitudController = new SolicitudController();
 

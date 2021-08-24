@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 /* datos de la sesion */
-include('session.php');
+include('../common/session.php');
 
 if (isset($_POST) && !empty($_POST) && isset($_POST['trabajoSubmit']) && $_FILES['imagenLugares']['name'] != "") {
     $usuarioController = new UsuarioController();

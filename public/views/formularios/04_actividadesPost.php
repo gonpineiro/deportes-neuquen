@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 /* datos de la sesion */
-include('session.php');
+include('../common/session.php');
 
 $solicitudController = new SolicitudController();
 $deportesSolicitudesActividadesController = new SolicitudActividadController();
