@@ -1,57 +1,58 @@
 <div class="form-horizontal mx-auto">
     <div class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
         <!-- DATOS PERSONALES -->
+        <h3 class="text-white"><?= $solicitud['nombre_te'] ?></h3>
         <h4 class="text-white">Datos personales</h4>
         <hr>
         <div class="form-group row">
             <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                 <label for="email">Direcci&oacute;n de email </label>
-                <input disabled type="email" id="email" class="form-control" value="<?= $sol_email ?>">
+                <input disabled type="email" id="email" class="form-control" value="<?= $solicitud['email'] ?>">
             </div>
             <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                 <label for="telefono">Actualice su n&uacute;mero de tel&eacute;fono </label>
-                <input disabled type="number" id="telefono" class="form-control" value="<?= $sol_celular; ?>">
+                <input disabled type="number" id="telefono" class="form-control" value="<?= $solicitud['telefono'] ?>">
 
             </div>
             <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                 <label for="nacionalidad">Nacionalidad </label>
-                <input disabled id="nacionalidad" class="form-control" value="<?= $sol_nacionalidad ?>" style="display:block !important;">
+                <input disabled id="nacionalidad" class="form-control" value="<?= $solicitud['nacionalidad'] ?>" style="display:block !important;">
             </div>
             <!-- DOMICILIO -->
             <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                 <label for="ciudad">Seleccione su ciudad </label>
-                <input disabled id="ciudad" class="form-control" value="<?= $sol_ciudad ?>" title="Seleccionar" name='ciudad' style="display:block !important;" required>
+                <input disabled id="ciudad" class="form-control" value="<?= $solicitud['ciudad'] ?>" title="Seleccionar" name='ciudad' style="display:block !important;" required>
                 <div class="invalid-feedback">
                     Por favor indique su ciudad.
                 </div>
             </div>
             <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                 <label for="barrio-nqn">Seleccione su barrio </label>
-                <input disabled id="barrio-nqn" class="form-control" value="<?= $sol_barrio ?>">
+                <input disabled id="barrio-nqn" class="form-control" value="<?= $solicitud['barrio'] ?>">
             </div>
         </div>
         <!-- BARRIO -->
         <div class="form-group row">
             <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12 ">
                 <label for="direccion-cp">Código Postal </label>
-                <input disabled id="direccion-cp" class="form-control" value="<?= $sol_cod_postal ?>">
+                <input disabled id="direccion-cp" class="form-control" value="<?= $solicitud['cp'] ?>">
             </div>
             <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12 ">
                 <label for="direccion-calle">Calle </label>
-                <input disabled id="direccion-calle" class="form-control" value="<?= $sol_dire_calle ?>">
+                <input disabled id="direccion-calle" class="form-control" value="<?= $solicitud['calle'] ?>">
             </div>
             <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12 ">
                 <label for="direccion-numero">Número </label>
-                <input disabled id="direccion-numero" class="form-control" value="<?= $sol_dire_numero ?>">
+                <input disabled id="direccion-numero" class="form-control" value="<?= $solicitud['nro_calle'] ?>">
             </div>
             <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12 ">
                 <label for="direccion-departamento">Departamento (opcional) </label>
-                <input disabled id="direccion-departamento" class="form-control" value="<?= $sol_dire_depto ?>">
+                <input disabled id="direccion-departamento" class="form-control" value="<?= $solicitud['depto'] ?>">
 
             </div>
             <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12 ">
                 <label for="direccion-piso">Piso (opcional) </label>
-                <input disabled id="direccion-piso" class="form-control" value="<?= $sol_dire_piso ?>">
+                <input disabled id="direccion-piso" class="form-control" value="<?= $solicitud['piso'] ?>">
 
             </div>
         </div>
@@ -91,12 +92,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <iframe id="archivo_antecedentes" title="Visor Antecedentes" width="100%" height="400" src="<?= $sol_antecedentes ?>">
+                <iframe id="archivo_antecedentes" title="Visor Antecedentes" width="100%" height="400" src="<?= $solicitud['path_ap'] ?>">
                 </iframe>
 
             </div>
             <div class="modal-footer">
-                <a type="button" href="<?= $sol_antecedentes ?>" download="antecedentes_<?= $sol_nombre ?>" target="_blank" class="btn btn-primary">Descargar</a>
+                <a type="button" href="<?= $solicitud['path_ap'] ?>" download="antecedentes_<?= $solicitud['nombre_te'] ?>" target="_blank" class="btn btn-primary">Descargar</a>
 
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
             </div>

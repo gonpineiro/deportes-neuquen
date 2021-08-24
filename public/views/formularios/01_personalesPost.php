@@ -12,7 +12,7 @@ $usuarioController = new UsuarioController();
 $solicitudController = new SolicitudController();
 
 /* datos de la sesion */
-include('session.php');
+include('../common/session.php');
 
 if (isset($_POST) && !empty($_POST) && isset($_POST['personalesSubmit'])) {
     if (checkFileDp()) {

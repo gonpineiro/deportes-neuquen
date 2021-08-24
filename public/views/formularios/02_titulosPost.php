@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 /* datos de la sesion */
-include('session.php');
+include('../common/session.php');
 
 if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
     $usuarioController = new UsuarioController();
@@ -17,22 +17,6 @@ if (isset($_POST) && !empty($_POST) && isset($_POST['tituloSubmit'])) {
     $id_solicitud = $userWithSolicitud['id_solicitud'];
     $id_usuario = $userWithSolicitud['id_usuario'];
     $tituloController = new TituloController();
-
-/*     if (isset($_POST['titulos-aprobados']) && count($_POST['titulos-aprobados']) > 0) {
-        foreach ($_POST['titulos-aprobados'] as $key => $titulo) {
-            $path = $_POST["titulos-aprobados-path"][$key];
-            $tituloStore = $tituloController->store(
-                [
-                    'id_solicitud' => $id_solicitud,
-                    'id_usuario' => $id_usuario,
-                    'titulo' => $titulo,
-                    'estado' => 'Nuevo',
-                    'path_file' => $_POST["titulos-aprobados-path"][$key],
-                    'deleted_at' => null
-                ]
-            );
-        }
-    } */
     
     if (count($_FILES['imagenTitulos']['size']) >= 1 && $_FILES['imagenTitulos']['size'][0] != 0) {
         if (checkFile()) {

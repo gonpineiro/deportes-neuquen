@@ -1,18 +1,14 @@
-<?PHP
-
-if ($_GET['id']) {
-    $id_solicitud = $_GET['id'];
-}
-?>
-
 <?php
 include '../../../app/config/config.php';
 
-if (!isset($_SESSION['usuario'])) {
-    header('HTTP/1.1 301 Moved Permanently');
-    header('Location: ' . WEBLOGIN);
-    exit();
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $solicitudController = new SolicitudController();
+    $solicitud = $solicitudController->getAllData($id);
+    $solicitud['telefono'] = is_null($solicitud['telefono']) ? $celular : $solicitud['telefono'];
+    $solicitud['email'] = is_null($solicitud['email']) ? $email : $solicitud['email'];
 }
+
 /* datos de la sesion */
 include('../common/session.php');
 $categoriaActividadController = new CategoriaActividadController();

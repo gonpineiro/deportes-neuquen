@@ -1,7 +1,12 @@
 <?php
 include 'app/config/config.php';
+
+$nac = Nacionalidad::get();
+
+die();
+
 include('./app/seeder/ActivadesSeeder.php');
 include('./app/seeder/CategoriaActividadSeeder.php');
-die();
+
 $solicitudController = new SolicitudController();
 $solicitud = $solicitudController->getAllData(2);
