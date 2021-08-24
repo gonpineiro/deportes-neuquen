@@ -1,10 +1,3 @@
-<?PHP
-
-if ($_GET['id']) {
-    $id_solicitud = $_GET['id'];
-}
-?>
-
 <?php
 include '../../../app/config/config.php';
 
@@ -13,22 +6,17 @@ if (!isset($_SESSION['usuario'])) {
     header('Location: ' . WEBLOGIN);
     exit();
 }
+
 /* datos de la sesion */
 include('../common/session.php');
-// datos de la solicitud
-$sol_nombre = "Nombre Apellido";
-$sol_email = "mail@mail.com";
-$sol_celular = 54654654;
-$sol_nacionalidad = "Argentina";
-$sol_ciudad = "Neuquén";
-$sol_barrio = "Barrio X";
-$sol_cod_postal = 8300;
-$sol_dire_calle = "Evergreen";
-$sol_dire_numero = 3500;
-$sol_dire_depto = 1015;
-$sol_dire_piso = 5;
-$sol_antecedentes = "../../BASES_Y_CONDICIONES.pdf";
 
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $solicitudController = new SolicitudController();
+    $solicitud = $solicitudController->getAllData($id);
+    $solicitud['telefono'] = is_null($solicitud['telefono']) ? $celular : $solicitud['telefono'];
+    $solicitud['email'] = is_null($solicitud['email']) ? $email : $solicitud['email'];
+}
 ?>
 
 <?php include('../common/header.php'); ?>
@@ -36,7 +24,7 @@ $sol_antecedentes = "../../BASES_Y_CONDICIONES.pdf";
 <div class="body container" style="padding-bottom: 50px;">
     <?php include('../common/navbar.php'); ?>
     <div style="min-height: 50px;">
-        <h2 style="padding:30px 0px;color: #076AB3;">INFORMACIÓN SOLICITUD Nº <?= $id_solicitud ?></h2>
+        <h2 style="padding:30px 0px;color: #076AB3;">INFORMACIÓN SOLICITUD Nº <?= $id ?></h2>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="datosPersonales-tab" data-toggle="tab" href="#datosPersonales" role="tab" aria-controls="datosPersonales" aria-selected="true">Datos Personales</a>
