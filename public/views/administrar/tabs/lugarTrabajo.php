@@ -21,8 +21,8 @@
 
             </div>
             <br>
-        <?PHP          }
-        ?>
+        <?php } ?>
+
 
         <hr>
         <div class="buttonsRow container">
@@ -43,9 +43,7 @@
     </div>
 </div>
 
-
 <!-- Modal Formación Académica -->
-
 <?PHP
 foreach ($trabajos as $trabajo) { ?>
     <div class="modal fade" id="ModalLugar<?= $trabajo['id'] ?>" tabindex="-1" aria-labelledby="ModalLugar<?= $trabajo['id'] ?>ModalLabel" aria-hidden="true">
@@ -58,8 +56,13 @@ foreach ($trabajos as $trabajo) { ?>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <iframe id="archivo_lugar_<?= $trabajo['id'] ?>" title="Visor Titulo" width="100%" height="400" src="<?= $trabajo['path_file'] ?>">
-                    </iframe>
+                    <!-- Verificamos si es PDF/imagen -->
+                    <?php if (verFormatoArchivo($titulo['path_file']) == 'pdf') { ?>
+                        <iframe id="archivo_lugar_<?= $trabajo['id'] ?>" title="Visor Titulo" width="100%" height="400" src="<?= $trabajo['path_file'] ?>">
+                        </iframe>
+                    <?php } else { ?>
+                        <img style="width: 100%" src="<?= $trabajo['path_file'] ?>" alt="<?= $trabajo['lugar'] ?>">
+                    <?php } ?>
                 </div>
                 <div class="modal-footer">
                     <a type="button" href="<?= $trabajo['path_file'] ?>" download="titulo_<?= $trabajo['id'] . "_" . $solicitud['nombre_te'] ?>" target="_blank" class="btn btn-primary">Descargar</a>
