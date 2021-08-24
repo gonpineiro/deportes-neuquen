@@ -1,7 +1,6 @@
-<div class="form-horizontal mx-auto needs-validation" name="form-1" id="form-1" novalidate>
+<div class="form-horizontal mx-auto">
     <div class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
         <!-- DATOS PERSONALES -->
-        <h3 class="text-white"><?= $sol_nombre ?></h3>
         <h4 class="text-white">Datos personales</h4>
         <hr>
         <div class="form-group row">

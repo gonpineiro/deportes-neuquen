@@ -15,6 +15,8 @@ if (!isset($_SESSION['usuario'])) {
 }
 /* datos de la sesion */
 include('../common/session.php');
+$categoriaActividadController = new CategoriaActividadController();
+$actividadController = new ActividadController();
 // datos de la solicitud
 $sol_nombre = "Nombre Apellido";
 $sol_email = "mail@mail.com";
@@ -28,7 +30,39 @@ $sol_dire_numero = 3500;
 $sol_dire_depto = 1015;
 $sol_dire_piso = 5;
 $sol_antecedentes = "../../BASES_Y_CONDICIONES.pdf";
-
+$sol_titulo = [
+    0 => [
+        "id" => "1",
+        "titulo" => "Licenciado en Educación Física",
+        "path_file" => "../../BASES_Y_CONDICIONES.pdf",
+    ],
+    1 => [
+        "id" => "2",
+        "titulo" => "Maestro en Judo",
+        "path_file" => "../../BASES_Y_CONDICIONES.pdf",
+    ],
+];
+$sol_trabajo = [
+    0 => [
+        "id" => "1",
+        "lugar" => "Ferraciolli",
+        "path_file" => "../../BASES_Y_CONDICIONES.pdf",
+    ],
+    1 => [
+        "id" => "2",
+        "lugar" => "Ectremo Deborte",
+        "path_file" => "../../BASES_Y_CONDICIONES.pdf",
+    ],
+];
+$sol_actividades =
+    [
+        0 => [
+            "nombre" => "Judo",
+        ],
+        1 => [
+            "nombre" => "Balonmano",
+        ],
+    ];
 ?>
 
 <?php include('../common/header.php'); ?>
@@ -36,7 +70,7 @@ $sol_antecedentes = "../../BASES_Y_CONDICIONES.pdf";
 <div class="body container" style="padding-bottom: 50px;">
     <?php include('../common/navbar.php'); ?>
     <div style="min-height: 50px;">
-        <h2 style="padding:30px 0px;color: #076AB3;">INFORMACIÓN SOLICITUD Nº <?= $id_solicitud ?></h2>
+        <h2 style="padding:30px 0px;color: #076AB3;">INFORMACIÓN SOLICITUD Nº <?= $id_solicitud ?> - <?= $sol_nombre ?></h2>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="datosPersonales-tab" data-toggle="tab" href="#datosPersonales" role="tab" aria-controls="datosPersonales" aria-selected="true">Datos Personales</a>
