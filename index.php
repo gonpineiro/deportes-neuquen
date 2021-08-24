@@ -1,6 +1,10 @@
 <?php
 include 'app/config/config.php';
 
+$imagen = "im..sda.gssd.---ssdsen.pdfsdsd";
+var_dump(verFormatoArchivo($imagen));
+die();
+
 $nac = Nacionalidad::get();
 
 die();

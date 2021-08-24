@@ -92,9 +92,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <iframe id="archivo_antecedentes" title="Visor Antecedentes" width="100%" height="400" src="<?= $solicitud['path_ap'] ?>">
-                </iframe>
-
+                <?php if (verFormatoArchivo($solicitud['path_ap']) == 'pdf') { ?>
+                    <iframe id="archivo_antecedentes" title="Visor Antecedentes" width="100%" height="400" src="<?= $solicitud['path_ap'] ?>">
+                    </iframe>
+                <?php } else { ?>
+                    <img style="width: 100%" src="<?= $solicitud['path_ap'] ?>" alt="AP">
+                <?php } ?>
             </div>
             <div class="modal-footer">
                 <a type="button" href="<?= $solicitud['path_ap'] ?>" download="antecedentes_<?= $solicitud['nombre_te'] ?>" target="_blank" class="btn btn-primary">Descargar</a>
