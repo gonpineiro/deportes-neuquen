@@ -242,10 +242,11 @@ function utf8_converter($array, $json)
 {
     array_walk_recursive($array, function (&$item) {
         $item = utf8_encode($item);
+        if ($item == "") $item = null;
     });
-    if ($json === true) {
-        return json_encode($array);
-    }
+
+    if ($json === true) return json_encode($array);
+
     return $array;
 }
 
@@ -324,7 +325,7 @@ function mostrarError($tipo, $detalle = null)
     }
 }
 
-function formatName(string $string): string
+function formatString(string $string): string
 {
     return utf8_encode(trim($string));
 }

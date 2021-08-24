@@ -7,7 +7,10 @@
         foreach ($sol_titulo as $titulo) {
         ?>
             <div class="d-flex justify-content-between">
-                <div class="col-8">
+                <div class="col-6">
+                    <input type="text" class="form-control" value="<?= $titulo['titulo'] ?>" disabled>
+                </div>
+                <div class="col-2">
                     <input type="text" class="form-control" value="<?= $titulo['titulo'] ?>" disabled>
                 </div>
                 <div class="col-auto">

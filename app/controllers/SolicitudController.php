@@ -41,11 +41,13 @@ class SolicitudController
             cargarLog(null, null, $error, get_class(), __FUNCTION__);
         }
         while ($row = odbc_fetch_array($query)) {
-            $nombreApellido = explode(",", $row['nombre_te']);
-            $row['nombre'] = formatName($nombreApellido[1]);
-            $row['apellido'] = formatName($nombreApellido[0]);
-            $row['fecha_alta'] = formatDate($row['fecha_alta']);
+            $row = utf8_converter($row, false);
 
+            $nombreApellido = explode(",", $row['nombre_te']);
+
+            $row['nombre'] = $nombreApellido[1];
+            $row['apellido'] = $nombreApellido[0];
+            $row['fecha_alta'] = formatDate($row['fecha_alta']);
             $row['fecha_evaluacion'] = !is_null($row['fecha_evaluacion']) ? formatDate($row['fecha_evaluacion']) : null;
 
             unset($row['nombre_te']);
@@ -60,7 +62,7 @@ class SolicitudController
         $solicitud = $this->getSolicitudesWhereID($id);
 
         $nombreApellido = explode(",", $solicitud['nombre_te']);
-        $solicitud['nombre_te'] = formatName($nombreApellido[0] . $nombreApellido[1]);
+        $solicitud['nombre_te'] = $nombreApellido[0] . $nombreApellido[1];
 
         /* Agregar los titulos */
         $tituloController = new TituloController();
@@ -86,14 +88,16 @@ class SolicitudController
     {
         $where = "WHERE sol.id = '$id'";
         $conn = new BaseDatos();
-        $array = [];
         $query =  $conn->query($this->insertSqlQuery($where));
         /* Guardamos los errores */
         if ($conn->getError()) {
             $error =  $conn->getError() . ' | Obtener una solicitud';
             cargarLog(null, $id, $error, get_class(), __FUNCTION__);
         }
-        return odbc_fetch_array($query);
+        $solicitud = odbc_fetch_array($query);
+        $solicitud = utf8_converter($solicitud, false);
+
+        return $solicitud;
     }
 
     private function insertSqlQuery($where)
