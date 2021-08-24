@@ -6,17 +6,16 @@
         <?PHP
         foreach ($trabajos as $trabajo) {
         ?>
-            <div class="d-flex justify-content-between">
-                <div class="col-8">
-                    <input type="text" class="form-control" value="<?= $trabajo['lugar'] ?>" disabled>
+            <div class="row">
+                <div class="input-group col-md-8 col-12 pb-2">
+                    <input type="text" class="form-control" style="border-radius: 0px;;" value="<?= $trabajo['lugar'] ?>" disabled>
+                    <span class="input-group-text" style="border-radius: 0px;"><?= $trabajo['estado'] ?> </span>
+                    <button type="button" class="input-group-text tooltip-test" title="Tooltip" style="border-radius: 0px;" data-toggle="modal" data-target="#ModalLugar<?= $trabajo['id'] ?>"><i class="bi bi-download"></i></button>
                 </div>
-                <div class="col-auto">
-                    <a class="btn btn-primary bg-info" href="<?= $trabajo['path_file'] ?>" download="<?= $trabajo['lugar'] . "-" . $sol_nombre ?>" target="_blank">Descargar</a>
-                </div>
-                <div class="col-auto">
+                <div class="col pb-2 text-center">
                     <button class="btn btn-primary bg-danger" id="verBtn">Rechazar</button>
                 </div>
-                <div class="col-auto">
+                <div class="col pb-2 text-center">
                     <button class="btn btn-primary bg-success" id="verBtn">Aprobar</button>
                 </div>
 
@@ -43,3 +42,30 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal Formación Académica -->
+
+<?PHP
+foreach ($trabajos as $trabajo) { ?>
+    <div class="modal fade" id="ModalLugar<?= $trabajo['id'] ?>" tabindex="-1" aria-labelledby="ModalLugar<?= $trabajo['id'] ?>ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLugar<?= $trabajo['id'] ?>ModalLabel"><?= $trabajo['lugar'] ?></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe id="archivo_lugar_<?= $trabajo['id'] ?>" title="Visor Titulo" width="100%" height="400" src="<?= $trabajo['path_file'] ?>">
+                    </iframe>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" href="<?= $trabajo['path_file'] ?>" download="titulo_<?= $trabajo['id'] . "_" . $solicitud['nombre_te'] ?>" target="_blank" class="btn btn-primary">Descargar</a>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?PHP } ?>
