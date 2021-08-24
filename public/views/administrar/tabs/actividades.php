@@ -1,7 +1,3 @@
-<?php
-$categoriasActividades = $categoriaActividadController->index();
-?>
-
 <form action="04_actividadesPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form-4" id="form-4" novalidate>
     <div id="paso-3" class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
         <h4 class="text-white">Inscripción por Actividades</h4>
@@ -10,20 +6,20 @@ $categoriasActividades = $categoriaActividadController->index();
         <div class="form-group">
 
             <?php while ($row = odbc_fetch_array($categoriasActividades)) {
-                $actividades = $actividadController->index(['id_categoria' => $row['id']]);
+                $actividadesTable = $actividadController->index(['id_categoria' => $row['id']]);
             ?>
                 <h5 class="text-white pt-4 pb-2"><?= $row['nombre'] ?></h5>
                 <div class="row">
                     <?php
 
-                    while ($row = odbc_fetch_array($actividades)) { ?>
+                    while ($row = odbc_fetch_array($actividadesTable)) { ?>
                         <div class="col-lg-3 col-md-6 pb-2">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input checkboxes" id="checkbox<?= $row['id'] ?>" value="<?= $row['id'] ?>" name="actividades[]
                                 " <?PHP
-                                    foreach ($sol_actividades as $sol_actividad) {
+                                    foreach ($actividades as $act) {
 
-                                        if ($sol_actividad['nombre'] == $row['nombre']) {
+                                        if ($act['nombre'] == $row['nombre']) {
                                             echo "checked";
                                         }
                                     }

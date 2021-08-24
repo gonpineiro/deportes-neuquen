@@ -4,14 +4,14 @@
         <h4 class="text-white">Formación Académica</h4>
         <hr>
         <?PHP
-        foreach ($sol_titulo as $titulo) {
+        foreach ($titulos as $titulo) {
         ?>
             <div class="d-flex justify-content-between">
                 <div class="col-6">
                     <input type="text" class="form-control" value="<?= $titulo['titulo'] ?>" disabled>
                 </div>
                 <div class="col-2">
-                    <input type="text" class="form-control" value="<?= $titulo['titulo'] ?>" disabled>
+                    <input type="text" class="form-control" value="<?= $titulo['estado'] ?>" disabled>
                 </div>
                 <div class="col-auto">
                     <a class="btn btn-primary bg-info" href="<?= $titulo['path_file'] ?>" download="<?= $titulo['titulo'] . "-" . $sol_nombre ?>" target="_blank">Descargar</a>
