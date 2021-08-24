@@ -310,7 +310,7 @@ function otroTitulo() {
         "'>" +
         "<input id='imagen-titulo-" +
         numInputs +
-        "' class='custom-file-input imagen pointer' type='file' name='imagenTitulos[]' accept='image/png, image/jpeg' required>" +
+        "' class='custom-file-input imagen pointer' type='file' name='imagenTitulos[]' accept='image/png, image/jpeg, application/pdf' required>" +
         "<label for='imagen-titulo-" +
         numInputs +
         "' class='custom-file-label' id='label-imagen-titulo'><span style='font-size: 1rem;'>Título o certificado (imagen o pdf)</span></label>" +
@@ -331,7 +331,7 @@ function sacarOtroTitulo() {
 }
 
 function sacarTituloAprobado() {
-  wrapper = document.getElementsByClassName('titulos-aprobados');
+  wrapper = document.getElementsByClassName("titulos-aprobados");
   console.log(wrapper);
   var total_fields = wrapper[0].childNodes.length;
   if (total_fields > 5) {
@@ -370,7 +370,7 @@ function otroLugarTrabajo() {
         "'>" +
         "<input id='imagen-certificacion-lugar-" +
         numInputs +
-        "' class='custom-file-input pointer' type='file' name='imagenLugares[]' accept='image/png, image/jpeg'>" +
+        "' class='custom-file-input pointer' type='file' name='imagenLugares[]' accept='image/png, image/jpeg, application/pdf'>" +
         "<label for='imagen-certificacion-lugar-" +
         numInputs +
         "' class='custom-file-label' id='label-imagen-certificacion-lugar-0'><span style='font-size: 1rem;'>Certificación Laboral (imagen o pdf)</span></label>" +
