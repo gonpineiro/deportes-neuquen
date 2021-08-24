@@ -1,10 +1,7 @@
 <?php
 include '../../../app/config/config.php';
 
-if (isset($_SESSION['userProfiles']) && $_SESSION['userProfiles'] != 3) {
-    header('Location: ' . WEBLOGIN);
-    exit();
-}
+verificarUsuario(3);
 
 $nombreapellido = explode(",", $_SESSION['usuario']["razonSocial"]);
 $nombre = $nombreapellido[1];

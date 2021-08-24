@@ -1,19 +1,29 @@
 <?php
 include '../../../app/config/config.php';
+
+verificarUsuario(3);
+
 /* datos de la sesion */
 include('../common/session.php');
 
+
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
+    $actividadController = new ActividadController();
     $solicitudController = new SolicitudController();
+
     $solicitud = $solicitudController->getAllData($id);
     $solicitud['telefono'] = is_null($solicitud['telefono']) ? $celular : $solicitud['telefono'];
     $solicitud['email'] = is_null($solicitud['email']) ? $email : $solicitud['email'];
+    $titulos = $solicitud['titulo'];
+    $trabajos = $solicitud['trabajo'];
+
+    $categoriaActividadController = new CategoriaActividadController();
+    $categoriasActividades = $categoriaActividadController->index();
+
+    $actividades = $solicitud['actividades'];
 }
 
-
-$categoriaActividadController = new CategoriaActividadController();
-$actividadController = new ActividadController();
 // datos de la solicitud
 $sol_nombre = "Nombre Apellido";
 $sol_email = "mail@mail.com";
@@ -67,7 +77,7 @@ $sol_actividades =
 <div class="body container" style="padding-bottom: 50px;">
     <?php include('../common/navbar.php'); ?>
     <div style="min-height: 50px;">
-        <h2 style="padding:30px 0px;color: #076AB3;">INFORMACIÓN SOLICITUD Nº <?= $id ?> - <?= $sol_nombre ?></h2>
+        <h2 style="padding:30px 0px;color: #076AB3;">INFORMACIÓN SOLICITUD Nº <?= $id ?> - <?= $solicitud['nombre_te'] ?></h2>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="datosPersonales-tab" data-toggle="tab" href="#datosPersonales" role="tab" aria-controls="datosPersonales" aria-selected="true">Datos Personales</a>
@@ -102,11 +112,7 @@ $sol_actividades =
                 <?php include('./tabs/condiciones.php'); ?>
             </div>
         </div>
-
     </div>
-</div>
-
-
 </div>
 
 <?php include('./components/footer.php'); ?>

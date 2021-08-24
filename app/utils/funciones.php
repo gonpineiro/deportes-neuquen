@@ -335,3 +335,11 @@ function formatDate(string $date, string $format = 'd/m/Y'): string
     $timestamp = strtotime($date);
     return date($format, $timestamp);
 }
+
+function verificarUsuario(int $id): void
+{
+    if (isset($_SESSION['userProfiles']) && $_SESSION['userProfiles'] != $id) {
+        header('Location: ' . WEBLOGIN);
+        exit();
+    }
+}

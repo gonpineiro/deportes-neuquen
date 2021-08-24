@@ -4,7 +4,7 @@
         <h4 class="text-white">Formación Académica</h4>
         <hr>
         <?PHP
-        foreach ($sol_titulo as $titulo) {
+        foreach ($titulos as $titulo) {
         ?>
             <div class="row">
                 <div class="input-group col-md-8 col-12 pb-2">

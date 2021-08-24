@@ -4,14 +4,14 @@
         <h4 class="text-white">Lugar de Trabajo</h4>
         <hr>
         <?PHP
-        foreach ($sol_trabajo as $lugar) {
+        foreach ($trabajos as $trabajo) {
         ?>
             <div class="d-flex justify-content-between">
                 <div class="col-8">
-                    <input type="text" class="form-control" value="<?= $lugar['lugar'] ?>" disabled>
+                    <input type="text" class="form-control" value="<?= $trabajo['lugar'] ?>" disabled>
                 </div>
                 <div class="col-auto">
-                    <a class="btn btn-primary bg-info" href="<?= $lugar['path_file'] ?>" download="<?= $lugar['lugar'] . "-" . $sol_nombre ?>" target="_blank">Descargar</a>
+                    <a class="btn btn-primary bg-info" href="<?= $trabajo['path_file'] ?>" download="<?= $trabajo['lugar'] . "-" . $sol_nombre ?>" target="_blank">Descargar</a>
                 </div>
                 <div class="col-auto">
                     <button class="btn btn-primary bg-danger" id="verBtn">Rechazar</button>

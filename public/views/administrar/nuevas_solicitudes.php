@@ -1,11 +1,8 @@
 <?php
 include '../../../app/config/config.php';
 
-if (!isset($_SESSION['usuario'])) {
-    header('HTTP/1.1 301 Moved Permanently');
-    header('Location: ' . WEBLOGIN);
-    exit();
-}
+verificarUsuario(3);
+
 /* datos de la sesion */
 include('../common/session.php');
 
