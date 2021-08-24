@@ -266,12 +266,8 @@ spl_autoload_register(function ($class_name) {
 });
 
 /* Obtenemos la imagen de Renaper */
-function getImageByRenaper($array, $jsonStr = true)
+function getImageByRenaper($genero, $dni, $jsonStr = true)
 {
-    // busca la foto dni
-    $genero = $array['genero_te'];
-    $dni = $array['dni_te'];
-
     $response = file_get_contents('https://weblogin.muninqn.gov.ar/api/Renaper/waloBackdoor/' . $genero . $dni);
     $json = json_decode($response);
     $imagen = $json->{'docInfo'}->{'imagen'};

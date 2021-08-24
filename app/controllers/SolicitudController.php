@@ -64,6 +64,7 @@ class SolicitudController
         $nombreApellido = explode(",", $solicitud['nombre_te']);
         $solicitud['nombre_te'] = $nombreApellido[0] . $nombreApellido[1];
 
+        $solicitud['foto'] = getImageByRenaper($solicitud['genero'], $solicitud['dni'], false)['imagen'];
         /* Agregar los titulos */
         $tituloController = new TituloController();
         $titulo = $tituloController->index(['id_solicitud' => $id]);
@@ -106,7 +107,8 @@ class SolicitudController
             "SELECT 
             sol.id as id,
             wap_usr.nombre as nombre_te,
-            wap_usr.Documento as dni,
+            wap_usr.documento as dni,
+            wap_usr.genero as genero,
             usu.direccion_cp as cp,
             usu.direccion_calle as calle,
             usu.direccion_nro as nro_calle,
