@@ -4,14 +4,6 @@
         <h4 class="text-white">Datos personales</h4>
         <hr>
         <div class="form-group row">
-            <!-- <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
-                <label for="email"><strong>Direcci&oacute;n de email</strong> </label>
-                <input disabled readonly type="email" id="email" class="form-control" value="<?= $solicitud['email'] ?>">
-            </div>
-            <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
-                <label for="telefono">Actualice su n&uacute;mero de tel&eacute;fono </label>
-                <input disabled readonly type="number" id="telefono" class="form-control" value="<?= $solicitud['telefono'] ?>">
-            </div> -->
             <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                 <label for="nacionalidad">Nacionalidad </label>
                 <input disabled readonly id="nacionalidad" class="form-control" value="<?= $solicitud['nacionalidad'] ?>" style="display:block !important;">
@@ -28,9 +20,6 @@
                 <label for="barrio-nqn">Seleccione su barrio </label>
                 <input disabled readonly id="barrio-nqn" class="form-control" value="<?= $solicitud['barrio'] ?>">
             </div>
-        </div>
-        <!-- BARRIO -->
-        <div class="form-group row">
             <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12 ">
                 <label for="direccion-cp">Código Postal </label>
                 <input disabled readonly id="direccion-cp" class="form-control" value="<?= $solicitud['cp'] ?>">
@@ -48,16 +37,13 @@
                 <input disabled readonly id="direccion-departamento" class="form-control" value="<?= $solicitud['depto'] ?>">
 
             </div>
-            <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12 ">
+            <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
                 <label for="direccion-piso">Piso (opcional) </label>
                 <input disabled readonly id="direccion-piso" class="form-control" value="<?= $solicitud['piso'] ?>">
-
             </div>
-        </div>
-        <hr>
-        <div class="form-group row pt-3">
-            <div class="form-group col-lg-6 col-md-6 col-sd-12 col-xs-12 ">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#antecedentesModal">Ver Antecedentes</button>
+            <div class="form-group col-lg-4 col-md-4 col-sd-12 col-xs-12">
+                <label style="color:transparent">Antecedentes</label>
+                <button type="button" class="btn btn-primary" style="width: 100%" data-toggle=" modal" data-target="#antecedentesModal">Ver Antecedentes</button>
             </div>
         </div>
         <hr>

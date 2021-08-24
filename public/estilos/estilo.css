@@ -242,7 +242,7 @@ table.dataTable tbody tr:hover {
 .pointer {
   cursor: pointer;
 }
-.nav-tabs {
+.nav-item {
   background-color: rgb(255, 255, 255);
 }
 .nav-tabs .nav-item.show .nav-link,

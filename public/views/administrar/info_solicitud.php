@@ -34,8 +34,8 @@ if (isset($_GET['id'])) {
         <div class="row">
             <div class="col-12 col-md-3">
                 <div class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;border-top-left-radius: .25rem;border-top-right-radius: .25rem;">
-                    <img src=<?= $solicitud['foto'] ?> class="rounded mx-auto d-block px-2" style="width: 100%;" alt="">
-                    <h5 class="text-white text-center pt-4"><?= $solicitud['nombre_te'] ?></h5>
+                    <img src=<?= $solicitud['foto'] ?> class="rounded mx-auto d-block px-2 pb-3" style="width: 100%;" alt="">
+                    <h5 class="text-white text-center py-3"><?= $solicitud['nombre_te'] ?></h5>
                     <p><i class="bi bi-envelope-fill"></i> <?= $solicitud['email'] ?></p>
                     <p><i class="bi bi-phone-fill"></i> <?= $solicitud['telefono'] ?></p>
                 </div>
