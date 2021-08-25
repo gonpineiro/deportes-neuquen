@@ -20,7 +20,8 @@ if (isset($_POST["actividadesUpdateSubmit"])) {
         );
     }
 
-    header('Location: ../info_solicitud.php?id=' .  $id_solicitud);
+    $_SESSION['tab_active'] = 'actividad';
+    header('Location: ../info_solicitud.php?id=' .  $id_solicitud . '#main');
 } else {
     //
 }

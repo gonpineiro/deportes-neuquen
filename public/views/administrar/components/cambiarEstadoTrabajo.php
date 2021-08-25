@@ -13,16 +13,14 @@ $trabajoController = new TrabajoController();
 if (isset($_POST) && !empty($_POST)) {
     $id_trabajo = $_POST['id_titulo'];
     $id_solicitud = $_POST['id_solicitud'];
-    if (isset($_POST['rechazarBtn'])) {
-        $estado = "Rechazado";
-    }
-    if (isset($_POST['aprobarBtn'])) {
-        $estado = "Aprobado";
-    }
+
+    if (isset($_POST['rechazarBtn'])) $estado = "Rechazado";
+    if (isset($_POST['aprobarBtn'])) $estado = "Aprobado";
 
     $trabajoController->update(['estado' => $estado], $id_trabajo);
 
-    header('Location: ../info_solicitud.php?id=' .  $id_solicitud);
+    $_SESSION['tab_active'] = 'trabajo';
+    header('Location: ../info_solicitud.php?id=' .  $id_solicitud . '#main');
     exit();
 } else {
     exit();
