@@ -4,19 +4,27 @@
         <h4 class="text-white">Formación Académica</h4>
         <hr>
         <?php foreach ($titulos as $titulo) { ?>
-            <div class="row">
-                <div class="input-group col-md-8 col-12 pb-2">
-                    <input type="text" class="form-control" style="border-radius: 0px;;" value="<?= $titulo['titulo'] ?>" disabled>
-                    <span class="input-group-text" style="border-radius: 0px;"><?= $titulo['estado'] ?> </span>
-                    <button type="button" class="input-group-text tooltip-test" title="Tooltip" style="border-radius: 0px" data-toggle="modal" data-target="#ModalTitulo<?= $titulo['id'] ?>"><i class="bi bi-download"></i></button>
+            <form class="row" action="./components/cambiarEstadoTitulo.php" method="POST">
+                <div class="form-inline col-md-8 col-12 pb-2">
+                    <div class="input-group" style="width: 100%;">
+                        <input type="text" hidden value="<?= $titulo['id'] ?>" name="id_titulo">
+                        <input type="text" hidden value="<?= $titulo['id_solicitud'] ?>" name="id_solicitud">
+                        <input type="text" class="form-control" style="border-radius: 0px;" value="<?= $titulo['titulo'] ?>" disabled>
+                        <span class="input-group-text" style="border-radius: 0px;"><?= $titulo['estado'] ?> </span>
+                        <button type="button" class="input-group-text tooltip-test" title="Tooltip" style="border-radius: 0px" data-toggle="modal" data-target="#ModalTitulo<?= $titulo['id'] ?>"><i class="bi bi-download"></i></button>
+                    </div>
                 </div>
-                <div class="col pb-2 text-center">
-                    <button class="btn btn-primary bg-danger" style="width: 100%;border:0px!important" id="verBtn">Rechazar</button>
+                <div class="col-md-4 col-12">
+                    <div class="row">
+                        <div class="col pb-2 text-center">
+                            <button class="btn btn-primary bg-danger" style="width: 100%;border:0px!important" type="submit" name="rechazarBtn" id="rechazarBtn">Rechazar</button>
+                        </div>
+                        <div class="col pb-2 text-center">
+                            <button class="btn btn-primary bg-success" style="width: 100%;border:0px!important" type="submit" name="aprobarBtn" id="aprobarBtn">Aprobar</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col pb-2 text-center">
-                    <button class="btn btn-primary bg-success" style="width: 100%;border:0px!important" id="verBtn">Aprobar</button>
-                </div>
-            </div>
+            </form>
             <br>
         <?php } ?>
 
@@ -29,12 +37,6 @@
                         <input class="btn btn-primary" type="submit" disabled id="submitBtn1" value="Confirmar y Guardar" name="personalesSubmit" />
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- POR SI LO USAMOS. BORRAR SI NO SE USA :D-->
-        <div class="process" style="display: none;">
-            <div class="spinner-border text-light" role="status">
-                <span class="sr-only">Loading...</span>
             </div>
         </div>
     </div>
