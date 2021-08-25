@@ -60,21 +60,34 @@ class SolicitudController
     public function getAllData($id)
     {
         $solicitud = $this->getSolicitudesWhereID($id);
-
+        
         $nombreApellido = explode(",", $solicitud['nombre_te']);
         $solicitud['nombre_te'] = $nombreApellido[0] . $nombreApellido[1];
 
         $solicitud['foto'] = getImageByRenaper($solicitud['genero'], $solicitud['dni'], false)['imagen'];
+
         /* Agregar los titulos */
-        $tituloController = new TituloController();
-        $titulo = $tituloController->index(['id_solicitud' => $id]);
         $solicitud['titulo'] = [];
+        $tituloController = new TituloController();
+
+        /* Titulos Nuevos */
+        $titulo = $tituloController->index(['id_usuario' => $solicitud['usu_id'], 'estado' => "'Nuevo'",]);
+        while ($row = odbc_fetch_array($titulo)) array_push($solicitud['titulo'], $row);
+
+        /* Titulos Aprobados */
+        $titulo = $tituloController->index(['id_usuario' => $solicitud['usu_id'], 'estado' => "'Aprobado'"]);
         while ($row = odbc_fetch_array($titulo)) array_push($solicitud['titulo'], $row);
 
         /* Agregar los Trabajos */
         $trabajoController = new TrabajoController();
-        $trabajo = $trabajoController->index(['id_solicitud' => $id]);
         $solicitud['trabajo'] = [];
+
+        /* Trabajos Nuevos */
+        $trabajo = $trabajoController->index(['id_usuario' => $solicitud['usu_id'], 'estado' => "'Nuevo'"]);
+        while ($row = odbc_fetch_array($trabajo)) array_push($solicitud['trabajo'], $row);
+        
+        /* Trabajos Aprobado */
+        $trabajo = $trabajoController->index(['id_usuario' => $solicitud['usu_id'], 'estado' => "'Aprobado'"]);
         while ($row = odbc_fetch_array($trabajo)) array_push($solicitud['trabajo'], $row);
 
         /* Agregar las actividades */
@@ -110,6 +123,7 @@ class SolicitudController
             wap_usr.documento as dni,
             wap_usr.genero as genero,
             usu.direccion_cp as cp,
+            usu.id as usu_id,
             usu.direccion_calle as calle,
             usu.direccion_nro as nro_calle,
             usu.direccion_depto as depto,
