@@ -4,7 +4,7 @@
         <h4 class="text-white">Lugar de Trabajo</h4>
         <hr>
         <?PHP
-        foreach ($trabajos as $trabajo) {
+        foreach ($trabajos['actual'] as $trabajo) {
         ?>
             <div class="row">
                 <div class="input-group col-md-8 col-12 pb-2">
@@ -45,7 +45,7 @@
 
 <!-- Modal Formación Académica -->
 <?PHP
-foreach ($trabajos as $trabajo) { ?>
+foreach ($trabajos['actual'] as $trabajo) { ?>
     <div class="modal fade" id="ModalLugar<?= $trabajo['id'] ?>" tabindex="-1" aria-labelledby="ModalLugar<?= $trabajo['id'] ?>ModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

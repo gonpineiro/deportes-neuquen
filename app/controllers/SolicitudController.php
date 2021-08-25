@@ -60,35 +60,63 @@ class SolicitudController
     public function getAllData($id)
     {
         $solicitud = $this->getSolicitudesWhereID($id);
-        
+
         $nombreApellido = explode(",", $solicitud['nombre_te']);
         $solicitud['nombre_te'] = $nombreApellido[0] . $nombreApellido[1];
-
+        $solicitud['ciudad'] = is_null($solicitud['ciudad']) ? $solicitud['otra_ciudad'] : $solicitud['ciudad'];
         $solicitud['foto'] = getImageByRenaper($solicitud['genero'], $solicitud['dni'], false)['imagen'];
 
         /* Agregar los titulos */
-        $solicitud['titulo'] = [];
+        $solicitud['titulo']['actual'] = [];
+        $solicitud['titulo']['viejos'] = [];
         $tituloController = new TituloController();
 
         /* Titulos Nuevos */
-        $titulo = $tituloController->index(['id_usuario' => $solicitud['usu_id'], 'estado' => "'Nuevo'",]);
-        while ($row = odbc_fetch_array($titulo)) array_push($solicitud['titulo'], $row);
+        $titulo = $tituloController->index(['id_solicitud' => $id, 'estado' => "'Nuevo'"]);
+        while ($row = odbc_fetch_array($titulo)) array_push($solicitud['titulo']['actual'], $row);
 
-        /* Titulos Aprobados */
+        /* Titulos Aprobados de la solicitud actual */
+        $titulo = $tituloController->index(['id_solicitud' => $id, 'estado' => "'Aprobado'"]);
+        while ($row = odbc_fetch_array($titulo)) array_push($solicitud['titulo']['actual'], $row);
+
+        /* Titulos Aprobados de solicitudes antiguas/aprobadas */
         $titulo = $tituloController->index(['id_usuario' => $solicitud['usu_id'], 'estado' => "'Aprobado'"]);
-        while ($row = odbc_fetch_array($titulo)) array_push($solicitud['titulo'], $row);
+        while ($row = odbc_fetch_array($titulo)) array_push($solicitud['titulo']['viejos'], $row);
+
+        $solicitud['titulo']['viejos'] = array_filter($solicitud['titulo']['viejos'], function ($data) {
+            global $id;
+            return $data['estado'] == 'Aprobado' && $data['id_solicitud'] == $id;
+        });
+
+        /* Titulos Rechazado de la solicitud actual */
+        $titulo = $tituloController->index(['id_solicitud' => $id, 'estado' => "'Rechazado'"]);
+        while ($row = odbc_fetch_array($titulo)) array_push($solicitud['titulo']['actual'], $row);
 
         /* Agregar los Trabajos */
         $trabajoController = new TrabajoController();
-        $solicitud['trabajo'] = [];
+        $solicitud['trabajo']['actual'] = [];
+        $solicitud['trabajo']['viejos'] = [];
 
         /* Trabajos Nuevos */
-        $trabajo = $trabajoController->index(['id_usuario' => $solicitud['usu_id'], 'estado' => "'Nuevo'"]);
-        while ($row = odbc_fetch_array($trabajo)) array_push($solicitud['trabajo'], $row);
+        $trabajo = $trabajoController->index(['id_solicitud' => $id, 'estado' => "'Nuevo'"]);
+        while ($row = odbc_fetch_array($trabajo)) array_push($solicitud['trabajo']['actual'], $row);
         
-        /* Trabajos Aprobado */
-        $trabajo = $trabajoController->index(['id_usuario' => $solicitud['usu_id'], 'estado' => "'Aprobado'"]);
-        while ($row = odbc_fetch_array($trabajo)) array_push($solicitud['trabajo'], $row);
+        /* Trabajos Aprobado de la solicitud actual */
+        $trabajo = $trabajoController->index(['id_solicitud' => $id, 'estado' => "'Aprobado'"]);
+        while ($row = odbc_fetch_array($trabajo)) array_push($solicitud['trabajo']['actual'], $row);
+
+        /* Trabajos Aprobados de solicitudes antiguas/aprobadas */
+        $trabajo = $tituloController->index(['id_usuario' => $solicitud['usu_id'], 'estado' => "'Aprobado'"]);
+        while ($row = odbc_fetch_array($trabajo)) array_push($solicitud['trabajo']['viejos'], $row);
+
+        $solicitud['trabajo']['viejos'] = array_filter($solicitud['trabajo']['viejos'], function ($data) {
+            global $id;
+            return $data['estado'] == 'Aprobado' && $data['id_solicitud'] == $id;
+        });
+
+        /* Trabajo Rechazado de la solicitud actual */
+        $trabajo = $tituloController->index(['id_solicitud' => $id, 'estado' => "'Rechazado'"]);
+        while ($row = odbc_fetch_array($trabajo)) array_push($solicitud['trabajo']['actual'], $row);
 
         /* Agregar las actividades */
         $solicitudesActividadesController = new SolicitudActividadController();
@@ -132,7 +160,8 @@ class SolicitudController
             usu.telefono as telefono,
             usu.nacionalidad as nacionalidad,
             bar.nombre as barrio,
-            usu_te.otro_barrio,            
+            usu_te.otro_barrio,   
+            usu.otra_ciudad as otra_ciudad,         
             CASE
                 WHEN bar.id IS NOT NULL      
                 THEN (select nombre from deportes_ciudades dep_ciu where dep_ciu.id = bar.id_ciudad)          

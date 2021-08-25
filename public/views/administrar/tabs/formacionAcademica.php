@@ -3,7 +3,7 @@
         <!-- DATOS PERSONALES -->
         <h4 class="text-white">Formación Académica</h4>
         <hr>
-        <?php foreach ($titulos as $titulo) { ?>
+        <?php foreach ($titulos['actual'] as $titulo) { ?>
             <form class="row" action="./components/cambiarEstadoTitulo.php" method="POST">
                 <div class="form-inline col-md-8 col-12 pb-2">
                     <div class="input-group" style="width: 100%;">
@@ -44,7 +44,7 @@
 
 <!-- Modal Formación Académica -->
 <?php
-foreach ($titulos as $titulo) { ?>
+foreach ($titulos['actual'] as $titulo) { ?>
     <div class="modal fade" id="ModalTitulo<?= $titulo['id'] ?>" tabindex="-1" aria-labelledby="ModalTitulo<?= $titulo['id'] ?>ModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
