@@ -106,7 +106,7 @@ class SolicitudController
         while ($row = odbc_fetch_array($trabajo)) array_push($solicitud['trabajo']['actual'], $row);
 
         /* Trabajos Aprobados de solicitudes antiguas/aprobadas */
-        $trabajo = $tituloController->index(['id_usuario' => $solicitud['usu_id'], 'estado' => "'Aprobado'"]);
+        $trabajo = $trabajoController->index(['id_usuario' => $solicitud['usu_id'], 'estado' => "'Aprobado'"]);
         while ($row = odbc_fetch_array($trabajo)) array_push($solicitud['trabajo']['viejos'], $row);
 
         $solicitud['trabajo']['viejos'] = array_filter($solicitud['trabajo']['viejos'], function ($data) {
@@ -115,7 +115,7 @@ class SolicitudController
         });
 
         /* Trabajo Rechazado de la solicitud actual */
-        $trabajo = $tituloController->index(['id_solicitud' => $id, 'estado' => "'Rechazado'"]);
+        $trabajo = $trabajoController->index(['id_solicitud' => $id, 'estado' => "'Rechazado'"]);
         while ($row = odbc_fetch_array($trabajo)) array_push($solicitud['trabajo']['actual'], $row);
 
         /* Agregar las actividades */

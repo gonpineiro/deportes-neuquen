@@ -3,10 +3,12 @@
         <!-- DATOS PERSONALES -->
         <h4 class="text-white">Lugar de Trabajo</h4>
         <hr>
-        <?PHP
+        <?php
         foreach ($trabajos['actual'] as $trabajo) {
+            $rechazarDisabled = $trabajo['estado'] == 'Rechazado' ? 'disabled' : '';
+            $aprobarDisabled = $trabajo['estado'] == 'Aprobado' ? 'disabled' : '';
         ?>
-            <form class="row" action="./components/cambiarEstadoTrabajo.php" method="POST">
+            <form class="row pt-2 pb-2" style="margin-bottom: 0;" action="./components/cambiarEstadoTrabajo.php" method="POST">
                 <div class="form-inline col-md-8 col-12 pb-2">
                     <div class="input-group" style="width: 100%;">
                         <input type="text" hidden value="<?= $trabajo['id'] ?>" name="id_titulo">
@@ -19,15 +21,14 @@
                 <div class="col-md-4 col-12">
                     <div class="row">
                         <div class="col pb-2 text-center">
-                            <button class="btn btn-primary bg-danger" style="width: 100%;border:0px!important" type="submit" name="rechazarBtn" id="rechazarBtn">Rechazar</button>
+                            <button class="btn btn-primary bg-danger" style="width: 100%;border:0px!important" type="submit" name="rechazarBtn" id="rechazarBtn" <?= $rechazarDisabled ?>>Rechazar</button>
                         </div>
                         <div class="col pb-2 text-center">
-                            <button class="btn btn-primary bg-success" style="width: 100%;border:0px!important" type="submit" name="aprobarBtn" id="aprobarBtn">Aprobar</button>
+                            <button class="btn btn-primary bg-success" style="width: 100%;border:0px!important" type="submit" name="aprobarBtn" id="aprobarBtn" <?= $aprobarDisabled ?>>Aprobar</button>
                         </div>
                     </div>
                 </div>
             </form>
-            <br>
         <?php } ?>
 
 

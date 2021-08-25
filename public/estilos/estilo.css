@@ -325,3 +325,11 @@ table.dataTable tbody tr:hover {
   opacity: 0.5;
   display: block;
 }
+
+.bg-danger:hover:disabled {
+  background-color: #dc3545!important;
+}
+
+.bg-success:hover:disabled {
+  background-color: #28a745!important;
+}
