@@ -23,14 +23,14 @@ class SolicitudActividadController
     }
 
     /* Actualiza un solicitud_actividad */
-    public static function update($res, $id)
+    public static function update($res, $id, $column = 'id')
     {
-        return SolicitudActividad::update($res, $id);
+        return SolicitudActividad::update($res, $id, $column);
     }
 
     public function getActividad($id)
     {
-        $where = "WHERE id_solicitud = '$id'";
+        $where = "WHERE id_solicitud = '$id' AND sol_act.deleted_at IS NULL";
         $conn = new BaseDatos();
         $query =  $conn->query($this->insertSqlQuery($where));
         $array = [];

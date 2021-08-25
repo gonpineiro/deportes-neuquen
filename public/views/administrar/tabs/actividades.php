@@ -1,7 +1,8 @@
-<form action="04_actividadesPost.php" method="POST" enctype="multipart/form-data" class="form-horizontal mx-auto needs-validation" name="form-4" id="form-4" novalidate>
+<form action="components/actividadesPost.php" method="POST" class="form-horizontal mx-auto needs-validation" name="form-4" id="form-4" novalidate>
     <div id="paso-3" class="card-body mb-5" style="border-bottom-right-radius: 20px;border-bottom-left-radius:20px;">
         <h4 class="text-white">Inscripción por Actividades</h4>
         <hr>
+        <input type="number" value="1" name="id_solicitud" hidden>
         <!-- SELECCIÓN ACTIVIDADES LABORALES -->
         <div class="form-group">
 
@@ -38,7 +39,7 @@
             <div class="row">
                 <div class="col-md-12 my-1">
                     <div class="float-md-right float-xs-left">
-                        <input class="btn btn-primary submitBtn" type="submit" id="actividadesSubmit" value="Confirmar y Guardar" name="actividadesSubmit" />
+                        <input class="btn btn-primary submitBtn" type="submit" id="actividadesUpdateSubmit" value="Confirmar y Guardar" name="actividadesUpdateSubmit" />
                     </div>
                 </div>
             </div>

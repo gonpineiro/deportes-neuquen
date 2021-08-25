@@ -69,10 +69,10 @@ class SolicitudActividad
         return $solicitud_actividad;
     }
 
-    public static function update($res, $id)
+    public static function update($res, $id, $column = 'id')
     {
         $conn = new BaseDatos();
-        $result = $conn->update(SOLICITUDES_ACTIVIDADES, $res, $id);
+        $result = $conn->update(SOLICITUDES_ACTIVIDADES, $res, $id, $column);
 
         /* Guardamos los errores */
         if ($conn->getError()) {

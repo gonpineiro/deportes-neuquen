@@ -73,7 +73,7 @@ class BaseDatos
             }
         }
 
-        $sql = "SELECT * FROM " . $table . " WHERE " . $where. " ORDER BY ". $orderBy . " " . $order;
+        $sql = "SELECT * FROM " . $table . " WHERE " . $where . " ORDER BY " . $orderBy . " " . $order;
         $query = odbc_exec($this->conn, $sql);
         if ($query) {
             return $query;
@@ -94,7 +94,7 @@ class BaseDatos
         return $this->executeQuery($query, $params, true);
     }
 
-    public function update($table, $params, $id)
+    public function update($table, $params, $id, $column = 'id')
     {
         $this->connect();
         $strKeyValues = '';
@@ -107,7 +107,7 @@ class BaseDatos
 
         $strKeyValues = trim($strKeyValues, ',');
 
-        $sql = "UPDATE $table SET $strKeyValues WHERE id=?";
+        $sql = "UPDATE $table SET $strKeyValues WHERE $column=?";
         $query = $this->prepare($sql);
         return $this->executeQuery($query, $values);
     }
