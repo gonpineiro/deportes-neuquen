@@ -1,0 +1,12 @@
+└───formulario_deportes/
+    └───1/
+        ├───titulos/
+        │   ├───titulo_1.png
+        │   └───titulo_2.jpeg
+        ├───trabajos/
+        │   ├───0.png
+        │   └───1.jpeg
+        ├───antecedentes.jpeg
+        └───recibo.png
+
+
