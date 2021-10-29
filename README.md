@@ -1,15 +1,15 @@
-#### Formulario deporte
+## Formulario deporte
 
 Sistema de registro de profesionales de deportes.
 
-##### Levantar el proyecto
+### Levantar el proyecto
 
-Instalación de dependencias:
+<b>Instalación de dependencias:</b>
 
 1) `composer install`
 2) `npm install`
 
-Configuración de la base de datos
+<b>Configuración de la base de datos</b>
 
 3) Ejecutar el `sql query` ubicado en el root, nombrado como `sql.sql`
 4) Correr el seeder de `Actividades`
@@ -18,7 +18,7 @@ Configuración de la base de datos
 <small> Los seeder se encuentran en `app/seeder` </small>
 <small> Se recomienda ejecutar los seeder desde el `index.php` ubicado en el root </small>
 
-##### Configuración del proyecto
+### Configuración del proyecto
 
 Se debe configurar el `.env` ubicado en el root del proyecto
 Las varibles mas importes son:
@@ -36,7 +36,7 @@ También por cada `idFormulario` va generar dos nuevas carpetas `titulos/` y `tr
 En `titulos/` va guardar, en formato de imagen, los títulos subidos por el usuario con el siguiente formato: `titulo_n.ext` (n representa el número del archivo para que no se pisen)
 En `trabajos/` va guardar, en formato de imagen, documentos relacionados con los trabajos subidos por el usuario con el siguiente formato: `n.ext` (n representa el número del archivo para que no se pisen).
 
-Así se aprecia el árbol de los archivos.
+<b>Así se aprecia el árbol de los archivos.</b>
 
 ```tree
 ────formulario_deportes/
@@ -53,9 +53,9 @@ Así se aprecia el árbol de los archivos.
         └───recibo.png
 ```
 
-##### Flujo de estados en la creación de una solicitud
+### Flujo de estados en la creación de una solicitud
 
-Estados del lado del usuario
+<b>Estados del lado del usuario</b>
 
 1) Cuando un usuario decide generar una solicitud nueva, el primer formulario que muestra es el de los `Datos Personales`
 2) Luego de completar los `Datos Personales` se crea la solicitud con estado `Titulos` - `id 1`
@@ -65,7 +65,7 @@ Estados del lado del usuario
 6) El estado `Condiciones` permite al usuario revisar todos los datos cargados antes de enviar la solicitud, cuando se envía se cambia a estado `Nuevo` - `id 6`
 7) El usuario en cada momento, menos en `Datos Personales` puede reiniciar la carga, lo que hace es cambiar el estado de la solicitud a `Cancelado` - `id 11`, no borra la solicitud.
 
-Estados del lado del administrador
+<b>Estados del lado del administrador</b>
 
 <small> La idea de cómo se debe gestionar las solicitudes de los usuario, es que, permita aprobar o rechazar cierta información de manera independiente, como por ejemplo aprobar 3 de 5 títulos o 2 de 5 trabajos, pero puede aprobar la solicitud -  Esto se explica más adelante el funcionamiento, cada título y trabajo cargado maneja su propio estado</small>
 
@@ -74,7 +74,7 @@ Estados del lado del administrador
 3) Cuando se realice la impresión del carnet se debe cambiar a estado `Impreso` - `id 9`
 4) Cuando se realice el retiro del carnet se debe cambiar a estado `Retirado` - `id 10`
 
-Estados del `titulos` y `trabajos`
+<b>Estados del `titulos` y `trabajos`</b>
 
 Cada título y cada trabajo manejan su propio estado como:
 
@@ -85,5 +85,5 @@ Cada título y cada trabajo manejan su propio estado como:
 <small>Cuando una solicitud se aprobó correctamente y tiene cierta información en estado Rechazado, al momento de generar otra solicitud (cuando se vence) durante la carga el usuario puede visualizar los títulos y trabajos aprobados sin la necesidad de cargarlos nuevamente</small>
 
 
-##### Progreso del proyecto
+### Progreso del proyecto
 Todo lo que es el formulario ya se encuentra concretado, falta terminar de desarrollar el panel admin.
