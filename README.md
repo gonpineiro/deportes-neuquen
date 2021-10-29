@@ -53,5 +53,37 @@ Así se aprecia el árbol de los archivos.
         └───recibo.png
 ```
 
+##### Flujo de estados en la creación de una solicitud
+
+Estados del lado del usuario
+
+1) Cuando un usuario decide generar una solicitud nueva, el primer formulario que muestra es el de los `Datos Personales`
+2) Luego de completar los `Datos Personales` se crea la solicitud con estado `Titulos` - `id 1`
+3) El estado `Titulos` permite al usuario cargar varios archivos certificando los títulos que tiene, una vez completado se cambia el estado a `Trabajos` - `id 2`
+4) El estado `Trabajos` permite al usuario cargar varios archivos certificando los trabajos que tiene, una vez completado se cambia el estado a `Actividades` - `id 3`
+5) El estado `Actividades` permite al usuario cargar varias actividades ya establecidas de la tabla `actividades`, una vez completado se cambia el estado a `Condiciones` - `id 4`
+6) El estado `Condiciones` permite al usuario revisar todos los datos cargados antes de enviar la solicitud, cuando se envía se cambia a estado `Nuevo` - `id 6`
+7) El usuario en cada momento, menos en `Datos Personales` puede reiniciar la carga, lo que hace es cambiar el estado de la solicitud a `Cancelado` - `id 11`, no borra la solicitud.
+
+Estados del lado del administrador
+
+<small> La idea de cómo se debe gestionar las solicitudes de los usuario, es que, permita aprobar o rechazar cierta información de manera independiente, como por ejemplo aprobar 3 de 5 títulos o 2 de 5 trabajos, pero puede aprobar la solicitud -  Esto se explica más adelante el funcionamiento, cada título y trabajo cargado maneja su propio estado</small>
+
+1) Cuando se obtiene una solicitud en estado `Nuevo` - `id 6` el administrador lo puede aprobar `Aprobado` - `id 8` o rechazar `Rechazado` - `id 7`
+2) Si el estado se encuentra `Rechazado` el usuario deberá crear toda una solicitud nueva. No podrá recupera lo cargado.
+3) Cuando se realice la impresión del carnet se debe cambiar a estado `Impreso` - `id 9`
+4) Cuando se realice el retiro del carnet se debe cambiar a estado `Retirado` - `id 10`
+
+Estados del `titulos` y `trabajos`
+
+Cada título y cada trabajo manejan su propio estado como:
+
+1) `null` Cuando se creó la solicitud en estado `Nuevo` - `id 6`
+2) Cuando el administrador aprobó el titulo/trabajo  `Aprobado`
+3) Cuando el administrador rechazo el titulo/trabajo `Rechazado`
+
+<small>Cuando una solicitud se aprobó correctamente y tiene cierta información en estado Rechazado, al momento de generar otra solicitud (cuando se vence) durante la carga el usuario puede visualizar los títulos y trabajos aprobados sin la necesidad de cargarlos nuevamente</small>
+
+
 ##### Progreso del proyecto
 Todo lo que es el formulario ya se encuentra concretado, falta terminar de desarrollar el panel admin.
